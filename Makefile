@@ -12,7 +12,8 @@ RM = rm
 #===========FILES=======================
 TARGET = $(BIN_DIR)/clock
     
-SOURCES = 
+SOURCES = main.c\
+		  src/gpio.c
 
 		 
            
