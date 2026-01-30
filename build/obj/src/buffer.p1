@@ -1,0 +1,133 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"11 inc/buffer.h
+[s S1 `uc 1 `uc 1 `a 1 `a 1 ]
+[n S1 . head tail IsEmpty IsFull ]
+"8 inc/buffer.h
+[v _RingBuffer `uc ~T0 @X0 -> 10 `i e ]
+"3 src/buffer.c
+[v _Buffer_Init `(v ~T0 @X0 1 ef1`*S1 ]
+"4
+{
+[e :U _Buffer_Init ]
+"3
+[v _buffer `*S1 ~T0 @X0 1 r1 ]
+"4
+[f ]
+"5
+[e = . *U _buffer 0 -> -> 0 `i `uc ]
+"6
+[e = . *U _buffer 1 -> -> 0 `i `uc ]
+"7
+[e = . *U _buffer 2 -> -> 0 `i `a ]
+"8
+[e = . *U _buffer 3 -> -> 0 `i `a ]
+"9
+[e :UE 2 ]
+}
+"11
+[v _Buffer_Add `(v ~T0 @X0 1 ef2`*S1`uc ]
+"12
+{
+[e :U _Buffer_Add ]
+"11
+[v _buffer `*S1 ~T0 @X0 1 r1 ]
+[v _element `uc ~T0 @X0 1 r2 ]
+"12
+[f ]
+"13
+[e $ ! ! != -> . *U _buffer 3 `i -> 0 `i 4  ]
+"14
+{
+"15
+[e = *U + &U _RingBuffer * -> . *U _buffer 0 `ux -> -> # *U &U _RingBuffer `ui `ux _element ]
+"16
+[e ++ . *U _buffer 0 -> -> 1 `i `uc ]
+"17
+}
+[e :U 4 ]
+"18
+[e $ ! == -> . *U _buffer 0 `i -> 10 `i 5  ]
+"19
+{
+"20
+[e = . *U _buffer 0 -> -> 0 `i `uc ]
+"21
+}
+[e :U 5 ]
+"23
+[e $ ! >= - -> . *U _buffer 0 `i -> . *U _buffer 1 `i -> 10 `i 6  ]
+"24
+{
+"25
+[e = . *U _buffer 3 -> -> 1 `i `a ]
+"26
+}
+[e :U 6 ]
+"28
+[e $ ! && != -> . *U _buffer 2 `i -> 0 `i != -> . *U _buffer 0 `i -> . *U _buffer 1 `i 7  ]
+"29
+{
+"30
+[e = . *U _buffer 2 -> -> 0 `i `a ]
+"31
+}
+[e :U 7 ]
+"32
+[e :UE 3 ]
+}
+"34
+[v _Buffer_Get `(uc ~T0 @X0 1 ef1`*S1 ]
+"35
+{
+[e :U _Buffer_Get ]
+"34
+[v _buffer `*S1 ~T0 @X0 1 r1 ]
+"35
+[f ]
+"36
+[v _tail_temp `uc ~T0 @X0 1 a ]
+[e = _tail_temp -> -> 0 `ui `uc ]
+"38
+[e $ ! ! != -> . *U _buffer 2 `i -> 0 `i 9  ]
+"39
+{
+"40
+[e = _tail_temp *U + &U _RingBuffer * -> . *U _buffer 1 `ux -> -> # *U &U _RingBuffer `ui `ux ]
+"41
+[e ++ . *U _buffer 1 -> -> 1 `i `uc ]
+"42
+}
+[e :U 9 ]
+"44
+[e $ ! == -> . *U _buffer 1 `i -> 10 `i 10  ]
+"45
+{
+"46
+[e = . *U _buffer 1 -> -> 0 `i `uc ]
+"47
+}
+[e :U 10 ]
+"49
+[e $ ! == -> . *U _buffer 0 `i -> . *U _buffer 1 `i 11  ]
+"50
+{
+"51
+[e = . *U _buffer 2 -> -> 1 `i `a ]
+"52
+}
+[e :U 11 ]
+"54
+[e $ ! && != -> . *U _buffer 3 `i -> 0 `i != -> . *U _buffer 0 `i -> . *U _buffer 1 `i 12  ]
+"55
+{
+"56
+[e = . *U _buffer 3 -> -> 0 `i `a ]
+"57
+}
+[e :U 12 ]
+"58
+[e ) _tail_temp ]
+[e $UE 8  ]
+"59
+[e :UE 8 ]
+}

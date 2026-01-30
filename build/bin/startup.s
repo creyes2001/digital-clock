@@ -9,8 +9,8 @@
 	;
 	; -q --opt=none --chip=18f4550 \
 	; --dfp=/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8 \
-	; -Iinc build/obj/main.p1 build/obj/src/gpio.p1 -oclock \
-	; --objdir=build/bin --outdir=build/bin -L--fixupoverflow=error \
+	; -Iinc build/obj/main.p1 build/obj/src/gpio.p1 build/obj/src/buffer.p1 \
+	; -oclock --objdir=build/bin --outdir=build/bin -L--fixupoverflow=error \
 	; --std=c99 --rors --icl=auto --callgraph=none --warn=-3 \
 	; --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \

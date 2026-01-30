@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
-                                                                                                           Thu Jan 29 14:31:48 2026
+                                                                                                           Thu Jan 29 22:24:39 2026
 
 
      1                           	processor	18F4550
@@ -69,8 +69,8 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
     63                           ;
     64                           ; -q --opt=none --chip=18f4550 \
     65                           ; --dfp=/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8 \
-    66                           ; -Iinc build/obj/main.p1 build/obj/src/gpio.p1 -oclock \
-    67                           ; --objdir=build/bin --outdir=build/bin -L--fixupoverflow=error \
+    66                           ; -Iinc build/obj/main.p1 build/obj/src/gpio.p1 build/obj/src/buffer.p1 \
+    67                           ; -oclock --objdir=build/bin --outdir=build/bin -L--fixupoverflow=error \
     68                           ; --std=c99 --rors --icl=auto --callgraph=none --warn=-3 \
     69                           ; --errformat=%f:%l:%c: error: (%n) %s \
     70                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
@@ -251,9 +251,9 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
 
 
 Microchip Technology PIC18 Macro Assembler V3.10 build 20250813170317 
-Symbol Table                                                                                               Thu Jan 29 14:31:48 2026
+Symbol Table                                                                                               Thu Jan 29 22:24:39 2026
 
-                __S1 0017                 ___sp 0000                 _main 0990                 start 7FFC  
+                __S1 0021                 ___sp 0000                 _main 0990                 start 7FFC  
               __HRAM 0000                __LRAM 0001               isa$std 0001     ___inthi_stack_hi 0000  
    ___inthi_stack_lo 0000               stackhi 0000               stacklo 0000           __accesstop 0060  
          ___inthi_sp 0000           ___intlo_sp 0000           ___stack_hi 0000           ___stack_lo 0000  

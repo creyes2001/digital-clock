@@ -8,7 +8,7 @@ void Buffer_Init(buffer_t *buffer)
 	buffer->IsFull = false;
 }
 
-void Buffer_Add(buffer_t *buffer,uint8_t element)
+void Buffer_Add(buffer_t *buffer,char element)
 {
 		if(!buffer->IsFull)
       {
@@ -31,9 +31,9 @@ void Buffer_Add(buffer_t *buffer,uint8_t element)
       }
 }
 
-uint8_t Buffer_Get(buffer_t *buffer)
+char Buffer_Get(buffer_t *buffer)
 {
-	uint8_t tail_temp;
+	char tail_temp = '\0';
 
      if(!buffer->IsEmpty)
      {

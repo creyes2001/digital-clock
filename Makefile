@@ -13,7 +13,8 @@ RM = rm
 TARGET = $(BIN_DIR)/clock
     
 SOURCES = main.c\
-		  src/gpio.c
+		  src/gpio.c\
+		  src/buffer.c
 
 		 
            

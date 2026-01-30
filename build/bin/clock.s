@@ -833,6 +833,7 @@ __pidataCOMRAM:
 	db	high(3971)
 
 	db	low(0)
+	global	_RingBuffer
 	global	_PORTB
 _PORTB	set	0xF81
 	global	_LATB
@@ -877,6 +878,12 @@ start_initialization:
 
 global __initialization
 __initialization:
+psect	bssCOMRAM,class=COMRAM,space=1,noexec,lowdata
+global __pbssCOMRAM
+__pbssCOMRAM:
+	global	_RingBuffer
+_RingBuffer:
+       ds      10
 psect	dataCOMRAM,class=COMRAM,space=1,noexec,lowdata
 global __pdataCOMRAM
 __pdataCOMRAM:
@@ -911,6 +918,15 @@ psect	cinit
 	movf	postdec1,w
 	movf	fsr1l,w
 	bnz	copy_data0
+	line	#
+; Clear objects allocated to COMRAM (10 bytes)
+	global __pbssCOMRAM
+lfsr	0,__pbssCOMRAM
+movlw	10
+clear_0:
+clrf	postinc0,c
+decf	wreg
+bnz	clear_0
 psect cinit,class=CODE,delta=1
 global end_of_initialization,__end_of__initialization
 
@@ -952,13 +968,13 @@ main@level:	; 1 bytes @ 0x7
 ;!    Strings     0
 ;!    Constant    0
 ;!    Data        14
-;!    BSS         0
+;!    BSS         10
 ;!    Persistent  0
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMRAM           95      8      22
+;!    COMRAM           95      8      32
 ;!    BANK0           160      0       0
 ;!    BANK1           256      0       0
 ;!    BANK2           256      0       0
@@ -1141,10 +1157,10 @@ main@level:	; 1 bytes @ 0x7
 ;!BANK0              160      0       0      0.0%
 ;!BITBIGSFRh         126      0       0      0.0%
 ;!BITCOMRAM           95      0       0      0.0%
-;!COMRAM              95      8      22     23.2%
+;!COMRAM              95      8      32     33.7%
 ;!BITBIGSFRl          33      0       0      0.0%
 ;!STACK                0      0       0      0.0%
-;!DATA                 0      0      22      0.0%
+;!DATA                 0      0      32      0.0%
 
 	global	_main
 
@@ -1192,7 +1208,7 @@ _main:
 	callstack 30
 	line	21
 	
-l886:
+l949:
 		movlw	low(_led)
 	movwf	((c:Gpio_Init@gpio))^00h,c
 
@@ -1217,18 +1233,18 @@ l27:
 	movwf	((c:main@level))^00h,c
 	line	28
 	
-l888:
+l951:
 		decf	((c:main@level))^00h,c,w
 	btfss	status,2
-	goto	u191
-	goto	u190
+	goto	u291
+	goto	u290
 
-u191:
+u291:
 	goto	l28
-u190:
+u290:
 	line	30
 	
-l890:
+l953:
 		movlw	low(_led)
 	movwf	((c:Gpio_Write@gpio))^00h,c
 
@@ -1299,18 +1315,18 @@ _Gpio_Write:
 	callstack 30
 	line	18
 	
-l880:
+l943:
 		decf	((c:Gpio_Write@level))^00h,c,w
 	btfss	status,2
-	goto	u161
-	goto	u160
+	goto	u261
+	goto	u260
 
-u161:
-	goto	l884
-u160:
+u261:
+	goto	l947
+u260:
 	line	20
 	
-l882:
+l945:
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1322,13 +1338,13 @@ l882:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Write+1)^00h,c
 	incf	((??_Gpio_Write+0))^00h,c
-	goto	u174
-u175:
+	goto	u274
+u275:
 	bcf	status,0
 	rlcf	((??_Gpio_Write+1))^00h,c
-u174:
+u274:
 	decfsz	((??_Gpio_Write+0))^00h,c
-	goto	u175
+	goto	u275
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1345,7 +1361,7 @@ u174:
 	goto	l41
 	line	24
 	
-l884:
+l947:
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1357,13 +1373,13 @@ l884:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Write+1)^00h,c
 	incf	((??_Gpio_Write+0))^00h,c
-	goto	u184
-u185:
+	goto	u284
+u285:
 	bcf	status,0
 	rlcf	((??_Gpio_Write+1))^00h,c
-u184:
+u284:
 	decfsz	((??_Gpio_Write+0))^00h,c
-	goto	u185
+	goto	u285
 	movf	((??_Gpio_Write+1))^00h,c,w
 	xorlw	0ffh
 	movwf	(??_Gpio_Write+2)^00h,c
@@ -1431,7 +1447,7 @@ _Gpio_Read:
 	callstack 30
 	line	30
 	
-l870:
+l933:
 	movf	((c:Gpio_Read@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1455,30 +1471,30 @@ l870:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Read+4)^00h,c
 	incf	((??_Gpio_Read+3))^00h,c
-	goto	u144
-u145:
+	goto	u244
+u245:
 	bcf	status,0
 	rlcf	((??_Gpio_Read+4))^00h,c
-u144:
+u244:
 	decfsz	((??_Gpio_Read+3))^00h,c
-	goto	u145
+	goto	u245
 	movf	((??_Gpio_Read+4))^00h,c,w
 	andwf	((??_Gpio_Read+2))^00h,c,w
 	iorlw	0
 	btfsc	status,2
-	goto	u151
-	goto	u150
-u151:
-	goto	l876
-u150:
+	goto	u251
+	goto	u250
+u251:
+	goto	l939
+u250:
 	line	32
 	
-l872:
+l935:
 	movlw	(01h)&0ffh
 	goto	l45
 	line	34
 	
-l876:
+l939:
 	movlw	(0)&0ffh
 	line	35
 	
@@ -1533,17 +1549,17 @@ _Gpio_Init:
 	callstack 30
 	line	6
 	
-l864:
+l927:
 	movf	((c:Gpio_Init@dir))^00h,c,w
 	btfss	status,2
-	goto	u111
-	goto	u110
-u111:
-	goto	l868
-u110:
+	goto	u211
+	goto	u210
+u211:
+	goto	l931
+u210:
 	line	8
 	
-l866:
+l929:
 	movf	((c:Gpio_Init@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1555,13 +1571,13 @@ l866:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Init+1)^00h,c
 	incf	((??_Gpio_Init+0))^00h,c
-	goto	u124
-u125:
+	goto	u224
+u225:
 	bcf	status,0
 	rlcf	((??_Gpio_Init+1))^00h,c
-u124:
+u224:
 	decfsz	((??_Gpio_Init+0))^00h,c
-	goto	u125
+	goto	u225
 	movf	((??_Gpio_Init+1))^00h,c,w
 	xorlw	0ffh
 	movwf	(??_Gpio_Init+2)^00h,c
@@ -1578,7 +1594,7 @@ u124:
 	goto	l36
 	line	12
 	
-l868:
+l931:
 	movf	((c:Gpio_Init@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1590,13 +1606,13 @@ l868:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Init+1)^00h,c
 	incf	((??_Gpio_Init+0))^00h,c
-	goto	u134
-u135:
+	goto	u234
+u235:
 	bcf	status,0
 	rlcf	((??_Gpio_Init+1))^00h,c
-u134:
+u234:
 	decfsz	((??_Gpio_Init+0))^00h,c
-	goto	u135
+	goto	u235
 	movf	((c:Gpio_Init@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
