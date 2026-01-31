@@ -1,3 +1,4 @@
+#include "uart.h"
 #include "gpio.h"
 #include "config.h"
 #include <xc.h>
