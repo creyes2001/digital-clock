@@ -25,8 +25,8 @@ void Uart_Init(const uart_config_t *uart)
 /* Initialize pins and enable serial port */
 void Uart_Start(const uart_config_t *uart)
 {
-	Gpio_Init(uart->rx,GPIO_INPUT);
-	Gpio_Init(uart->tx,GPIO_INPUT);
+	Gpio_Init(*(uart->rx),GPIO_INPUT);
+	Gpio_Init(*(uart->tx),GPIO_INPUT);
 
 	RCSTAbits.SPEN = 1; //Enable serial port
 	TXSTAbits.TXEN = 1; //Enable transmitter
@@ -36,7 +36,7 @@ void Uart_Start(const uart_config_t *uart)
 }
 
 /* Disable serial port */
-void Uart_Stop(const uart_config_t *uart)
+void Uart_Stop(void)
 {
 	RCSTAbits.SPEN = 0; //Disable serial port
 	TXSTAbits.TXEN = 0; //Disable transmitter

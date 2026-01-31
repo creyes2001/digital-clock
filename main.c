@@ -17,6 +17,10 @@ gpio_t button = {
 	.pin = 0
 };
 
+gpio_t uart =
+{
+	.rx
+
 int main()
 {
 	Gpio_Init(&led,GPIO_OUTPUT);
