@@ -14,7 +14,8 @@ TARGET = $(BIN_DIR)/clock
     
 SOURCES = main.c\
 		  src/gpio.c\
-		  src/buffer.c
+		  src/buffer.c\
+		  src/uart.c
 
 		 
            

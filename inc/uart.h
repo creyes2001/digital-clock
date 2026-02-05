@@ -12,8 +12,8 @@ typedef struct
 }uart_config_t;
 
 
-void Uart_Init(uart_config_t *uart);
-void Uart_Start(uart_config_t *uart);
+void Uart_Init(const uart_config_t *uart);
+void Uart_Start(const uart_config_t *uart);
 void Uart_Stop(void);
 char Uart_Rx(void);
 void Uart_Tx(char c);

@@ -25,14 +25,15 @@ void Uart_Init(const uart_config_t *uart)
 /* Initialize pins and enable serial port */
 void Uart_Start(const uart_config_t *uart)
 {
-	Gpio_Init(*(uart->rx),GPIO_INPUT);
-	Gpio_Init(*(uart->tx),GPIO_INPUT);
+	Gpio_Init(uart->rx,GPIO_INPUT);
+	Gpio_Init(uart->tx,GPIO_INPUT);
 
 	RCSTAbits.SPEN = 1; //Enable serial port
 	TXSTAbits.TXEN = 1; //Enable transmitter
 	RCSTAbits.CREN = 1; //Enable receiver
 	
-
+	PIR1bits.TXIF = 0;	//Clear interrupt flag
+	PIE1bits.TXIE = 1;	//Enable transmission interrupt 				   
 }
 
 /* Disable serial port */
@@ -43,21 +44,22 @@ void Uart_Stop(void)
 	RCSTAbits.CREN = 0; //Disable receiver
 }
 
-char Uart_Rx(void)
+/*char Uart_Rx(void)
 {
-	 
+		 
 }
-
+*/
 void Uart_Tx(char c)
 {
-	if(TXSTAbits.TRMT == 1)
+	if(PIR1bits.TXIF == 0)
 	{
 		/* wait */
 	}
 		TXREG = c;
 }
-
+/*
 void Uart_SendString(char msg)
 {
 
 }
+*/

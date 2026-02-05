@@ -796,18 +796,391 @@ TOSL equ 0FFDh ;#
 TOSH equ 0FFEh ;# 
 # 8891 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
 TOSU equ 0FFFh ;# 
+# 52 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPPDATA equ 0F62h ;# 
+# 72 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPPCFG equ 0F63h ;# 
+# 149 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPPEPS equ 0F64h ;# 
+# 223 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPPCON equ 0F65h ;# 
+# 249 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UFRM equ 0F66h ;# 
+# 256 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UFRML equ 0F66h ;# 
+# 334 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UFRMH equ 0F67h ;# 
+# 374 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UIR equ 0F68h ;# 
+# 430 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UIE equ 0F69h ;# 
+# 486 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEIR equ 0F6Ah ;# 
+# 537 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEIE equ 0F6Bh ;# 
+# 588 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+USTAT equ 0F6Ch ;# 
+# 648 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UCON equ 0F6Dh ;# 
+# 699 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UADDR equ 0F6Eh ;# 
+# 763 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UCFG equ 0F6Fh ;# 
+# 842 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP0 equ 0F70h ;# 
+# 950 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP1 equ 0F71h ;# 
+# 1058 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP2 equ 0F72h ;# 
+# 1166 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP3 equ 0F73h ;# 
+# 1274 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP4 equ 0F74h ;# 
+# 1382 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP5 equ 0F75h ;# 
+# 1490 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP6 equ 0F76h ;# 
+# 1598 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP7 equ 0F77h ;# 
+# 1706 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP8 equ 0F78h ;# 
+# 1782 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP9 equ 0F79h ;# 
+# 1858 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP10 equ 0F7Ah ;# 
+# 1934 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP11 equ 0F7Bh ;# 
+# 2010 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP12 equ 0F7Ch ;# 
+# 2086 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP13 equ 0F7Dh ;# 
+# 2162 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP14 equ 0F7Eh ;# 
+# 2238 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+UEP15 equ 0F7Fh ;# 
+# 2314 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PORTA equ 0F80h ;# 
+# 2453 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PORTB equ 0F81h ;# 
+# 2563 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PORTC equ 0F82h ;# 
+# 2705 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PORTD equ 0F83h ;# 
+# 2826 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PORTE equ 0F84h ;# 
+# 2973 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+LATA equ 0F89h ;# 
+# 3073 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+LATB equ 0F8Ah ;# 
+# 3185 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+LATC equ 0F8Bh ;# 
+# 3263 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+LATD equ 0F8Ch ;# 
+# 3375 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+LATE equ 0F8Dh ;# 
+# 3427 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TRISA equ 0F92h ;# 
+# 3432 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+DDRA equ 0F92h ;# 
+# 3625 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TRISB equ 0F93h ;# 
+# 3630 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+DDRB equ 0F93h ;# 
+# 3847 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TRISC equ 0F94h ;# 
+# 3852 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+DDRC equ 0F94h ;# 
+# 4001 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TRISD equ 0F95h ;# 
+# 4006 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+DDRD equ 0F95h ;# 
+# 4223 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TRISE equ 0F96h ;# 
+# 4228 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+DDRE equ 0F96h ;# 
+# 4325 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+OSCTUNE equ 0F9Bh ;# 
+# 4384 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PIE1 equ 0F9Dh ;# 
+# 4468 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PIR1 equ 0F9Eh ;# 
+# 4552 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+IPR1 equ 0F9Fh ;# 
+# 4636 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PIE2 equ 0FA0h ;# 
+# 4707 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PIR2 equ 0FA1h ;# 
+# 4778 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+IPR2 equ 0FA2h ;# 
+# 4849 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+EECON1 equ 0FA6h ;# 
+# 4915 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+EECON2 equ 0FA7h ;# 
+# 4922 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+EEDATA equ 0FA8h ;# 
+# 4929 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+EEADR equ 0FA9h ;# 
+# 4936 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+RCSTA equ 0FABh ;# 
+# 4941 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+RCSTA1 equ 0FABh ;# 
+# 5146 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TXSTA equ 0FACh ;# 
+# 5151 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TXSTA1 equ 0FACh ;# 
+# 5402 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TXREG equ 0FADh ;# 
+# 5407 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TXREG1 equ 0FADh ;# 
+# 5414 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+RCREG equ 0FAEh ;# 
+# 5419 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+RCREG1 equ 0FAEh ;# 
+# 5426 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPBRG equ 0FAFh ;# 
+# 5431 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPBRG1 equ 0FAFh ;# 
+# 5438 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SPBRGH equ 0FB0h ;# 
+# 5445 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+T3CON equ 0FB1h ;# 
+# 5566 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR3 equ 0FB2h ;# 
+# 5573 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR3L equ 0FB2h ;# 
+# 5580 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR3H equ 0FB3h ;# 
+# 5587 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CMCON equ 0FB4h ;# 
+# 5677 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CVRCON equ 0FB5h ;# 
+# 5762 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ECCP1AS equ 0FB6h ;# 
+# 5767 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCP1AS equ 0FB6h ;# 
+# 5924 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ECCP1DEL equ 0FB7h ;# 
+# 5929 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCP1DEL equ 0FB7h ;# 
+# 6062 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+BAUDCON equ 0FB8h ;# 
+# 6067 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+BAUDCTL equ 0FB8h ;# 
+# 6242 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCP2CON equ 0FBAh ;# 
+# 6306 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCPR2 equ 0FBBh ;# 
+# 6313 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCPR2L equ 0FBBh ;# 
+# 6320 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCPR2H equ 0FBCh ;# 
+# 6327 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCP1CON equ 0FBDh ;# 
+# 6332 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ECCP1CON equ 0FBDh ;# 
+# 6489 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCPR1 equ 0FBEh ;# 
+# 6496 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCPR1L equ 0FBEh ;# 
+# 6503 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+CCPR1H equ 0FBFh ;# 
+# 6510 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ADCON2 equ 0FC0h ;# 
+# 6581 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ADCON1 equ 0FC1h ;# 
+# 6666 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ADCON0 equ 0FC2h ;# 
+# 6785 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ADRES equ 0FC3h ;# 
+# 6792 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ADRESL equ 0FC3h ;# 
+# 6799 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+ADRESH equ 0FC4h ;# 
+# 6806 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SSPCON2 equ 0FC5h ;# 
+# 6868 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SSPCON1 equ 0FC6h ;# 
+# 6938 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SSPSTAT equ 0FC7h ;# 
+# 7186 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SSPADD equ 0FC8h ;# 
+# 7193 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+SSPBUF equ 0FC9h ;# 
+# 7200 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+T2CON equ 0FCAh ;# 
+# 7298 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PR2 equ 0FCBh ;# 
+# 7303 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+MEMCON equ 0FCBh ;# 
+# 7408 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR2 equ 0FCCh ;# 
+# 7415 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+T1CON equ 0FCDh ;# 
+# 7518 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR1 equ 0FCEh ;# 
+# 7525 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR1L equ 0FCEh ;# 
+# 7532 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR1H equ 0FCFh ;# 
+# 7539 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+RCON equ 0FD0h ;# 
+# 7688 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+WDTCON equ 0FD1h ;# 
+# 7716 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+HLVDCON equ 0FD2h ;# 
+# 7721 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+LVDCON equ 0FD2h ;# 
+# 7986 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+OSCCON equ 0FD3h ;# 
+# 8069 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+T0CON equ 0FD5h ;# 
+# 8139 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR0 equ 0FD6h ;# 
+# 8146 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR0L equ 0FD6h ;# 
+# 8153 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TMR0H equ 0FD7h ;# 
+# 8160 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+STATUS equ 0FD8h ;# 
+# 8231 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR2 equ 0FD9h ;# 
+# 8238 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR2L equ 0FD9h ;# 
+# 8245 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR2H equ 0FDAh ;# 
+# 8252 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PLUSW2 equ 0FDBh ;# 
+# 8259 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PREINC2 equ 0FDCh ;# 
+# 8266 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+POSTDEC2 equ 0FDDh ;# 
+# 8273 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+POSTINC2 equ 0FDEh ;# 
+# 8280 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+INDF2 equ 0FDFh ;# 
+# 8287 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+BSR equ 0FE0h ;# 
+# 8294 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR1 equ 0FE1h ;# 
+# 8301 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR1L equ 0FE1h ;# 
+# 8308 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR1H equ 0FE2h ;# 
+# 8315 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PLUSW1 equ 0FE3h ;# 
+# 8322 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PREINC1 equ 0FE4h ;# 
+# 8329 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+POSTDEC1 equ 0FE5h ;# 
+# 8336 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+POSTINC1 equ 0FE6h ;# 
+# 8343 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+INDF1 equ 0FE7h ;# 
+# 8350 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+WREG equ 0FE8h ;# 
+# 8357 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR0 equ 0FE9h ;# 
+# 8364 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR0L equ 0FE9h ;# 
+# 8371 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+FSR0H equ 0FEAh ;# 
+# 8378 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PLUSW0 equ 0FEBh ;# 
+# 8385 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PREINC0 equ 0FECh ;# 
+# 8392 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+POSTDEC0 equ 0FEDh ;# 
+# 8399 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+POSTINC0 equ 0FEEh ;# 
+# 8406 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+INDF0 equ 0FEFh ;# 
+# 8413 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+INTCON3 equ 0FF0h ;# 
+# 8505 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+INTCON2 equ 0FF1h ;# 
+# 8582 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+INTCON equ 0FF2h ;# 
+# 8699 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PROD equ 0FF3h ;# 
+# 8706 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PRODL equ 0FF3h ;# 
+# 8713 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PRODH equ 0FF4h ;# 
+# 8720 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TABLAT equ 0FF5h ;# 
+# 8729 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TBLPTR equ 0FF6h ;# 
+# 8736 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TBLPTRL equ 0FF6h ;# 
+# 8743 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TBLPTRH equ 0FF7h ;# 
+# 8750 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TBLPTRU equ 0FF8h ;# 
+# 8759 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PCLAT equ 0FF9h ;# 
+# 8766 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PC equ 0FF9h ;# 
+# 8773 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PCL equ 0FF9h ;# 
+# 8780 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PCLATH equ 0FFAh ;# 
+# 8787 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+PCLATU equ 0FFBh ;# 
+# 8794 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+STKPTR equ 0FFCh ;# 
+# 8870 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TOS equ 0FFDh ;# 
+# 8877 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TOSL equ 0FFDh ;# 
+# 8884 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TOSH equ 0FFEh ;# 
+# 8891 "/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h"
+TOSU equ 0FFFh ;# 
 	debug_source C
 	FNCALL	_main,_Gpio_Init
 	FNCALL	_main,_Gpio_Read
 	FNCALL	_main,_Gpio_Write
+	FNCALL	_main,_Uart_Init
+	FNCALL	_main,_Uart_Start
+	FNCALL	_main,_Uart_Tx
+	FNCALL	_Uart_Start,_Gpio_Init
 	FNROOT	_main
+	global	_tx
+	global	_rx
 	global	_button
 	global	_led
+	global	_uart_config
 psect	idataCOMRAM,class=CODE,space=0,delta=1,noexec
 global __pidataCOMRAM
 __pidataCOMRAM:
 	file	"main.c"
-	line	12
+	line	27
+
+;initializer for _tx
+		db	low(3988)
+	db	high(3988)
+
+		db	low(3979)
+	db	high(3979)
+
+		db	low(3970)
+	db	high(3970)
+
+	db	low(06h)
+	line	20
+
+;initializer for _rx
+		db	low(3988)
+	db	high(3988)
+
+		db	low(3979)
+	db	high(3979)
+
+		db	low(3970)
+	db	high(3970)
+
+	db	low(07h)
+	line	13
 
 ;initializer for _button
 		db	low(3987)
@@ -820,7 +1193,7 @@ __pidataCOMRAM:
 	db	high(3969)
 
 	db	low(0)
-	line	5
+	line	6
 
 ;initializer for _led
 		db	low(3989)
@@ -833,7 +1206,40 @@ __pidataCOMRAM:
 	db	high(3971)
 
 	db	low(0)
+	line	34
+
+;initializer for _uart_config
+		db	low(_rx)
+
+		db	low(_tx)
+
+	dw	(02580h) & 0xffff
+	dw	highword(02580h)
 	global	_RingBuffer
+	global	_TXREG
+_TXREG	set	0xFAD
+	global	_PIE1bits
+_PIE1bits	set	0xF9D
+	global	_PIR1bits
+_PIR1bits	set	0xF9E
+	global	_SPBRG
+_SPBRG	set	0xFAF
+	global	_SPBRGH
+_SPBRGH	set	0xFB0
+	global	_BAUDCONbits
+_BAUDCONbits	set	0xFB8
+	global	_RCSTAbits
+_RCSTAbits	set	0xFAB
+	global	_TXSTAbits
+_TXSTAbits	set	0xFAC
+	global	_INTCONbits
+_INTCONbits	set	0xFF2
+	global	_PORTC
+_PORTC	set	0xF82
+	global	_LATC
+_LATC	set	0xF8B
+	global	_TRISC
+_TRISC	set	0xF94
 	global	_PORTB
 _PORTB	set	0xF81
 	global	_LATB
@@ -888,20 +1294,36 @@ psect	dataCOMRAM,class=COMRAM,space=1,noexec,lowdata
 global __pdataCOMRAM
 __pdataCOMRAM:
 	file	"main.c"
-	line	12
+	line	27
+_tx:
+       ds      7
+psect	dataCOMRAM
+	file	"main.c"
+	line	20
+_rx:
+       ds      7
+psect	dataCOMRAM
+	file	"main.c"
+	line	13
 	global	_button
 _button:
        ds      7
 psect	dataCOMRAM
 	file	"main.c"
-	line	5
+	line	6
 	global	_led
 _led:
        ds      7
+psect	dataCOMRAM
+	file	"main.c"
+	line	34
+	global	_uart_config
+_uart_config:
+       ds      6
 	file	"build/bin/clock.s"
 	line	#
 psect	cinit
-; Initialize objects allocated to COMRAM (14 bytes)
+; Initialize objects allocated to COMRAM (34 bytes)
 	global __pidataCOMRAM
 	; load TBLPTR registers with __pidataCOMRAM
 	movlw	low (__pidataCOMRAM)
@@ -911,7 +1333,7 @@ psect	cinit
 	movlw	low highword(__pidataCOMRAM)
 	movwf	tblptru
 	lfsr	0,__pdataCOMRAM
-	lfsr	1,14
+	lfsr	1,34
 	copy_data0:
 	tblrd	*+
 	movff	tablat, postinc0
@@ -940,8 +1362,10 @@ psect	cstackCOMRAM,class=COMRAM,space=1,noexec,lowdata
 global __pcstackCOMRAM
 __pcstackCOMRAM:
 ?_Gpio_Init:	; 1 bytes @ 0x0
+?_Uart_Init:	; 1 bytes @ 0x0
 ?_Gpio_Read:	; 1 bytes @ 0x0
 ?_Gpio_Write:	; 1 bytes @ 0x0
+?_Uart_Tx:	; 1 bytes @ 0x0
 ?_main:	; 2 bytes @ 0x0
 	global	Gpio_Init@gpio
 Gpio_Init@gpio:	; 1 bytes @ 0x0
@@ -949,32 +1373,43 @@ Gpio_Init@gpio:	; 1 bytes @ 0x0
 Gpio_Write@gpio:	; 1 bytes @ 0x0
 	global	Gpio_Read@gpio
 Gpio_Read@gpio:	; 1 bytes @ 0x0
+	global	Uart_Init@uart
+Uart_Init@uart:	; 1 bytes @ 0x0
+	global	Uart_Tx@c
+Uart_Tx@c:	; 1 bytes @ 0x0
+??_Uart_Tx:	; 1 bytes @ 0x0
 	ds   1
 	global	Gpio_Init@dir
 Gpio_Init@dir:	; 1 bytes @ 0x1
 	global	Gpio_Write@level
 Gpio_Write@level:	; 1 bytes @ 0x1
+??_Uart_Init:	; 1 bytes @ 0x1
 ??_Gpio_Read:	; 1 bytes @ 0x1
 	ds   1
 ??_Gpio_Init:	; 1 bytes @ 0x2
 ??_Gpio_Write:	; 1 bytes @ 0x2
 	ds   5
+?_Uart_Start:	; 1 bytes @ 0x7
+	global	Uart_Start@uart
+Uart_Start@uart:	; 1 bytes @ 0x7
+	ds   1
 	global	main@level
-main@level:	; 1 bytes @ 0x7
-??_main:	; 1 bytes @ 0x7
+main@level:	; 1 bytes @ 0x8
+??_Uart_Start:	; 1 bytes @ 0x8
+??_main:	; 1 bytes @ 0x8
 	ds   1
 ;!
 ;!Data Sizes:
 ;!    Strings     0
 ;!    Constant    0
-;!    Data        14
+;!    Data        34
 ;!    BSS         10
 ;!    Persistent  0
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMRAM           95      8      32
+;!    COMRAM           95      9      53
 ;!    BANK0           160      0       0
 ;!    BANK1           256      0       0
 ;!    BANK2           256      0       0
@@ -988,84 +1423,132 @@ main@level:	; 1 bytes @ 0x7
 ;!Pointer List with Targets:
 ;!
 ;!    button$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    button$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    button$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Init@gpio	PTR struct . size(1) Largest target is 7
-;!		 -> button(COMRAM[7]), led(COMRAM[7]), 
+;!		 -> button(COMRAM[7]), led(COMRAM[7]), rx(COMRAM[7]), tx(COMRAM[7]), 
 ;!
 ;!    Gpio_Init@gpio$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Init@gpio$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Init@gpio$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Read@gpio	PTR struct . size(1) Largest target is 7
 ;!		 -> button(COMRAM[7]), 
 ;!
 ;!    Gpio_Read@gpio$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Read@gpio$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Read@gpio$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Toggle@gpio$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Toggle@gpio$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Toggle@gpio$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Write@gpio	PTR struct . size(1) Largest target is 7
 ;!		 -> led(COMRAM[7]), 
 ;!
 ;!    Gpio_Write@gpio$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Write@gpio$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    Gpio_Write@gpio$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
 ;!
 ;!    led$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    led$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    led$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!
+;!    rx$lat	PTR volatile unsigned char  size(2) Largest target is 1
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!
+;!    rx$port	PTR volatile unsigned char  size(2) Largest target is 1
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!
+;!    rx$tris	PTR volatile unsigned char  size(2) Largest target is 1
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
 ;!
 ;!    S24$lat	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> LATB(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
 ;!
 ;!    S24$port	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> PORTB(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
 ;!
 ;!    S24$tris	PTR volatile unsigned char  size(2) Largest target is 1
-;!		 -> TRISB(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!
+;!    S38$rx	PTR struct . size(1) Largest target is 7
+;!		 -> rx(COMRAM[7]), 
+;!
+;!    S38$tx	PTR struct . size(1) Largest target is 7
+;!		 -> tx(COMRAM[7]), 
+;!
+;!    tx$lat	PTR volatile unsigned char  size(2) Largest target is 1
+;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
+;!
+;!    tx$port	PTR volatile unsigned char  size(2) Largest target is 1
+;!		 -> PORTB(BIGSFR[1]), PORTC(BIGSFR[1]), PORTD(BIGSFR[1]), 
+;!
+;!    tx$tris	PTR volatile unsigned char  size(2) Largest target is 1
+;!		 -> TRISB(BIGSFR[1]), TRISC(BIGSFR[1]), TRISD(BIGSFR[1]), 
+;!
+;!    uart_config$rx	PTR struct . size(1) Largest target is 7
+;!		 -> rx(COMRAM[7]), 
+;!
+;!    uart_config$tx	PTR struct . size(1) Largest target is 7
+;!		 -> tx(COMRAM[7]), 
+;!
+;!    Uart_Init@uart	PTR const struct . size(1) Largest target is 8
+;!		 -> uart_config(COMRAM[6]), 
+;!
+;!    Uart_Init@uart$rx	PTR struct . size(1) Largest target is 7
+;!		 -> rx(COMRAM[7]), 
+;!
+;!    Uart_Init@uart$tx	PTR struct . size(1) Largest target is 7
+;!		 -> tx(COMRAM[7]), 
+;!
+;!    Uart_Start@uart	PTR const struct . size(1) Largest target is 8
+;!		 -> uart_config(COMRAM[6]), 
+;!
+;!    Uart_Start@uart$rx	PTR struct . size(1) Largest target is 7
+;!		 -> rx(COMRAM[7]), 
+;!
+;!    Uart_Start@uart$tx	PTR struct . size(1) Largest target is 7
+;!		 -> tx(COMRAM[7]), 
 ;!
 
 
 ;!
 ;!Critical Paths under _main in COMRAM
 ;!
-;!    _main->_Gpio_Init
-;!    _main->_Gpio_Write
+;!    _main->_Uart_Start
+;!    _Uart_Start->_Gpio_Init
 ;!
 ;!Critical Paths under _main in BANK0
 ;!
@@ -1109,11 +1592,27 @@ main@level:	; 1 bytes @ 0x7
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (0) _main                                                 1     1      0     296
-;!                                              7 COMRAM     1     1      0
+;! (0) _main                                                 1     1      0     501
+;!                                              8 COMRAM     1     1      0
 ;!                          _Gpio_Init
 ;!                          _Gpio_Read
 ;!                         _Gpio_Write
+;!                          _Uart_Init
+;!                         _Uart_Start
+;!                            _Uart_Tx
+;! ---------------------------------------------------------------------------------
+;! (1) _Uart_Tx                                              1     1      0      15
+;!                                              0 COMRAM     1     1      0
+;! ---------------------------------------------------------------------------------
+;! (1) _Uart_Start                                           1     0      1     163
+;!                                              7 COMRAM     1     0      1
+;!                          _Gpio_Init
+;! ---------------------------------------------------------------------------------
+;! (2) _Gpio_Init                                            7     5      2     118
+;!                                              0 COMRAM     7     5      2
+;! ---------------------------------------------------------------------------------
+;! (1) _Uart_Init                                            5     4      1      23
+;!                                              0 COMRAM     5     4      1
 ;! ---------------------------------------------------------------------------------
 ;! (1) _Gpio_Write                                           7     5      2     114
 ;!                                              0 COMRAM     7     5      2
@@ -1121,10 +1620,7 @@ main@level:	; 1 bytes @ 0x7
 ;! (1) _Gpio_Read                                            6     5      1      45
 ;!                                              0 COMRAM     6     5      1
 ;! ---------------------------------------------------------------------------------
-;! (1) _Gpio_Init                                            7     5      2     114
-;!                                              0 COMRAM     7     5      2
-;! ---------------------------------------------------------------------------------
-;! Estimated maximum stack depth 1
+;! Estimated maximum stack depth 2
 ;! ---------------------------------------------------------------------------------
 ;!
 ;! Call Graph Graphs:
@@ -1133,6 +1629,10 @@ main@level:	; 1 bytes @ 0x7
 ;!   _Gpio_Init
 ;!   _Gpio_Read
 ;!   _Gpio_Write
+;!   _Uart_Init
+;!   _Uart_Start
+;!     _Gpio_Init
+;!   _Uart_Tx
 ;!
 
 ;!Address spaces:
@@ -1155,24 +1655,26 @@ main@level:	; 1 bytes @ 0x7
 ;!BANK1              256      0       0      0.0%
 ;!BITBANK0           160      0       0      0.0%
 ;!BANK0              160      0       0      0.0%
-;!BITBIGSFRh         126      0       0      0.0%
 ;!BITCOMRAM           95      0       0      0.0%
-;!COMRAM              95      8      32     33.7%
-;!BITBIGSFRl          33      0       0      0.0%
+;!COMRAM              95      9      53     55.8%
+;!BITBIGSFRh          82      0       0      0.0%
+;!BITBIGSFRllh        41      0       0      0.0%
+;!BITBIGSFRlll        33      0       0      0.0%
+;!BITBIGSFRlh          1      0       0      0.0%
 ;!STACK                0      0       0      0.0%
-;!DATA                 0      0      32      0.0%
+;!DATA                 0      0      53      0.0%
 
 	global	_main
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 19 in file "main.c"
+;;		line 41 in file "main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;  level           1    7[COMRAM] enum E40
+;;  level           1    8[COMRAM] enum E40
 ;; Return value:  Size  Location     Type
-;;                  2   26[None  ] int 
+;;                  2   46[None  ] int 
 ;; Registers used:
 ;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
 ;; Tracked objects:
@@ -1185,90 +1687,492 @@ main@level:	; 1 bytes @ 0x7
 ;;      Temps:          0       0       0       0       0       0       0       0       0
 ;;      Totals:         1       0       0       0       0       0       0       0       0
 ;;Total ram usage:        1 bytes
-;; Hardware stack levels required when called: 1
+;; Hardware stack levels required when called: 2
 ;; This function calls:
 ;;		_Gpio_Init
 ;;		_Gpio_Read
 ;;		_Gpio_Write
+;;		_Uart_Init
+;;		_Uart_Start
+;;		_Uart_Tx
 ;; This function is called by:
 ;;		Startup code after reset
 ;; This function uses a non-reentrant model
 ;;
 psect	text0,class=CODE,space=0,reloc=2,group=0
 	file	"main.c"
-	line	19
+	line	41
 global __ptext0
 __ptext0:
 psect	text0
 	file	"main.c"
-	line	19
+	line	41
 	
 _main:
 ;incstack = 0
-	callstack 30
-	line	21
+	callstack 29
+	line	43
 	
-l949:
+l1056:
 		movlw	low(_led)
 	movwf	((c:Gpio_Init@gpio))^00h,c
 
 	movlw	low(0)
 	movwf	((c:Gpio_Init@dir))^00h,c
 	call	_Gpio_Init	;wreg free
-	line	22
+	line	44
 		movlw	low(_button)
 	movwf	((c:Gpio_Init@gpio))^00h,c
 
 	movlw	low(01h)
 	movwf	((c:Gpio_Init@dir))^00h,c
 	call	_Gpio_Init	;wreg free
-	line	24
+	line	45
+		movlw	low(_uart_config)
+	movwf	((c:Uart_Init@uart))^00h,c
+
+	call	_Uart_Init	;wreg free
+	line	46
+		movlw	low(_uart_config)
+	movwf	((c:Uart_Start@uart))^00h,c
+
+	call	_Uart_Start	;wreg free
+	line	50
 	
-l27:
-	line	26
+l1058:
+	bsf	((c:4082))^0f00h,c,7	;volatile
+	line	51
+	
+l1060:
+	bsf	((c:4082))^0f00h,c,6	;volatile
+	line	53
+	
+l47:
+	line	55
 		movlw	low(_button)
 	movwf	((c:Gpio_Read@gpio))^00h,c
 
 	call	_Gpio_Read	;wreg free
 	movwf	((c:main@level))^00h,c
-	line	28
+	line	57
 	
-l951:
+l1062:
 		decf	((c:main@level))^00h,c,w
 	btfss	status,2
-	goto	u291
-	goto	u290
+	goto	u311
+	goto	u310
 
-u291:
-	goto	l28
-u290:
-	line	30
+u311:
+	goto	l1068
+u310:
+	line	59
 	
-l953:
+l1064:
 		movlw	low(_led)
 	movwf	((c:Gpio_Write@gpio))^00h,c
 
 	movlw	low(01h)
 	movwf	((c:Gpio_Write@level))^00h,c
 	call	_Gpio_Write	;wreg free
-	line	31
+	line	60
 	
-l28:
-	line	32
+l1066:
+	movlw	(042h)&0ffh
+	
+	call	_Uart_Tx
+	line	62
+	
+l1068:
 		movlw	low(_led)
 	movwf	((c:Gpio_Write@gpio))^00h,c
 
 	movlw	low(0)
 	movwf	((c:Gpio_Write@level))^00h,c
 	call	_Gpio_Write	;wreg free
-	goto	l27
+	goto	l47
 	global	start
 	goto	start
 	callstack 0
-	line	36
+	line	67
 GLOBAL	__end_of_main
 	__end_of_main:
 	signat	_main,90
+	global	_Uart_Tx
+
+;; *************** function _Uart_Tx *****************
+;; Defined at:
+;;		line 52 in file "src/uart.c"
+;; Parameters:    Size  Location     Type
+;;  c               1    wreg     unsigned char 
+;; Auto vars:     Size  Location     Type
+;;  c               1    0[COMRAM] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         0       0       0       0       0       0       0       0       0
+;;      Locals:         1       0       0       0       0       0       0       0       0
+;;      Temps:          0       0       0       0       0       0       0       0       0
+;;      Totals:         1       0       0       0       0       0       0       0       0
+;;Total ram usage:        1 bytes
+;; Hardware stack levels used: 1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text1,class=CODE,space=0,reloc=2,group=0
+	file	"src/uart.c"
+	line	52
+global __ptext1
+__ptext1:
+psect	text1
+	file	"src/uart.c"
+	line	52
+	
+_Uart_Tx:
+;incstack = 0
+	callstack 30
+	movwf	((c:Uart_Tx@c))^00h,c
+	line	54
+	
+l948:
+	movf	((c:3998))^0f00h,c,w	;volatile
+	line	58
+	
+l950:
+	movff	(c:Uart_Tx@c),(c:4013)	;volatile
+	line	59
+	
+l120:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_of_Uart_Tx
+	__end_of_Uart_Tx:
+	signat	_Uart_Tx,4217
+	global	_Uart_Start
+
+;; *************** function _Uart_Start *****************
+;; Defined at:
+;;		line 26 in file "src/uart.c"
+;; Parameters:    Size  Location     Type
+;;  uart            1    7[COMRAM] PTR const struct .
+;;		 -> uart_config(6), 
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         1       0       0       0       0       0       0       0       0
+;;      Locals:         0       0       0       0       0       0       0       0       0
+;;      Temps:          0       0       0       0       0       0       0       0       0
+;;      Totals:         1       0       0       0       0       0       0       0       0
+;;Total ram usage:        1 bytes
+;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 1
+;; This function calls:
+;;		_Gpio_Init
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text2,class=CODE,space=0,reloc=2,group=0
+	line	26
+global __ptext2
+__ptext2:
+psect	text2
+	file	"src/uart.c"
+	line	26
+	
+_Uart_Start:
+;incstack = 0
+	callstack 29
+	line	28
+	
+l1028:
+	movf	((c:Uart_Start@uart))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movf	indf2,w
+	movwf	((c:Gpio_Init@gpio))^00h,c
+	movlw	low(01h)
+	movwf	((c:Gpio_Init@dir))^00h,c
+	call	_Gpio_Init	;wreg free
+	line	29
+	movf	((c:Uart_Start@uart))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(01h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	((c:Gpio_Init@gpio))^00h,c
+	movlw	low(01h)
+	movwf	((c:Gpio_Init@dir))^00h,c
+	call	_Gpio_Init	;wreg free
+	line	31
+	
+l1030:
+	bsf	((c:4011))^0f00h,c,7	;volatile
+	line	32
+	
+l1032:
+	bsf	((c:4012))^0f00h,c,5	;volatile
+	line	33
+	
+l1034:
+	bsf	((c:4011))^0f00h,c,4	;volatile
+	line	35
+	
+l1036:
+	bcf	((c:3998))^0f00h,c,4	;volatile
+	line	36
+	
+l1038:
+	bsf	((c:3997))^0f00h,c,4	;volatile
+	line	37
+	
+l113:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_of_Uart_Start
+	__end_of_Uart_Start:
+	signat	_Uart_Start,4217
+	global	_Gpio_Init
+
+;; *************** function _Gpio_Init *****************
+;; Defined at:
+;;		line 4 in file "src/gpio.c"
+;; Parameters:    Size  Location     Type
+;;  gpio            1    0[COMRAM] PTR struct .
+;;		 -> tx(7), rx(7), button(7), led(7), 
+;;  dir             1    1[COMRAM] enum E3343
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         2       0       0       0       0       0       0       0       0
+;;      Locals:         0       0       0       0       0       0       0       0       0
+;;      Temps:          5       0       0       0       0       0       0       0       0
+;;      Totals:         7       0       0       0       0       0       0       0       0
+;;Total ram usage:        7 bytes
+;; Hardware stack levels used: 1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;;		_Uart_Start
+;; This function uses a non-reentrant model
+;;
+psect	text3,class=CODE,space=0,reloc=2,group=0
+	file	"src/gpio.c"
+	line	4
+global __ptext3
+__ptext3:
+psect	text3
+	file	"src/gpio.c"
+	line	4
+	
+_Gpio_Init:
+;incstack = 0
+	callstack 29
+	line	6
+	
+l1014:
+	movf	((c:Gpio_Init@dir))^00h,c,w
+	btfss	status,2
+	goto	u221
+	goto	u220
+u221:
+	goto	l1018
+u220:
+	line	8
+	
+l1016:
+	movf	((c:Gpio_Init@gpio))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(06h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	(??_Gpio_Init+0)^00h,c
+	movlw	(01h)&0ffh
+	movwf	(??_Gpio_Init+1)^00h,c
+	incf	((??_Gpio_Init+0))^00h,c
+	goto	u234
+u235:
+	bcf	status,0
+	rlcf	((??_Gpio_Init+1))^00h,c
+u234:
+	decfsz	((??_Gpio_Init+0))^00h,c
+	goto	u235
+	movf	((??_Gpio_Init+1))^00h,c,w
+	xorlw	0ffh
+	movwf	(??_Gpio_Init+2)^00h,c
+	movf	((c:Gpio_Init@gpio))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movff	postinc2,??_Gpio_Init+3
+	movff	postdec2,??_Gpio_Init+3+1
+	movff	??_Gpio_Init+3,fsr2l
+	movff	??_Gpio_Init+3+1,fsr2h
+	movf	((??_Gpio_Init+2))^00h,c,w
+	andwf	indf2
+	line	9
+	goto	l56
+	line	12
+	
+l1018:
+	movf	((c:Gpio_Init@gpio))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(06h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	(??_Gpio_Init+0)^00h,c
+	movlw	(01h)&0ffh
+	movwf	(??_Gpio_Init+1)^00h,c
+	incf	((??_Gpio_Init+0))^00h,c
+	goto	u244
+u245:
+	bcf	status,0
+	rlcf	((??_Gpio_Init+1))^00h,c
+u244:
+	decfsz	((??_Gpio_Init+0))^00h,c
+	goto	u245
+	movf	((c:Gpio_Init@gpio))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movff	postinc2,??_Gpio_Init+2
+	movff	postdec2,??_Gpio_Init+2+1
+	movff	??_Gpio_Init+2,fsr2l
+	movff	??_Gpio_Init+2+1,fsr2h
+	movf	((??_Gpio_Init+1))^00h,c,w
+	iorwf	indf2
+	line	14
+	
+l56:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_of_Gpio_Init
+	__end_of_Gpio_Init:
+	signat	_Gpio_Init,8313
+	global	_Uart_Init
+
+;; *************** function _Uart_Init *****************
+;; Defined at:
+;;		line 5 in file "src/uart.c"
+;; Parameters:    Size  Location     Type
+;;  uart            1    0[COMRAM] PTR const struct .
+;;		 -> uart_config(6), 
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         1       0       0       0       0       0       0       0       0
+;;      Locals:         0       0       0       0       0       0       0       0       0
+;;      Temps:          4       0       0       0       0       0       0       0       0
+;;      Totals:         5       0       0       0       0       0       0       0       0
+;;Total ram usage:        5 bytes
+;; Hardware stack levels used: 1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_main
+;; This function uses a non-reentrant model
+;;
+psect	text4,class=CODE,space=0,reloc=2,group=0
+	file	"src/uart.c"
+	line	5
+global __ptext4
+__ptext4:
+psect	text4
+	file	"src/uart.c"
+	line	5
+	
+_Uart_Init:
+;incstack = 0
+	callstack 30
+	line	7
+	
+l1020:
+	bcf	((c:4012))^0f00h,c,6	;volatile
+	line	8
+	bcf	((c:4011))^0f00h,c,6	;volatile
+	line	9
+	bcf	((c:4012))^0f00h,c,4	;volatile
+	line	11
+	
+l1022:
+	movf	((c:Uart_Init@uart))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(02h)
+	addwf	fsr2l
+
+	movlw	128
+	xorwf	postinc2,w
+	bnz	u251
+movlw	37
+	xorwf	postinc2,w
+iorwf	postinc2,w
+iorwf	postinc2,w
+	btfss	status,2
+	goto	u251
+	goto	u250
+
+u251:
+	goto	l110
+u250:
+	line	13
+	
+l1024:
+	bsf	((c:4012))^0f00h,c,2	;volatile
+	line	14
+	bcf	((c:4024))^0f00h,c,3	;volatile
+	line	16
+	clrf	((c:4016))^0f00h,c	;volatile
+	line	17
+	
+l1026:
+	movlw	low(081h)
+	movwf	((c:4015))^0f00h,c	;volatile
+	line	23
+	
+l110:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_of_Uart_Init
+	__end_of_Uart_Init:
+	signat	_Uart_Init,4217
 	global	_Gpio_Write
 
 ;; *************** function _Gpio_Write *****************
@@ -1301,12 +2205,12 @@ GLOBAL	__end_of_main
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text1,class=CODE,space=0,reloc=2,group=0
+psect	text5,class=CODE,space=0,reloc=2,group=0
 	file	"src/gpio.c"
 	line	16
-global __ptext1
-__ptext1:
-psect	text1
+global __ptext5
+__ptext5:
+psect	text5
 	file	"src/gpio.c"
 	line	16
 	
@@ -1315,18 +2219,18 @@ _Gpio_Write:
 	callstack 30
 	line	18
 	
-l943:
+l1050:
 		decf	((c:Gpio_Write@level))^00h,c,w
 	btfss	status,2
-	goto	u261
-	goto	u260
+	goto	u281
+	goto	u280
 
-u261:
-	goto	l947
-u260:
+u281:
+	goto	l1054
+u280:
 	line	20
 	
-l945:
+l1052:
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1338,13 +2242,13 @@ l945:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Write+1)^00h,c
 	incf	((??_Gpio_Write+0))^00h,c
-	goto	u274
-u275:
+	goto	u294
+u295:
 	bcf	status,0
 	rlcf	((??_Gpio_Write+1))^00h,c
-u274:
+u294:
 	decfsz	((??_Gpio_Write+0))^00h,c
-	goto	u275
+	goto	u295
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1358,10 +2262,10 @@ u274:
 	movf	((??_Gpio_Write+1))^00h,c,w
 	iorwf	indf2
 	line	21
-	goto	l41
+	goto	l61
 	line	24
 	
-l947:
+l1054:
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1373,13 +2277,13 @@ l947:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Write+1)^00h,c
 	incf	((??_Gpio_Write+0))^00h,c
-	goto	u284
-u285:
+	goto	u304
+u305:
 	bcf	status,0
 	rlcf	((??_Gpio_Write+1))^00h,c
-u284:
+u304:
 	decfsz	((??_Gpio_Write+0))^00h,c
-	goto	u285
+	goto	u305
 	movf	((??_Gpio_Write+1))^00h,c,w
 	xorlw	0ffh
 	movwf	(??_Gpio_Write+2)^00h,c
@@ -1397,7 +2301,7 @@ u284:
 	andwf	indf2
 	line	26
 	
-l41:
+l61:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Gpio_Write
@@ -1434,11 +2338,11 @@ GLOBAL	__end_of_Gpio_Write
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text2,class=CODE,space=0,reloc=2,group=0
+psect	text6,class=CODE,space=0,reloc=2,group=0
 	line	28
-global __ptext2
-__ptext2:
-psect	text2
+global __ptext6
+__ptext6:
+psect	text6
 	file	"src/gpio.c"
 	line	28
 	
@@ -1447,7 +2351,7 @@ _Gpio_Read:
 	callstack 30
 	line	30
 	
-l933:
+l1040:
 	movf	((c:Gpio_Read@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -1471,165 +2375,39 @@ l933:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Read+4)^00h,c
 	incf	((??_Gpio_Read+3))^00h,c
-	goto	u244
-u245:
+	goto	u264
+u265:
 	bcf	status,0
 	rlcf	((??_Gpio_Read+4))^00h,c
-u244:
+u264:
 	decfsz	((??_Gpio_Read+3))^00h,c
-	goto	u245
+	goto	u265
 	movf	((??_Gpio_Read+4))^00h,c,w
 	andwf	((??_Gpio_Read+2))^00h,c,w
 	iorlw	0
 	btfsc	status,2
-	goto	u251
-	goto	u250
-u251:
-	goto	l939
-u250:
+	goto	u271
+	goto	u270
+u271:
+	goto	l1046
+u270:
 	line	32
 	
-l935:
+l1042:
 	movlw	(01h)&0ffh
-	goto	l45
+	goto	l65
 	line	34
 	
-l939:
+l1046:
 	movlw	(0)&0ffh
 	line	35
 	
-l45:
+l65:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Gpio_Read
 	__end_of_Gpio_Read:
 	signat	_Gpio_Read,4217
-	global	_Gpio_Init
-
-;; *************** function _Gpio_Init *****************
-;; Defined at:
-;;		line 4 in file "src/gpio.c"
-;; Parameters:    Size  Location     Type
-;;  gpio            1    0[COMRAM] PTR struct .
-;;		 -> button(7), led(7), 
-;;  dir             1    1[COMRAM] enum E3343
-;; Auto vars:     Size  Location     Type
-;;		None
-;; Return value:  Size  Location     Type
-;;                  1    wreg      void 
-;; Registers used:
-;;		wreg, fsr2l, fsr2h, status,2, status,0
-;; Tracked objects:
-;;		On entry : 0/0
-;;		On exit  : 0/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-;;      Params:         2       0       0       0       0       0       0       0       0
-;;      Locals:         0       0       0       0       0       0       0       0       0
-;;      Temps:          5       0       0       0       0       0       0       0       0
-;;      Totals:         7       0       0       0       0       0       0       0       0
-;;Total ram usage:        7 bytes
-;; Hardware stack levels used: 1
-;; This function calls:
-;;		Nothing
-;; This function is called by:
-;;		_main
-;; This function uses a non-reentrant model
-;;
-psect	text3,class=CODE,space=0,reloc=2,group=0
-	line	4
-global __ptext3
-__ptext3:
-psect	text3
-	file	"src/gpio.c"
-	line	4
-	
-_Gpio_Init:
-;incstack = 0
-	callstack 30
-	line	6
-	
-l927:
-	movf	((c:Gpio_Init@dir))^00h,c,w
-	btfss	status,2
-	goto	u211
-	goto	u210
-u211:
-	goto	l931
-u210:
-	line	8
-	
-l929:
-	movf	((c:Gpio_Init@gpio))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movlw	low(06h)
-	addwf	fsr2l
-
-	movf	indf2,w
-	movwf	(??_Gpio_Init+0)^00h,c
-	movlw	(01h)&0ffh
-	movwf	(??_Gpio_Init+1)^00h,c
-	incf	((??_Gpio_Init+0))^00h,c
-	goto	u224
-u225:
-	bcf	status,0
-	rlcf	((??_Gpio_Init+1))^00h,c
-u224:
-	decfsz	((??_Gpio_Init+0))^00h,c
-	goto	u225
-	movf	((??_Gpio_Init+1))^00h,c,w
-	xorlw	0ffh
-	movwf	(??_Gpio_Init+2)^00h,c
-	movf	((c:Gpio_Init@gpio))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movff	postinc2,??_Gpio_Init+3
-	movff	postdec2,??_Gpio_Init+3+1
-	movff	??_Gpio_Init+3,fsr2l
-	movff	??_Gpio_Init+3+1,fsr2h
-	movf	((??_Gpio_Init+2))^00h,c,w
-	andwf	indf2
-	line	9
-	goto	l36
-	line	12
-	
-l931:
-	movf	((c:Gpio_Init@gpio))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movlw	low(06h)
-	addwf	fsr2l
-
-	movf	indf2,w
-	movwf	(??_Gpio_Init+0)^00h,c
-	movlw	(01h)&0ffh
-	movwf	(??_Gpio_Init+1)^00h,c
-	incf	((??_Gpio_Init+0))^00h,c
-	goto	u234
-u235:
-	bcf	status,0
-	rlcf	((??_Gpio_Init+1))^00h,c
-u234:
-	decfsz	((??_Gpio_Init+0))^00h,c
-	goto	u235
-	movf	((c:Gpio_Init@gpio))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movff	postinc2,??_Gpio_Init+2
-	movff	postdec2,??_Gpio_Init+2+1
-	movff	??_Gpio_Init+2,fsr2l
-	movff	??_Gpio_Init+2+1,fsr2h
-	movf	((??_Gpio_Init+1))^00h,c,w
-	iorwf	indf2
-	line	14
-	
-l36:
-	return	;funcret
-	callstack 0
-GLOBAL	__end_of_Gpio_Init
-	__end_of_Gpio_Init:
-	signat	_Gpio_Init,8313
 psect	smallconst,class=SMALLCONST,space=0,reloc=2,noexec
 global __psmallconst
 __psmallconst:
