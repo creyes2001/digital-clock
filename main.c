@@ -2,6 +2,7 @@
 #include "gpio.h"
 #include "config.h"
 #include <xc.h>
+#define _XTAL_FREQ 20000000
 
 gpio_t led = {
 	.tris = &TRISD,
@@ -47,20 +48,41 @@ int main()
 	gpio_level_e level;
 
 	/* Enable interrupts */
-	INTCONbits.GIE = 1;
-	INTCONbits.PEIE = 1;
+//	INTCONbits.GIE = 1;
+//	INTCONbits.PEIE = 1;
 
+	char c;
+    Gpio_Write(&led, GPIO_LOW);
 	while(1)
 	{
+		Uart_RxTask();
+		Uart_TxTask();
+
 		level = Gpio_Read(&button);
 
-		if(level == GPIO_HIGH)
+		if(level == GPIO_LOW)
 		{
-			Gpio_Write(&led,GPIO_HIGH);
-			Uart_Tx('B');
-		}
-		Gpio_Write(&led,GPIO_LOW);
 
+			Uart_Tx('H');
+			Uart_Tx('i');
+			Uart_Tx('\r');
+			Uart_Tx('\n');
+
+
+			__delay_ms(500);
+		}
+
+		if (Uart_Read(&c))
+    	{
+        	if (c == 'A')
+        	{
+            	Gpio_Write(&led, GPIO_HIGH);
+       		}
+        	else if (c == 'B')
+        	{
+            	Gpio_Write(&led, GPIO_LOW);
+        	}
+    	}
 	}
 
 return 0;

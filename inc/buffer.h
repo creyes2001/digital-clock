@@ -3,21 +3,19 @@
 
 #include <stdint.h>
 #include <stdbool.h>
-#define BUFFER_SIZE 10
+#define BUFFER_SIZE 20
 
-char RingBuffer[BUFFER_SIZE];
 
 typedef struct
 {
+	char data[BUFFER_SIZE];
 	uint8_t head;
 	uint8_t tail;
-	bool IsEmpty;
-	bool IsFull;
 }buffer_t;
 
 void Buffer_Init(buffer_t *buffer);
-void Buffer_Add(buffer_t *buffer,char element);
-char Buffer_Get(buffer_t *buffer);
+bool Buffer_Add(buffer_t *buffer,char element);
+bool Buffer_Get(buffer_t *buffer,char *element);
 
 
 #endif

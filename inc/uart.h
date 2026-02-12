@@ -2,6 +2,7 @@
 #define UART_H
 
 #include <stdint.h>
+#include <stdbool.h>
 #include "gpio.h"
 
 typedef struct
@@ -15,8 +16,11 @@ typedef struct
 void Uart_Init(const uart_config_t *uart);
 void Uart_Start(const uart_config_t *uart);
 void Uart_Stop(void);
-char Uart_Rx(void);
+bool Uart_Rx(char *data);
 void Uart_Tx(char c);
-void Uart_SendString(char msg);
+void Uart_TxTask(void);
+void Uart_RxTask(void);
+bool Uart_Read(char *data);
+void Uart_SendString(const char *msg);
 
 #endif

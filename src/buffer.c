@@ -4,56 +4,39 @@ void Buffer_Init(buffer_t *buffer)
 {
 	buffer->head = 0;
 	buffer->tail = 0;
-	buffer->IsEmpty = false;
-	buffer->IsFull = false;
 }
 
-void Buffer_Add(buffer_t *buffer,char element)
+bool Buffer_Add(buffer_t *buffer,char element)
 {
-		if(!buffer->IsFull)
-      {
-          RingBuffer[buffer->head] = element;
-          buffer->head++;
-      }
-      if(buffer->head == BUFFER_SIZE)
-      {
-          buffer->head = 0;
-      }
-  
-      if(buffer->head - buffer->tail >= BUFFER_SIZE)
-      {
-          buffer->IsFull = true;
-      }
-  
-      if(buffer->IsEmpty && (buffer->head != buffer->tail))
-      {
-          buffer->IsEmpty = false;
-      }
+	uint8_t next_head = buffer->head + 1;
+
+	if(next_head == BUFFER_SIZE)
+		next_head = 0;
+	
+	if(next_head == buffer->tail)
+	{
+		// buffer full
+		return false;
+	}
+
+	buffer->data[buffer->head] = element;
+	buffer->head = next_head;
+	return true;
 }
 
-char Buffer_Get(buffer_t *buffer)
+bool Buffer_Get(buffer_t *buffer, char *element)
 {
-	char tail_temp = '\0';
+	if(buffer->head == buffer->tail)
+	{
+		// buffer empty
+		return false;
+	}
 
-     if(!buffer->IsEmpty)
-     {
-         tail_temp = RingBuffer[buffer->tail];
-         buffer->tail++;
-     }
+	*element = buffer->data[buffer->tail];
+	buffer->tail++;
 
-     if(buffer->tail == BUFFER_SIZE)
-     {
-         buffer->tail = 0;
-     }
+	if(buffer->tail == BUFFER_SIZE)
+		buffer->tail = 0;
 
-     if(buffer->head == buffer->tail)
-     {
-         buffer->IsEmpty = true;
-     }
-
-     if(buffer->IsFull && (buffer->head != buffer->tail))
-     {
-         buffer->IsFull = false;
-     }
-     return tail_temp;
+	return true;
 }
