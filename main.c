@@ -38,6 +38,13 @@ uart_config_t uart_config = {
 	.baud_rate = 9600
 };
 
+void __interrupt() ISR(void)
+{
+	if(PIR1bits.RCIF)
+	{
+		Uart_InterruptHandler();
+	}
+}
 
 int main()
 {
@@ -48,14 +55,13 @@ int main()
 	gpio_level_e level;
 
 	/* Enable interrupts */
-//	INTCONbits.GIE = 1;
-//	INTCONbits.PEIE = 1;
+	INTCONbits.GIE = 1;
+	INTCONbits.PEIE = 1;
 
 	char c;
     Gpio_Write(&led, GPIO_LOW);
 	while(1)
 	{
-		Uart_RxTask();
 		Uart_TxTask();
 
 		level = Gpio_Read(&button);

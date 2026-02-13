@@ -86,7 +86,6 @@ reset_vec:
 
 ; jump to start
 	goto start
-	; No interrupt routines
 	GLOBAL __accesstop
 __accesstop EQU 96
 

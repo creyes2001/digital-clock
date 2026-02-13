@@ -43,7 +43,16 @@ void Uart_Start(const uart_config_t *uart)
 	RCSTAbits.CREN = 1; //Enable receiver
 	
 	PIR1bits.TXIF = 0;	//Clear interrupt flag
-	PIE1bits.TXIE = 1;	//Enable transmission interrupt 				   
+//	PIE1bits.TXIE = 1;	//Enable transmission interrupt 				   
+	
+	/* clear rx interrupt flag*/
+	if (PIR1bits.RCIF)
+	{
+    	char dummy = RCREG; 
+		(void)dummy; 
+	}
+	PIE1bits.RCIE = 1; //Enable reception interrupt
+
 }
 
 /* Disable serial port */
@@ -54,30 +63,26 @@ void Uart_Stop(void)
 	RCSTAbits.CREN = 0; //Disable receiver
 }
 
-bool Uart_Rx(char *data)
+void Uart_InterruptHandler(void)
 {
-	if(PIR1bits.RCIF)
-	{
+	char c;
 		if(RCSTAbits.OERR)
 		{
 			//Clear overrun error
 			RCSTAbits.CREN = 0;
 			RCSTAbits.CREN = 1;
-			return false;
+			return;
 		}
 
 		if(RCSTAbits.FERR)
 		{
 			//Read and discard corrupted byte
-			char dummy = RCREG;
-			(void)dummy;
-			return false;
+			c = RCREG;
+			return;
 		}
 	
-		*data = RCREG;
-		return true;
-	}
-	return false;
+		c = RCREG;
+		Buffer_Add(&rx_buffer,c);
 }
 
 
@@ -96,14 +101,6 @@ void Uart_TxTask(void)
 	}
 }
 
-void Uart_RxTask(void)
-{
-	char c;
-	if(Uart_Rx(&c))
-	{
-		Buffer_Add(&rx_buffer,c);
-	}
-}
 
 bool Uart_Read(char *data)
 {

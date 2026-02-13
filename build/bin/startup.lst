@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
-                                                                                                           Wed Feb 11 20:21:11 2026
+                                                                                                           Thu Feb 12 21:06:46 2026
 
 
      1                           	processor	18F4550
@@ -158,102 +158,100 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
    152   000000                     
    153                           ; No powerup routine
    154                           ; jump to start
-   155   000000  EFFE  F03F         	goto	start
-   156                           
-   157                           ; No interrupt routines
-   158   000060                     __accesstop     equ	96
-   159                           
-   160                           ;Initialize the stack pointer (FSR1)
-   161   000000                     stacklo         equ	0
-   162   000000                     stackhi         equ	0
-   163                           
-   164                           	psect	init
-   165   007FFC                     start:
-   166                           	callstack 0
-   167   007FFC  EF17  F006         	goto	start_initialization	;jump to C runtime clear & initialization
-   168                           
-   169                           	psect	text
-   170   000000                     intlevel0:
+   155   000000  EF07  F000         	goto	start
+   156   000060                     __accesstop     equ	96
+   157                           
+   158                           ;Initialize the stack pointer (FSR1)
+   159   000000                     stacklo         equ	0
+   160   000000                     stackhi         equ	0
+   161                           
+   162                           	psect	init
+   163   00000E                     start:
+   164                           	callstack 0
+   165   00000E  EF17  F006         	goto	start_initialization	;jump to C runtime clear & initialization
+   166                           
+   167                           	psect	text
+   168   000000                     intlevel0:
+   169                           	callstack 0
+   170   000000                     intlevel1:
    171                           	callstack 0
-   172   000000                     intlevel1:
+   172   000000                     intlevel2:
    173                           	callstack 0
-   174   000000                     intlevel2:
-   175                           	callstack 0
-   176   000000                     intlevel3:
-   177                           	callstack 0	; top of RAM usage
-   178                           
-   179                           	psect	ramtop
-   180   000800                     __ramtop:
-   181                           	callstack 0
-   182                           
-   183                           	psect	stack
-   184   000000                     ___sp:
+   174   000000                     intlevel3:
+   175                           	callstack 0	; top of RAM usage
+   176                           
+   177                           	psect	ramtop
+   178   000800                     __ramtop:
+   179                           	callstack 0
+   180                           
+   181                           	psect	stack
+   182   000000                     ___sp:
+   183                           	callstack 0
+   184   000000                     ___inthi_sp:
    185                           	callstack 0
-   186   000000                     ___inthi_sp:
+   186   000000                     ___intlo_sp:
    187                           	callstack 0
-   188   000000                     ___intlo_sp:
+   188   000000                     ___stack_lo:
    189                           	callstack 0
-   190   000000                     ___stack_lo:
+   190   000000                     ___stack_hi:
    191                           	callstack 0
-   192   000000                     ___stack_hi:
+   192   000000                     ___inthi_stack_lo:
    193                           	callstack 0
-   194   000000                     ___inthi_stack_lo:
+   194   000000                     ___inthi_stack_hi:
    195                           	callstack 0
-   196   000000                     ___inthi_stack_hi:
+   196   000000                     ___intlo_stack_lo:
    197                           	callstack 0
-   198   000000                     ___intlo_stack_lo:
+   198   000000                     ___intlo_stack_hi:
    199                           	callstack 0
-   200   000000                     ___intlo_stack_hi:
-   201                           	callstack 0
+   200                           
+   201                           ; No heap to be allocated
    202                           
-   203                           ; No heap to be allocated
-   204                           
-   205                           	psect	heap
-   206   000000                     ___heap_lo      equ	0
-   207   000000                     ___heap_hi      equ	0
-   208                           tosu	equ	0xFFF
-   209                           tosh	equ	0xFFE
-   210                           tosl	equ	0xFFD
-   211                           stkptr	equ	0xFFC
-   212                           pclatu	equ	0xFFB
-   213                           pclath	equ	0xFFA
-   214                           pcl	equ	0xFF9
-   215                           tblptru	equ	0xFF8
-   216                           tblptrh	equ	0xFF7
-   217                           tblptrl	equ	0xFF6
-   218                           tablat	equ	0xFF5
-   219                           prodh	equ	0xFF4
-   220                           prodl	equ	0xFF3
-   221                           indf0	equ	0xFEF
-   222                           postinc0	equ	0xFEE
-   223                           postdec0	equ	0xFED
-   224                           preinc0	equ	0xFEC
-   225                           plusw0	equ	0xFEB
-   226                           fsr0h	equ	0xFEA
-   227                           fsr0l	equ	0xFE9
-   228                           wreg	equ	0xFE8
-   229                           indf1	equ	0xFE7
-   230                           postinc1	equ	0xFE6
-   231                           postdec1	equ	0xFE5
-   232                           preinc1	equ	0xFE4
-   233                           plusw1	equ	0xFE3
-   234                           fsr1h	equ	0xFE2
-   235                           fsr1l	equ	0xFE1
-   236                           bsr	equ	0xFE0
-   237                           indf2	equ	0xFDF
-   238                           postinc2	equ	0xFDE
-   239                           postdec2	equ	0xFDD
-   240                           preinc2	equ	0xFDC
-   241                           plusw2	equ	0xFDB
-   242                           fsr2h	equ	0xFDA
-   243                           fsr2l	equ	0xFD9
-   244                           status	equ	0xFD8
+   203                           	psect	heap
+   204   000000                     ___heap_lo      equ	0
+   205   000000                     ___heap_hi      equ	0
+   206                           tosu	equ	0xFFF
+   207                           tosh	equ	0xFFE
+   208                           tosl	equ	0xFFD
+   209                           stkptr	equ	0xFFC
+   210                           pclatu	equ	0xFFB
+   211                           pclath	equ	0xFFA
+   212                           pcl	equ	0xFF9
+   213                           tblptru	equ	0xFF8
+   214                           tblptrh	equ	0xFF7
+   215                           tblptrl	equ	0xFF6
+   216                           tablat	equ	0xFF5
+   217                           prodh	equ	0xFF4
+   218                           prodl	equ	0xFF3
+   219                           indf0	equ	0xFEF
+   220                           postinc0	equ	0xFEE
+   221                           postdec0	equ	0xFED
+   222                           preinc0	equ	0xFEC
+   223                           plusw0	equ	0xFEB
+   224                           fsr0h	equ	0xFEA
+   225                           fsr0l	equ	0xFE9
+   226                           wreg	equ	0xFE8
+   227                           indf1	equ	0xFE7
+   228                           postinc1	equ	0xFE6
+   229                           postdec1	equ	0xFE5
+   230                           preinc1	equ	0xFE4
+   231                           plusw1	equ	0xFE3
+   232                           fsr1h	equ	0xFE2
+   233                           fsr1l	equ	0xFE1
+   234                           bsr	equ	0xFE0
+   235                           indf2	equ	0xFDF
+   236                           postinc2	equ	0xFDE
+   237                           postdec2	equ	0xFDD
+   238                           preinc2	equ	0xFDC
+   239                           plusw2	equ	0xFDB
+   240                           fsr2h	equ	0xFDA
+   241                           fsr2l	equ	0xFD9
+   242                           status	equ	0xFD8
 
 
 Microchip Technology PIC18 Macro Assembler V3.10 build 20250813170317 
-Symbol Table                                                                                               Wed Feb 11 20:21:11 2026
+Symbol Table                                                                                               Thu Feb 12 21:06:46 2026
 
-                __S1 0047                 ___sp 0000                 _main 0802                 start 7FFC  
+                __S1 0076                 ___sp 0000                 _main 0802                 start 000E  
               __HRAM 0000                __LRAM 0001               isa$std 0001     ___inthi_stack_hi 0000  
    ___inthi_stack_lo 0000               stackhi 0000               stacklo 0000           __accesstop 0060  
          ___inthi_sp 0000           ___intlo_sp 0000           ___stack_hi 0000           ___stack_lo 0000  

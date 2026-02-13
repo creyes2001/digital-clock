@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "10 inc/buffer.h
-[s S3 `uc -> 10 `i `uc 1 `uc 1 ]
+[s S3 `uc -> 20 `i `Vuc 1 `Vuc 1 ]
 [n S3 . data head tail ]
 "19 inc/gpio.h
 [s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
@@ -87,6 +87,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S180 . . . ]
 "4490
 [v _PIR1bits `VS180 ~T0 @X0 0 e@3998 ]
+"5412
+[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
 "4388
 [s S178 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
 [n S178 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
@@ -98,8 +100,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S177 . . . ]
 "4406
 [v _PIE1bits `VS177 ~T0 @X0 0 e@3997 ]
-"5412
-[v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
 "17 inc/buffer.h
 [v _Buffer_Add `(a ~T0 @X0 0 ef2`*S3`uc ]
 "18
@@ -515,175 +515,150 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
 "45
 [e = . . _PIR1bits 0 4 -> -> 0 `i `uc ]
-"46
-[e = . . _PIE1bits 0 4 -> -> 1 `i `uc ]
-"47
+"49
+[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 398  ]
+"50
+{
+"51
+[v _dummy `uc ~T0 @X0 1 a ]
+[e = _dummy -> _RCREG `uc ]
+"52
+[e _dummy ]
+"53
+}
+[e :U 398 ]
+"54
+[e = . . _PIE1bits 0 5 -> -> 1 `i `uc ]
+"56
 [e :UE 397 ]
 }
-"50
+"59
 [v _Uart_Stop `(v ~T0 @X0 1 ef ]
-"51
+"60
 {
 [e :U _Uart_Stop ]
 [f ]
-"52
-[e = . . _RCSTAbits 0 7 -> -> 0 `i `uc ]
-"53
-[e = . . _TXSTAbits 0 5 -> -> 0 `i `uc ]
-"54
-[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
-"55
-[e :UE 398 ]
-}
-"57
-[v _Uart_Rx `(a ~T0 @X0 1 ef1`*uc ]
-"58
-{
-[e :U _Uart_Rx ]
-"57
-[v _data `*uc ~T0 @X0 1 r1 ]
-"58
-[f ]
-"59
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 400  ]
-"60
-{
 "61
-[e $ ! != -> . . _RCSTAbits 0 1 `i -> 0 `i 401  ]
+[e = . . _RCSTAbits 0 7 -> -> 0 `i `uc ]
 "62
-{
-"64
+[e = . . _TXSTAbits 0 5 -> -> 0 `i `uc ]
+"63
 [e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
-"65
-[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
-"66
-[e ) -> -> 0 `i `a ]
-[e $UE 399  ]
-"67
+"64
+[e :UE 399 ]
 }
-[e :U 401 ]
+"66
+[v _Uart_InterruptHandler `(v ~T0 @X0 1 ef ]
+"67
+{
+[e :U _Uart_InterruptHandler ]
+[f ]
+"68
+[v _c `uc ~T0 @X0 1 a ]
 "69
-[e $ ! != -> . . _RCSTAbits 0 2 `i -> 0 `i 402  ]
+[e $ ! != -> . . _RCSTAbits 0 1 `i -> 0 `i 401  ]
 "70
 {
 "72
-[v _dummy `uc ~T0 @X0 1 a ]
-[e = _dummy -> _RCREG `uc ]
+[e = . . _RCSTAbits 0 4 -> -> 0 `i `uc ]
 "73
-[e _dummy ]
+[e = . . _RCSTAbits 0 4 -> -> 1 `i `uc ]
 "74
-[e ) -> -> 0 `i `a ]
-[e $UE 399  ]
+[e $UE 400  ]
 "75
 }
-[e :U 402 ]
+[e :U 401 ]
 "77
-[e = *U _data -> _RCREG `uc ]
+[e $ ! != -> . . _RCSTAbits 0 2 `i -> 0 `i 402  ]
 "78
-[e ) -> -> 1 `i `a ]
-[e $UE 399  ]
-"79
-}
-[e :U 400 ]
-"80
-[e ) -> -> 0 `i `a ]
-[e $UE 399  ]
-"81
-[e :UE 399 ]
-}
-"84
-[v _Uart_Tx `(v ~T0 @X0 1 ef1`uc ]
-"85
 {
-[e :U _Uart_Tx ]
+"80
+[e = _c -> _RCREG `uc ]
+"81
+[e $UE 400  ]
+"82
+}
+[e :U 402 ]
 "84
-[v _c `uc ~T0 @X0 1 r1 ]
+[e = _c -> _RCREG `uc ]
 "85
-[f ]
+[e ( _Buffer_Add (2 , &U _rx_buffer _c ]
 "86
-[e ( _Buffer_Add (2 , &U _tx_buffer _c ]
-"87
-[e :UE 403 ]
+[e :UE 400 ]
 }
 "89
-[v _Uart_TxTask `(v ~T0 @X0 1 ef ]
+[v _Uart_Tx `(v ~T0 @X0 1 ef1`uc ]
 "90
+{
+[e :U _Uart_Tx ]
+"89
+[v _c `uc ~T0 @X0 1 r1 ]
+"90
+[f ]
+"91
+[e ( _Buffer_Add (2 , &U _tx_buffer _c ]
+"92
+[e :UE 403 ]
+}
+"94
+[v _Uart_TxTask `(v ~T0 @X0 1 ef ]
+"95
 {
 [e :U _Uart_TxTask ]
 [f ]
-"91
-[v _c `uc ~T0 @X0 1 a ]
-"93
-[e $ ! && != -> . . _PIR1bits 0 4 `i -> 0 `i != -> ( _Buffer_Get (2 , &U _tx_buffer &U _c `i -> 0 `i 405  ]
-"94
-{
-"95
-[e = _TXREG -> _c `uc ]
 "96
+[v _c `uc ~T0 @X0 1 a ]
+"98
+[e $ ! && != -> . . _PIR1bits 0 4 `i -> 0 `i != -> ( _Buffer_Get (2 , &U _tx_buffer &U _c `i -> 0 `i 405  ]
+"99
+{
+"100
+[e = _TXREG -> _c `uc ]
+"101
 }
 [e :U 405 ]
-"97
+"102
 [e :UE 404 ]
 }
-"99
-[v _Uart_RxTask `(v ~T0 @X0 1 ef ]
-"100
-{
-[e :U _Uart_RxTask ]
-[f ]
-"101
-[v _c `uc ~T0 @X0 1 a ]
-"102
-[e $ ! != -> ( _Uart_Rx (1 &U _c `i -> 0 `i 407  ]
-"103
-{
-"104
-[e ( _Buffer_Add (2 , &U _rx_buffer _c ]
 "105
-}
-[e :U 407 ]
-"106
-[e :UE 406 ]
-}
-"108
 [v _Uart_Read `(a ~T0 @X0 1 ef1`*uc ]
-"109
+"106
 {
 [e :U _Uart_Read ]
-"108
+"105
 [v _data `*uc ~T0 @X0 1 r1 ]
-"109
+"106
 [f ]
-"110
+"107
 [e ) ( _Buffer_Get (2 , &U _rx_buffer _data ]
-[e $UE 408  ]
-"111
-[e :UE 408 ]
+[e $UE 406  ]
+"108
+[e :UE 406 ]
 }
-"113
+"110
 [v _Uart_SendString `(v ~T0 @X0 1 ef1`*Cuc ]
-"114
+"111
 {
 [e :U _Uart_SendString ]
-"113
+"110
 [v _msg `*Cuc ~T0 @X0 1 r1 ]
-"114
+"111
 [f ]
-"115
-[e $U 410  ]
-[e :U 411 ]
-"116
+"112
+[e $U 408  ]
+[e :U 409 ]
+"113
 {
-"117
+"114
 [e ( _Uart_Tx (1 *U _msg ]
-"118
-[e ++ _msg * -> -> 1 `i `x -> -> # *U _msg `i `x ]
-"119
-}
-[e :U 410 ]
 "115
-[e $ != -> *U _msg `ui -> 0 `ui 411  ]
-[e :U 412 ]
-"120
-[e :UE 409 ]
+[e ++ _msg * -> -> 1 `i `x -> -> # *U _msg `i `x ]
+"116
+}
+[e :U 408 ]
+"112
+[e $ != -> *U _msg `ui -> 0 `ui 409  ]
+[e :U 410 ]
+"117
+[e :UE 407 ]
 }

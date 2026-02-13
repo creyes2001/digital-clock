@@ -1,6 +1,6 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "10 inc/buffer.h
-[s S1 `uc -> 10 `i `uc 1 `uc 1 ]
+[s S1 `uc -> 20 `i `Vuc 1 `Vuc 1 ]
 [n S1 . data head tail ]
 "3 src/buffer.c
 [v _Buffer_Init `(v ~T0 @X0 1 ef1`*S1 ]
@@ -32,7 +32,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _next_head `uc ~T0 @X0 1 a ]
 [e = _next_head -> + -> . *U _buffer 1 `i -> 1 `i `uc ]
 "13
-[e $ ! == -> _next_head `i -> 10 `i 4  ]
+[e $ ! == -> _next_head `i -> 20 `i 4  ]
 "14
 [e = _next_head -> -> 0 `i `uc ]
 [e :U 4 ]
@@ -79,9 +79,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35
 [e = *U _element *U + &U . *U _buffer 0 * -> . *U _buffer 2 `ux -> -> # *U &U . *U _buffer 0 `ui `ux ]
 "36
-[e ++ . *U _buffer 2 -> -> 1 `i `uc ]
+[e ++ . *U _buffer 2 -> -> 1 `i `Vuc ]
 "38
-[e $ ! == -> . *U _buffer 2 `i -> 10 `i 8  ]
+[e $ ! == -> . *U _buffer 2 `i -> 20 `i 8  ]
 "39
 [e = . *U _buffer 2 -> -> 0 `i `uc ]
 [e :U 8 ]

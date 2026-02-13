@@ -9,8 +9,8 @@
 typedef struct
 {
 	char data[BUFFER_SIZE];
-	uint8_t head;
-	uint8_t tail;
+	volatile uint8_t head;
+	volatile uint8_t tail;
 }buffer_t;
 
 void Buffer_Init(buffer_t *buffer);

@@ -1142,7 +1142,6 @@ TOSU equ 0FFFh ;#
 	FNCALL	_main,_Gpio_Write
 	FNCALL	_main,_Uart_Init
 	FNCALL	_main,_Uart_Read
-	FNCALL	_main,_Uart_RxTask
 	FNCALL	_main,_Uart_Start
 	FNCALL	_main,_Uart_Tx
 	FNCALL	_main,_Uart_TxTask
@@ -1150,10 +1149,13 @@ TOSU equ 0FFFh ;#
 	FNCALL	_Uart_Tx,_Buffer_Add
 	FNCALL	_Uart_Start,_Buffer_Init
 	FNCALL	_Uart_Start,_Gpio_Init
-	FNCALL	_Uart_RxTask,_Buffer_Add
-	FNCALL	_Uart_RxTask,_Uart_Rx
 	FNCALL	_Uart_Read,_Buffer_Get
 	FNROOT	_main
+	FNCALL	_ISR,_Uart_InterruptHandler
+	FNCALL	_Uart_InterruptHandler,i2_Buffer_Add
+	FNCALL	intlevel2,_ISR
+	global	intlevel2
+	FNROOT	intlevel2
 	global	_tx
 	global	_rx
 	global	_button
@@ -1224,16 +1226,14 @@ __pidataCOMRAM:
 
 	dw	(02580h) & 0xffff
 	dw	highword(02580h)
-	global	_rx_buffer
 	global	_tx_buffer
+	global	_rx_buffer
 	global	_TXREG
 _TXREG	set	0xFAD
-	global	_RCREG
-_RCREG	set	0xFAE
 	global	_PIE1bits
 _PIE1bits	set	0xF9D
-	global	_PIR1bits
-_PIR1bits	set	0xF9E
+	global	_RCREG
+_RCREG	set	0xFAE
 	global	_SPBRG
 _SPBRG	set	0xFAF
 	global	_SPBRGH
@@ -1244,6 +1244,10 @@ _BAUDCONbits	set	0xFB8
 _RCSTAbits	set	0xFAB
 	global	_TXSTAbits
 _TXSTAbits	set	0xFAC
+	global	_INTCONbits
+_INTCONbits	set	0xFF2
+	global	_PIR1bits
+_PIR1bits	set	0xF9E
 	global	_PORTC
 _PORTC	set	0xF82
 	global	_LATC
@@ -1297,10 +1301,8 @@ __initialization:
 psect	bssCOMRAM,class=COMRAM,space=1,noexec,lowdata
 global __pbssCOMRAM
 __pbssCOMRAM:
-_rx_buffer:
-       ds      12
 _tx_buffer:
-       ds      12
+       ds      22
 psect	dataCOMRAM,class=COMRAM,space=1,noexec,lowdata
 global __pdataCOMRAM
 __pdataCOMRAM:
@@ -1331,6 +1333,11 @@ psect	dataCOMRAM
 	global	_uart_config
 _uart_config:
        ds      6
+psect	bssBANK0,class=BANK0,space=1,noexec,lowdata
+global __pbssBANK0
+__pbssBANK0:
+_rx_buffer:
+       ds      22
 	file	"build/bin/clock.s"
 	line	#
 psect	cinit
@@ -1352,14 +1359,22 @@ psect	cinit
 	movf	fsr1l,w
 	bnz	copy_data0
 	line	#
-; Clear objects allocated to COMRAM (24 bytes)
-	global __pbssCOMRAM
-lfsr	0,__pbssCOMRAM
-movlw	24
+; Clear objects allocated to BANK0 (22 bytes)
+	global __pbssBANK0
+lfsr	0,__pbssBANK0
+movlw	22
 clear_0:
 clrf	postinc0,c
 decf	wreg
 bnz	clear_0
+; Clear objects allocated to COMRAM (22 bytes)
+	global __pbssCOMRAM
+lfsr	0,__pbssCOMRAM
+movlw	22
+clear_1:
+clrf	postinc0,c
+decf	wreg
+bnz	clear_1
 psect cinit,class=CODE,delta=1
 global end_of_initialization,__end_of__initialization
 
@@ -1367,102 +1382,116 @@ global end_of_initialization,__end_of__initialization
 
 end_of_initialization:
 __end_of__initialization:
+	bcf int$flags,0,c ;clear compiler interrupt flag (level 1)
+	bcf int$flags,1,c ;clear compiler interrupt flag (level 2)
 movlb 0
 goto _main	;jump to C main() function
 psect	cstackCOMRAM,class=COMRAM,space=1,noexec,lowdata
 global __pcstackCOMRAM
 __pcstackCOMRAM:
-?_Gpio_Init:	; 1 bytes @ 0x0
-?_Uart_Init:	; 1 bytes @ 0x0
-?_Gpio_Write:	; 1 bytes @ 0x0
-?_Uart_RxTask:	; 1 bytes @ 0x0
+?_Uart_InterruptHandler:	; 1 bytes @ 0x0
 ?_Uart_TxTask:	; 1 bytes @ 0x0
-?_Gpio_Read:	; 1 bytes @ 0x0
 ?_Uart_Tx:	; 1 bytes @ 0x0
-?_Buffer_Init:	; 1 bytes @ 0x0
-?_Buffer_Add:	; 1 bytes @ 0x0
-?_Buffer_Get:	; 1 bytes @ 0x0
-?_Uart_Rx:	; 1 bytes @ 0x0
+?_ISR:	; 1 bytes @ 0x0
+?i2_Buffer_Add:	; 1 bytes @ 0x0
 ?_main:	; 2 bytes @ 0x0
+	global	i2Buffer_Add@buffer
+i2Buffer_Add@buffer:	; 1 bytes @ 0x0
+	ds   1
+	global	i2Buffer_Add@element
+i2Buffer_Add@element:	; 1 bytes @ 0x1
+	ds   1
+??i2_Buffer_Add:	; 1 bytes @ 0x2
+	ds   1
+	global	i2Buffer_Add@next_head
+i2Buffer_Add@next_head:	; 1 bytes @ 0x3
+	ds   1
+	global	Uart_InterruptHandler@c
+Uart_InterruptHandler@c:	; 1 bytes @ 0x4
+??_Uart_InterruptHandler:	; 1 bytes @ 0x4
+	ds   1
+??_ISR:	; 1 bytes @ 0x5
+	ds   2
+?_Gpio_Init:	; 1 bytes @ 0x7
+?_Uart_Init:	; 1 bytes @ 0x7
+?_Gpio_Write:	; 1 bytes @ 0x7
+?_Gpio_Read:	; 1 bytes @ 0x7
+?_Buffer_Init:	; 1 bytes @ 0x7
+?_Buffer_Add:	; 1 bytes @ 0x7
+?_Buffer_Get:	; 1 bytes @ 0x7
 	global	Gpio_Init@gpio
-Gpio_Init@gpio:	; 1 bytes @ 0x0
+Gpio_Init@gpio:	; 1 bytes @ 0x7
 	global	Gpio_Write@gpio
-Gpio_Write@gpio:	; 1 bytes @ 0x0
+Gpio_Write@gpio:	; 1 bytes @ 0x7
 	global	Gpio_Read@gpio
-Gpio_Read@gpio:	; 1 bytes @ 0x0
+Gpio_Read@gpio:	; 1 bytes @ 0x7
 	global	Buffer_Init@buffer
-Buffer_Init@buffer:	; 1 bytes @ 0x0
+Buffer_Init@buffer:	; 1 bytes @ 0x7
 	global	Buffer_Add@buffer
-Buffer_Add@buffer:	; 1 bytes @ 0x0
+Buffer_Add@buffer:	; 1 bytes @ 0x7
 	global	Buffer_Get@buffer
-Buffer_Get@buffer:	; 1 bytes @ 0x0
+Buffer_Get@buffer:	; 1 bytes @ 0x7
 	global	Uart_Init@uart
-Uart_Init@uart:	; 1 bytes @ 0x0
-	global	Uart_Rx@data
-Uart_Rx@data:	; 1 bytes @ 0x0
+Uart_Init@uart:	; 1 bytes @ 0x7
 	ds   1
 	global	Gpio_Init@dir
-Gpio_Init@dir:	; 1 bytes @ 0x1
+Gpio_Init@dir:	; 1 bytes @ 0x8
 	global	Gpio_Write@level
-Gpio_Write@level:	; 1 bytes @ 0x1
+Gpio_Write@level:	; 1 bytes @ 0x8
 	global	Buffer_Add@element
-Buffer_Add@element:	; 1 bytes @ 0x1
+Buffer_Add@element:	; 1 bytes @ 0x8
 	global	Buffer_Get@element
-Buffer_Get@element:	; 1 bytes @ 0x1
-??_Uart_Init:	; 1 bytes @ 0x1
-??_Gpio_Read:	; 1 bytes @ 0x1
-??_Buffer_Init:	; 1 bytes @ 0x1
-??_Uart_Rx:	; 1 bytes @ 0x1
+Buffer_Get@element:	; 1 bytes @ 0x8
+??_Uart_Init:	; 1 bytes @ 0x8
+??_Gpio_Read:	; 1 bytes @ 0x8
+??_Buffer_Init:	; 1 bytes @ 0x8
 	ds   1
-??_Gpio_Init:	; 1 bytes @ 0x2
-??_Gpio_Write:	; 1 bytes @ 0x2
-??_Buffer_Add:	; 1 bytes @ 0x2
-??_Buffer_Get:	; 1 bytes @ 0x2
+??_Gpio_Init:	; 1 bytes @ 0x9
+??_Gpio_Write:	; 1 bytes @ 0x9
+??_Buffer_Add:	; 1 bytes @ 0x9
+??_Buffer_Get:	; 1 bytes @ 0x9
 	ds   1
 	global	Buffer_Add@next_head
-Buffer_Add@next_head:	; 1 bytes @ 0x3
+Buffer_Add@next_head:	; 1 bytes @ 0xA
 	ds   1
-?_Uart_Read:	; 1 bytes @ 0x4
+?_Uart_Read:	; 1 bytes @ 0xB
 	global	Uart_Tx@c
-Uart_Tx@c:	; 1 bytes @ 0x4
+Uart_Tx@c:	; 1 bytes @ 0xB
 	global	Uart_TxTask@c
-Uart_TxTask@c:	; 1 bytes @ 0x4
-	global	Uart_RxTask@c
-Uart_RxTask@c:	; 1 bytes @ 0x4
+Uart_TxTask@c:	; 1 bytes @ 0xB
 	global	Uart_Read@data
-Uart_Read@data:	; 1 bytes @ 0x4
-??_Uart_RxTask:	; 1 bytes @ 0x4
-??_Uart_TxTask:	; 1 bytes @ 0x4
-??_Uart_Tx:	; 1 bytes @ 0x4
+Uart_Read@data:	; 1 bytes @ 0xB
+??_Uart_TxTask:	; 1 bytes @ 0xB
+??_Uart_Tx:	; 1 bytes @ 0xB
 	ds   1
-??_Uart_Read:	; 1 bytes @ 0x5
+??_Uart_Read:	; 1 bytes @ 0xC
 	ds   2
-?_Uart_Start:	; 1 bytes @ 0x7
+?_Uart_Start:	; 1 bytes @ 0xE
 	global	Uart_Start@uart
-Uart_Start@uart:	; 1 bytes @ 0x7
+Uart_Start@uart:	; 1 bytes @ 0xE
 	ds   1
-??_Uart_Start:	; 1 bytes @ 0x8
-??_main:	; 1 bytes @ 0x8
+??_Uart_Start:	; 1 bytes @ 0xF
+??_main:	; 1 bytes @ 0xF
 	ds   2
 	global	main@level
-main@level:	; 1 bytes @ 0xA
+main@level:	; 1 bytes @ 0x11
 	ds   1
 	global	main@c
-main@c:	; 1 bytes @ 0xB
+main@c:	; 1 bytes @ 0x12
 	ds   1
 ;!
 ;!Data Sizes:
 ;!    Strings     0
 ;!    Constant    0
 ;!    Data        34
-;!    BSS         24
+;!    BSS         44
 ;!    Persistent  0
 ;!    Stack       0
 ;!
 ;!Auto Spaces:
 ;!    Space          Size  Autos    Used
-;!    COMRAM           95     12      70
-;!    BANK0           160      0       0
+;!    COMRAM           94     19      75
+;!    BANK0           160      0      22
 ;!    BANK1           256      0       0
 ;!    BANK2           256      0       0
 ;!    BANK3           256      0       0
@@ -1474,17 +1503,17 @@ main@c:	; 1 bytes @ 0xB
 ;!
 ;!Pointer List with Targets:
 ;!
-;!    Buffer_Add@buffer	PTR struct . size(1) Largest target is 12
-;!		 -> rx_buffer(COMRAM[12]), tx_buffer(COMRAM[12]), 
+;!    Buffer_Add@buffer	PTR volatile struct . size(1) Largest target is 22
+;!		 -> rx_buffer(BANK0[22]), tx_buffer(COMRAM[22]), 
 ;!
-;!    Buffer_Get@buffer	PTR struct . size(1) Largest target is 12
-;!		 -> rx_buffer(COMRAM[12]), tx_buffer(COMRAM[12]), 
+;!    Buffer_Get@buffer	PTR volatile struct . size(1) Largest target is 22
+;!		 -> rx_buffer(BANK0[22]), tx_buffer(COMRAM[22]), 
 ;!
 ;!    Buffer_Get@element	PTR unsigned char  size(1) Largest target is 1
 ;!		 -> main@c(COMRAM[1]), Uart_TxTask@c(COMRAM[1]), 
 ;!
-;!    Buffer_Init@buffer	PTR struct . size(1) Largest target is 12
-;!		 -> rx_buffer(COMRAM[12]), tx_buffer(COMRAM[12]), 
+;!    Buffer_Init@buffer	PTR volatile struct . size(1) Largest target is 22
+;!		 -> rx_buffer(BANK0[22]), tx_buffer(COMRAM[22]), 
 ;!
 ;!    button$lat	PTR volatile unsigned char  size(2) Largest target is 1
 ;!		 -> LATB(BIGSFR[1]), LATC(BIGSFR[1]), LATD(BIGSFR[1]), 
@@ -1600,9 +1629,6 @@ main@c:	; 1 bytes @ 0xB
 ;!    Uart_Read@data	PTR unsigned char  size(1) Largest target is 1
 ;!		 -> main@c(COMRAM[1]), 
 ;!
-;!    Uart_Rx@data	PTR unsigned char  size(1) Largest target is 1
-;!		 -> Uart_RxTask@c(COMRAM[1]), 
-;!
 ;!    Uart_Start@uart	PTR const struct . size(1) Largest target is 8
 ;!		 -> uart_config(COMRAM[6]), 
 ;!
@@ -1621,10 +1647,18 @@ main@c:	; 1 bytes @ 0xB
 ;!    _Uart_TxTask->_Buffer_Get
 ;!    _Uart_Tx->_Buffer_Add
 ;!    _Uart_Start->_Gpio_Init
-;!    _Uart_RxTask->_Buffer_Add
 ;!    _Uart_Read->_Buffer_Get
 ;!
+;!Critical Paths under _ISR in COMRAM
+;!
+;!    _ISR->_Uart_InterruptHandler
+;!    _Uart_InterruptHandler->i2_Buffer_Add
+;!
 ;!Critical Paths under _main in BANK0
+;!
+;!    None.
+;!
+;!Critical Paths under _ISR in BANK0
 ;!
 ;!    None.
 ;!
@@ -1632,7 +1666,15 @@ main@c:	; 1 bytes @ 0xB
 ;!
 ;!    None.
 ;!
+;!Critical Paths under _ISR in BANK1
+;!
+;!    None.
+;!
 ;!Critical Paths under _main in BANK2
+;!
+;!    None.
+;!
+;!Critical Paths under _ISR in BANK2
 ;!
 ;!    None.
 ;!
@@ -1640,7 +1682,15 @@ main@c:	; 1 bytes @ 0xB
 ;!
 ;!    None.
 ;!
+;!Critical Paths under _ISR in BANK3
+;!
+;!    None.
+;!
 ;!Critical Paths under _main in BANK4
+;!
+;!    None.
+;!
+;!Critical Paths under _ISR in BANK4
 ;!
 ;!    None.
 ;!
@@ -1648,11 +1698,23 @@ main@c:	; 1 bytes @ 0xB
 ;!
 ;!    None.
 ;!
+;!Critical Paths under _ISR in BANK5
+;!
+;!    None.
+;!
 ;!Critical Paths under _main in BANK6
 ;!
 ;!    None.
 ;!
+;!Critical Paths under _ISR in BANK6
+;!
+;!    None.
+;!
 ;!Critical Paths under _main in BANK7
+;!
+;!    None.
+;!
+;!Critical Paths under _ISR in BANK7
 ;!
 ;!    None.
 
@@ -1666,65 +1728,71 @@ main@c:	; 1 bytes @ 0xB
 ;! ---------------------------------------------------------------------------------
 ;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
 ;! ---------------------------------------------------------------------------------
-;! (0) _main                                                 4     4      0    1538
-;!                                              8 COMRAM     4     4      0
+;! (0) _main                                                 4     4      0    1263
+;!                                             15 COMRAM     4     4      0
 ;!                          _Gpio_Init
 ;!                          _Gpio_Read
 ;!                         _Gpio_Write
 ;!                          _Uart_Init
 ;!                          _Uart_Read
-;!                        _Uart_RxTask
 ;!                         _Uart_Start
 ;!                            _Uart_Tx
 ;!                        _Uart_TxTask
 ;! ---------------------------------------------------------------------------------
 ;! (1) _Uart_TxTask                                          1     1      0     226
-;!                                              4 COMRAM     1     1      0
+;!                                             11 COMRAM     1     1      0
 ;!                         _Buffer_Get
 ;! ---------------------------------------------------------------------------------
-;! (1) _Uart_Tx                                              1     1      0     233
-;!                                              4 COMRAM     1     1      0
+;! (1) _Uart_Tx                                              1     1      0     231
+;!                                             11 COMRAM     1     1      0
 ;!                         _Buffer_Add
 ;! ---------------------------------------------------------------------------------
-;! (1) _Uart_Start                                           1     0      1     209
-;!                                              7 COMRAM     1     0      1
+;! (2) _Buffer_Add                                           4     2      2     202
+;!                                              7 COMRAM     4     2      2
+;! ---------------------------------------------------------------------------------
+;! (1) _Uart_Start                                           2     1      1     210
+;!                                             14 COMRAM     1     0      1
 ;!                        _Buffer_Init
 ;!                          _Gpio_Init
 ;! ---------------------------------------------------------------------------------
 ;! (2) _Gpio_Init                                            7     5      2     118
-;!                                              0 COMRAM     7     5      2
+;!                                              7 COMRAM     7     5      2
 ;! ---------------------------------------------------------------------------------
 ;! (2) _Buffer_Init                                          1     0      1      46
-;!                                              0 COMRAM     1     0      1
-;! ---------------------------------------------------------------------------------
-;! (1) _Uart_RxTask                                          1     1      0     274
-;!                                              4 COMRAM     1     1      0
-;!                         _Buffer_Add
-;!                            _Uart_Rx
-;! ---------------------------------------------------------------------------------
-;! (2) _Uart_Rx                                              2     1      1      24
-;!                                              0 COMRAM     1     0      1
-;! ---------------------------------------------------------------------------------
-;! (2) _Buffer_Add                                           4     2      2     204
-;!                                              0 COMRAM     4     2      2
+;!                                              7 COMRAM     1     0      1
 ;! ---------------------------------------------------------------------------------
 ;! (1) _Uart_Read                                            1     0      1     203
-;!                                              4 COMRAM     1     0      1
+;!                                             11 COMRAM     1     0      1
 ;!                         _Buffer_Get
 ;! ---------------------------------------------------------------------------------
 ;! (2) _Buffer_Get                                           4     2      2     180
-;!                                              0 COMRAM     4     2      2
+;!                                              7 COMRAM     4     2      2
 ;! ---------------------------------------------------------------------------------
 ;! (1) _Uart_Init                                            5     4      1      23
-;!                                              0 COMRAM     5     4      1
+;!                                              7 COMRAM     5     4      1
 ;! ---------------------------------------------------------------------------------
 ;! (1) _Gpio_Write                                           7     5      2     116
-;!                                              0 COMRAM     7     5      2
+;!                                              7 COMRAM     7     5      2
 ;! ---------------------------------------------------------------------------------
 ;! (1) _Gpio_Read                                            6     5      1      45
-;!                                              0 COMRAM     6     5      1
+;!                                              7 COMRAM     6     5      1
 ;! ---------------------------------------------------------------------------------
 ;! Estimated maximum stack depth 2
+;! ---------------------------------------------------------------------------------
+;! (Depth) Function   	        Calls       Base Space   Used Autos Params    Refs
+;! ---------------------------------------------------------------------------------
+;! (3) _ISR                                                  2     2      0     226
+;!                                              5 COMRAM     2     2      0
+;!              _Uart_InterruptHandler
+;! ---------------------------------------------------------------------------------
+;! (4) _Uart_InterruptHandler                                1     1      0     226
+;!                                              4 COMRAM     1     1      0
+;!                       i2_Buffer_Add
+;! ---------------------------------------------------------------------------------
+;! (5) i2_Buffer_Add                                         4     2      2     202
+;!                                              0 COMRAM     4     2      2
+;! ---------------------------------------------------------------------------------
+;! Estimated maximum stack depth 5
 ;! ---------------------------------------------------------------------------------
 ;!
 ;! Call Graph Graphs:
@@ -1736,9 +1804,6 @@ main@c:	; 1 bytes @ 0xB
 ;!   _Uart_Init
 ;!   _Uart_Read
 ;!     _Buffer_Get
-;!   _Uart_RxTask
-;!     _Buffer_Add
-;!     _Uart_Rx
 ;!   _Uart_Start
 ;!     _Buffer_Init
 ;!     _Gpio_Init
@@ -1746,6 +1811,10 @@ main@c:	; 1 bytes @ 0xB
 ;!     _Buffer_Add
 ;!   _Uart_TxTask
 ;!     _Buffer_Get
+;!
+;! _ISR (ROOT)
+;!   _Uart_InterruptHandler
+;!     i2_Buffer_Add
 ;!
 
 ;!Address spaces:
@@ -1767,28 +1836,28 @@ main@c:	; 1 bytes @ 0xB
 ;!BITBANK1           256      0       0      0.0%
 ;!BANK1              256      0       0      0.0%
 ;!BITBANK0           160      0       0      0.0%
-;!BANK0              160      0       0      0.0%
-;!BITCOMRAM           95      0       0      0.0%
-;!COMRAM              95     12      70     73.7%
+;!BANK0              160      0      22     13.8%
+;!BITCOMRAM           94      0       0      0.0%
+;!COMRAM              94     19      75     79.8%
 ;!BITBIGSFRh          82      0       0      0.0%
 ;!BITBIGSFRllh        41      0       0      0.0%
 ;!BITBIGSFRlll        33      0       0      0.0%
 ;!BITBIGSFRlh          1      0       0      0.0%
 ;!STACK                0      0       0      0.0%
-;!DATA                 0      0      70      0.0%
+;!DATA                 0      0      97      0.0%
 
 	global	_main
 
 ;; *************** function _main *****************
 ;; Defined at:
-;;		line 42 in file "main.c"
+;;		line 49 in file "main.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;  c               1   11[COMRAM] unsigned char 
-;;  level           1   10[COMRAM] enum E40
+;;  c               1   18[COMRAM] unsigned char 
+;;  level           1   17[COMRAM] enum E40
 ;; Return value:  Size  Location     Type
-;;                  2   52[None  ] int 
+;;                  2   62[None  ] int 
 ;; Registers used:
 ;;		wreg, fsr1l, fsr1h, fsr2l, fsr2h, status,2, status,0, cstack
 ;; Tracked objects:
@@ -1801,14 +1870,13 @@ main@c:	; 1 bytes @ 0xB
 ;;      Temps:          2       0       0       0       0       0       0       0       0
 ;;      Totals:         4       0       0       0       0       0       0       0       0
 ;;Total ram usage:        4 bytes
-;; Hardware stack levels required when called: 2
+;; Hardware stack levels required when called: 5
 ;; This function calls:
 ;;		_Gpio_Init
 ;;		_Gpio_Read
 ;;		_Gpio_Write
 ;;		_Uart_Init
 ;;		_Uart_Read
-;;		_Uart_RxTask
 ;;		_Uart_Start
 ;;		_Uart_Tx
 ;;		_Uart_TxTask
@@ -1818,97 +1886,100 @@ main@c:	; 1 bytes @ 0xB
 ;;
 psect	text0,class=CODE,space=0,reloc=2,group=0
 	file	"main.c"
-	line	42
+	line	49
 global __ptext0
 __ptext0:
 psect	text0
 	file	"main.c"
-	line	42
+	line	49
 	
 _main:
 ;incstack = 0
-	callstack 29
-	line	44
+	callstack 26
+	line	51
 	
-l1214:
+l1220:
 		movlw	low(_led)
 	movwf	((c:Gpio_Init@gpio))^00h,c
 
 	movlw	low(0)
 	movwf	((c:Gpio_Init@dir))^00h,c
 	call	_Gpio_Init	;wreg free
-	line	45
+	line	52
 		movlw	low(_button)
 	movwf	((c:Gpio_Init@gpio))^00h,c
 
 	movlw	low(01h)
 	movwf	((c:Gpio_Init@dir))^00h,c
 	call	_Gpio_Init	;wreg free
-	line	46
+	line	53
 		movlw	low(_uart_config)
 	movwf	((c:Uart_Init@uart))^00h,c
 
 	call	_Uart_Init	;wreg free
-	line	47
+	line	54
 		movlw	low(_uart_config)
 	movwf	((c:Uart_Start@uart))^00h,c
 
 	call	_Uart_Start	;wreg free
-	line	55
+	line	58
+	
+l1222:
+	bsf	((c:4082))^0f00h,c,7	;volatile
+	line	59
+	
+l1224:
+	bsf	((c:4082))^0f00h,c,6	;volatile
+	line	62
 		movlw	low(_led)
 	movwf	((c:Gpio_Write@gpio))^00h,c
 
 	movlw	low(0)
 	movwf	((c:Gpio_Write@level))^00h,c
 	call	_Gpio_Write	;wreg free
-	line	56
+	line	65
 	
-l53:
-	line	58
-	call	_Uart_RxTask	;wreg free
-	line	59
-	
-l1216:
+l1226:
 	call	_Uart_TxTask	;wreg free
-	line	61
+	line	67
 	
-l1218:
+l1228:
 		movlw	low(_button)
 	movwf	((c:Gpio_Read@gpio))^00h,c
 
 	call	_Gpio_Read	;wreg free
 	movwf	((c:main@level))^00h,c
-	line	63
+	line	69
 	
-l1220:
+l1230:
 	movf	((c:main@level))^00h,c,w
 	btfss	status,2
-	goto	u451
-	goto	u450
-u451:
-	goto	l1226
-u450:
-	line	66
+	goto	u491
+	goto	u490
+u491:
+	goto	l1236
+u490:
+	line	72
 	
-l1222:
+l1232:
 	movlw	(048h)&0ffh
 	
 	call	_Uart_Tx
-	line	67
+	line	73
 	movlw	(069h)&0ffh
 	
 	call	_Uart_Tx
-	line	68
+	line	74
 	movlw	(0Dh)&0ffh
 	
 	call	_Uart_Tx
-	line	69
+	line	75
 	movlw	(0Ah)&0ffh
 	
 	call	_Uart_Tx
-	line	72
+	line	78
 	
-l1224:
+l1234:
 	asmopt push
 asmopt off
 movlw  13
@@ -1916,79 +1987,79 @@ movwf	(??_main+0+1)^00h,c
 movlw	175
 movwf	(??_main+0)^00h,c
 	movlw	182
-u507:
+u547:
 decfsz	wreg,f
-	bra	u507
+	bra	u547
 	decfsz	(??_main+0)^00h,c,f
-	bra	u507
+	bra	u547
 	decfsz	(??_main+0+1)^00h,c,f
-	bra	u507
+	bra	u547
 	nop2
 asmopt pop
 
-	line	75
+	line	81
 	
-l1226:
+l1236:
 		movlw	low(main@c)
 	movwf	((c:Uart_Read@data))^00h,c
 
 	call	_Uart_Read	;wreg free
 	iorlw	0
 	btfsc	status,2
-	goto	u461
-	goto	u460
-u461:
-	goto	l53
-u460:
-	line	77
+	goto	u501
+	goto	u500
+u501:
+	goto	l1226
+u500:
+	line	83
 	
-l1228:
+l1238:
 		movlw	65
 	xorwf	((c:main@c))^00h,c,w
 	btfss	status,2
-	goto	u471
-	goto	u470
+	goto	u511
+	goto	u510
 
-u471:
-	goto	l1232
-u470:
-	line	79
+u511:
+	goto	l1242
+u510:
+	line	85
 	
-l1230:
+l1240:
 		movlw	low(_led)
 	movwf	((c:Gpio_Write@gpio))^00h,c
 
 	movlw	low(01h)
 	movwf	((c:Gpio_Write@level))^00h,c
 	call	_Gpio_Write	;wreg free
-	line	80
-	goto	l53
-	line	81
+	line	86
+	goto	l1226
+	line	87
 	
-l1232:
+l1242:
 		movlw	66
 	xorwf	((c:main@c))^00h,c,w
 	btfss	status,2
-	goto	u481
-	goto	u480
+	goto	u521
+	goto	u520
 
-u481:
-	goto	l53
-u480:
-	line	83
+u521:
+	goto	l1226
+u520:
+	line	89
 	
-l1234:
+l1244:
 		movlw	low(_led)
 	movwf	((c:Gpio_Write@gpio))^00h,c
 
 	movlw	low(0)
 	movwf	((c:Gpio_Write@level))^00h,c
 	call	_Gpio_Write	;wreg free
-	goto	l53
+	goto	l1226
 	global	start
 	goto	start
 	callstack 0
-	line	89
+	line	95
 GLOBAL	__end_of_main
 	__end_of_main:
 	signat	_main,90
@@ -1996,11 +2067,11 @@ GLOBAL	__end_of_main
 
 ;; *************** function _Uart_TxTask *****************
 ;; Defined at:
-;;		line 89 in file "src/uart.c"
+;;		line 94 in file "src/uart.c"
 ;; Parameters:    Size  Location     Type
 ;;		None
 ;; Auto vars:     Size  Location     Type
-;;  c               1    4[COMRAM] unsigned char 
+;;  c               1   11[COMRAM] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;                  1    wreg      void 
 ;; Registers used:
@@ -2016,7 +2087,7 @@ GLOBAL	__end_of_main
 ;;      Totals:         1       0       0       0       0       0       0       0       0
 ;;Total ram usage:        1 bytes
 ;; Hardware stack levels used: 1
-;; Hardware stack levels required when called: 1
+;; Hardware stack levels required when called: 4
 ;; This function calls:
 ;;		_Buffer_Get
 ;; This function is called by:
@@ -2025,27 +2096,27 @@ GLOBAL	__end_of_main
 ;;
 psect	text1,class=CODE,space=0,reloc=2,group=0
 	file	"src/uart.c"
-	line	89
+	line	94
 global __ptext1
 __ptext1:
 psect	text1
 	file	"src/uart.c"
-	line	89
+	line	94
 	
 _Uart_TxTask:
 ;incstack = 0
-	callstack 29
-	line	93
-	
-l1192:
-	btfss	((c:3998))^0f00h,c,4	;volatile
-	goto	u411
-	goto	u410
-u411:
-	goto	l145
-u410:
+	callstack 26
+	line	98
 	
 l1194:
+	btfss	((c:3998))^0f00h,c,4	;volatile
+	goto	u441
+	goto	u440
+u441:
+	goto	l155
+u440:
+	
+l1196:
 		movlw	low(_tx_buffer)
 	movwf	((c:Buffer_Get@buffer))^00h,c
 
@@ -2055,18 +2126,18 @@ l1194:
 	call	_Buffer_Get	;wreg free
 	iorlw	0
 	btfsc	status,2
-	goto	u421
-	goto	u420
-u421:
-	goto	l145
-u420:
-	line	95
+	goto	u451
+	goto	u450
+u451:
+	goto	l155
+u450:
+	line	100
 	
-l1196:
+l1198:
 	movff	(c:Uart_TxTask@c),(c:4013)	;volatile
-	line	97
+	line	102
 	
-l145:
+l155:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Uart_TxTask
@@ -2076,11 +2147,11 @@ GLOBAL	__end_of_Uart_TxTask
 
 ;; *************** function _Uart_Tx *****************
 ;; Defined at:
-;;		line 84 in file "src/uart.c"
+;;		line 89 in file "src/uart.c"
 ;; Parameters:    Size  Location     Type
 ;;  c               1    wreg     unsigned char 
 ;; Auto vars:     Size  Location     Type
-;;  c               1    4[COMRAM] unsigned char 
+;;  c               1   11[COMRAM] unsigned char 
 ;; Return value:  Size  Location     Type
 ;;                  1    wreg      void 
 ;; Registers used:
@@ -2096,7 +2167,7 @@ GLOBAL	__end_of_Uart_TxTask
 ;;      Totals:         1       0       0       0       0       0       0       0       0
 ;;Total ram usage:        1 bytes
 ;; Hardware stack levels used: 1
-;; Hardware stack levels required when called: 1
+;; Hardware stack levels required when called: 4
 ;; This function calls:
 ;;		_Buffer_Add
 ;; This function is called by:
@@ -2105,43 +2176,170 @@ GLOBAL	__end_of_Uart_TxTask
 ;; This function uses a non-reentrant model
 ;;
 psect	text2,class=CODE,space=0,reloc=2,group=0
-	line	84
+	line	89
 global __ptext2
 __ptext2:
 psect	text2
 	file	"src/uart.c"
-	line	84
+	line	89
 	
 _Uart_Tx:
 ;incstack = 0
-	callstack 29
+	callstack 26
 	movwf	((c:Uart_Tx@c))^00h,c
-	line	86
+	line	91
 	
-l1208:
+l1210:
 		movlw	low(_tx_buffer)
 	movwf	((c:Buffer_Add@buffer))^00h,c
 
 	movff	(c:Uart_Tx@c),(c:Buffer_Add@element)
 	call	_Buffer_Add	;wreg free
-	line	87
+	line	92
 	
-l141:
+l151:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Uart_Tx
 	__end_of_Uart_Tx:
 	signat	_Uart_Tx,4217
+	global	_Buffer_Add
+
+;; *************** function _Buffer_Add *****************
+;; Defined at:
+;;		line 9 in file "src/buffer.c"
+;; Parameters:    Size  Location     Type
+;;  buffer          1    7[COMRAM] PTR volatile struct .
+;;		 -> rx_buffer(22), tx_buffer(22), 
+;;  element         1    8[COMRAM] unsigned char 
+;; Auto vars:     Size  Location     Type
+;;  next_head       1   10[COMRAM] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  1    wreg      _Bool 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         2       0       0       0       0       0       0       0       0
+;;      Locals:         1       0       0       0       0       0       0       0       0
+;;      Temps:          1       0       0       0       0       0       0       0       0
+;;      Totals:         4       0       0       0       0       0       0       0       0
+;;Total ram usage:        4 bytes
+;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_Uart_Tx
+;; This function uses a non-reentrant model
+;;
+psect	text3,class=CODE,space=0,reloc=2,group=0
+	file	"src/buffer.c"
+	line	9
+global __ptext3
+__ptext3:
+psect	text3
+	file	"src/buffer.c"
+	line	9
+	
+_Buffer_Add:
+;incstack = 0
+	callstack 26
+	line	11
+	
+l1112:
+	movf	((c:Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(014h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	(??_Buffer_Add+0)^00h,c
+	incf	((??_Buffer_Add+0))^00h,c,w
+	movwf	((c:Buffer_Add@next_head))^00h,c
+	line	13
+	
+l1114:
+		movlw	20
+	xorwf	((c:Buffer_Add@next_head))^00h,c,w
+	btfss	status,2
+	goto	u311
+	goto	u310
+
+u311:
+	goto	l1118
+u310:
+	line	14
+	
+l1116:
+	clrf	((c:Buffer_Add@next_head))^00h,c
+	line	16
+	
+l1118:
+	movf	((c:Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(015h)
+	addwf	fsr2l
+
+	movf	((c:Buffer_Add@next_head))^00h,c,w
+xorwf	postinc2,w
+	btfss	status,2
+	goto	u321
+	goto	u320
+
+u321:
+	goto	l1122
+u320:
+	goto	l96
+	line	22
+	
+l1122:
+	movf	((c:Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(014h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	(??_Buffer_Add+0)^00h,c
+	movf	((c:Buffer_Add@buffer))^00h,c,w
+	addwf	((??_Buffer_Add+0))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movff	(c:Buffer_Add@element),indf2
+
+	line	23
+	movf	((c:Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(014h)
+	addwf	fsr2l
+
+	movff	(c:Buffer_Add@next_head),indf2
+
+	line	25
+	
+l96:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_of_Buffer_Add
+	__end_of_Buffer_Add:
+	signat	_Buffer_Add,8313
 	global	_Uart_Start
 
 ;; *************** function _Uart_Start *****************
 ;; Defined at:
 ;;		line 33 in file "src/uart.c"
 ;; Parameters:    Size  Location     Type
-;;  uart            1    7[COMRAM] PTR const struct .
+;;  uart            1   14[COMRAM] PTR const struct .
 ;;		 -> uart_config(6), 
 ;; Auto vars:     Size  Location     Type
-;;		None
+;;  dummy           1    0        unsigned char 
 ;; Return value:  Size  Location     Type
 ;;                  1    wreg      void 
 ;; Registers used:
@@ -2157,7 +2355,7 @@ GLOBAL	__end_of_Uart_Tx
 ;;      Totals:         1       0       0       0       0       0       0       0       0
 ;;Total ram usage:        1 bytes
 ;; Hardware stack levels used: 1
-;; Hardware stack levels required when called: 1
+;; Hardware stack levels required when called: 4
 ;; This function calls:
 ;;		_Buffer_Init
 ;;		_Gpio_Init
@@ -2165,20 +2363,21 @@ GLOBAL	__end_of_Uart_Tx
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text3,class=CODE,space=0,reloc=2,group=0
+psect	text4,class=CODE,space=0,reloc=2,group=0
+	file	"src/uart.c"
 	line	33
-global __ptext3
-__ptext3:
-psect	text3
+global __ptext4
+__ptext4:
+psect	text4
 	file	"src/uart.c"
 	line	33
 	
 _Uart_Start:
 ;incstack = 0
-	callstack 29
+	callstack 26
 	line	35
 	
-l1170:
+l1174:
 	movf	((c:Uart_Start@uart))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -2211,27 +2410,41 @@ l1170:
 	call	_Buffer_Init	;wreg free
 	line	41
 	
-l1172:
+l1176:
 	bsf	((c:4011))^0f00h,c,7	;volatile
 	line	42
 	
-l1174:
+l1178:
 	bsf	((c:4012))^0f00h,c,5	;volatile
 	line	43
 	
-l1176:
+l1180:
 	bsf	((c:4011))^0f00h,c,4	;volatile
 	line	45
 	
-l1178:
+l1182:
 	bcf	((c:3998))^0f00h,c,4	;volatile
-	line	46
+	line	49
 	
-l1180:
-	bsf	((c:3997))^0f00h,c,4	;volatile
-	line	47
+l1184:
+	btfss	((c:3998))^0f00h,c,5	;volatile
+	goto	u401
+	goto	u400
+u401:
+	goto	l139
+u400:
+	line	51
 	
-l129:
+l1186:
+	movf	((c:4014))^0f00h,c,w	;volatile
+	line	53
+	
+l139:
+	line	54
+	bsf	((c:3997))^0f00h,c,5	;volatile
+	line	56
+	
+l140:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Uart_Start
@@ -2243,9 +2456,9 @@ GLOBAL	__end_of_Uart_Start
 ;; Defined at:
 ;;		line 4 in file "src/gpio.c"
 ;; Parameters:    Size  Location     Type
-;;  gpio            1    0[COMRAM] PTR struct .
+;;  gpio            1    7[COMRAM] PTR struct .
 ;;		 -> tx(7), rx(7), button(7), led(7), 
-;;  dir             1    1[COMRAM] enum E3343
+;;  dir             1    8[COMRAM] enum E3343
 ;; Auto vars:     Size  Location     Type
 ;;		None
 ;; Return value:  Size  Location     Type
@@ -2263,6 +2476,7 @@ GLOBAL	__end_of_Uart_Start
 ;;      Totals:         7       0       0       0       0       0       0       0       0
 ;;Total ram usage:        7 bytes
 ;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
@@ -2270,31 +2484,31 @@ GLOBAL	__end_of_Uart_Start
 ;;		_Uart_Start
 ;; This function uses a non-reentrant model
 ;;
-psect	text4,class=CODE,space=0,reloc=2,group=0
+psect	text5,class=CODE,space=0,reloc=2,group=0
 	file	"src/gpio.c"
 	line	4
-global __ptext4
-__ptext4:
-psect	text4
+global __ptext5
+__ptext5:
+psect	text5
 	file	"src/gpio.c"
 	line	4
 	
 _Gpio_Init:
 ;incstack = 0
-	callstack 29
+	callstack 26
 	line	6
 	
-l1096:
+l1104:
 	movf	((c:Gpio_Init@dir))^00h,c,w
 	btfss	status,2
-	goto	u261
-	goto	u260
-u261:
-	goto	l1100
-u260:
+	goto	u281
+	goto	u280
+u281:
+	goto	l1108
+u280:
 	line	8
 	
-l1098:
+l1106:
 	movf	((c:Gpio_Init@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -2306,13 +2520,13 @@ l1098:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Init+1)^00h,c
 	incf	((??_Gpio_Init+0))^00h,c
-	goto	u274
-u275:
+	goto	u294
+u295:
 	bcf	status,0
 	rlcf	((??_Gpio_Init+1))^00h,c
-u274:
+u294:
 	decfsz	((??_Gpio_Init+0))^00h,c
-	goto	u275
+	goto	u295
 	movf	((??_Gpio_Init+1))^00h,c,w
 	xorlw	0ffh
 	movwf	(??_Gpio_Init+2)^00h,c
@@ -2326,10 +2540,10 @@ u274:
 	movf	((??_Gpio_Init+2))^00h,c,w
 	andwf	indf2
 	line	9
-	goto	l66
+	goto	l76
 	line	12
 	
-l1100:
+l1108:
 	movf	((c:Gpio_Init@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -2341,13 +2555,13 @@ l1100:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Init+1)^00h,c
 	incf	((??_Gpio_Init+0))^00h,c
-	goto	u284
-u285:
+	goto	u304
+u305:
 	bcf	status,0
 	rlcf	((??_Gpio_Init+1))^00h,c
-u284:
+u304:
 	decfsz	((??_Gpio_Init+0))^00h,c
-	goto	u285
+	goto	u305
 	movf	((c:Gpio_Init@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -2359,7 +2573,7 @@ u284:
 	iorwf	indf2
 	line	14
 	
-l66:
+l76:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Gpio_Init
@@ -2371,8 +2585,8 @@ GLOBAL	__end_of_Gpio_Init
 ;; Defined at:
 ;;		line 3 in file "src/buffer.c"
 ;; Parameters:    Size  Location     Type
-;;  buffer          1    0[COMRAM] PTR struct .
-;;		 -> rx_buffer(12), tx_buffer(12), 
+;;  buffer          1    7[COMRAM] PTR volatile struct .
+;;		 -> rx_buffer(22), tx_buffer(22), 
 ;; Auto vars:     Size  Location     Type
 ;;		None
 ;; Return value:  Size  Location     Type
@@ -2390,31 +2604,32 @@ GLOBAL	__end_of_Gpio_Init
 ;;      Totals:         1       0       0       0       0       0       0       0       0
 ;;Total ram usage:        1 bytes
 ;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
 ;;		_Uart_Start
 ;; This function uses a non-reentrant model
 ;;
-psect	text5,class=CODE,space=0,reloc=2,group=0
+psect	text6,class=CODE,space=0,reloc=2,group=0
 	file	"src/buffer.c"
 	line	3
-global __ptext5
-__ptext5:
-psect	text5
+global __ptext6
+__ptext6:
+psect	text6
 	file	"src/buffer.c"
 	line	3
 	
 _Buffer_Init:
 ;incstack = 0
-	callstack 29
+	callstack 26
 	line	5
 	
-l1102:
+l1110:
 	movf	((c:Buffer_Init@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Ah)
+	movlw	low(014h)
 	addwf	fsr2l
 
 	clrf	indf2
@@ -2422,332 +2637,25 @@ l1102:
 	movf	((c:Buffer_Init@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Bh)
+	movlw	low(015h)
 	addwf	fsr2l
 
 	clrf	indf2
 	line	7
 	
-l81:
+l91:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Buffer_Init
 	__end_of_Buffer_Init:
 	signat	_Buffer_Init,4217
-	global	_Uart_RxTask
-
-;; *************** function _Uart_RxTask *****************
-;; Defined at:
-;;		line 99 in file "src/uart.c"
-;; Parameters:    Size  Location     Type
-;;		None
-;; Auto vars:     Size  Location     Type
-;;  c               1    4[COMRAM] unsigned char 
-;; Return value:  Size  Location     Type
-;;                  1    wreg      void 
-;; Registers used:
-;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
-;; Tracked objects:
-;;		On entry : 0/0
-;;		On exit  : 0/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-;;      Params:         0       0       0       0       0       0       0       0       0
-;;      Locals:         1       0       0       0       0       0       0       0       0
-;;      Temps:          0       0       0       0       0       0       0       0       0
-;;      Totals:         1       0       0       0       0       0       0       0       0
-;;Total ram usage:        1 bytes
-;; Hardware stack levels used: 1
-;; Hardware stack levels required when called: 1
-;; This function calls:
-;;		_Buffer_Add
-;;		_Uart_Rx
-;; This function is called by:
-;;		_main
-;; This function uses a non-reentrant model
-;;
-psect	text6,class=CODE,space=0,reloc=2,group=0
-	file	"src/uart.c"
-	line	99
-global __ptext6
-__ptext6:
-psect	text6
-	file	"src/uart.c"
-	line	99
-	
-_Uart_RxTask:
-;incstack = 0
-	callstack 29
-	line	102
-	
-l1188:
-		movlw	low(Uart_RxTask@c)
-	movwf	((c:Uart_Rx@data))^00h,c
-
-	call	_Uart_Rx	;wreg free
-	iorlw	0
-	btfsc	status,2
-	goto	u401
-	goto	u400
-u401:
-	goto	l149
-u400:
-	line	104
-	
-l1190:
-		movlw	low(_rx_buffer)
-	movwf	((c:Buffer_Add@buffer))^00h,c
-
-	movff	(c:Uart_RxTask@c),(c:Buffer_Add@element)
-	call	_Buffer_Add	;wreg free
-	line	106
-	
-l149:
-	return	;funcret
-	callstack 0
-GLOBAL	__end_of_Uart_RxTask
-	__end_of_Uart_RxTask:
-	signat	_Uart_RxTask,89
-	global	_Uart_Rx
-
-;; *************** function _Uart_Rx *****************
-;; Defined at:
-;;		line 57 in file "src/uart.c"
-;; Parameters:    Size  Location     Type
-;;  data            1    0[COMRAM] PTR unsigned char 
-;;		 -> Uart_RxTask@c(1), 
-;; Auto vars:     Size  Location     Type
-;;  dummy           1    0        unsigned char 
-;; Return value:  Size  Location     Type
-;;                  1    wreg      _Bool 
-;; Registers used:
-;;		wreg, fsr2l, fsr2h, status,2
-;; Tracked objects:
-;;		On entry : 0/0
-;;		On exit  : 0/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-;;      Params:         1       0       0       0       0       0       0       0       0
-;;      Locals:         0       0       0       0       0       0       0       0       0
-;;      Temps:          0       0       0       0       0       0       0       0       0
-;;      Totals:         1       0       0       0       0       0       0       0       0
-;;Total ram usage:        1 bytes
-;; Hardware stack levels used: 1
-;; This function calls:
-;;		Nothing
-;; This function is called by:
-;;		_Uart_RxTask
-;; This function uses a non-reentrant model
-;;
-psect	text7,class=CODE,space=0,reloc=2,group=0
-	line	57
-global __ptext7
-__ptext7:
-psect	text7
-	file	"src/uart.c"
-	line	57
-	
-_Uart_Rx:
-;incstack = 0
-	callstack 29
-	line	59
-	
-l1136:
-	btfss	((c:3998))^0f00h,c,5	;volatile
-	goto	u331
-	goto	u330
-u331:
-	goto	l1142
-u330:
-	line	61
-	
-l1138:
-	btfss	((c:4011))^0f00h,c,1	;volatile
-	goto	u341
-	goto	u340
-u341:
-	goto	l136
-u340:
-	line	64
-	
-l1140:
-	bcf	((c:4011))^0f00h,c,4	;volatile
-	line	65
-	bsf	((c:4011))^0f00h,c,4	;volatile
-	line	66
-	
-l1142:
-	movlw	(0)&0ffh
-	goto	l137
-	line	67
-	
-l136:
-	line	69
-	btfss	((c:4011))^0f00h,c,2	;volatile
-	goto	u351
-	goto	u350
-u351:
-	goto	l1152
-u350:
-	line	72
-	
-l1146:
-	movf	((c:4014))^0f00h,c,w	;volatile
-	goto	l1142
-	line	77
-	
-l1152:
-	movf	((c:Uart_Rx@data))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movff	(c:4014),indf2	;volatile
-
-	line	78
-	
-l1154:
-	movlw	(01h)&0ffh
-	line	81
-	
-l137:
-	return	;funcret
-	callstack 0
-GLOBAL	__end_of_Uart_Rx
-	__end_of_Uart_Rx:
-	signat	_Uart_Rx,4217
-	global	_Buffer_Add
-
-;; *************** function _Buffer_Add *****************
-;; Defined at:
-;;		line 9 in file "src/buffer.c"
-;; Parameters:    Size  Location     Type
-;;  buffer          1    0[COMRAM] PTR struct .
-;;		 -> rx_buffer(12), tx_buffer(12), 
-;;  element         1    1[COMRAM] unsigned char 
-;; Auto vars:     Size  Location     Type
-;;  next_head       1    3[COMRAM] unsigned char 
-;; Return value:  Size  Location     Type
-;;                  1    wreg      _Bool 
-;; Registers used:
-;;		wreg, fsr2l, fsr2h, status,2, status,0
-;; Tracked objects:
-;;		On entry : 0/0
-;;		On exit  : 0/0
-;;		Unchanged: 0/0
-;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
-;;      Params:         2       0       0       0       0       0       0       0       0
-;;      Locals:         1       0       0       0       0       0       0       0       0
-;;      Temps:          1       0       0       0       0       0       0       0       0
-;;      Totals:         4       0       0       0       0       0       0       0       0
-;;Total ram usage:        4 bytes
-;; Hardware stack levels used: 1
-;; This function calls:
-;;		Nothing
-;; This function is called by:
-;;		_Uart_Tx
-;;		_Uart_RxTask
-;; This function uses a non-reentrant model
-;;
-psect	text8,class=CODE,space=0,reloc=2,group=0
-	file	"src/buffer.c"
-	line	9
-global __ptext8
-__ptext8:
-psect	text8
-	file	"src/buffer.c"
-	line	9
-	
-_Buffer_Add:
-;incstack = 0
-	callstack 29
-	line	11
-	
-l1104:
-	movf	((c:Buffer_Add@buffer))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movlw	low(0Ah)
-	addwf	fsr2l
-
-	movf	indf2,w
-	movwf	(??_Buffer_Add+0)^00h,c
-	incf	((??_Buffer_Add+0))^00h,c,w
-	movwf	((c:Buffer_Add@next_head))^00h,c
-	line	13
-	
-l1106:
-		movlw	10
-	xorwf	((c:Buffer_Add@next_head))^00h,c,w
-	btfss	status,2
-	goto	u291
-	goto	u290
-
-u291:
-	goto	l1110
-u290:
-	line	14
-	
-l1108:
-	clrf	((c:Buffer_Add@next_head))^00h,c
-	line	16
-	
-l1110:
-	movf	((c:Buffer_Add@buffer))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movlw	low(0Bh)
-	addwf	fsr2l
-
-	movf	((c:Buffer_Add@next_head))^00h,c,w
-xorwf	postinc2,w
-	btfss	status,2
-	goto	u301
-	goto	u300
-
-u301:
-	goto	l1114
-u300:
-	goto	l86
-	line	22
-	
-l1114:
-	movf	((c:Buffer_Add@buffer))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movlw	low(0Ah)
-	addwf	fsr2l
-
-	movf	indf2,w
-	movwf	(??_Buffer_Add+0)^00h,c
-	movf	((c:Buffer_Add@buffer))^00h,c,w
-	addwf	((??_Buffer_Add+0))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movff	(c:Buffer_Add@element),indf2
-
-	line	23
-	movf	((c:Buffer_Add@buffer))^00h,c,w
-	movwf	fsr2l
-	clrf	fsr2h
-	movlw	low(0Ah)
-	addwf	fsr2l
-
-	movff	(c:Buffer_Add@next_head),indf2
-
-	line	25
-	
-l86:
-	return	;funcret
-	callstack 0
-GLOBAL	__end_of_Buffer_Add
-	__end_of_Buffer_Add:
-	signat	_Buffer_Add,8313
 	global	_Uart_Read
 
 ;; *************** function _Uart_Read *****************
 ;; Defined at:
-;;		line 108 in file "src/uart.c"
+;;		line 105 in file "src/uart.c"
 ;; Parameters:    Size  Location     Type
-;;  data            1    4[COMRAM] PTR unsigned char 
+;;  data            1   11[COMRAM] PTR unsigned char 
 ;;		 -> main@c(1), 
 ;; Auto vars:     Size  Location     Type
 ;;		None
@@ -2766,37 +2674,37 @@ GLOBAL	__end_of_Buffer_Add
 ;;      Totals:         1       0       0       0       0       0       0       0       0
 ;;Total ram usage:        1 bytes
 ;; Hardware stack levels used: 1
-;; Hardware stack levels required when called: 1
+;; Hardware stack levels required when called: 4
 ;; This function calls:
 ;;		_Buffer_Get
 ;; This function is called by:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text9,class=CODE,space=0,reloc=2,group=0
+psect	text7,class=CODE,space=0,reloc=2,group=0
 	file	"src/uart.c"
-	line	108
-global __ptext9
-__ptext9:
-psect	text9
+	line	105
+global __ptext7
+__ptext7:
+psect	text7
 	file	"src/uart.c"
-	line	108
+	line	105
 	
 _Uart_Read:
 ;incstack = 0
-	callstack 29
-	line	110
+	callstack 26
+	line	107
 	
-l1210:
+l1212:
 		movlw	low(_rx_buffer)
 	movwf	((c:Buffer_Get@buffer))^00h,c
 
 		movff	(c:Uart_Read@data),(c:Buffer_Get@element)
 
 	call	_Buffer_Get	;wreg free
-	line	111
+	line	108
 	
-l152:
+l158:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Uart_Read
@@ -2808,9 +2716,9 @@ GLOBAL	__end_of_Uart_Read
 ;; Defined at:
 ;;		line 27 in file "src/buffer.c"
 ;; Parameters:    Size  Location     Type
-;;  buffer          1    0[COMRAM] PTR struct .
-;;		 -> rx_buffer(12), tx_buffer(12), 
-;;  element         1    1[COMRAM] PTR unsigned char 
+;;  buffer          1    7[COMRAM] PTR volatile struct .
+;;		 -> rx_buffer(22), tx_buffer(22), 
+;;  element         1    8[COMRAM] PTR unsigned char 
 ;;		 -> Uart_TxTask@c(1), main@c(1), 
 ;; Auto vars:     Size  Location     Type
 ;;		None
@@ -2829,6 +2737,7 @@ GLOBAL	__end_of_Uart_Read
 ;;      Totals:         4       0       0       0       0       0       0       0       0
 ;;Total ram usage:        4 bytes
 ;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
@@ -2836,54 +2745,54 @@ GLOBAL	__end_of_Uart_Read
 ;;		_Uart_Read
 ;; This function uses a non-reentrant model
 ;;
-psect	text10,class=CODE,space=0,reloc=2,group=0
+psect	text8,class=CODE,space=0,reloc=2,group=0
 	file	"src/buffer.c"
 	line	27
-global __ptext10
-__ptext10:
-psect	text10
+global __ptext8
+__ptext8:
+psect	text8
 	file	"src/buffer.c"
 	line	27
 	
 _Buffer_Get:
 ;incstack = 0
-	callstack 29
+	callstack 26
 	line	29
 	
-l1118:
+l1126:
 	movf	((c:Buffer_Get@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Bh)
+	movlw	low(015h)
 	addwf	fsr2l
 
 	movf	((c:Buffer_Get@buffer))^00h,c,w
 	movwf	fsr1l
 	clrf	fsr1h
-	movlw	low(0Ah)
+	movlw	low(014h)
 	addwf	fsr1l
 
 	movf	postinc2,w
 xorwf	postinc1,w
 	btfss	status,2
-	goto	u311
-	goto	u310
+	goto	u331
+	goto	u330
 
-u311:
-	goto	l1124
-u310:
+u331:
+	goto	l1132
+u330:
 	line	32
 	
-l1120:
+l1128:
 	movlw	(0)&0ffh
-	goto	l90
+	goto	l100
 	line	35
 	
-l1124:
+l1132:
 	movf	((c:Buffer_Get@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Bh)
+	movlw	low(015h)
 	addwf	fsr2l
 
 	movf	indf2,w
@@ -2898,50 +2807,50 @@ l1124:
 	movff	indf2,indf1
 	line	36
 	
-l1126:
+l1134:
 	movf	((c:Buffer_Get@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Bh)
+	movlw	low(015h)
 	addwf	fsr2l
 
 	incf	indf2
 
 	line	38
 	
-l1128:
+l1136:
 	movf	((c:Buffer_Get@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Bh)
+	movlw	low(015h)
 	addwf	fsr2l
 
-	movlw	10
+	movlw	20
 	xorwf	postinc2,w
 	btfss	status,2
-	goto	u321
-	goto	u320
+	goto	u341
+	goto	u340
 
-u321:
-	goto	l1132
-u320:
+u341:
+	goto	l1140
+u340:
 	line	39
 	
-l1130:
+l1138:
 	movf	((c:Buffer_Get@buffer))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
-	movlw	low(0Bh)
+	movlw	low(015h)
 	addwf	fsr2l
 
 	clrf	indf2
 	line	41
 	
-l1132:
+l1140:
 	movlw	(01h)&0ffh
 	line	42
 	
-l90:
+l100:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Buffer_Get
@@ -2953,7 +2862,7 @@ GLOBAL	__end_of_Buffer_Get
 ;; Defined at:
 ;;		line 10 in file "src/uart.c"
 ;; Parameters:    Size  Location     Type
-;;  uart            1    0[COMRAM] PTR const struct .
+;;  uart            1    7[COMRAM] PTR const struct .
 ;;		 -> uart_config(6), 
 ;; Auto vars:     Size  Location     Type
 ;;		None
@@ -2972,27 +2881,28 @@ GLOBAL	__end_of_Buffer_Get
 ;;      Totals:         5       0       0       0       0       0       0       0       0
 ;;Total ram usage:        5 bytes
 ;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text11,class=CODE,space=0,reloc=2,group=0
+psect	text9,class=CODE,space=0,reloc=2,group=0
 	file	"src/uart.c"
 	line	10
-global __ptext11
-__ptext11:
-psect	text11
+global __ptext9
+__ptext9:
+psect	text9
 	file	"src/uart.c"
 	line	10
 	
 _Uart_Init:
 ;incstack = 0
-	callstack 30
+	callstack 27
 	line	12
 	
-l1162:
+l1166:
 	bcf	((c:4012))^0f00h,c,6	;volatile
 	line	13
 	bcf	((c:4011))^0f00h,c,6	;volatile
@@ -3000,7 +2910,7 @@ l1162:
 	bcf	((c:4012))^0f00h,c,4	;volatile
 	line	16
 	
-l1164:
+l1168:
 	movf	((c:Uart_Init@uart))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -3009,21 +2919,21 @@ l1164:
 
 	movlw	128
 	xorwf	postinc2,w
-	bnz	u361
+	bnz	u391
 movlw	37
 	xorwf	postinc2,w
 iorwf	postinc2,w
 iorwf	postinc2,w
 	btfss	status,2
-	goto	u361
-	goto	u360
+	goto	u391
+	goto	u390
 
-u361:
-	goto	l126
-u360:
+u391:
+	goto	l136
+u390:
 	line	18
 	
-l1166:
+l1170:
 	bsf	((c:4012))^0f00h,c,2	;volatile
 	line	19
 	bcf	((c:4024))^0f00h,c,3	;volatile
@@ -3031,12 +2941,12 @@ l1166:
 	clrf	((c:4016))^0f00h,c	;volatile
 	line	22
 	
-l1168:
+l1172:
 	movlw	low(081h)
 	movwf	((c:4015))^0f00h,c	;volatile
 	line	30
 	
-l126:
+l136:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Uart_Init
@@ -3048,9 +2958,9 @@ GLOBAL	__end_of_Uart_Init
 ;; Defined at:
 ;;		line 16 in file "src/gpio.c"
 ;; Parameters:    Size  Location     Type
-;;  gpio            1    0[COMRAM] PTR struct .
+;;  gpio            1    7[COMRAM] PTR struct .
 ;;		 -> led(7), 
-;;  level           1    1[COMRAM] enum E3347
+;;  level           1    8[COMRAM] enum E3347
 ;; Auto vars:     Size  Location     Type
 ;;		None
 ;; Return value:  Size  Location     Type
@@ -3068,38 +2978,39 @@ GLOBAL	__end_of_Uart_Init
 ;;      Totals:         7       0       0       0       0       0       0       0       0
 ;;Total ram usage:        7 bytes
 ;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text12,class=CODE,space=0,reloc=2,group=0
+psect	text10,class=CODE,space=0,reloc=2,group=0
 	file	"src/gpio.c"
 	line	16
-global __ptext12
-__ptext12:
-psect	text12
+global __ptext10
+__ptext10:
+psect	text10
 	file	"src/gpio.c"
 	line	16
 	
 _Gpio_Write:
 ;incstack = 0
-	callstack 30
+	callstack 27
 	line	18
 	
-l1182:
+l1188:
 		decf	((c:Gpio_Write@level))^00h,c,w
 	btfss	status,2
-	goto	u371
-	goto	u370
+	goto	u411
+	goto	u410
 
-u371:
-	goto	l1186
-u370:
+u411:
+	goto	l1192
+u410:
 	line	20
 	
-l1184:
+l1190:
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -3111,13 +3022,13 @@ l1184:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Write+1)^00h,c
 	incf	((??_Gpio_Write+0))^00h,c
-	goto	u384
-u385:
+	goto	u424
+u425:
 	bcf	status,0
 	rlcf	((??_Gpio_Write+1))^00h,c
-u384:
+u424:
 	decfsz	((??_Gpio_Write+0))^00h,c
-	goto	u385
+	goto	u425
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -3131,10 +3042,10 @@ u384:
 	movf	((??_Gpio_Write+1))^00h,c,w
 	iorwf	indf2
 	line	21
-	goto	l71
+	goto	l81
 	line	24
 	
-l1186:
+l1192:
 	movf	((c:Gpio_Write@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -3146,13 +3057,13 @@ l1186:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Write+1)^00h,c
 	incf	((??_Gpio_Write+0))^00h,c
-	goto	u394
-u395:
+	goto	u434
+u435:
 	bcf	status,0
 	rlcf	((??_Gpio_Write+1))^00h,c
-u394:
+u434:
 	decfsz	((??_Gpio_Write+0))^00h,c
-	goto	u395
+	goto	u435
 	movf	((??_Gpio_Write+1))^00h,c,w
 	xorlw	0ffh
 	movwf	(??_Gpio_Write+2)^00h,c
@@ -3170,7 +3081,7 @@ u394:
 	andwf	indf2
 	line	26
 	
-l71:
+l81:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Gpio_Write
@@ -3182,7 +3093,7 @@ GLOBAL	__end_of_Gpio_Write
 ;; Defined at:
 ;;		line 28 in file "src/gpio.c"
 ;; Parameters:    Size  Location     Type
-;;  gpio            1    0[COMRAM] PTR struct .
+;;  gpio            1    7[COMRAM] PTR struct .
 ;;		 -> button(7), 
 ;; Auto vars:     Size  Location     Type
 ;;		None
@@ -3201,26 +3112,27 @@ GLOBAL	__end_of_Gpio_Write
 ;;      Totals:         6       0       0       0       0       0       0       0       0
 ;;Total ram usage:        6 bytes
 ;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 3
 ;; This function calls:
 ;;		Nothing
 ;; This function is called by:
 ;;		_main
 ;; This function uses a non-reentrant model
 ;;
-psect	text13,class=CODE,space=0,reloc=2,group=0
+psect	text11,class=CODE,space=0,reloc=2,group=0
 	line	28
-global __ptext13
-__ptext13:
-psect	text13
+global __ptext11
+__ptext11:
+psect	text11
 	file	"src/gpio.c"
 	line	28
 	
 _Gpio_Read:
 ;incstack = 0
-	callstack 30
+	callstack 27
 	line	30
 	
-l1198:
+l1200:
 	movf	((c:Gpio_Read@gpio))^00h,c,w
 	movwf	fsr2l
 	clrf	fsr2h
@@ -3244,39 +3156,340 @@ l1198:
 	movlw	(01h)&0ffh
 	movwf	(??_Gpio_Read+4)^00h,c
 	incf	((??_Gpio_Read+3))^00h,c
-	goto	u434
-u435:
+	goto	u464
+u465:
 	bcf	status,0
 	rlcf	((??_Gpio_Read+4))^00h,c
-u434:
+u464:
 	decfsz	((??_Gpio_Read+3))^00h,c
-	goto	u435
+	goto	u465
 	movf	((??_Gpio_Read+4))^00h,c,w
 	andwf	((??_Gpio_Read+2))^00h,c,w
 	iorlw	0
 	btfsc	status,2
-	goto	u441
-	goto	u440
-u441:
-	goto	l1204
-u440:
+	goto	u471
+	goto	u470
+u471:
+	goto	l1206
+u470:
 	line	32
 	
-l1200:
+l1202:
 	movlw	(01h)&0ffh
-	goto	l75
+	goto	l85
 	line	34
 	
-l1204:
+l1206:
 	movlw	(0)&0ffh
 	line	35
 	
-l75:
+l85:
 	return	;funcret
 	callstack 0
 GLOBAL	__end_of_Gpio_Read
 	__end_of_Gpio_Read:
 	signat	_Gpio_Read,4217
+	global	_ISR
+
+;; *************** function _ISR *****************
+;; Defined at:
+;;		line 41 in file "main.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;		None
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         0       0       0       0       0       0       0       0       0
+;;      Locals:         0       0       0       0       0       0       0       0       0
+;;      Temps:          2       0       0       0       0       0       0       0       0
+;;      Totals:         2       0       0       0       0       0       0       0       0
+;;Total ram usage:        2 bytes
+;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 2
+;; This function calls:
+;;		_Uart_InterruptHandler
+;; This function is called by:
+;;		Interrupt level 2
+;; This function uses a non-reentrant model
+;;
+psect	intcode,class=CODE,space=0,reloc=2
+	file	"build/bin/clock.s"
+	line	#
+global __pintcode
+__pintcode:
+psect	intcode
+	file	"main.c"
+	line	41
+	
+_ISR:
+;incstack = 0
+	callstack 26
+	bsf int$flags,1,c ;set compiler interrupt flag (level 2)
+	global	int_func
+	call	int_func,f	;refresh shadow registers
+psect	intcode_body,class=CODE,space=0,reloc=2
+global __pintcode_body
+__pintcode_body:
+int_func:
+
+	pop	; remove dummy address from shadow register refresh
+	movff	fsr2l+0,??_ISR+0
+	movff	fsr2h+0,??_ISR+1
+	line	43
+	
+i2l1216:
+	btfss	((c:3998))^0f00h,c,5	;volatile
+	goto	i2u48_41
+	goto	i2u48_40
+i2u48_41:
+	goto	i2l58
+i2u48_40:
+	line	45
+	
+i2l1218:
+	call	_Uart_InterruptHandler	;wreg free
+	line	47
+	
+i2l58:
+	movff	??_ISR+1,fsr2h+0
+	movff	??_ISR+0,fsr2l+0
+	bcf int$flags,1,c ;clear compiler interrupt flag (level 2)
+	retfie f
+	callstack 0
+GLOBAL	__end_of_ISR
+	__end_of_ISR:
+	signat	_ISR,89
+	global	_Uart_InterruptHandler
+
+;; *************** function _Uart_InterruptHandler *****************
+;; Defined at:
+;;		line 66 in file "src/uart.c"
+;; Parameters:    Size  Location     Type
+;;		None
+;; Auto vars:     Size  Location     Type
+;;  c               1    4[COMRAM] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  1    wreg      void 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0, cstack
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         0       0       0       0       0       0       0       0       0
+;;      Locals:         1       0       0       0       0       0       0       0       0
+;;      Temps:          0       0       0       0       0       0       0       0       0
+;;      Totals:         1       0       0       0       0       0       0       0       0
+;;Total ram usage:        1 bytes
+;; Hardware stack levels used: 1
+;; Hardware stack levels required when called: 1
+;; This function calls:
+;;		i2_Buffer_Add
+;; This function is called by:
+;;		_ISR
+;; This function uses a non-reentrant model
+;;
+psect	text13,class=CODE,space=0,reloc=2,group=0
+	file	"src/uart.c"
+	line	66
+global __ptext13
+__ptext13:
+psect	text13
+	file	"src/uart.c"
+	line	66
+	
+_Uart_InterruptHandler:
+;incstack = 0
+	callstack 26
+	line	69
+	
+i2l1158:
+	btfss	((c:4011))^0f00h,c,1	;volatile
+	goto	i2u37_41
+	goto	i2u37_40
+i2u37_41:
+	goto	i2l146
+i2u37_40:
+	line	72
+	
+i2l1160:
+	bcf	((c:4011))^0f00h,c,4	;volatile
+	line	73
+	bsf	((c:4011))^0f00h,c,4	;volatile
+	line	74
+	goto	i2l147
+	line	75
+	
+i2l146:
+	line	77
+	btfss	((c:4011))^0f00h,c,2	;volatile
+	goto	i2u38_41
+	goto	i2u38_40
+i2u38_41:
+	goto	i2l148
+i2u38_40:
+	line	80
+	
+i2l1162:
+	movf	((c:4014))^0f00h,c,w	;volatile
+	line	81
+	goto	i2l147
+	line	82
+	
+i2l148:
+	line	84
+	movff	(c:4014),(c:Uart_InterruptHandler@c)	;volatile
+	line	85
+	
+i2l1164:
+		movlw	low(_rx_buffer)
+	movwf	((c:i2Buffer_Add@buffer))^00h,c
+
+	movff	(c:Uart_InterruptHandler@c),(c:i2Buffer_Add@element)
+	call	i2_Buffer_Add	;wreg free
+	line	86
+	
+i2l147:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_of_Uart_InterruptHandler
+	__end_of_Uart_InterruptHandler:
+	signat	_Uart_InterruptHandler,89
+	global	i2_Buffer_Add
+
+;; *************** function i2_Buffer_Add *****************
+;; Defined at:
+;;		line 9 in file "src/buffer.c"
+;; Parameters:    Size  Location     Type
+;;  buffer          1    0[COMRAM] PTR volatile struct .
+;;		 -> rx_buffer(22), tx_buffer(22), 
+;;  element         1    1[COMRAM] unsigned char 
+;; Auto vars:     Size  Location     Type
+;;  next_head       1    3[COMRAM] unsigned char 
+;; Return value:  Size  Location     Type
+;;                  1    wreg      _Bool 
+;; Registers used:
+;;		wreg, fsr2l, fsr2h, status,2, status,0
+;; Tracked objects:
+;;		On entry : 0/0
+;;		On exit  : 0/0
+;;		Unchanged: 0/0
+;; Data sizes:     COMRAM   BANK0   BANK1   BANK2   BANK3   BANK4   BANK5   BANK6   BANK7
+;;      Params:         2       0       0       0       0       0       0       0       0
+;;      Locals:         1       0       0       0       0       0       0       0       0
+;;      Temps:          1       0       0       0       0       0       0       0       0
+;;      Totals:         4       0       0       0       0       0       0       0       0
+;;Total ram usage:        4 bytes
+;; Hardware stack levels used: 1
+;; This function calls:
+;;		Nothing
+;; This function is called by:
+;;		_Uart_InterruptHandler
+;; This function uses a non-reentrant model
+;;
+psect	text14,class=CODE,space=0,reloc=2,group=0
+	file	"src/buffer.c"
+	line	9
+global __ptext14
+__ptext14:
+psect	text14
+	file	"src/buffer.c"
+	line	9
+	
+i2_Buffer_Add:
+;incstack = 0
+	callstack 26
+	line	11
+	
+i2l1144:
+	movf	((c:i2Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(014h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	(??i2_Buffer_Add+0)^00h,c
+	incf	((??i2_Buffer_Add+0))^00h,c,w
+	movwf	((c:i2Buffer_Add@next_head))^00h,c
+	line	13
+	
+i2l1146:
+		movlw	20
+	xorwf	((c:i2Buffer_Add@next_head))^00h,c,w
+	btfss	status,2
+	goto	i2u35_41
+	goto	i2u35_40
+
+i2u35_41:
+	goto	i2l1150
+i2u35_40:
+	line	14
+	
+i2l1148:
+	clrf	((c:i2Buffer_Add@next_head))^00h,c
+	line	16
+	
+i2l1150:
+	movf	((c:i2Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(015h)
+	addwf	fsr2l
+
+	movf	((c:i2Buffer_Add@next_head))^00h,c,w
+xorwf	postinc2,w
+	btfss	status,2
+	goto	i2u36_41
+	goto	i2u36_40
+
+i2u36_41:
+	goto	i2l1154
+i2u36_40:
+	goto	i2l96
+	line	22
+	
+i2l1154:
+	movf	((c:i2Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(014h)
+	addwf	fsr2l
+
+	movf	indf2,w
+	movwf	(??i2_Buffer_Add+0)^00h,c
+	movf	((c:i2Buffer_Add@buffer))^00h,c,w
+	addwf	((??i2_Buffer_Add+0))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movff	(c:i2Buffer_Add@element),indf2
+
+	line	23
+	movf	((c:i2Buffer_Add@buffer))^00h,c,w
+	movwf	fsr2l
+	clrf	fsr2h
+	movlw	low(014h)
+	addwf	fsr2l
+
+	movff	(c:i2Buffer_Add@next_head),indf2
+
+	line	25
+	
+i2l96:
+	return	;funcret
+	callstack 0
+GLOBAL	__end_ofi2_Buffer_Add
+	__end_ofi2_Buffer_Add:
+	signat	i2_Buffer_Add,8281
 psect	smallconst,class=SMALLCONST,space=0,reloc=2,noexec
 global __psmallconst
 __psmallconst:
@@ -3300,4 +3513,14 @@ GLOBAL	__Lparam, __Hparam
 GLOBAL	__Lrparam, __Hrparam
 __Lparam	EQU	__Lrparam
 __Hparam	EQU	__Hrparam
+	global	btemp
+	btemp set 01h
+
+	DABS	1,1,1	;btemp
+	global	int$flags
+	int$flags	set btemp
+	global btemp0
+	btemp0 set btemp+0
+	global btemp1
+	btemp1 set btemp+1
 	end
