@@ -36,7 +36,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S179 . . . ]
 "4490
 [v _PIR1bits `VS179 ~T0 @X0 0 e@3998 ]
-"21 inc/uart.h
+"20 inc/uart.h
 [v _Uart_InterruptHandler `(v ~T0 @X0 0 ef ]
 [p mainexit ]
 "51 main.c
@@ -67,17 +67,15 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _INTCONbits `VS361 ~T0 @X0 0 e@4082 ]
 "27 inc/gpio.h
 [v _Gpio_Write `(v ~T0 @X0 0 ef2`*S1`E40 ]
-"20 inc/uart.h
-[v _Uart_TxTask `(v ~T0 @X0 0 ef ]
-"28 inc/gpio.h
+"28
 [v _Gpio_Read `(E40 ~T0 @X0 0 ef1`*S1 ]
-"19 inc/uart.h
-[v _Uart_Tx `(v ~T0 @X0 0 ef1`uc ]
-[v F247 `(v ~T0 @X0 1 tf1`ul ]
-"20 /opt/microchip/xc8/v3.10/pic/include/builtins.h
-[v __delay `JF247 ~T0 @X0 0 e ]
-[p i __delay ]
 "22 inc/uart.h
+[v _Uart_SendString `(v ~T0 @X0 0 ef1`*Cuc ]
+[v F246 `(v ~T0 @X0 1 tf1`ul ]
+"20 /opt/microchip/xc8/v3.10/pic/include/builtins.h
+[v __delay `JF246 ~T0 @X0 0 e ]
+[p i __delay ]
+"21 inc/uart.h
 [v _Uart_Read `(a ~T0 @X0 0 ef1`*uc ]
 "3 inc/config.h
 [p x PLLDIV  =  1        ]
@@ -518,7 +516,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _ISR ]
 [f ]
 "43
-[e $ ! != -> . . _PIR1bits 0 5 `i -> 0 `i 394  ]
+[e $ ! != | -> . . _PIR1bits 0 5 `i -> . . _PIR1bits 0 4 `i -> 0 `i 394  ]
 "44
 {
 "45
@@ -559,61 +557,54 @@ Version 4.0 HI-TECH Software Intermediate Code
 "64
 {
 "65
-[e ( _Uart_TxTask ..  ]
-"67
 [e = _level ( _Gpio_Read (1 &U _button ]
-"69
+"67
 [e $ ! == -> _level `ui -> . `E40 0 `ui 399  ]
-"70
+"68
 {
-"72
-[e ( _Uart_Tx (1 -> -> 72 `ui `uc ]
-"73
-[e ( _Uart_Tx (1 -> -> 105 `ui `uc ]
 "74
-[e ( _Uart_Tx (1 -> -> 13 `ui `uc ]
-"75
-[e ( _Uart_Tx (1 -> -> 10 `ui `uc ]
-"78
+[e ( _Uart_SendString (1 :s 1C ]
+"76
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"79
+"77
 }
 [e :U 399 ]
-"81
+"79
 [e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 400  ]
+"80
+{
+"81
+[e $ ! == -> _c `ui -> 65 `ui 401  ]
 "82
 {
 "83
-[e $ ! == -> _c `ui -> 65 `ui 401  ]
-"84
-{
-"85
 [e ( _Gpio_Write (2 , &U _led . `E40 1 ]
-"86
+"84
 }
 [e $U 402  ]
-"87
+"85
 [e :U 401 ]
 [e $ ! == -> _c `ui -> 66 `ui 403  ]
-"88
+"86
 {
-"89
+"87
 [e ( _Gpio_Write (2 , &U _led . `E40 0 ]
-"90
+"88
 }
 [e :U 403 ]
 [e :U 402 ]
-"91
+"89
 }
 [e :U 400 ]
-"92
+"90
 }
 [e :U 396 ]
 [e $U 397  ]
 [e :U 398 ]
-"94
+"92
 [e ) -> 0 `i ]
 [e $UE 395  ]
-"95
+"93
 [e :UE 395 ]
 }
+[a 1C 72 73 32 67 82 73 83 13 10 0 ]

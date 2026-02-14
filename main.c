@@ -40,7 +40,7 @@ uart_config_t uart_config = {
 
 void __interrupt() ISR(void)
 {
-	if(PIR1bits.RCIF)
+	if(PIR1bits.RCIF | PIR1bits.TXIF)
 	{
 		Uart_InterruptHandler();
 	}
@@ -62,18 +62,16 @@ int main()
     Gpio_Write(&led, GPIO_LOW);
 	while(1)
 	{
-		Uart_TxTask();
-
 		level = Gpio_Read(&button);
 
 		if(level == GPIO_LOW)
 		{
 
-			Uart_Tx('H');
-			Uart_Tx('i');
-			Uart_Tx('\r');
-			Uart_Tx('\n');
-
+//			Uart_Tx('H');
+//			Uart_Tx('i');
+//			Uart_Tx('\r');
+//			Uart_Tx('\n');
+			Uart_SendString("HI CRIS\r\n");
 
 			__delay_ms(500);
 		}

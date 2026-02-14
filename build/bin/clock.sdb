@@ -99,6 +99,7 @@ GPIO_INPUT 1
 [v i2_Buffer_Add Buffer_Add `(a  1 e 1 0 ]
 "27
 [v _Buffer_Get Buffer_Get `(a  1 e 1 0 ]
+[v i2_Buffer_Get Buffer_Get `(a  1 e 1 0 ]
 "4 /home/reyes/embedded/clock/src/gpio.c
 [v _Gpio_Init Gpio_Init `(v  1 e 1 0 ]
 "16
@@ -111,12 +112,12 @@ GPIO_INPUT 1
 [v _Uart_Start Uart_Start `(v  1 e 1 0 ]
 "66
 [v _Uart_InterruptHandler Uart_InterruptHandler `(v  1 e 1 0 ]
-"89
+"109
 [v _Uart_Tx Uart_Tx `(v  1 e 1 0 ]
-"94
-[v _Uart_TxTask Uart_TxTask `(v  1 e 1 0 ]
-"105
+"115
 [v _Uart_Read Uart_Read `(a  1 e 1 0 ]
+"120
+[v _Uart_SendString Uart_SendString `(v  1 e 1 0 ]
 "2451 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [v _PORTB PORTB `VEuc  1 e 1 @3969 ]
 "2561
@@ -135,7 +136,7 @@ GPIO_INPUT 1
 [v _TRISC TRISC `VEuc  1 e 1 @3988 ]
 "3999
 [v _TRISD TRISD `VEuc  1 e 1 @3989 ]
-[s S485 . 1 `uc 1 TMR1IE 1 0 :1:0 
+[s S481 . 1 `uc 1 TMR1IE 1 0 :1:0 
 `uc 1 TMR2IE 1 0 :1:1 
 `uc 1 CCP1IE 1 0 :1:2 
 `uc 1 SSPIE 1 0 :1:3 
@@ -145,14 +146,14 @@ GPIO_INPUT 1
 `uc 1 SPPIE 1 0 :1:7 
 ]
 "4406
-[s S494 . 1 `uc 1 . 1 0 :4:0 
+[s S490 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 TX1IE 1 0 :1:4 
 `uc 1 RC1IE 1 0 :1:5 
 `uc 1 . 1 0 :1:6 
 `uc 1 PSPIE 1 0 :1:7 
 ]
-[u S500 . 1 `S485 1 . 1 0 `S494 1 . 1 0 ]
-[v _PIE1bits PIE1bits `VES500  1 e 1 @3997 ]
+[u S496 . 1 `S481 1 . 1 0 `S490 1 . 1 0 ]
+[v _PIE1bits PIE1bits `VES496  1 e 1 @3997 ]
 [s S42 . 1 `uc 1 TMR1IF 1 0 :1:0 
 `uc 1 TMR2IF 1 0 :1:1 
 `uc 1 CCP1IF 1 0 :1:2 
@@ -171,7 +172,7 @@ GPIO_INPUT 1
 ]
 [u S57 . 1 `S42 1 . 1 0 `S51 1 . 1 0 ]
 [v _PIR1bits PIR1bits `VES57  1 e 1 @3998 ]
-[s S358 . 1 `uc 1 RX9D 1 0 :1:0 
+[s S355 . 1 `uc 1 RX9D 1 0 :1:0 
 `uc 1 OERR 1 0 :1:1 
 `uc 1 FERR 1 0 :1:2 
 `uc 1 ADDEN 1 0 :1:3 
@@ -181,23 +182,23 @@ GPIO_INPUT 1
 `uc 1 SPEN 1 0 :1:7 
 ]
 "4975
-[s S367 . 1 `uc 1 . 1 0 :3:0 
+[s S364 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 ADEN 1 0 :1:3 
 ]
-[s S370 . 1 `uc 1 . 1 0 :5:0 
+[s S367 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 SRENA 1 0 :1:5 
 ]
-[s S373 . 1 `uc 1 . 1 0 :6:0 
+[s S370 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC8_9 1 0 :1:6 
 ]
-[s S376 . 1 `uc 1 . 1 0 :6:0 
+[s S373 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 RC9 1 0 :1:6 
 ]
-[s S379 . 1 `uc 1 RCD8 1 0 :1:0 
+[s S376 . 1 `uc 1 RCD8 1 0 :1:0 
 ]
-[u S381 . 1 `S358 1 . 1 0 `S367 1 . 1 0 `S370 1 . 1 0 `S373 1 . 1 0 `S376 1 . 1 0 `S379 1 . 1 0 ]
-[v _RCSTAbits RCSTAbits `VES381  1 e 1 @4011 ]
-[s S306 . 1 `uc 1 TX9D 1 0 :1:0 
+[u S378 . 1 `S355 1 . 1 0 `S364 1 . 1 0 `S367 1 . 1 0 `S370 1 . 1 0 `S373 1 . 1 0 `S376 1 . 1 0 ]
+[v _RCSTAbits RCSTAbits `VES378  1 e 1 @4011 ]
+[s S303 . 1 `uc 1 TX9D 1 0 :1:0 
 `uc 1 TRMT 1 0 :1:1 
 `uc 1 BRGH 1 0 :1:2 
 `uc 1 SENDB 1 0 :1:3 
@@ -207,7 +208,7 @@ GPIO_INPUT 1
 `uc 1 CSRC 1 0 :1:7 
 ]
 "5183
-[s S315 . 1 `uc 1 TX9D1 1 0 :1:0 
+[s S312 . 1 `uc 1 TX9D1 1 0 :1:0 
 `uc 1 TRMT1 1 0 :1:1 
 `uc 1 BRGH1 1 0 :1:2 
 `uc 1 SENDB1 1 0 :1:3 
@@ -216,13 +217,13 @@ GPIO_INPUT 1
 `uc 1 TX91 1 0 :1:6 
 `uc 1 CSRC1 1 0 :1:7 
 ]
-[s S324 . 1 `uc 1 . 1 0 :6:0 
+[s S321 . 1 `uc 1 . 1 0 :6:0 
 `uc 1 TX8_9 1 0 :1:6 
 ]
-[s S327 . 1 `uc 1 TXD8 1 0 :1:0 
+[s S324 . 1 `uc 1 TXD8 1 0 :1:0 
 ]
-[u S329 . 1 `S306 1 . 1 0 `S315 1 . 1 0 `S324 1 . 1 0 `S327 1 . 1 0 ]
-[v _TXSTAbits TXSTAbits `VES329  1 e 1 @4012 ]
+[u S326 . 1 `S303 1 . 1 0 `S312 1 . 1 0 `S321 1 . 1 0 `S324 1 . 1 0 ]
+[v _TXSTAbits TXSTAbits `VES326  1 e 1 @4012 ]
 "5400
 [v _TXREG TXREG `VEuc  1 e 1 @4013 ]
 "5412
@@ -231,7 +232,7 @@ GPIO_INPUT 1
 [v _SPBRG SPBRG `VEuc  1 e 1 @4015 ]
 "5436
 [v _SPBRGH SPBRGH `VEuc  1 e 1 @4016 ]
-[s S412 . 1 `uc 1 ABDEN 1 0 :1:0 
+[s S409 . 1 `uc 1 ABDEN 1 0 :1:0 
 `uc 1 WUE 1 0 :1:1 
 `uc 1 . 1 0 :1:2 
 `uc 1 BRG16 1 0 :1:3 
@@ -241,19 +242,19 @@ GPIO_INPUT 1
 `uc 1 ABDOVF 1 0 :1:7 
 ]
 "6096
-[s S421 . 1 `uc 1 . 1 0 :4:0 
+[s S418 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 SCKP 1 0 :1:4 
 `uc 1 . 1 0 :1:5 
 `uc 1 RCMT 1 0 :1:6 
 ]
-[s S426 . 1 `uc 1 . 1 0 :5:0 
+[s S423 . 1 `uc 1 . 1 0 :5:0 
 `uc 1 RXCKP 1 0 :1:5 
 ]
-[s S429 . 1 `uc 1 . 1 0 :1:0 
+[s S426 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 W4E 1 0 :1:1 
 ]
-[u S432 . 1 `S412 1 . 1 0 `S421 1 . 1 0 `S426 1 . 1 0 `S429 1 . 1 0 ]
-[v _BAUDCONbits BAUDCONbits `VES432  1 e 1 @4024 ]
+[u S429 . 1 `S409 1 . 1 0 `S418 1 . 1 0 `S423 1 . 1 0 `S426 1 . 1 0 ]
+[v _BAUDCONbits BAUDCONbits `VES429  1 e 1 @4024 ]
 [s S102 . 1 `uc 1 RBIF 1 0 :1:0 
 `uc 1 INT0IF 1 0 :1:1 
 `uc 1 TMR0IF 1 0 :1:2 
@@ -291,82 +292,81 @@ GPIO_INPUT 1
 "35
 [s S38 . 6 `*.30S24 1 rx 1 0 `*.30S24 1 tx 1 1 `ul 1 baud_rate 4 2 ]
 [v _uart_config uart_config `S38  1 e 6 0 ]
-[s S293 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
+[s S290 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
 "7 /home/reyes/embedded/clock/src/uart.c
-[v _tx_buffer tx_buffer `VES293  1 s 22 tx_buffer ]
+[v _tx_buffer tx_buffer `VES290  1 s 22 tx_buffer ]
 "8
-[v _rx_buffer rx_buffer `VES293  1 s 22 rx_buffer ]
+[v _rx_buffer rx_buffer `VES290  1 s 22 rx_buffer ]
 "49 /home/reyes/embedded/clock/main.c
 [v _main main `(i  1 e 2 0 ]
 {
 "61
-[v main@c c `uc  1 a 1 18 ]
+[v main@c c `uc  1 a 1 22 ]
 "55
-[v main@level level `E40  1 a 1 17 ]
-"95
-} 0
-"94 /home/reyes/embedded/clock/src/uart.c
-[v _Uart_TxTask Uart_TxTask `(v  1 e 1 0 ]
-{
-"96
-[v Uart_TxTask@c c `uc  1 a 1 11 ]
-"102
-} 0
-"89
-[v _Uart_Tx Uart_Tx `(v  1 e 1 0 ]
-{
-[v Uart_Tx@c c `uc  1 p 1 wreg ]
-[v Uart_Tx@c c `uc  1 p 1 wreg ]
-"91
-[v Uart_Tx@c c `uc  1 p 1 11 ]
-"92
-} 1
-"9 /home/reyes/embedded/clock/src/buffer.c
-[v _Buffer_Add Buffer_Add `(a  1 e 1 0 ]
-{
-"11
-[v Buffer_Add@next_head next_head `uc  1 a 1 10 ]
-[s S271 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
-"9
-[v Buffer_Add@buffer buffer `*.30VES271  1 p 1 7 ]
-[v Buffer_Add@element element `uc  1 p 1 8 ]
-"25
+[v main@level level `E40  1 a 1 21 ]
+"93
 } 0
 "33 /home/reyes/embedded/clock/src/uart.c
 [v _Uart_Start Uart_Start `(v  1 e 1 0 ]
 {
 [s S24 . 7 `*.39VEuc 1 tris 2 0 `*.39VEuc 1 lat 2 2 `*.39VEuc 1 port 2 4 `uc 1 pin 1 6 ]
 [s S38 . 6 `*.30S24 1 rx 1 0 `*.30S24 1 tx 1 1 `ul 1 baud_rate 4 2 ]
-[v Uart_Start@uart uart `*.30CS38  1 p 1 14 ]
+[v Uart_Start@uart uart `*.30CS38  1 p 1 18 ]
 "56
 } 0
 "4 /home/reyes/embedded/clock/src/gpio.c
 [v _Gpio_Init Gpio_Init `(v  1 e 1 0 ]
 {
 [s S24 . 7 `*.39VEuc 1 tris 2 0 `*.39VEuc 1 lat 2 2 `*.39VEuc 1 port 2 4 `uc 1 pin 1 6 ]
-[v Gpio_Init@gpio gpio `*.30S24  1 p 1 7 ]
-[v Gpio_Init@dir dir `E3343  1 p 1 8 ]
+[v Gpio_Init@gpio gpio `*.30S24  1 p 1 11 ]
+[v Gpio_Init@dir dir `E3343  1 p 1 12 ]
 "14
 } 0
 "3 /home/reyes/embedded/clock/src/buffer.c
 [v _Buffer_Init Buffer_Init `(v  1 e 1 0 ]
 {
-[s S271 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
-[v Buffer_Init@buffer buffer `*.30VES271  1 p 1 7 ]
+[s S268 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
+[v Buffer_Init@buffer buffer `*.30VES268  1 p 1 11 ]
 "7
 } 0
-"105 /home/reyes/embedded/clock/src/uart.c
+"120 /home/reyes/embedded/clock/src/uart.c
+[v _Uart_SendString Uart_SendString `(v  1 e 1 0 ]
+{
+[v Uart_SendString@msg msg `*.31Cuc  1 p 1 16 ]
+"127
+} 0
+"109
+[v _Uart_Tx Uart_Tx `(v  1 e 1 0 ]
+{
+[v Uart_Tx@c c `uc  1 p 1 wreg ]
+[v Uart_Tx@c c `uc  1 p 1 wreg ]
+"111
+[v Uart_Tx@c c `uc  1 p 1 15 ]
+"113
+} 1
+"9 /home/reyes/embedded/clock/src/buffer.c
+[v _Buffer_Add Buffer_Add `(a  1 e 1 0 ]
+{
+"11
+[v Buffer_Add@next_head next_head `uc  1 a 1 14 ]
+[s S268 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
+"9
+[v Buffer_Add@buffer buffer `*.30VES268  1 p 1 11 ]
+[v Buffer_Add@element element `uc  1 p 1 12 ]
+"25
+} 0
+"115 /home/reyes/embedded/clock/src/uart.c
 [v _Uart_Read Uart_Read `(a  1 e 1 0 ]
 {
-[v Uart_Read@data data `*.30uc  1 p 1 11 ]
-"108
+[v Uart_Read@data data `*.30uc  1 p 1 15 ]
+"118
 } 0
 "27 /home/reyes/embedded/clock/src/buffer.c
 [v _Buffer_Get Buffer_Get `(a  1 e 1 0 ]
 {
-[s S271 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
-[v Buffer_Get@buffer buffer `*.30VES271  1 p 1 7 ]
-[v Buffer_Get@element element `*.30uc  1 p 1 8 ]
+[s S268 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
+[v Buffer_Get@buffer buffer `*.30VES268  1 p 1 11 ]
+[v Buffer_Get@element element `*.30uc  1 p 1 12 ]
 "42
 } 0
 "10 /home/reyes/embedded/clock/src/uart.c
@@ -374,22 +374,22 @@ GPIO_INPUT 1
 {
 [s S24 . 7 `*.39VEuc 1 tris 2 0 `*.39VEuc 1 lat 2 2 `*.39VEuc 1 port 2 4 `uc 1 pin 1 6 ]
 [s S38 . 6 `*.30S24 1 rx 1 0 `*.30S24 1 tx 1 1 `ul 1 baud_rate 4 2 ]
-[v Uart_Init@uart uart `*.30CS38  1 p 1 7 ]
+[v Uart_Init@uart uart `*.30CS38  1 p 1 11 ]
 "30
 } 0
 "16 /home/reyes/embedded/clock/src/gpio.c
 [v _Gpio_Write Gpio_Write `(v  1 e 1 0 ]
 {
 [s S24 . 7 `*.39VEuc 1 tris 2 0 `*.39VEuc 1 lat 2 2 `*.39VEuc 1 port 2 4 `uc 1 pin 1 6 ]
-[v Gpio_Write@gpio gpio `*.30S24  1 p 1 7 ]
-[v Gpio_Write@level level `E3347  1 p 1 8 ]
+[v Gpio_Write@gpio gpio `*.30S24  1 p 1 11 ]
+[v Gpio_Write@level level `E3347  1 p 1 12 ]
 "26
 } 0
 "28
 [v _Gpio_Read Gpio_Read `(E40  1 e 1 0 ]
 {
 [s S24 . 7 `*.39VEuc 1 tris 2 0 `*.39VEuc 1 lat 2 2 `*.39VEuc 1 port 2 4 `uc 1 pin 1 6 ]
-[v Gpio_Read@gpio gpio `*.30S24  1 p 1 7 ]
+[v Gpio_Read@gpio gpio `*.30S24  1 p 1 11 ]
 "35
 } 0
 "41 /home/reyes/embedded/clock/main.c
@@ -400,18 +400,28 @@ GPIO_INPUT 1
 "66 /home/reyes/embedded/clock/src/uart.c
 [v _Uart_InterruptHandler Uart_InterruptHandler `(v  1 e 1 0 ]
 {
-"68
+"95
+[v Uart_InterruptHandler@c_575 c `uc  1 a 1 5 ]
+"71
 [v Uart_InterruptHandler@c c `uc  1 a 1 4 ]
-"86
+"106
 } 0
-"9 /home/reyes/embedded/clock/src/buffer.c
+"27 /home/reyes/embedded/clock/src/buffer.c
+[v i2_Buffer_Get Buffer_Get `(a  1 e 1 0 ]
+{
+[s S268 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
+[v i2Buffer_Get@buffer buffer `*.30VES268  1 p 1 0 ]
+[v i2Buffer_Get@element element `*.30uc  1 p 1 1 ]
+"42
+} 0
+"9
 [v i2_Buffer_Add Buffer_Add `(a  1 e 1 0 ]
 {
 "11
 [v i2Buffer_Add@next_head next_head `uc  1 a 1 3 ]
-[s S271 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
+[s S268 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
 "9
-[v i2Buffer_Add@buffer buffer `*.30VES271  1 p 1 0 ]
+[v i2Buffer_Add@buffer buffer `*.30VES268  1 p 1 0 ]
 [v i2Buffer_Add@element element `uc  1 p 1 1 ]
 "25
 } 0
