@@ -22,13 +22,16 @@ SOURCES = main.c\
     
 OBJECT_NAMES = $(SOURCES:.c=.p1)
 OBJECTS = $(patsubst %,$(OBJ_DIR)/%,$(OBJECT_NAMES))
-     
+
+#===========Defines======================
+DEFINES = -DPRINTF_INCLUDE_CONFIG_H
+
 #===========FLAGS========================
 MCU = 18F4550
 WFLAGS = -WCL4 -Wextra -Werror -Wshadow
 OPT = -O1
-CFLAGS = -mcpu=$(MCU) $(WFLAGS) -mdfp=$(MDFP) $(OPT) -I $(INCLUDE_DIRS)
-LDFLAGS = -mcpu=$(MCU) -mdfp=$(MDFP) -I $(INCLUDE_DIRS)
+CFLAGS = -mcpu=$(MCU) $(WFLAGS) -mdfp=$(MDFP) $(OPT) -I $(INCLUDE_DIRS) $(DEFINES)
+LDFLAGS = -mcpu=$(MCU) $(DEFINES) -mdfp=$(MDFP) -I $(INCLUDE_DIRS)
     
 #==========FLASH FLAGS==================
 DEVICE = -ppic18f4550

@@ -7,7 +7,7 @@
 	;
 	; Compiler options:
 	;
-	; -q --opt=none --chip=18f4550 \
+	; -q --opt=none --chip=18f4550 -DPRINTF_INCLUDE_CONFIG_H \
 	; --dfp=/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8 \
 	; -Iinc build/obj/main.p1 build/obj/src/gpio.p1 build/obj/src/buffer.p1 \
 	; build/obj/src/uart.p1 -oclock --objdir=build/bin --outdir=build/bin \

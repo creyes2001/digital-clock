@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
-                                                                                                           Fri Feb 13 18:26:49 2026
+                                                                                                           Sun Feb 15 18:00:39 2026
 
 
      1                           	processor	18F4550
@@ -67,7 +67,7 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
     61                           ;
     62                           ; Compiler options:
     63                           ;
-    64                           ; -q --opt=none --chip=18f4550 \
+    64                           ; -q --opt=none --chip=18f4550 -DPRINTF_INCLUDE_CONFIG_H \
     65                           ; --dfp=/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8 \
     66                           ; -Iinc build/obj/main.p1 build/obj/src/gpio.p1 build/obj/src/buffer.p1 \
     67                           ; build/obj/src/uart.p1 -oclock --objdir=build/bin --outdir=build/bin \
@@ -249,7 +249,7 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
 
 
 Microchip Technology PIC18 Macro Assembler V3.10 build 20250813170317 
-Symbol Table                                                                                               Fri Feb 13 18:26:49 2026
+Symbol Table                                                                                               Sun Feb 15 18:00:39 2026
 
                 __S1 0076                 ___sp 0000                 _main 080C                 start 000E  
               __HRAM 0000                __LRAM 0001               isa$std 0001     ___inthi_stack_hi 0000  
