@@ -19,6 +19,7 @@ SOURCES = main.c\
 		  src/gpio.c\
 		  src/buffer.c\
 		  src/uart.c\
+		  src/timer0.c\
 		  external/printf/printf.c
 	
 		 

@@ -11,9 +11,9 @@
 	; --dfp=/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8 \
 	; -I./inc -I./external -I./external/printf build/obj/main.p1 \
 	; build/obj/src/gpio.p1 build/obj/src/buffer.p1 build/obj/src/uart.p1 \
-	; build/obj/external/printf/printf.p1 -oclock --objdir=build/bin \
-	; --outdir=build/bin -L--fixupoverflow=error --std=c99 --rors \
-	; --icl=auto --callgraph=none --warn=-3 \
+	; build/obj/src/timer0.p1 build/obj/external/printf/printf.p1 -oclock \
+	; --objdir=build/bin --outdir=build/bin -L--fixupoverflow=error \
+	; --std=c99 --rors --icl=auto --callgraph=none --warn=-3 \
 	; --errformat=%f:%l:%c: error: (%n) %s \
 	; --warnformat=%f:%l:%c: warning: (%n) %s \
 	; --msgformat=%f:%l:%c: advisory: (%n) %s

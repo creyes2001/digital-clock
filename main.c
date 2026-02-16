@@ -2,6 +2,7 @@
 #include "gpio.h"
 #include "config.h"
 #include "printf.h"
+#include "timer0.h"
 #include <xc.h>
 #define _XTAL_FREQ 20000000
 
