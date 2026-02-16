@@ -1,11 +1,11 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"10 inc/buffer.h
+"10 ./inc/buffer.h
 [s S3 `uc -> 20 `i `Vuc 1 `Vuc 1 ]
 [n S3 . data head tail ]
-"19 inc/gpio.h
+"19 ./inc/gpio.h
 [s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
 [n S1 . tris lat port pin ]
-"9 inc/uart.h
+"9 ./inc/uart.h
 [s S2 `*S1 1 `*S1 1 `ul 1 ]
 [n S2 . rx tx baud_rate ]
 "5155 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
@@ -72,9 +72,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35 src/uart.c
 [c E36 0 1 .. ]
 [n E36 . GPIO_OUTPUT GPIO_INPUT  ]
-"26 inc/gpio.h
+"26 ./inc/gpio.h
 [v _Gpio_Init `(v ~T0 @X0 0 ef2`*S1`E36 ]
-"16 inc/buffer.h
+"16 ./inc/buffer.h
 [v _Buffer_Init `(v ~T0 @X0 0 ef1`*S3 ]
 "4472 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [s S181 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
@@ -100,7 +100,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _PIE1bits `VS177 ~T0 @X0 0 e@3997 ]
 "5412
 [v _RCREG `Vuc ~T0 @X0 0 e@4014 ]
-"17 inc/buffer.h
+"17 ./inc/buffer.h
 [v _Buffer_Add `(a ~T0 @X0 0 ef2`*S3`uc ]
 "18
 [v _Buffer_Get `(a ~T0 @X0 0 ef2`*S3`*uc ]
@@ -623,10 +623,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :UE 400 ]
 }
 "109
-[v _Uart_Tx `(v ~T0 @X0 1 ef1`uc ]
+[v __putchar `(v ~T0 @X0 1 ef1`uc ]
 "110
 {
-[e :U _Uart_Tx ]
+[e :U __putchar ]
 "109
 [v _c `uc ~T0 @X0 1 r1 ]
 "110
@@ -652,31 +652,4 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e $UE 408  ]
 "118
 [e :UE 408 ]
-}
-"120
-[v _Uart_SendString `(v ~T0 @X0 1 ef1`*Cuc ]
-"121
-{
-[e :U _Uart_SendString ]
-"120
-[v _msg `*Cuc ~T0 @X0 1 r1 ]
-"121
-[f ]
-"122
-[e $U 410  ]
-[e :U 411 ]
-"123
-{
-"124
-[e ( _Uart_Tx (1 *U _msg ]
-"125
-[e ++ _msg * -> -> 1 `i `x -> -> # *U _msg `i `x ]
-"126
-}
-[e :U 410 ]
-"122
-[e $ != -> *U _msg `ui -> 0 `ui 411  ]
-[e :U 412 ]
-"127
-[e :UE 409 ]
 }

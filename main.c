@@ -1,6 +1,7 @@
 #include "uart.h"
 #include "gpio.h"
 #include "config.h"
+#include "printf.h"
 #include <xc.h>
 #define _XTAL_FREQ 20000000
 
@@ -67,12 +68,7 @@ int main()
 		if(level == GPIO_LOW)
 		{
 
-//			Uart_Tx('H');
-//			Uart_Tx('i');
-//			Uart_Tx('\r');
-//			Uart_Tx('\n');
-			Uart_SendString("HI CRIS\r\n");
-
+			printf("CRIS %d\n\r",2026);
 			__delay_ms(500);
 		}
 

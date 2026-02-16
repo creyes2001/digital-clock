@@ -105,8 +105,8 @@ void Uart_InterruptHandler(void)
 
 }
 
-
-void Uart_Tx(char c)
+// mpaland/printf needs this to be named _putchar
+void _putchar(char c)
 {
 	(void)Buffer_Add(&tx_buffer, c);
 	PIE1bits.TXIE = 1;	
@@ -117,11 +117,3 @@ bool Uart_Read(char *data)
 	return Buffer_Get(&rx_buffer, data);
 }
 
-void Uart_SendString(const char *msg)
-{
-	while(*msg != '\0')
-	{
-		Uart_Tx(*msg);
-		msg++;
-	}
-}

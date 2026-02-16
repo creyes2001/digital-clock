@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"19 inc/gpio.h
+"19 ./inc/gpio.h
 [s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
 [n S1 . tris lat port pin ]
 "3999 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
@@ -20,7 +20,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _LATC `Vuc ~T0 @X0 0 e@3979 ]
 "2561
 [v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
-"9 inc/uart.h
+"9 ./inc/uart.h
 [s S2 `*S1 1 `*S1 1 `ul 1 ]
 [n S2 . rx tx baud_rate ]
 [t ~ __interrupt . k ]
@@ -36,19 +36,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S179 . . . ]
 "4490
 [v _PIR1bits `VS179 ~T0 @X0 0 e@3998 ]
-"20 inc/uart.h
+"20 ./inc/uart.h
 [v _Uart_InterruptHandler `(v ~T0 @X0 0 ef ]
 [p mainexit ]
-"51 main.c
+"52 main.c
 [c E36 0 1 .. ]
 [n E36 . GPIO_OUTPUT GPIO_INPUT  ]
-"26 inc/gpio.h
+"26 ./inc/gpio.h
 [v _Gpio_Init `(v ~T0 @X0 0 ef2`*S1`E36 ]
-"16 inc/uart.h
+"16 ./inc/uart.h
 [v _Uart_Init `(v ~T0 @X0 0 ef1`*CS2 ]
 "17
 [v _Uart_Start `(v ~T0 @X0 0 ef1`*CS2 ]
-"55 main.c
+"56 main.c
 [c E40 0 1 .. ]
 [n E40 . GPIO_LOW GPIO_HIGH  ]
 "8586 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
@@ -65,19 +65,19 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S361 . . . . ]
 "8612
 [v _INTCONbits `VS361 ~T0 @X0 0 e@4082 ]
-"27 inc/gpio.h
+"27 ./inc/gpio.h
 [v _Gpio_Write `(v ~T0 @X0 0 ef2`*S1`E40 ]
 "28
 [v _Gpio_Read `(E40 ~T0 @X0 0 ef1`*S1 ]
-"22 inc/uart.h
-[v _Uart_SendString `(v ~T0 @X0 0 ef1`*Cuc ]
-[v F246 `(v ~T0 @X0 1 tf1`ul ]
+"61 ./external/printf/printf.h
+[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
+[v F278 `(v ~T0 @X0 1 tf1`ul ]
 "20 /opt/microchip/xc8/v3.10/pic/include/builtins.h
-[v __delay `JF246 ~T0 @X0 0 e ]
+[v __delay `JF278 ~T0 @X0 0 e ]
 [p i __delay ]
-"21 inc/uart.h
+"21 ./inc/uart.h
 [v _Uart_Read `(a ~T0 @X0 0 ef1`*uc ]
-"3 inc/config.h
+"3 ./inc/config.h
 [p x PLLDIV  =  1        ]
 "4
 [p x CPUDIV  =  OSC1_PLL2  ]
@@ -449,7 +449,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "8891
 [; <" TOSU equ 0FFFh ;# ">
-"7 main.c
+"8 main.c
 [v _led `S1 ~T0 @X0 1 e ]
 [i _led
 :U ..
@@ -461,7 +461,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"14
+"15
 [v _button `S1 ~T0 @X0 1 e ]
 [i _button
 :U ..
@@ -473,7 +473,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"21
+"22
 [v _rx `S1 ~T0 @X0 1 s ]
 [i _rx
 :U ..
@@ -485,7 +485,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"28
+"29
 [v _tx `S1 ~T0 @X0 1 s ]
 [i _tx
 :U ..
@@ -497,7 +497,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"35
+"36
 [v _uart_config `S2 ~T0 @X0 1 e ]
 [i _uart_config
 :U ..
@@ -509,102 +509,102 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ]
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-"41
-[v _ISR `(v ~T36 @X0 1 ef ]
 "42
+[v _ISR `(v ~T36 @X0 1 ef ]
+"43
 {
 [e :U _ISR ]
 [f ]
-"43
-[e $ ! != | -> . . _PIR1bits 0 5 `i -> . . _PIR1bits 0 4 `i -> 0 `i 394  ]
 "44
-{
+[e $ ! != | -> . . _PIR1bits 0 5 `i -> . . _PIR1bits 0 4 `i -> 0 `i 394  ]
 "45
-[e ( _Uart_InterruptHandler ..  ]
+{
 "46
+[e ( _Uart_InterruptHandler ..  ]
+"47
 }
 [e :U 394 ]
-"47
+"48
 [e :UE 393 ]
 }
 [v $root$_main `(v ~T0 @X0 0 e ]
-"49
-[v _main `(i ~T0 @X0 1 ef ]
 "50
+[v _main `(i ~T0 @X0 1 ef ]
+"51
 {
 [e :U _main ]
 [f ]
-"51
-[e ( _Gpio_Init (2 , &U _led . `E36 0 ]
 "52
-[e ( _Gpio_Init (2 , &U _button . `E36 1 ]
+[e ( _Gpio_Init (2 , &U _led . `E36 0 ]
 "53
-[e ( _Uart_Init (1 -> &U _uart_config `*CS2 ]
+[e ( _Gpio_Init (2 , &U _button . `E36 1 ]
 "54
-[e ( _Uart_Start (1 -> &U _uart_config `*CS2 ]
+[e ( _Uart_Init (1 -> &U _uart_config `*CS2 ]
 "55
+[e ( _Uart_Start (1 -> &U _uart_config `*CS2 ]
+"56
 [v _level `E40 ~T0 @X0 1 a ]
-"58
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
 "59
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"60
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"61
-[v _c `uc ~T0 @X0 1 a ]
 "62
-[e ( _Gpio_Write (2 , &U _led . `E40 0 ]
+[v _c `uc ~T0 @X0 1 a ]
 "63
-[e :U 397 ]
+[e ( _Gpio_Write (2 , &U _led . `E40 0 ]
 "64
-{
+[e :U 397 ]
 "65
-[e = _level ( _Gpio_Read (1 &U _button ]
-"67
-[e $ ! == -> _level `ui -> . `E40 0 `ui 399  ]
-"68
 {
-"74
-[e ( _Uart_SendString (1 :s 1C ]
-"76
+"66
+[e = _level ( _Gpio_Read (1 &U _button ]
+"68
+[e $ ! == -> _level `ui -> . `E40 0 `ui 399  ]
+"69
+{
+"71
+[e ( _printf_ , (. :s 1C -> 2026 `i ]
+"72
 [e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"77
+"73
 }
 [e :U 399 ]
-"79
+"75
 [e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 400  ]
-"80
+"76
 {
-"81
+"77
 [e $ ! == -> _c `ui -> 65 `ui 401  ]
+"78
+{
+"79
+[e ( _Gpio_Write (2 , &U _led . `E40 1 ]
+"80
+}
+[e $U 402  ]
+"81
+[e :U 401 ]
+[e $ ! == -> _c `ui -> 66 `ui 403  ]
 "82
 {
 "83
-[e ( _Gpio_Write (2 , &U _led . `E40 1 ]
-"84
-}
-[e $U 402  ]
-"85
-[e :U 401 ]
-[e $ ! == -> _c `ui -> 66 `ui 403  ]
-"86
-{
-"87
 [e ( _Gpio_Write (2 , &U _led . `E40 0 ]
-"88
+"84
 }
 [e :U 403 ]
 [e :U 402 ]
-"89
+"85
 }
 [e :U 400 ]
-"90
+"86
 }
 [e :U 396 ]
 [e $U 397  ]
 [e :U 398 ]
-"92
+"88
 [e ) -> 0 `i ]
 [e $UE 395  ]
-"93
+"89
 [e :UE 395 ]
 }
-[a 1C 72 73 32 67 82 73 83 13 10 0 ]
+[a 1C 67 82 73 83 32 37 100 10 13 0 ]

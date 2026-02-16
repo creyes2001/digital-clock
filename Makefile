@@ -3,7 +3,10 @@ MDFP ="/opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8"
 BUILD_DIR = build
 OBJ_DIR = $(BUILD_DIR)/obj
 BIN_DIR = $(BUILD_DIR)/bin
-INCLUDE_DIRS = inc
+INCLUDE_DIRS = -I ./inc\
+			   -I ./external\
+			   -I ./external/printf
+			   
 
 #===========TOOLACHAIN=====================
 CC = xc8-cc
@@ -15,8 +18,9 @@ TARGET = $(BIN_DIR)/clock
 SOURCES = main.c\
 		  src/gpio.c\
 		  src/buffer.c\
-		  src/uart.c
-
+		  src/uart.c\
+		  external/printf/printf.c
+	
 		 
            
     
@@ -30,8 +34,8 @@ DEFINES = -DPRINTF_INCLUDE_CONFIG_H
 MCU = 18F4550
 WFLAGS = -WCL4 -Wextra -Werror -Wshadow
 OPT = -O1
-CFLAGS = -mcpu=$(MCU) $(WFLAGS) -mdfp=$(MDFP) $(OPT) -I $(INCLUDE_DIRS) $(DEFINES)
-LDFLAGS = -mcpu=$(MCU) $(DEFINES) -mdfp=$(MDFP) -I $(INCLUDE_DIRS)
+CFLAGS = -mcpu=$(MCU) $(WFLAGS) -mdfp=$(MDFP) $(OPT) $(INCLUDE_DIRS) $(DEFINES)
+LDFLAGS = -mcpu=$(MCU) $(DEFINES) -mdfp=$(MDFP) $(INCLUDE_DIRS)
     
 #==========FLASH FLAGS==================
 DEVICE = -ppic18f4550
