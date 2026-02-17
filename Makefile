@@ -20,6 +20,7 @@ SOURCES = main.c\
 		  src/buffer.c\
 		  src/uart.c\
 		  src/timer0.c\
+		  src/isr.c\
 		  external/printf/printf.c
 	
 		 

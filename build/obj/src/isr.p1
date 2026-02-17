@@ -1,87 +1,62 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"19 ./inc/gpio.h
-[s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
-[n S1 . tris lat port pin ]
-"3999 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"3261
-[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"2703
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
-"3623
-[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
-"3071
-[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
-"2451
-[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-"3845
-[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
-"3183
-[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
-"2561
-[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
-"9 ./inc/uart.h
-[s S2 `*S1 1 `*S1 1 `ul 1 ]
-[n S2 . rx tx baud_rate ]
-[p mainexit ]
-"45 main.c
-[c E37 0 1 .. ]
-[n E37 . GPIO_OUTPUT GPIO_INPUT  ]
-"26 ./inc/gpio.h
-[v _Gpio_Init `(v ~T0 @X0 0 ef2`*S1`E37 ]
-"16 ./inc/uart.h
-[v _Uart_Init `(v ~T0 @X0 0 ef1`*CS2 ]
-"17
-[v _Uart_Start `(v ~T0 @X0 0 ef1`*CS2 ]
-"49 main.c
-[c E41 0 1 .. ]
-[n E41 . GPIO_LOW GPIO_HIGH  ]
-"4 ./inc/isr.h
-[v _isr_init `(v ~T0 @X0 0 ef ]
-"27 ./inc/gpio.h
-[v _Gpio_Write `(v ~T0 @X0 0 ef2`*S1`E41 ]
-"28
-[v _Gpio_Read `(E41 ~T0 @X0 0 ef1`*S1 ]
-"61 ./external/printf/printf.h
-[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
-[v F279 `(v ~T0 @X0 1 tf1`ul ]
-"20 /opt/microchip/xc8/v3.10/pic/include/builtins.h
-[v __delay `JF279 ~T0 @X0 0 e ]
-[p i __delay ]
-"21 ./inc/uart.h
-[v _Uart_Read `(a ~T0 @X0 0 ef1`*uc ]
-"3 ./inc/config.h
-[p x PLLDIV  =  1        ]
-"4
-[p x CPUDIV  =  OSC1_PLL2  ]
-"5
-[p x USBDIV  =  1        ]
-"8
-[p x FOSC  =  HS         ]
-"9
-[p x FCMEN  =  OFF       ]
-"10
-[p x IESO  =  OFF        ]
-"13
-[p x PWRT  =  ON         ]
-"14
-[p x BOR  =  ON          ]
-"15
-[p x BORV  =  3          ]
-"18
-[p x WDT  =  OFF         ]
-"21
-[p x PBADEN  =  OFF      ]
-"22
-[p x LPT1OSC  =  OFF     ]
-"23
-[p x MCLRE  =  ON        ]
-"26
-[p x STVREN  =  ON       ]
-"27
-[p x LVP  =  OFF         ]
-"28
-[p x XINST  =  OFF       ]
+[t ~ __interrupt . k ]
+[t T36 __interrupt ]
+"4472 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
+[s S180 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S180 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF SPPIF ]
+"4482
+[s S181 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S181 . . TX1IF RC1IF . PSPIF ]
+"4471
+[u S179 `S180 1 `S181 1 ]
+[n S179 . . . ]
+"4490
+[v _PIR1bits `VS179 ~T0 @X0 0 e@3998 ]
+"20 ./inc/uart.h
+[v _Uart_InterruptHandler `(v ~T0 @X0 0 ef ]
+"7543 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
+[s S324 :1 `uc 1 ]
+[n S324 . NOT_BOR ]
+"7546
+[s S325 :1 `uc 1 :1 `uc 1 ]
+[n S325 . . NOT_POR ]
+"7550
+[s S326 :2 `uc 1 :1 `uc 1 ]
+[n S326 . . NOT_PD ]
+"7554
+[s S327 :3 `uc 1 :1 `uc 1 ]
+[n S327 . . NOT_TO ]
+"7558
+[s S328 :4 `uc 1 :1 `uc 1 ]
+[n S328 . . NOT_RI ]
+"7562
+[s S329 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S329 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
+"7572
+[s S330 :7 `uc 1 :1 `uc 1 ]
+[n S330 . . NOT_IPEN ]
+"7576
+[s S331 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
+[n S331 . BOR POR PD TO RI . nIPEN ]
+"7542
+[u S323 `S324 1 `S325 1 `S326 1 `S327 1 `S328 1 `S329 1 `S330 1 `S331 1 ]
+[n S323 . . . . . . . . . ]
+"7586
+[v _RCONbits `VS323 ~T0 @X0 0 e@4048 ]
+"8586
+[s S362 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S362 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
+"8596
+[s S363 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S363 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
+"8606
+[s S364 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S364 . . GIEL GIEH ]
+"8585
+[u S361 `S362 1 `S363 1 `S364 1 ]
+[n S361 . . . . ]
+"8612
+[v _INTCONbits `VS361 ~T0 @X0 0 e@4082 ]
 "52 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [; <" SPPDATA equ 0F62h ;# ">
 "72
@@ -422,141 +397,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "8891
 [; <" TOSU equ 0FFFh ;# ">
-"9 main.c
-[v _led `S1 ~T0 @X0 1 e ]
-[i _led
-:U ..
-:U ..
-&U _TRISD
-&U _LATD
-&U _PORTD
--> -> 0 `i `uc
-..
-..
-]
-"16
-[v _button `S1 ~T0 @X0 1 e ]
-[i _button
-:U ..
-:U ..
-&U _TRISB
-&U _LATB
-&U _PORTB
--> -> 0 `i `uc
-..
-..
-]
-"23
-[v _rx `S1 ~T0 @X0 1 s ]
-[i _rx
-:U ..
-:U ..
-&U _TRISC
-&U _LATC
-&U _PORTC
--> -> 7 `i `uc
-..
-..
-]
-"30
-[v _tx `S1 ~T0 @X0 1 s ]
-[i _tx
-:U ..
-:U ..
-&U _TRISC
-&U _LATC
-&U _PORTC
--> -> 6 `i `uc
-..
-..
-]
-"37
-[v _uart_config `S2 ~T0 @X0 1 e ]
-[i _uart_config
-:U ..
-:U ..
-&U _rx
-&U _tx
--> -> -> 9600 `i `l `ul
-..
-..
-]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"43
-[v _main `(i ~T0 @X0 1 ef ]
-"44
+[v $root$_ISR `(v ~T0 @X0 0 e ]
+"6 src/isr.c
+[v _ISR `(v ~T36 @X0 1 ef ]
+"7
 {
-[e :U _main ]
+[e :U _ISR ]
 [f ]
-"45
-[e ( _Gpio_Init (2 , &U _led . `E37 0 ]
-"46
-[e ( _Gpio_Init (2 , &U _button . `E37 1 ]
-"47
-[e ( _Uart_Init (1 -> &U _uart_config `*CS2 ]
-"48
-[e ( _Uart_Start (1 -> &U _uart_config `*CS2 ]
-"49
-[v _level `E41 ~T0 @X0 1 a ]
-"52
-[e ( _isr_init ..  ]
-"54
-[v _c `uc ~T0 @X0 1 a ]
-"55
-[e ( _Gpio_Write (2 , &U _led . `E41 0 ]
-"56
-[e :U 395 ]
-"57
+"8
+[e $ ! != | -> . . _PIR1bits 0 5 `i -> . . _PIR1bits 0 4 `i -> 0 `i 394  ]
+"9
 {
-"58
-[e = _level ( _Gpio_Read (1 &U _button ]
-"60
-[e $ ! == -> _level `ui -> . `E41 0 `ui 397  ]
-"61
-{
-"63
-[e ( _printf_ , (. :s 1C -> 2026 `i ]
-"64
-[e ( __delay (1 -> * -> -> 500 `i `d / -> -> 20000000 `l `d .4000.0 `ul ]
-"65
-}
-[e :U 397 ]
-"67
-[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 398  ]
-"68
-{
-"69
-[e $ ! == -> _c `ui -> 65 `ui 399  ]
-"70
-{
-"71
-[e ( _Gpio_Write (2 , &U _led . `E41 1 ]
-"72
-}
-[e $U 400  ]
-"73
-[e :U 399 ]
-[e $ ! == -> _c `ui -> 66 `ui 401  ]
-"74
-{
-"75
-[e ( _Gpio_Write (2 , &U _led . `E41 0 ]
-"76
-}
-[e :U 401 ]
-[e :U 400 ]
-"77
-}
-[e :U 398 ]
-"78
+"10
+[e ( _Uart_InterruptHandler ..  ]
+"11
 }
 [e :U 394 ]
-[e $U 395  ]
-[e :U 396 ]
-"80
-[e ) -> 0 `i ]
-[e $UE 393  ]
-"81
+"12
 [e :UE 393 ]
 }
-[a 1C 67 82 73 83 32 37 100 10 13 0 ]
+"14
+[v _isr_init `(v ~T0 @X0 1 ef ]
+"15
+{
+[e :U _isr_init ]
+[f ]
+"16
+[e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
+"17
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+"18
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"19
+[e :UE 395 ]
+}

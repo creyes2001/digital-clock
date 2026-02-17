@@ -1,8 +1,8 @@
-#include "uart.h"
+#include "isr.h"
 #include "gpio.h"
 #include "config.h"
 #include "printf.h"
-#include "timer0.h"
+#include "uart.h"
 #include <xc.h>
 #define _XTAL_FREQ 20000000
 
@@ -40,14 +40,6 @@ uart_config_t uart_config = {
 	.baud_rate = 9600
 };
 
-void __interrupt() ISR(void)
-{
-	if(PIR1bits.RCIF | PIR1bits.TXIF)
-	{
-		Uart_InterruptHandler();
-	}
-}
-
 int main()
 {
 	Gpio_Init(&led,GPIO_OUTPUT);
@@ -57,8 +49,7 @@ int main()
 	gpio_level_e level;
 
 	/* Enable interrupts */
-	INTCONbits.GIE = 1;
-	INTCONbits.PEIE = 1;
+	isr_init();
 
 	char c;
     Gpio_Write(&led, GPIO_LOW);
