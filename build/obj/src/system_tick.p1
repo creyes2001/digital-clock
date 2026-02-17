@@ -1,0 +1,40 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"4 src/system_tick.c
+[v _tick_1ms `Vus ~T0 @X0 1 s ]
+[i _tick_1ms
+-> -> 0 `i `us
+]
+"6
+[v _system_tick_1ms `(v ~T0 @X0 1 ef ]
+"7
+{
+[e :U _system_tick_1ms ]
+[f ]
+"8
+[e ++ _tick_1ms -> -> 1 `i `Vus ]
+"9
+[e :UE 1 ]
+}
+"11
+[v _system_tick_task `(v ~T0 @X0 1 ef ]
+"12
+{
+[e :U _system_tick_task ]
+[f ]
+"13
+[v F41 `us ~T0 @X0 1 s last ]
+[i F41
+-> -> 0 `i `us
+]
+"15
+[e $ ! >= - -> _tick_1ms `ui -> F41 `ui -> -> 1000 `i `ui 3  ]
+"16
+{
+"17
+[e =+ F41 -> -> 1000 `i `us ]
+"19
+}
+[e :U 3 ]
+"20
+[e :UE 2 ]
+}

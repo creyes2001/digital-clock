@@ -128,10 +128,12 @@ GPIO_INPUT 1
 [v _Gpio_Write Gpio_Write `(v  1 e 1 0 ]
 "28
 [v _Gpio_Read Gpio_Read `(E41  1 e 1 0 ]
-"6 /home/reyes/embedded/clock/src/isr.c
+"7 /home/reyes/embedded/clock/src/isr.c
 [v _ISR ISR `IIH(v  1 e 1 0 ]
-"14
+"25
 [v _isr_init isr_init `(v  1 e 1 0 ]
+"6 /home/reyes/embedded/clock/src/system_tick.c
+[v _system_tick_1ms system_tick_1ms `(v  1 e 1 0 ]
 "30 /home/reyes/embedded/clock/src/timer0.c
 [v _timer0_reload timer0_reload `(v  1 e 1 0 ]
 "10 /home/reyes/embedded/clock/src/uart.c
@@ -281,22 +283,22 @@ GPIO_INPUT 1
 ]
 [u S325 . 1 `S305 1 . 1 0 `S314 1 . 1 0 `S319 1 . 1 0 `S322 1 . 1 0 ]
 [v _BAUDCONbits BAUDCONbits `VES325  1 e 1 @4024 ]
-[s S620 . 1 `uc 1 NOT_BOR 1 0 :1:0 
+[s S652 . 1 `uc 1 NOT_BOR 1 0 :1:0 
 ]
 "7586
-[s S622 . 1 `uc 1 . 1 0 :1:0 
+[s S654 . 1 `uc 1 . 1 0 :1:0 
 `uc 1 NOT_POR 1 0 :1:1 
 ]
-[s S625 . 1 `uc 1 . 1 0 :2:0 
+[s S657 . 1 `uc 1 . 1 0 :2:0 
 `uc 1 NOT_PD 1 0 :1:2 
 ]
-[s S628 . 1 `uc 1 . 1 0 :3:0 
+[s S660 . 1 `uc 1 . 1 0 :3:0 
 `uc 1 NOT_TO 1 0 :1:3 
 ]
-[s S631 . 1 `uc 1 . 1 0 :4:0 
+[s S663 . 1 `uc 1 . 1 0 :4:0 
 `uc 1 NOT_RI 1 0 :1:4 
 ]
-[s S634 . 1 `uc 1 nBOR 1 0 :1:0 
+[s S666 . 1 `uc 1 nBOR 1 0 :1:0 
 `uc 1 nPOR 1 0 :1:1 
 `uc 1 nPD 1 0 :1:2 
 `uc 1 nTO 1 0 :1:3 
@@ -305,10 +307,10 @@ GPIO_INPUT 1
 `uc 1 SBOREN 1 0 :1:6 
 `uc 1 IPEN 1 0 :1:7 
 ]
-[s S643 . 1 `uc 1 . 1 0 :7:0 
+[s S675 . 1 `uc 1 . 1 0 :7:0 
 `uc 1 NOT_IPEN 1 0 :1:7 
 ]
-[s S646 . 1 `uc 1 BOR 1 0 :1:0 
+[s S678 . 1 `uc 1 BOR 1 0 :1:0 
 `uc 1 POR 1 0 :1:1 
 `uc 1 PD 1 0 :1:2 
 `uc 1 TO 1 0 :1:3 
@@ -316,8 +318,8 @@ GPIO_INPUT 1
 `uc 1 . 1 0 :2:5 
 `uc 1 nIPEN 1 0 :1:7 
 ]
-[u S654 . 1 `S620 1 . 1 0 `S622 1 . 1 0 `S625 1 . 1 0 `S628 1 . 1 0 `S631 1 . 1 0 `S634 1 . 1 0 `S643 1 . 1 0 `S646 1 . 1 0 ]
-[v _RCONbits RCONbits `VES654  1 e 1 @4048 ]
+[u S686 . 1 `S652 1 . 1 0 `S654 1 . 1 0 `S657 1 . 1 0 `S660 1 . 1 0 `S663 1 . 1 0 `S666 1 . 1 0 `S675 1 . 1 0 `S678 1 . 1 0 ]
+[v _RCONbits RCONbits `VES686  1 e 1 @4048 ]
 "8067
 [v _T0CON T0CON `VEuc  1 e 1 @4053 ]
 [s S501 . 1 `uc 1 T0PS 1 0 :3:0 
@@ -375,6 +377,8 @@ GPIO_INPUT 1
 "37
 [s S38 . 6 `*.30S24 1 rx 1 0 `*.30S24 1 tx 1 1 `ul 1 baud_rate 4 2 ]
 [v _uart_config uart_config `S38  1 e 6 0 ]
+"4 /home/reyes/embedded/clock/src/system_tick.c
+[v _tick_1ms tick_1ms `VEus  1 s 2 tick_1ms ]
 [s S186 . 22 `[20]uc 1 data 20 0 `VEuc 1 head 1 20 `VEuc 1 tail 1 21 ]
 "7 /home/reyes/embedded/clock/src/uart.c
 [v _tx_buffer tx_buffer `VES186  1 s 22 tx_buffer ]
@@ -384,51 +388,51 @@ GPIO_INPUT 1
 [v _main main `(i  1 e 2 0 ]
 {
 "54
-[v main@c c `uc  1 a 1 81 ]
+[v main@c c `uc  1 a 1 120 ]
 "49
-[v main@level level `E41  1 a 1 80 ]
+[v main@level level `E41  1 a 1 119 ]
 "81
 } 0
 "862 /home/reyes/embedded/clock/external/printf/printf.c
 [v _printf_ printf_ `(i  1 e 2 0 ]
 {
 "864
-[v printf_@va va `[1]*.30v  1 a 1 77 ]
+[v printf_@va va `[1]*.30v  1 a 1 73 ]
 "866
-[v printf_@buffer buffer `[1]uc  1 a 1 76 ]
+[v printf_@buffer buffer `[1]uc  1 a 1 72 ]
 "862
-[v printf_@format format `*.31Cuc  1 p 1 73 ]
+[v printf_@format format `*.31Cuc  1 p 1 114 ]
 "870
 } 0
 "577
 [v __vsnprintf _vsnprintf `(i  1 s 2 _vsnprintf ]
 {
 "750
-[v __vsnprintf@value_908 value `Cui  1 a 2 8 ]
+[v __vsnprintf@value_917 value `Cui  1 a 2 79 ]
 "735
-[v __vsnprintf@value_905 value `Ci  1 a 2 31 ]
+[v __vsnprintf@value_914 value `Ci  1 a 2 102 ]
 "731
-[v __vsnprintf@value value `Cl  1 a 4 27 ]
+[v __vsnprintf@value value `Cl  1 a 4 98 ]
 "798
-[v __vsnprintf@l_912 l `ui  1 a 2 24 ]
+[v __vsnprintf@l_921 l `ui  1 a 2 95 ]
 "797
-[v __vsnprintf@p p `*.30Cuc  1 a 1 26 ]
+[v __vsnprintf@p p `*.30Cuc  1 a 1 97 ]
 "777
-[v __vsnprintf@l l `ui  1 a 2 18 ]
+[v __vsnprintf@l l `ui  1 a 2 89 ]
 "692
-[v __vsnprintf@base base `ui  1 a 2 33 ]
+[v __vsnprintf@base base `ui  1 a 2 104 ]
 "640
-[v __vsnprintf@prec prec `Ci  1 a 2 16 ]
+[v __vsnprintf@prec prec `Ci  1 a 2 87 ]
 "620
-[v __vsnprintf@w w `Ci  1 a 2 22 ]
+[v __vsnprintf@w w `Ci  1 a 2 93 ]
 "579
-[v __vsnprintf@flags flags `ui  1 a 2 41 ]
+[v __vsnprintf@flags flags `ui  1 a 2 112 ]
 "580
-[v __vsnprintf@idx idx `ui  1 a 2 39 ]
+[v __vsnprintf@idx idx `ui  1 a 2 110 ]
 "579
-[v __vsnprintf@precision precision `ui  1 a 2 37 ]
-[v __vsnprintf@width width `ui  1 a 2 35 ]
-[v __vsnprintf@n n `ui  1 a 2 20 ]
+[v __vsnprintf@precision precision `ui  1 a 2 108 ]
+[v __vsnprintf@width width `ui  1 a 2 106 ]
+[v __vsnprintf@n n `ui  1 a 2 91 ]
 "577
 [v __vsnprintf@out out `*.37(v  1 p 2 62 ]
 [v __vsnprintf@buffer buffer `*.39uc  1 p 2 64 ]
@@ -592,10 +596,10 @@ GPIO_INPUT 1
 [v __is_digit@ch ch `uc  1 p 1 13 ]
 "184
 } 1
-"14 /home/reyes/embedded/clock/src/isr.c
+"25 /home/reyes/embedded/clock/src/isr.c
 [v _isr_init isr_init `(v  1 e 1 0 ]
 {
-"19
+"30
 } 0
 "33 /home/reyes/embedded/clock/src/uart.c
 [v _Uart_Start Uart_Start `(v  1 e 1 0 ]
@@ -657,10 +661,20 @@ GPIO_INPUT 1
 [v Gpio_Read@gpio gpio `*.30S24  1 p 1 12 ]
 "35
 } 0
-"6 /home/reyes/embedded/clock/src/isr.c
+"7 /home/reyes/embedded/clock/src/isr.c
 [v _ISR ISR `IIH(v  1 e 1 0 ]
 {
-"12
+"23
+} 0
+"30 /home/reyes/embedded/clock/src/timer0.c
+[v _timer0_reload timer0_reload `(v  1 e 1 0 ]
+{
+"34
+} 0
+"6 /home/reyes/embedded/clock/src/system_tick.c
+[v _system_tick_1ms system_tick_1ms `(v  1 e 1 0 ]
+{
+"9
 } 0
 "66 /home/reyes/embedded/clock/src/uart.c
 [v _Uart_InterruptHandler Uart_InterruptHandler `(v  1 e 1 0 ]

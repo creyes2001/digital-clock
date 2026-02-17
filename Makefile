@@ -21,6 +21,7 @@ SOURCES = main.c\
 		  src/uart.c\
 		  src/timer0.c\
 		  src/isr.c\
+		  src/system_tick.c\
 		  external/printf/printf.c
 	
 		 

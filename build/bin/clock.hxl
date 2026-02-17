@@ -1,7 +1,7 @@
 ### HEXMate logfile and output summary ###
 
 ### Command-line arguments ###
- /tmp/xcXkmApMJ/driver_tmp_3.o
+ /tmp/xcXFhckbn/driver_tmp_3.o
  -Obuild/bin/clock.hex
  -logfile=build/bin/clock.hxl
  -addressing=1
@@ -9,23 +9,19 @@
 
 ### Memory Usage ###
  Input file ranges:
-  0h - 3h		(/tmp/xcXkmApMJ/driver_tmp_3.o)
-  8h - 11h		(/tmp/xcXkmApMJ/driver_tmp_3.o)
-  800h - 24D6h		(/tmp/xcXkmApMJ/driver_tmp_3.o)
-  24D8h - 2524h		(/tmp/xcXkmApMJ/driver_tmp_3.o)
-  2526h - 2529h		(/tmp/xcXkmApMJ/driver_tmp_3.o)
-  300000h - 300007h		(/tmp/xcXkmApMJ/driver_tmp_3.o)
+  0h - 3h		(/tmp/xcXFhckbn/driver_tmp_3.o)
+  8h - 11h		(/tmp/xcXFhckbn/driver_tmp_3.o)
+  800h - 24B1h		(/tmp/xcXFhckbn/driver_tmp_3.o)
+  300000h - 300007h		(/tmp/xcXFhckbn/driver_tmp_3.o)
  Unused ranges:
   4h - 7h
   12h - 7FFh
-  24D7h - 24D7h
-  2525h - 2525h
-  252Ah - 2FFFFFh
+  24B2h - 2FFFFFh
 
 ### Hex Memory Map ###
  Legend:
   -- = Unused memory
-  H1 = Input file             (/tmp/xcXkmApMJ/driver_tmp_3.o)
+  H1 = Input file             (/tmp/xcXFhckbn/driver_tmp_3.o)
 ----------------------------------------------------------
          | 00 01 02 03 04 05 06 07 08 09 0A 0B 0C 0D 0E 0F
 ----------------------------------------------------------
@@ -491,14 +487,7 @@
 00002480 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 00002490 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
 000024A0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000024B0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000024C0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000024D0 | H1 H1 H1 H1 H1 H1 H1 -- H1 H1 H1 H1 H1 H1 H1 H1
-000024E0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-000024F0 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00002500 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00002510 | H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1 H1
-00002520 | H1 H1 H1 H1 H1 -- H1 H1 H1 H1 -- -- -- -- -- --
+000024B0 | H1 H1 -- -- -- -- -- -- -- -- -- -- -- -- -- --
 ----------------------------------------------------------
 00300000 | H1 H1 H1 H1 H1 H1 H1 H1 -- -- -- -- -- -- -- --
 00300010 | --

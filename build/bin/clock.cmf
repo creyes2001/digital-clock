@@ -12,49 +12,47 @@
 # in delta units.  Any other numeric values are decimal.
 %PSECTS
 $build/bin/clock.o
-cinit CODE 0 2220 2220 6E 1 2
-intcode_body CODE 0 2348 2348 58 1 2
-text0 CODE 0 1BC6 1BC6 D4 1 2
-text1 CODE 0 244C 244C 2A 1 2
-text2 CODE 0 80C 80C D9E 1 2
-text3 CODE 0 23A0 23A0 48 1 2
-text4 CODE 0 18DE 18DE 194 1 2
-text5 CODE 0 15AA 15AA 334 1 2
-text6 CODE 0 1A72 1A72 154 1 2
-text7 CODE 0 2526 2526 2 1 2
-text8 CODE 0 24D8 24D8 18 1 2
-text9 CODE 0 2476 2476 28 1 2
-text10 CODE 0 2528 2528 2 1 2
-text11 CODE 0 24F0 24F0 14 1 2
-text12 CODE 0 20B0 20B0 7C 1 2
-text13 CODE 0 2028 2028 88 1 2
-text14 CODE 0 1C9A 1C9A A4 1 2
-text15 CODE 0 21A8 21A8 78 1 2
-text16 CODE 0 2420 2420 2C 1 2
-text17 CODE 0 2516 2516 8 1 2
-text18 CODE 0 22EC 22EC 5C 1 2
-text19 CODE 0 1DDA 1DDA 94 1 2
-text20 CODE 0 249E 249E 1E 1 2
-text21 CODE 0 2504 2504 12 1 2
-text22 CODE 0 1E6E 1E6E 94 1 2
-text23 CODE 0 23E8 23E8 38 1 2
-text24 CODE 0 1D3E 1D3E 9C 1 2
-text25 CODE 0 228E 228E 5E 1 2
-text27 CODE 0 1F96 1F96 92 1 2
-text28 CODE 0 1F02 1F02 94 1 2
-text29 CODE 0 212C 212C 7C 1 2
-idataCOMRAM CODE 0 251E 251E 7 1 1
-cstackCOMRAM COMRAM 1 2 2 46 1 1
-cstackBANK0 BANK0 1 60 60 52 1 1
-cstackBANK1 BANK1 1 100 100 2B 1 1
-bssBANK0 BANK0 1 CD CD 16 1 1
-bssBANK1 BANK1 1 12B 12B 16 1 1
+cinit CODE 0 231A 231A 46 1 2
+intcode_body CODE 0 2028 2028 7E 1 2
+text0 CODE 0 1B3C 1B3C D4 1 2
+text1 CODE 0 23C4 23C4 2A 1 2
+text2 CODE 0 80C 80C D14 1 2
+text3 CODE 0 22D2 22D2 48 1 2
+text4 CODE 0 1854 1854 194 1 2
+text5 CODE 0 1520 1520 334 1 2
+text6 CODE 0 19E8 19E8 154 1 2
+text7 CODE 0 24AE 24AE 2 1 2
+text8 CODE 0 2456 2456 18 1 2
+text9 CODE 0 23EE 23EE 28 1 2
+text10 CODE 0 24B0 24B0 2 1 2
+text11 CODE 0 246E 246E 16 1 2
+text12 CODE 0 20A6 20A6 7C 1 2
+text13 CODE 0 1FA0 1FA0 88 1 2
+text14 CODE 0 1C10 1C10 A4 1 2
+text15 CODE 0 219E 219E 78 1 2
+text16 CODE 0 2398 2398 2C 1 2
+text17 CODE 0 24A0 24A0 8 1 2
+text18 CODE 0 2216 2216 5E 1 2
+text19 CODE 0 1D50 1D50 94 1 2
+text20 CODE 0 2438 2438 1E 1 2
+text21 CODE 0 2484 2484 12 1 2
+text22 CODE 0 1DE4 1DE4 94 1 2
+text23 CODE 0 2360 2360 38 1 2
+text24 CODE 0 1CB4 1CB4 9C 1 2
+text25 CODE 0 2274 2274 5E 1 2
+text27 CODE 0 2496 2496 A 1 2
+text28 CODE 0 24A8 24A8 6 1 2
+text29 CODE 0 1E78 1E78 94 1 2
+text30 CODE 0 1F0C 1F0C 94 1 2
+text31 CODE 0 2122 2122 7C 1 2
+cstackCOMRAM COMRAM 1 2 2 4A 1 1
+cstackBANK0 BANK0 1 60 60 79 1 1
+bssBANK1 BANK1 1 100 100 2C 1 1
 intcode CODE 0 8 8 6 1 2
 smallconst SMALLCONST 0 800 800 C 1 2
-idataBANK0 CODE 0 24BC 24BC 1B 1 1
-dataBANK0 BANK0 1 B2 B2 1B 1 1
-dataCOMRAM COMRAM 1 48 48 7 1 1
-bssCOMRAM COMRAM 1 4F 4F 4 1 1
+idataBANK0 CODE 0 2416 2416 22 1 1
+dataBANK0 BANK0 1 D9 D9 22 1 1
+bssCOMRAM COMRAM 1 4C 4C 8 1 1
 config CONFIG 4 300000 300000 8 1 1
 $build/bin/startup.o
 init CODE 0 E E 4 1 2
@@ -66,11 +64,11 @@ config CONFIG 4 300000 300000 8 1 1
 #    <class name> <range> <delta>
 # Addresses given in the range are in hexadecimal and units of delta.
 %UNUSED
-RAM E3-FF 1
-RAM 141-7FF 1
+RAM FB-FF 1
+RAM 12C-7FF 1
 SFR F60-FFF 1
-BANK0 E3-FF 1
-BANK1 141-1FF 1
+BANK0 FB-FF 1
+BANK1 12C-1FF 1
 BANK2 200-2FF 1
 BANK3 300-3FF 1
 BANK4 400-4FF 1
@@ -79,28 +77,20 @@ BANK6 600-6FF 1
 BANK7 700-7FF 1
 CONST 4-7 1
 CONST 12-7FF 1
-CONST 24D7-24D7 1
-CONST 2525-2525 1
-CONST 252A-7FFF 1
+CONST 24B2-7FFF 1
 IDLOC 200000-200007 1
-SMALLCONST 24D7-24D7 1
-SMALLCONST 2525-2525 1
-SMALLCONST 252A-7FFF 1
+SMALLCONST 24B2-7FFF 1
 CODE 4-7 1
 CODE 12-7FF 1
-CODE 24D7-24D7 1
-CODE 2525-2525 1
-CODE 252A-7FFF 1
-BIGRAM 53-5F 1
-BIGRAM E3-FF 1
-BIGRAM 141-7FF 1
+CODE 24B2-7FFF 1
+BIGRAM 54-5F 1
+BIGRAM FB-FF 1
+BIGRAM 12C-7FF 1
 BIGSFR F60-FFF 1
-COMRAM 53-5F 1
+COMRAM 54-5F 1
 CONFIG 300008-30000D 1
 EEDATA F00000-F000FF 1
-MEDIUMCONST 24D7-24D7 1
-MEDIUMCONST 2525-2525 1
-MEDIUMCONST 252A-7FFF 1
+MEDIUMCONST 24B2-7FFF 1
 # %LINETAB Section
 # This section enumerates the file/line to address mappings.
 # The beginning of the section is indicated by %LINETAB.
@@ -115,455 +105,448 @@ MEDIUMCONST 252A-7FFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $build/bin/clock.o
-8 intcode CODE >8863:/home/reyes/embedded/clock/build/bin/clock.s
-8 intcode CODE >6:/home/reyes/embedded/clock/src/isr.c
-212C text29 CODE >9:/home/reyes/embedded/clock/src/buffer.c
-212C text29 CODE >11:/home/reyes/embedded/clock/src/buffer.c
-2140 text29 CODE >13:/home/reyes/embedded/clock/src/buffer.c
-2152 text29 CODE >14:/home/reyes/embedded/clock/src/buffer.c
-2154 text29 CODE >16:/home/reyes/embedded/clock/src/buffer.c
-2176 text29 CODE >22:/home/reyes/embedded/clock/src/buffer.c
-2196 text29 CODE >23:/home/reyes/embedded/clock/src/buffer.c
-21A6 text29 CODE >25:/home/reyes/embedded/clock/src/buffer.c
-1F02 text28 CODE >27:/home/reyes/embedded/clock/src/buffer.c
-1F02 text28 CODE >29:/home/reyes/embedded/clock/src/buffer.c
-1F2C text28 CODE >32:/home/reyes/embedded/clock/src/buffer.c
-1F32 text28 CODE >35:/home/reyes/embedded/clock/src/buffer.c
-1F58 text28 CODE >36:/home/reyes/embedded/clock/src/buffer.c
-1F66 text28 CODE >38:/home/reyes/embedded/clock/src/buffer.c
-1F84 text28 CODE >39:/home/reyes/embedded/clock/src/buffer.c
-1F92 text28 CODE >41:/home/reyes/embedded/clock/src/buffer.c
-1F94 text28 CODE >42:/home/reyes/embedded/clock/src/buffer.c
-1F96 text27 CODE >66:/home/reyes/embedded/clock/src/uart.c
-1F96 text27 CODE >69:/home/reyes/embedded/clock/src/uart.c
-1FA4 text27 CODE >72:/home/reyes/embedded/clock/src/uart.c
-1FB2 text27 CODE >75:/home/reyes/embedded/clock/src/uart.c
-1FB4 text27 CODE >76:/home/reyes/embedded/clock/src/uart.c
-1FB6 text27 CODE >77:/home/reyes/embedded/clock/src/uart.c
-1FBA text27 CODE >78:/home/reyes/embedded/clock/src/uart.c
-1FBA text27 CODE >80:/home/reyes/embedded/clock/src/uart.c
-1FC8 text27 CODE >83:/home/reyes/embedded/clock/src/uart.c
-1FCA text27 CODE >84:/home/reyes/embedded/clock/src/uart.c
-1FCE text27 CODE >85:/home/reyes/embedded/clock/src/uart.c
-1FCE text27 CODE >87:/home/reyes/embedded/clock/src/uart.c
-1FD2 text27 CODE >88:/home/reyes/embedded/clock/src/uart.c
-1FE2 text27 CODE >93:/home/reyes/embedded/clock/src/uart.c
-1FFE text27 CODE >96:/home/reyes/embedded/clock/src/uart.c
-201C text27 CODE >98:/home/reyes/embedded/clock/src/uart.c
-2020 text27 CODE >99:/home/reyes/embedded/clock/src/uart.c
-2024 text27 CODE >100:/home/reyes/embedded/clock/src/uart.c
-2024 text27 CODE >102:/home/reyes/embedded/clock/src/uart.c
-2026 text27 CODE >106:/home/reyes/embedded/clock/src/uart.c
-2348 intcode_body CODE >6:/home/reyes/embedded/clock/src/isr.c
-235A intcode_body CODE >8:/home/reyes/embedded/clock/src/isr.c
-2388 intcode_body CODE >10:/home/reyes/embedded/clock/src/isr.c
-238C intcode_body CODE >12:/home/reyes/embedded/clock/src/isr.c
-228E text25 CODE >28:/home/reyes/embedded/clock/src/gpio.c
-228E text25 CODE >30:/home/reyes/embedded/clock/src/gpio.c
-22E2 text25 CODE >32:/home/reyes/embedded/clock/src/gpio.c
-22E8 text25 CODE >34:/home/reyes/embedded/clock/src/gpio.c
-22EA text25 CODE >35:/home/reyes/embedded/clock/src/gpio.c
-1D3E text24 CODE >16:/home/reyes/embedded/clock/src/gpio.c
-1D3E text24 CODE >18:/home/reyes/embedded/clock/src/gpio.c
-1D4E text24 CODE >20:/home/reyes/embedded/clock/src/gpio.c
-1D8E text24 CODE >21:/home/reyes/embedded/clock/src/gpio.c
-1D92 text24 CODE >24:/home/reyes/embedded/clock/src/gpio.c
-1DD8 text24 CODE >26:/home/reyes/embedded/clock/src/gpio.c
-23E8 text23 CODE >10:/home/reyes/embedded/clock/src/uart.c
-23E8 text23 CODE >12:/home/reyes/embedded/clock/src/uart.c
-23EA text23 CODE >13:/home/reyes/embedded/clock/src/uart.c
-23EC text23 CODE >14:/home/reyes/embedded/clock/src/uart.c
-23EE text23 CODE >16:/home/reyes/embedded/clock/src/uart.c
-2414 text23 CODE >18:/home/reyes/embedded/clock/src/uart.c
-2416 text23 CODE >19:/home/reyes/embedded/clock/src/uart.c
-2418 text23 CODE >21:/home/reyes/embedded/clock/src/uart.c
-241A text23 CODE >22:/home/reyes/embedded/clock/src/uart.c
-241E text23 CODE >30:/home/reyes/embedded/clock/src/uart.c
-1E6E text22 CODE >27:/home/reyes/embedded/clock/src/buffer.c
-1E6E text22 CODE >29:/home/reyes/embedded/clock/src/buffer.c
-1E98 text22 CODE >32:/home/reyes/embedded/clock/src/buffer.c
-1E9E text22 CODE >35:/home/reyes/embedded/clock/src/buffer.c
-1EC4 text22 CODE >36:/home/reyes/embedded/clock/src/buffer.c
-1ED2 text22 CODE >38:/home/reyes/embedded/clock/src/buffer.c
-1EF0 text22 CODE >39:/home/reyes/embedded/clock/src/buffer.c
-1EFE text22 CODE >41:/home/reyes/embedded/clock/src/buffer.c
-1F00 text22 CODE >42:/home/reyes/embedded/clock/src/buffer.c
-2504 text21 CODE >115:/home/reyes/embedded/clock/src/uart.c
-2504 text21 CODE >117:/home/reyes/embedded/clock/src/uart.c
-2514 text21 CODE >118:/home/reyes/embedded/clock/src/uart.c
-249E text20 CODE >3:/home/reyes/embedded/clock/src/buffer.c
-249E text20 CODE >5:/home/reyes/embedded/clock/src/buffer.c
-24AC text20 CODE >6:/home/reyes/embedded/clock/src/buffer.c
-24BA text20 CODE >7:/home/reyes/embedded/clock/src/buffer.c
-1DDA text19 CODE >4:/home/reyes/embedded/clock/src/gpio.c
-1DDA text19 CODE >6:/home/reyes/embedded/clock/src/gpio.c
-1DEA text19 CODE >8:/home/reyes/embedded/clock/src/gpio.c
-1E2C text19 CODE >9:/home/reyes/embedded/clock/src/gpio.c
-1E30 text19 CODE >12:/home/reyes/embedded/clock/src/gpio.c
-1E6C text19 CODE >14:/home/reyes/embedded/clock/src/gpio.c
-22EC text18 CODE >33:/home/reyes/embedded/clock/src/uart.c
-22EC text18 CODE >35:/home/reyes/embedded/clock/src/uart.c
-22FE text18 CODE >36:/home/reyes/embedded/clock/src/uart.c
-2314 text18 CODE >38:/home/reyes/embedded/clock/src/uart.c
-231E text18 CODE >39:/home/reyes/embedded/clock/src/uart.c
-232A text18 CODE >41:/home/reyes/embedded/clock/src/uart.c
-232C text18 CODE >42:/home/reyes/embedded/clock/src/uart.c
-232E text18 CODE >43:/home/reyes/embedded/clock/src/uart.c
-2330 text18 CODE >45:/home/reyes/embedded/clock/src/uart.c
-2332 text18 CODE >46:/home/reyes/embedded/clock/src/uart.c
-2334 text18 CODE >49:/home/reyes/embedded/clock/src/uart.c
-2342 text18 CODE >51:/home/reyes/embedded/clock/src/uart.c
-2344 text18 CODE >53:/home/reyes/embedded/clock/src/uart.c
-2344 text18 CODE >54:/home/reyes/embedded/clock/src/uart.c
-2346 text18 CODE >56:/home/reyes/embedded/clock/src/uart.c
-2516 text17 CODE >14:/home/reyes/embedded/clock/src/isr.c
-2516 text17 CODE >16:/home/reyes/embedded/clock/src/isr.c
-2518 text17 CODE >17:/home/reyes/embedded/clock/src/isr.c
-251A text17 CODE >18:/home/reyes/embedded/clock/src/isr.c
-251C text17 CODE >19:/home/reyes/embedded/clock/src/isr.c
-2420 text16 CODE >181:/home/reyes/embedded/clock/external/printf/printf.c
-2422 text16 CODE >183:/home/reyes/embedded/clock/external/printf/printf.c
-244A text16 CODE >184:/home/reyes/embedded/clock/external/printf/printf.c
-21A8 text15 CODE >188:/home/reyes/embedded/clock/external/printf/printf.c
-21A8 text15 CODE >190:/home/reyes/embedded/clock/external/printf/printf.c
-21AE text15 CODE >191:/home/reyes/embedded/clock/external/printf/printf.c
-21B2 text15 CODE >192:/home/reyes/embedded/clock/external/printf/printf.c
-21F0 text15 CODE >191:/home/reyes/embedded/clock/external/printf/printf.c
-2216 text15 CODE >194:/home/reyes/embedded/clock/external/printf/printf.c
-221E text15 CODE >195:/home/reyes/embedded/clock/external/printf/printf.c
-1C9A text14 CODE >7:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1C9A text14 CODE >13:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CAA text14 CODE >14:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CC0 text14 CODE >15:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CC4 text14 CODE >16:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CC8 text14 CODE >17:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CD2 text14 CODE >18:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CD4 text14 CODE >16:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CE2 text14 CODE >21:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1CEC text14 CODE >22:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D0A text14 CODE >23:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D1A text14 CODE >24:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D1C text14 CODE >26:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D26 text14 CODE >27:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D2C text14 CODE >28:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D2C text14 CODE >29:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-1D3C text14 CODE >30:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
-2028 text13 CODE >7:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2028 text13 CODE >12:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-203E text13 CODE >13:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2042 text13 CODE >14:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2046 text13 CODE >15:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2050 text13 CODE >16:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2052 text13 CODE >14:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2060 text13 CODE >19:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-207E text13 CODE >20:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-208E text13 CODE >21:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-2098 text13 CODE >22:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-209E text13 CODE >23:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-209E text13 CODE >24:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-20AE text13 CODE >25:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
-20B0 text12 CODE >9:/home/reyes/embedded/clock/src/buffer.c
-20B0 text12 CODE >11:/home/reyes/embedded/clock/src/buffer.c
-20C4 text12 CODE >13:/home/reyes/embedded/clock/src/buffer.c
-20D6 text12 CODE >14:/home/reyes/embedded/clock/src/buffer.c
-20D8 text12 CODE >16:/home/reyes/embedded/clock/src/buffer.c
-20FA text12 CODE >22:/home/reyes/embedded/clock/src/buffer.c
-211A text12 CODE >23:/home/reyes/embedded/clock/src/buffer.c
-212A text12 CODE >25:/home/reyes/embedded/clock/src/buffer.c
-24F0 text11 CODE >109:/home/reyes/embedded/clock/src/uart.c
-24F2 text11 CODE >111:/home/reyes/embedded/clock/src/uart.c
-2500 text11 CODE >112:/home/reyes/embedded/clock/src/uart.c
-2502 text11 CODE >113:/home/reyes/embedded/clock/src/uart.c
-2528 text10 CODE >142:/home/reyes/embedded/clock/external/printf/printf.c
-2528 text10 CODE >145:/home/reyes/embedded/clock/external/printf/printf.c
-2476 text9 CODE >133:/home/reyes/embedded/clock/external/printf/printf.c
-2476 text9 CODE >135:/home/reyes/embedded/clock/external/printf/printf.c
-248C text9 CODE >136:/home/reyes/embedded/clock/external/printf/printf.c
-249C text9 CODE >138:/home/reyes/embedded/clock/external/printf/printf.c
-24D8 text8 CODE >149:/home/reyes/embedded/clock/external/printf/printf.c
-24D8 text8 CODE >152:/home/reyes/embedded/clock/external/printf/printf.c
-24E8 text8 CODE >153:/home/reyes/embedded/clock/external/printf/printf.c
-24EE text8 CODE >155:/home/reyes/embedded/clock/external/printf/printf.c
-2526 text7 CODE >159:/home/reyes/embedded/clock/external/printf/printf.c
-2526 text7 CODE >162:/home/reyes/embedded/clock/external/printf/printf.c
-2526 text7 CODE >166:/home/reyes/embedded/clock/external/printf/printf.c
-1A72 text6 CODE >199:/home/reyes/embedded/clock/external/printf/printf.c
-1A72 text6 CODE >201:/home/reyes/embedded/clock/external/printf/printf.c
-1A7A text6 CODE >204:/home/reyes/embedded/clock/external/printf/printf.c
-1A96 text6 CODE >205:/home/reyes/embedded/clock/external/printf/printf.c
-1AA2 text6 CODE >206:/home/reyes/embedded/clock/external/printf/printf.c
-1ADA text6 CODE >207:/home/reyes/embedded/clock/external/printf/printf.c
-1AF8 text6 CODE >212:/home/reyes/embedded/clock/external/printf/printf.c
-1B3E text6 CODE >211:/home/reyes/embedded/clock/external/printf/printf.c
-1B50 text6 CODE >216:/home/reyes/embedded/clock/external/printf/printf.c
-1B62 text6 CODE >218:/home/reyes/embedded/clock/external/printf/printf.c
-1B9A text6 CODE >217:/home/reyes/embedded/clock/external/printf/printf.c
-1BBC text6 CODE >220:/home/reyes/embedded/clock/external/printf/printf.c
-1BBC text6 CODE >222:/home/reyes/embedded/clock/external/printf/printf.c
-1BC4 text6 CODE >223:/home/reyes/embedded/clock/external/printf/printf.c
-15AA text5 CODE >227:/home/reyes/embedded/clock/external/printf/printf.c
-15AA text5 CODE >230:/home/reyes/embedded/clock/external/printf/printf.c
-15B8 text5 CODE >231:/home/reyes/embedded/clock/external/printf/printf.c
-1606 text5 CODE >232:/home/reyes/embedded/clock/external/printf/printf.c
-1610 text5 CODE >235:/home/reyes/embedded/clock/external/printf/printf.c
-1620 text5 CODE >234:/home/reyes/embedded/clock/external/printf/printf.c
-1650 text5 CODE >238:/home/reyes/embedded/clock/external/printf/printf.c
-1660 text5 CODE >237:/home/reyes/embedded/clock/external/printf/printf.c
-169A text5 CODE >240:/home/reyes/embedded/clock/external/printf/printf.c
-169A text5 CODE >243:/home/reyes/embedded/clock/external/printf/printf.c
-16A8 text5 CODE >244:/home/reyes/embedded/clock/external/printf/printf.c
-16F8 text5 CODE >245:/home/reyes/embedded/clock/external/printf/printf.c
-16FE text5 CODE >246:/home/reyes/embedded/clock/external/printf/printf.c
-1724 text5 CODE >247:/home/reyes/embedded/clock/external/printf/printf.c
-172A text5 CODE >250:/home/reyes/embedded/clock/external/printf/printf.c
-1762 text5 CODE >251:/home/reyes/embedded/clock/external/printf/printf.c
-1772 text5 CODE >252:/home/reyes/embedded/clock/external/printf/printf.c
-1776 text5 CODE >253:/home/reyes/embedded/clock/external/printf/printf.c
-17AE text5 CODE >254:/home/reyes/embedded/clock/external/printf/printf.c
-17BE text5 CODE >256:/home/reyes/embedded/clock/external/printf/printf.c
-17E8 text5 CODE >257:/home/reyes/embedded/clock/external/printf/printf.c
-17F8 text5 CODE >259:/home/reyes/embedded/clock/external/printf/printf.c
-180E text5 CODE >260:/home/reyes/embedded/clock/external/printf/printf.c
-181E text5 CODE >264:/home/reyes/embedded/clock/external/printf/printf.c
-1834 text5 CODE >265:/home/reyes/embedded/clock/external/printf/printf.c
-1844 text5 CODE >266:/home/reyes/embedded/clock/external/printf/printf.c
-1854 text5 CODE >267:/home/reyes/embedded/clock/external/printf/printf.c
-1858 text5 CODE >268:/home/reyes/embedded/clock/external/printf/printf.c
-1866 text5 CODE >269:/home/reyes/embedded/clock/external/printf/printf.c
-1876 text5 CODE >271:/home/reyes/embedded/clock/external/printf/printf.c
-1884 text5 CODE >272:/home/reyes/embedded/clock/external/printf/printf.c
-1894 text5 CODE >276:/home/reyes/embedded/clock/external/printf/printf.c
-18DC text5 CODE >277:/home/reyes/embedded/clock/external/printf/printf.c
-18DE text4 CODE >281:/home/reyes/embedded/clock/external/printf/printf.c
-18DE text4 CODE >284:/home/reyes/embedded/clock/external/printf/printf.c
-18E6 text4 CODE >287:/home/reyes/embedded/clock/external/printf/printf.c
-18FC text4 CODE >288:/home/reyes/embedded/clock/external/printf/printf.c
-18FE text4 CODE >292:/home/reyes/embedded/clock/external/printf/printf.c
-1922 text4 CODE >294:/home/reyes/embedded/clock/external/printf/printf.c
-194C text4 CODE >295:/home/reyes/embedded/clock/external/printf/printf.c
-19B2 text4 CODE >296:/home/reyes/embedded/clock/external/printf/printf.c
-19E6 text4 CODE >297:/home/reyes/embedded/clock/external/printf/printf.c
-1A14 text4 CODE >300:/home/reyes/embedded/clock/external/printf/printf.c
-1A70 text4 CODE >301:/home/reyes/embedded/clock/external/printf/printf.c
-23A0 text3 CODE >171:/home/reyes/embedded/clock/external/printf/printf.c
-23A0 text3 CODE >174:/home/reyes/embedded/clock/external/printf/printf.c
-23DA text3 CODE >175:/home/reyes/embedded/clock/external/printf/printf.c
-23E6 text3 CODE >176:/home/reyes/embedded/clock/external/printf/printf.c
+8 intcode CODE >8789:/home/reyes/embedded/clock/build/bin/clock.s
+8 intcode CODE >7:/home/reyes/embedded/clock/src/isr.c
+2122 text31 CODE >9:/home/reyes/embedded/clock/src/buffer.c
+2122 text31 CODE >11:/home/reyes/embedded/clock/src/buffer.c
+2136 text31 CODE >13:/home/reyes/embedded/clock/src/buffer.c
+2148 text31 CODE >14:/home/reyes/embedded/clock/src/buffer.c
+214A text31 CODE >16:/home/reyes/embedded/clock/src/buffer.c
+216C text31 CODE >22:/home/reyes/embedded/clock/src/buffer.c
+218C text31 CODE >23:/home/reyes/embedded/clock/src/buffer.c
+219C text31 CODE >25:/home/reyes/embedded/clock/src/buffer.c
+1F0C text30 CODE >27:/home/reyes/embedded/clock/src/buffer.c
+1F0C text30 CODE >29:/home/reyes/embedded/clock/src/buffer.c
+1F36 text30 CODE >32:/home/reyes/embedded/clock/src/buffer.c
+1F3C text30 CODE >35:/home/reyes/embedded/clock/src/buffer.c
+1F62 text30 CODE >36:/home/reyes/embedded/clock/src/buffer.c
+1F70 text30 CODE >38:/home/reyes/embedded/clock/src/buffer.c
+1F8E text30 CODE >39:/home/reyes/embedded/clock/src/buffer.c
+1F9C text30 CODE >41:/home/reyes/embedded/clock/src/buffer.c
+1F9E text30 CODE >42:/home/reyes/embedded/clock/src/buffer.c
+1E78 text29 CODE >66:/home/reyes/embedded/clock/src/uart.c
+1E78 text29 CODE >69:/home/reyes/embedded/clock/src/uart.c
+1E86 text29 CODE >72:/home/reyes/embedded/clock/src/uart.c
+1E94 text29 CODE >75:/home/reyes/embedded/clock/src/uart.c
+1E96 text29 CODE >76:/home/reyes/embedded/clock/src/uart.c
+1E98 text29 CODE >77:/home/reyes/embedded/clock/src/uart.c
+1E9C text29 CODE >78:/home/reyes/embedded/clock/src/uart.c
+1E9C text29 CODE >80:/home/reyes/embedded/clock/src/uart.c
+1EAA text29 CODE >83:/home/reyes/embedded/clock/src/uart.c
+1EAC text29 CODE >84:/home/reyes/embedded/clock/src/uart.c
+1EB0 text29 CODE >85:/home/reyes/embedded/clock/src/uart.c
+1EB0 text29 CODE >87:/home/reyes/embedded/clock/src/uart.c
+1EB4 text29 CODE >88:/home/reyes/embedded/clock/src/uart.c
+1EC4 text29 CODE >93:/home/reyes/embedded/clock/src/uart.c
+1EE0 text29 CODE >96:/home/reyes/embedded/clock/src/uart.c
+1F00 text29 CODE >98:/home/reyes/embedded/clock/src/uart.c
+1F04 text29 CODE >99:/home/reyes/embedded/clock/src/uart.c
+1F08 text29 CODE >100:/home/reyes/embedded/clock/src/uart.c
+1F08 text29 CODE >102:/home/reyes/embedded/clock/src/uart.c
+1F0A text29 CODE >106:/home/reyes/embedded/clock/src/uart.c
+24A8 text28 CODE >6:/home/reyes/embedded/clock/src/system_tick.c
+24A8 text28 CODE >8:/home/reyes/embedded/clock/src/system_tick.c
+24AC text28 CODE >9:/home/reyes/embedded/clock/src/system_tick.c
+2496 text27 CODE >30:/home/reyes/embedded/clock/src/timer0.c
+2496 text27 CODE >32:/home/reyes/embedded/clock/src/timer0.c
+249A text27 CODE >33:/home/reyes/embedded/clock/src/timer0.c
+249E text27 CODE >34:/home/reyes/embedded/clock/src/timer0.c
+2028 intcode_body CODE >7:/home/reyes/embedded/clock/src/isr.c
+203A intcode_body CODE >10:/home/reyes/embedded/clock/src/isr.c
+2068 intcode_body CODE >12:/home/reyes/embedded/clock/src/isr.c
+206C intcode_body CODE >16:/home/reyes/embedded/clock/src/isr.c
+2088 intcode_body CODE >18:/home/reyes/embedded/clock/src/isr.c
+208C intcode_body CODE >19:/home/reyes/embedded/clock/src/isr.c
+208E intcode_body CODE >20:/home/reyes/embedded/clock/src/isr.c
+2092 intcode_body CODE >23:/home/reyes/embedded/clock/src/isr.c
+2274 text25 CODE >28:/home/reyes/embedded/clock/src/gpio.c
+2274 text25 CODE >30:/home/reyes/embedded/clock/src/gpio.c
+22C8 text25 CODE >32:/home/reyes/embedded/clock/src/gpio.c
+22CE text25 CODE >34:/home/reyes/embedded/clock/src/gpio.c
+22D0 text25 CODE >35:/home/reyes/embedded/clock/src/gpio.c
+1CB4 text24 CODE >16:/home/reyes/embedded/clock/src/gpio.c
+1CB4 text24 CODE >18:/home/reyes/embedded/clock/src/gpio.c
+1CC4 text24 CODE >20:/home/reyes/embedded/clock/src/gpio.c
+1D04 text24 CODE >21:/home/reyes/embedded/clock/src/gpio.c
+1D08 text24 CODE >24:/home/reyes/embedded/clock/src/gpio.c
+1D4E text24 CODE >26:/home/reyes/embedded/clock/src/gpio.c
+2360 text23 CODE >10:/home/reyes/embedded/clock/src/uart.c
+2360 text23 CODE >12:/home/reyes/embedded/clock/src/uart.c
+2362 text23 CODE >13:/home/reyes/embedded/clock/src/uart.c
+2364 text23 CODE >14:/home/reyes/embedded/clock/src/uart.c
+2366 text23 CODE >16:/home/reyes/embedded/clock/src/uart.c
+238C text23 CODE >18:/home/reyes/embedded/clock/src/uart.c
+238E text23 CODE >19:/home/reyes/embedded/clock/src/uart.c
+2390 text23 CODE >21:/home/reyes/embedded/clock/src/uart.c
+2392 text23 CODE >22:/home/reyes/embedded/clock/src/uart.c
+2396 text23 CODE >30:/home/reyes/embedded/clock/src/uart.c
+1DE4 text22 CODE >27:/home/reyes/embedded/clock/src/buffer.c
+1DE4 text22 CODE >29:/home/reyes/embedded/clock/src/buffer.c
+1E0E text22 CODE >32:/home/reyes/embedded/clock/src/buffer.c
+1E14 text22 CODE >35:/home/reyes/embedded/clock/src/buffer.c
+1E3A text22 CODE >36:/home/reyes/embedded/clock/src/buffer.c
+1E48 text22 CODE >38:/home/reyes/embedded/clock/src/buffer.c
+1E66 text22 CODE >39:/home/reyes/embedded/clock/src/buffer.c
+1E74 text22 CODE >41:/home/reyes/embedded/clock/src/buffer.c
+1E76 text22 CODE >42:/home/reyes/embedded/clock/src/buffer.c
+2484 text21 CODE >115:/home/reyes/embedded/clock/src/uart.c
+2484 text21 CODE >117:/home/reyes/embedded/clock/src/uart.c
+2494 text21 CODE >118:/home/reyes/embedded/clock/src/uart.c
+2438 text20 CODE >3:/home/reyes/embedded/clock/src/buffer.c
+2438 text20 CODE >5:/home/reyes/embedded/clock/src/buffer.c
+2446 text20 CODE >6:/home/reyes/embedded/clock/src/buffer.c
+2454 text20 CODE >7:/home/reyes/embedded/clock/src/buffer.c
+1D50 text19 CODE >4:/home/reyes/embedded/clock/src/gpio.c
+1D50 text19 CODE >6:/home/reyes/embedded/clock/src/gpio.c
+1D60 text19 CODE >8:/home/reyes/embedded/clock/src/gpio.c
+1DA2 text19 CODE >9:/home/reyes/embedded/clock/src/gpio.c
+1DA6 text19 CODE >12:/home/reyes/embedded/clock/src/gpio.c
+1DE2 text19 CODE >14:/home/reyes/embedded/clock/src/gpio.c
+2216 text18 CODE >33:/home/reyes/embedded/clock/src/uart.c
+2216 text18 CODE >35:/home/reyes/embedded/clock/src/uart.c
+2228 text18 CODE >36:/home/reyes/embedded/clock/src/uart.c
+223E text18 CODE >38:/home/reyes/embedded/clock/src/uart.c
+224A text18 CODE >39:/home/reyes/embedded/clock/src/uart.c
+2256 text18 CODE >41:/home/reyes/embedded/clock/src/uart.c
+2258 text18 CODE >42:/home/reyes/embedded/clock/src/uart.c
+225A text18 CODE >43:/home/reyes/embedded/clock/src/uart.c
+225C text18 CODE >45:/home/reyes/embedded/clock/src/uart.c
+225E text18 CODE >46:/home/reyes/embedded/clock/src/uart.c
+2260 text18 CODE >49:/home/reyes/embedded/clock/src/uart.c
+226E text18 CODE >51:/home/reyes/embedded/clock/src/uart.c
+2270 text18 CODE >53:/home/reyes/embedded/clock/src/uart.c
+2270 text18 CODE >54:/home/reyes/embedded/clock/src/uart.c
+2272 text18 CODE >56:/home/reyes/embedded/clock/src/uart.c
+24A0 text17 CODE >25:/home/reyes/embedded/clock/src/isr.c
+24A0 text17 CODE >27:/home/reyes/embedded/clock/src/isr.c
+24A2 text17 CODE >28:/home/reyes/embedded/clock/src/isr.c
+24A4 text17 CODE >29:/home/reyes/embedded/clock/src/isr.c
+24A6 text17 CODE >30:/home/reyes/embedded/clock/src/isr.c
+2398 text16 CODE >181:/home/reyes/embedded/clock/external/printf/printf.c
+239A text16 CODE >183:/home/reyes/embedded/clock/external/printf/printf.c
+23C2 text16 CODE >184:/home/reyes/embedded/clock/external/printf/printf.c
+219E text15 CODE >188:/home/reyes/embedded/clock/external/printf/printf.c
+219E text15 CODE >190:/home/reyes/embedded/clock/external/printf/printf.c
+21A4 text15 CODE >191:/home/reyes/embedded/clock/external/printf/printf.c
+21A8 text15 CODE >192:/home/reyes/embedded/clock/external/printf/printf.c
+21E6 text15 CODE >191:/home/reyes/embedded/clock/external/printf/printf.c
+220C text15 CODE >194:/home/reyes/embedded/clock/external/printf/printf.c
+2214 text15 CODE >195:/home/reyes/embedded/clock/external/printf/printf.c
+1C10 text14 CODE >7:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C10 text14 CODE >13:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C20 text14 CODE >14:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C36 text14 CODE >15:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C3A text14 CODE >16:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C3E text14 CODE >17:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C48 text14 CODE >18:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C4A text14 CODE >16:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C58 text14 CODE >21:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C62 text14 CODE >22:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C80 text14 CODE >23:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C90 text14 CODE >24:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C92 text14 CODE >26:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1C9C text14 CODE >27:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1CA2 text14 CODE >28:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1CA2 text14 CODE >29:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1CB2 text14 CODE >30:/opt/microchip/xc8/v3.10/pic/sources/c99/common/__lldiv.c
+1FA0 text13 CODE >7:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FA0 text13 CODE >12:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FB6 text13 CODE >13:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FBA text13 CODE >14:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FBE text13 CODE >15:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FC8 text13 CODE >16:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FCA text13 CODE >14:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FD8 text13 CODE >19:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+1FF6 text13 CODE >20:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+2006 text13 CODE >21:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+2010 text13 CODE >22:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+2016 text13 CODE >23:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+2016 text13 CODE >24:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+2026 text13 CODE >25:/opt/microchip/xc8/v3.10/pic/sources/c99/common/llmod.c
+20A6 text12 CODE >9:/home/reyes/embedded/clock/src/buffer.c
+20A6 text12 CODE >11:/home/reyes/embedded/clock/src/buffer.c
+20BA text12 CODE >13:/home/reyes/embedded/clock/src/buffer.c
+20CC text12 CODE >14:/home/reyes/embedded/clock/src/buffer.c
+20CE text12 CODE >16:/home/reyes/embedded/clock/src/buffer.c
+20F0 text12 CODE >22:/home/reyes/embedded/clock/src/buffer.c
+2110 text12 CODE >23:/home/reyes/embedded/clock/src/buffer.c
+2120 text12 CODE >25:/home/reyes/embedded/clock/src/buffer.c
+246E text11 CODE >109:/home/reyes/embedded/clock/src/uart.c
+2470 text11 CODE >111:/home/reyes/embedded/clock/src/uart.c
+2480 text11 CODE >112:/home/reyes/embedded/clock/src/uart.c
+2482 text11 CODE >113:/home/reyes/embedded/clock/src/uart.c
+24B0 text10 CODE >142:/home/reyes/embedded/clock/external/printf/printf.c
+24B0 text10 CODE >145:/home/reyes/embedded/clock/external/printf/printf.c
+23EE text9 CODE >133:/home/reyes/embedded/clock/external/printf/printf.c
+23EE text9 CODE >135:/home/reyes/embedded/clock/external/printf/printf.c
+2404 text9 CODE >136:/home/reyes/embedded/clock/external/printf/printf.c
+2414 text9 CODE >138:/home/reyes/embedded/clock/external/printf/printf.c
+2456 text8 CODE >149:/home/reyes/embedded/clock/external/printf/printf.c
+2456 text8 CODE >152:/home/reyes/embedded/clock/external/printf/printf.c
+2466 text8 CODE >153:/home/reyes/embedded/clock/external/printf/printf.c
+246C text8 CODE >155:/home/reyes/embedded/clock/external/printf/printf.c
+24AE text7 CODE >159:/home/reyes/embedded/clock/external/printf/printf.c
+24AE text7 CODE >162:/home/reyes/embedded/clock/external/printf/printf.c
+24AE text7 CODE >166:/home/reyes/embedded/clock/external/printf/printf.c
+19E8 text6 CODE >199:/home/reyes/embedded/clock/external/printf/printf.c
+19E8 text6 CODE >201:/home/reyes/embedded/clock/external/printf/printf.c
+19F0 text6 CODE >204:/home/reyes/embedded/clock/external/printf/printf.c
+1A0C text6 CODE >205:/home/reyes/embedded/clock/external/printf/printf.c
+1A18 text6 CODE >206:/home/reyes/embedded/clock/external/printf/printf.c
+1A50 text6 CODE >207:/home/reyes/embedded/clock/external/printf/printf.c
+1A6E text6 CODE >212:/home/reyes/embedded/clock/external/printf/printf.c
+1AB4 text6 CODE >211:/home/reyes/embedded/clock/external/printf/printf.c
+1AC6 text6 CODE >216:/home/reyes/embedded/clock/external/printf/printf.c
+1AD8 text6 CODE >218:/home/reyes/embedded/clock/external/printf/printf.c
+1B10 text6 CODE >217:/home/reyes/embedded/clock/external/printf/printf.c
+1B32 text6 CODE >220:/home/reyes/embedded/clock/external/printf/printf.c
+1B32 text6 CODE >222:/home/reyes/embedded/clock/external/printf/printf.c
+1B3A text6 CODE >223:/home/reyes/embedded/clock/external/printf/printf.c
+1520 text5 CODE >227:/home/reyes/embedded/clock/external/printf/printf.c
+1520 text5 CODE >230:/home/reyes/embedded/clock/external/printf/printf.c
+152E text5 CODE >231:/home/reyes/embedded/clock/external/printf/printf.c
+157C text5 CODE >232:/home/reyes/embedded/clock/external/printf/printf.c
+1586 text5 CODE >235:/home/reyes/embedded/clock/external/printf/printf.c
+1596 text5 CODE >234:/home/reyes/embedded/clock/external/printf/printf.c
+15C6 text5 CODE >238:/home/reyes/embedded/clock/external/printf/printf.c
+15D6 text5 CODE >237:/home/reyes/embedded/clock/external/printf/printf.c
+1610 text5 CODE >240:/home/reyes/embedded/clock/external/printf/printf.c
+1610 text5 CODE >243:/home/reyes/embedded/clock/external/printf/printf.c
+161E text5 CODE >244:/home/reyes/embedded/clock/external/printf/printf.c
+166E text5 CODE >245:/home/reyes/embedded/clock/external/printf/printf.c
+1674 text5 CODE >246:/home/reyes/embedded/clock/external/printf/printf.c
+169A text5 CODE >247:/home/reyes/embedded/clock/external/printf/printf.c
+16A0 text5 CODE >250:/home/reyes/embedded/clock/external/printf/printf.c
+16D8 text5 CODE >251:/home/reyes/embedded/clock/external/printf/printf.c
+16E8 text5 CODE >252:/home/reyes/embedded/clock/external/printf/printf.c
+16EC text5 CODE >253:/home/reyes/embedded/clock/external/printf/printf.c
+1724 text5 CODE >254:/home/reyes/embedded/clock/external/printf/printf.c
+1734 text5 CODE >256:/home/reyes/embedded/clock/external/printf/printf.c
+175E text5 CODE >257:/home/reyes/embedded/clock/external/printf/printf.c
+176E text5 CODE >259:/home/reyes/embedded/clock/external/printf/printf.c
+1784 text5 CODE >260:/home/reyes/embedded/clock/external/printf/printf.c
+1794 text5 CODE >264:/home/reyes/embedded/clock/external/printf/printf.c
+17AA text5 CODE >265:/home/reyes/embedded/clock/external/printf/printf.c
+17BA text5 CODE >266:/home/reyes/embedded/clock/external/printf/printf.c
+17CA text5 CODE >267:/home/reyes/embedded/clock/external/printf/printf.c
+17CE text5 CODE >268:/home/reyes/embedded/clock/external/printf/printf.c
+17DC text5 CODE >269:/home/reyes/embedded/clock/external/printf/printf.c
+17EC text5 CODE >271:/home/reyes/embedded/clock/external/printf/printf.c
+17FA text5 CODE >272:/home/reyes/embedded/clock/external/printf/printf.c
+180A text5 CODE >276:/home/reyes/embedded/clock/external/printf/printf.c
+1852 text5 CODE >277:/home/reyes/embedded/clock/external/printf/printf.c
+1854 text4 CODE >281:/home/reyes/embedded/clock/external/printf/printf.c
+1854 text4 CODE >284:/home/reyes/embedded/clock/external/printf/printf.c
+185C text4 CODE >287:/home/reyes/embedded/clock/external/printf/printf.c
+1872 text4 CODE >288:/home/reyes/embedded/clock/external/printf/printf.c
+1874 text4 CODE >292:/home/reyes/embedded/clock/external/printf/printf.c
+1898 text4 CODE >294:/home/reyes/embedded/clock/external/printf/printf.c
+18C2 text4 CODE >295:/home/reyes/embedded/clock/external/printf/printf.c
+1928 text4 CODE >296:/home/reyes/embedded/clock/external/printf/printf.c
+195C text4 CODE >297:/home/reyes/embedded/clock/external/printf/printf.c
+198A text4 CODE >300:/home/reyes/embedded/clock/external/printf/printf.c
+19E6 text4 CODE >301:/home/reyes/embedded/clock/external/printf/printf.c
+22D2 text3 CODE >171:/home/reyes/embedded/clock/external/printf/printf.c
+22D2 text3 CODE >174:/home/reyes/embedded/clock/external/printf/printf.c
+230C text3 CODE >175:/home/reyes/embedded/clock/external/printf/printf.c
+2318 text3 CODE >176:/home/reyes/embedded/clock/external/printf/printf.c
 80C text2 CODE >577:/home/reyes/embedded/clock/external/printf/printf.c
 80C text2 CODE >580:/home/reyes/embedded/clock/external/printf/printf.c
 814 text2 CODE >582:/home/reyes/embedded/clock/external/printf/printf.c
-828 text2 CODE >584:/home/reyes/embedded/clock/external/printf/printf.c
-834 text2 CODE >590:/home/reyes/embedded/clock/external/printf/printf.c
-850 text2 CODE >592:/home/reyes/embedded/clock/external/printf/printf.c
-894 text2 CODE >593:/home/reyes/embedded/clock/external/printf/printf.c
-898 text2 CODE >594:/home/reyes/embedded/clock/external/printf/printf.c
-89C text2 CODE >598:/home/reyes/embedded/clock/external/printf/printf.c
-89E text2 CODE >602:/home/reyes/embedded/clock/external/printf/printf.c
-8AA text2 CODE >605:/home/reyes/embedded/clock/external/printf/printf.c
-8BC text2 CODE >606:/home/reyes/embedded/clock/external/printf/printf.c
-8C6 text2 CODE >607:/home/reyes/embedded/clock/external/printf/printf.c
-8D0 text2 CODE >608:/home/reyes/embedded/clock/external/printf/printf.c
-8DA text2 CODE >609:/home/reyes/embedded/clock/external/printf/printf.c
-8E4 text2 CODE >610:/home/reyes/embedded/clock/external/printf/printf.c
-8EE text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
+826 text2 CODE >584:/home/reyes/embedded/clock/external/printf/printf.c
+832 text2 CODE >590:/home/reyes/embedded/clock/external/printf/printf.c
+84E text2 CODE >592:/home/reyes/embedded/clock/external/printf/printf.c
+892 text2 CODE >593:/home/reyes/embedded/clock/external/printf/printf.c
+896 text2 CODE >594:/home/reyes/embedded/clock/external/printf/printf.c
+89A text2 CODE >598:/home/reyes/embedded/clock/external/printf/printf.c
+89C text2 CODE >602:/home/reyes/embedded/clock/external/printf/printf.c
+8A6 text2 CODE >605:/home/reyes/embedded/clock/external/printf/printf.c
+8B4 text2 CODE >606:/home/reyes/embedded/clock/external/printf/printf.c
+8BC text2 CODE >607:/home/reyes/embedded/clock/external/printf/printf.c
+8C4 text2 CODE >608:/home/reyes/embedded/clock/external/printf/printf.c
+8CC text2 CODE >609:/home/reyes/embedded/clock/external/printf/printf.c
+8D4 text2 CODE >610:/home/reyes/embedded/clock/external/printf/printf.c
+8DE text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
+8EC text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
+8F4 text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
 8FC text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
 904 text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
 90C text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
-914 text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
-91C text2 CODE >611:/home/reyes/embedded/clock/external/printf/printf.c
-926 text2 CODE >612:/home/reyes/embedded/clock/external/printf/printf.c
-938 text2 CODE >615:/home/reyes/embedded/clock/external/printf/printf.c
-93E text2 CODE >616:/home/reyes/embedded/clock/external/printf/printf.c
-95E text2 CODE >617:/home/reyes/embedded/clock/external/printf/printf.c
-96E text2 CODE >618:/home/reyes/embedded/clock/external/printf/printf.c
-972 text2 CODE >619:/home/reyes/embedded/clock/external/printf/printf.c
-98E text2 CODE >620:/home/reyes/embedded/clock/external/printf/printf.c
-9A8 text2 CODE >621:/home/reyes/embedded/clock/external/printf/printf.c
-9B8 text2 CODE >622:/home/reyes/embedded/clock/external/printf/printf.c
-9BA text2 CODE >623:/home/reyes/embedded/clock/external/printf/printf.c
-9D4 text2 CODE >624:/home/reyes/embedded/clock/external/printf/printf.c
-9D8 text2 CODE >625:/home/reyes/embedded/clock/external/printf/printf.c
-9D8 text2 CODE >626:/home/reyes/embedded/clock/external/printf/printf.c
-9E0 text2 CODE >628:/home/reyes/embedded/clock/external/printf/printf.c
-9E4 text2 CODE >632:/home/reyes/embedded/clock/external/printf/printf.c
-9EC text2 CODE >633:/home/reyes/embedded/clock/external/printf/printf.c
-A08 text2 CODE >634:/home/reyes/embedded/clock/external/printf/printf.c
-A0A text2 CODE >635:/home/reyes/embedded/clock/external/printf/printf.c
-A0E text2 CODE >636:/home/reyes/embedded/clock/external/printf/printf.c
-A2E text2 CODE >637:/home/reyes/embedded/clock/external/printf/printf.c
-A3E text2 CODE >638:/home/reyes/embedded/clock/external/printf/printf.c
-A42 text2 CODE >639:/home/reyes/embedded/clock/external/printf/printf.c
-A5E text2 CODE >640:/home/reyes/embedded/clock/external/printf/printf.c
-A78 text2 CODE >641:/home/reyes/embedded/clock/external/printf/printf.c
-AA6 text2 CODE >642:/home/reyes/embedded/clock/external/printf/printf.c
-AAE text2 CODE >649:/home/reyes/embedded/clock/external/printf/printf.c
-AB2 text2 CODE >650:/home/reyes/embedded/clock/external/printf/printf.c
-AB6 text2 CODE >651:/home/reyes/embedded/clock/external/printf/printf.c
-AD2 text2 CODE >652:/home/reyes/embedded/clock/external/printf/printf.c
-AD6 text2 CODE >653:/home/reyes/embedded/clock/external/printf/printf.c
-ADE text2 CODE >657:/home/reyes/embedded/clock/external/printf/printf.c
-AE2 text2 CODE >658:/home/reyes/embedded/clock/external/printf/printf.c
-AE6 text2 CODE >659:/home/reyes/embedded/clock/external/printf/printf.c
-B02 text2 CODE >660:/home/reyes/embedded/clock/external/printf/printf.c
-B06 text2 CODE >661:/home/reyes/embedded/clock/external/printf/printf.c
-B0E text2 CODE >671:/home/reyes/embedded/clock/external/printf/printf.c
-B12 text2 CODE >672:/home/reyes/embedded/clock/external/printf/printf.c
-B16 text2 CODE >673:/home/reyes/embedded/clock/external/printf/printf.c
+916 text2 CODE >612:/home/reyes/embedded/clock/external/printf/printf.c
+928 text2 CODE >615:/home/reyes/embedded/clock/external/printf/printf.c
+92E text2 CODE >616:/home/reyes/embedded/clock/external/printf/printf.c
+94E text2 CODE >617:/home/reyes/embedded/clock/external/printf/printf.c
+95E text2 CODE >618:/home/reyes/embedded/clock/external/printf/printf.c
+962 text2 CODE >619:/home/reyes/embedded/clock/external/printf/printf.c
+97E text2 CODE >620:/home/reyes/embedded/clock/external/printf/printf.c
+998 text2 CODE >621:/home/reyes/embedded/clock/external/printf/printf.c
+9A8 text2 CODE >622:/home/reyes/embedded/clock/external/printf/printf.c
+9AA text2 CODE >623:/home/reyes/embedded/clock/external/printf/printf.c
+9C2 text2 CODE >624:/home/reyes/embedded/clock/external/printf/printf.c
+9C6 text2 CODE >625:/home/reyes/embedded/clock/external/printf/printf.c
+9C6 text2 CODE >626:/home/reyes/embedded/clock/external/printf/printf.c
+9CE text2 CODE >628:/home/reyes/embedded/clock/external/printf/printf.c
+9D0 text2 CODE >632:/home/reyes/embedded/clock/external/printf/printf.c
+9D8 text2 CODE >633:/home/reyes/embedded/clock/external/printf/printf.c
+9F4 text2 CODE >634:/home/reyes/embedded/clock/external/printf/printf.c
+9F6 text2 CODE >635:/home/reyes/embedded/clock/external/printf/printf.c
+9F8 text2 CODE >636:/home/reyes/embedded/clock/external/printf/printf.c
+A18 text2 CODE >637:/home/reyes/embedded/clock/external/printf/printf.c
+A28 text2 CODE >638:/home/reyes/embedded/clock/external/printf/printf.c
+A2C text2 CODE >639:/home/reyes/embedded/clock/external/printf/printf.c
+A48 text2 CODE >640:/home/reyes/embedded/clock/external/printf/printf.c
+A62 text2 CODE >641:/home/reyes/embedded/clock/external/printf/printf.c
+A90 text2 CODE >642:/home/reyes/embedded/clock/external/printf/printf.c
+A96 text2 CODE >649:/home/reyes/embedded/clock/external/printf/printf.c
+A9A text2 CODE >650:/home/reyes/embedded/clock/external/printf/printf.c
+A9C text2 CODE >651:/home/reyes/embedded/clock/external/printf/printf.c
+AB8 text2 CODE >652:/home/reyes/embedded/clock/external/printf/printf.c
+ABA text2 CODE >653:/home/reyes/embedded/clock/external/printf/printf.c
+AC0 text2 CODE >657:/home/reyes/embedded/clock/external/printf/printf.c
+AC4 text2 CODE >658:/home/reyes/embedded/clock/external/printf/printf.c
+AC6 text2 CODE >659:/home/reyes/embedded/clock/external/printf/printf.c
+AE2 text2 CODE >660:/home/reyes/embedded/clock/external/printf/printf.c
+AE4 text2 CODE >661:/home/reyes/embedded/clock/external/printf/printf.c
+AEA text2 CODE >671:/home/reyes/embedded/clock/external/printf/printf.c
+AEE text2 CODE >672:/home/reyes/embedded/clock/external/printf/printf.c
+AF0 text2 CODE >673:/home/reyes/embedded/clock/external/printf/printf.c
+AF4 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
+B02 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
+B0A text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
+B12 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
 B1A text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
-B28 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
-B30 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
-B38 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
-B40 text2 CODE >680:/home/reyes/embedded/clock/external/printf/printf.c
-B4A text2 CODE >693:/home/reyes/embedded/clock/external/printf/printf.c
-B82 text2 CODE >694:/home/reyes/embedded/clock/external/printf/printf.c
-B8A text2 CODE >695:/home/reyes/embedded/clock/external/printf/printf.c
-B8E text2 CODE >696:/home/reyes/embedded/clock/external/printf/printf.c
-BAA text2 CODE >697:/home/reyes/embedded/clock/external/printf/printf.c
-BB2 text2 CODE >698:/home/reyes/embedded/clock/external/printf/printf.c
-BB6 text2 CODE >699:/home/reyes/embedded/clock/external/printf/printf.c
-BD2 text2 CODE >700:/home/reyes/embedded/clock/external/printf/printf.c
-BDA text2 CODE >701:/home/reyes/embedded/clock/external/printf/printf.c
-BDE text2 CODE >703:/home/reyes/embedded/clock/external/printf/printf.c
-BE6 text2 CODE >704:/home/reyes/embedded/clock/external/printf/printf.c
-BE8 text2 CODE >707:/home/reyes/embedded/clock/external/printf/printf.c
-C04 text2 CODE >708:/home/reyes/embedded/clock/external/printf/printf.c
-C06 text2 CODE >712:/home/reyes/embedded/clock/external/printf/printf.c
-C3E text2 CODE >713:/home/reyes/embedded/clock/external/printf/printf.c
-C46 text2 CODE >717:/home/reyes/embedded/clock/external/printf/printf.c
-C54 text2 CODE >718:/home/reyes/embedded/clock/external/printf/printf.c
-C56 text2 CODE >722:/home/reyes/embedded/clock/external/printf/printf.c
-C8E text2 CODE >724:/home/reyes/embedded/clock/external/printf/printf.c
-CA0 text2 CODE >730:/home/reyes/embedded/clock/external/printf/printf.c
-CAE text2 CODE >731:/home/reyes/embedded/clock/external/printf/printf.c
-CD0 text2 CODE >732:/home/reyes/embedded/clock/external/printf/printf.c
-D90 text2 CODE >733:/home/reyes/embedded/clock/external/printf/printf.c
-D94 text2 CODE >734:/home/reyes/embedded/clock/external/printf/printf.c
-D94 text2 CODE >735:/home/reyes/embedded/clock/external/printf/printf.c
-E14 text2 CODE >736:/home/reyes/embedded/clock/external/printf/printf.c
-EC4 text2 CODE >739:/home/reyes/embedded/clock/external/printf/printf.c
-EC4 text2 CODE >741:/home/reyes/embedded/clock/external/printf/printf.c
-ED6 text2 CODE >746:/home/reyes/embedded/clock/external/printf/printf.c
-EE4 text2 CODE >747:/home/reyes/embedded/clock/external/printf/printf.c
-F5C text2 CODE >748:/home/reyes/embedded/clock/external/printf/printf.c
-F60 text2 CODE >749:/home/reyes/embedded/clock/external/printf/printf.c
-F60 text2 CODE >750:/home/reyes/embedded/clock/external/printf/printf.c
-FE0 text2 CODE >751:/home/reyes/embedded/clock/external/printf/printf.c
-1046 text2 CODE >777:/home/reyes/embedded/clock/external/printf/printf.c
-104E text2 CODE >779:/home/reyes/embedded/clock/external/printf/printf.c
-1060 text2 CODE >781:/home/reyes/embedded/clock/external/printf/printf.c
-109A text2 CODE >780:/home/reyes/embedded/clock/external/printf/printf.c
-10CA text2 CODE >785:/home/reyes/embedded/clock/external/printf/printf.c
-1118 text2 CODE >787:/home/reyes/embedded/clock/external/printf/printf.c
-112A text2 CODE >789:/home/reyes/embedded/clock/external/printf/printf.c
-1164 text2 CODE >788:/home/reyes/embedded/clock/external/printf/printf.c
-1198 text2 CODE >797:/home/reyes/embedded/clock/external/printf/printf.c
-11AE text2 CODE >798:/home/reyes/embedded/clock/external/printf/printf.c
-11EA text2 CODE >800:/home/reyes/embedded/clock/external/printf/printf.c
-11FA text2 CODE >801:/home/reyes/embedded/clock/external/printf/printf.c
-1218 text2 CODE >802:/home/reyes/embedded/clock/external/printf/printf.c
-1218 text2 CODE >803:/home/reyes/embedded/clock/external/printf/printf.c
-122A text2 CODE >805:/home/reyes/embedded/clock/external/printf/printf.c
-1264 text2 CODE >804:/home/reyes/embedded/clock/external/printf/printf.c
-1298 text2 CODE >810:/home/reyes/embedded/clock/external/printf/printf.c
-12DC text2 CODE >809:/home/reyes/embedded/clock/external/printf/printf.c
-131C text2 CODE >813:/home/reyes/embedded/clock/external/printf/printf.c
-132E text2 CODE >815:/home/reyes/embedded/clock/external/printf/printf.c
-1368 text2 CODE >814:/home/reyes/embedded/clock/external/printf/printf.c
-139C text2 CODE >823:/home/reyes/embedded/clock/external/printf/printf.c
-13A4 text2 CODE >824:/home/reyes/embedded/clock/external/printf/printf.c
-13A8 text2 CODE >832:/home/reyes/embedded/clock/external/printf/printf.c
-142C text2 CODE >841:/home/reyes/embedded/clock/external/printf/printf.c
-1466 text2 CODE >846:/home/reyes/embedded/clock/external/printf/printf.c
-14AA text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14B8 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14C0 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14C8 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14D0 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14D8 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14E0 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14E8 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14F0 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-14F8 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-1500 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-1508 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
-1512 text2 CODE >587:/home/reyes/embedded/clock/external/printf/printf.c
-152E text2 CODE >853:/home/reyes/embedded/clock/external/printf/printf.c
-15A0 text2 CODE >856:/home/reyes/embedded/clock/external/printf/printf.c
-15A8 text2 CODE >857:/home/reyes/embedded/clock/external/printf/printf.c
-244C text1 CODE >862:/home/reyes/embedded/clock/external/printf/printf.c
-244C text1 CODE >865:/home/reyes/embedded/clock/external/printf/printf.c
-2452 text1 CODE >867:/home/reyes/embedded/clock/external/printf/printf.c
-2474 text1 CODE >870:/home/reyes/embedded/clock/external/printf/printf.c
-1BC6 text0 CODE >43:/home/reyes/embedded/clock/main.c
-1BC6 text0 CODE >45:/home/reyes/embedded/clock/main.c
-1BD2 text0 CODE >46:/home/reyes/embedded/clock/main.c
-1BDE text0 CODE >47:/home/reyes/embedded/clock/main.c
-1BE6 text0 CODE >48:/home/reyes/embedded/clock/main.c
-1BEE text0 CODE >52:/home/reyes/embedded/clock/main.c
-1BF2 text0 CODE >55:/home/reyes/embedded/clock/main.c
-1BFE text0 CODE >58:/home/reyes/embedded/clock/main.c
-1C0A text0 CODE >60:/home/reyes/embedded/clock/main.c
-1C1A text0 CODE >63:/home/reyes/embedded/clock/main.c
-1C2A text0 CODE >64:/home/reyes/embedded/clock/main.c
-1C44 text0 CODE >67:/home/reyes/embedded/clock/main.c
-1C5C text0 CODE >69:/home/reyes/embedded/clock/main.c
-1C70 text0 CODE >71:/home/reyes/embedded/clock/main.c
-1C7C text0 CODE >72:/home/reyes/embedded/clock/main.c
-1C80 text0 CODE >73:/home/reyes/embedded/clock/main.c
-2220 cinit CODE >2016:/home/reyes/embedded/clock/build/bin/clock.s
-2220 cinit CODE >2018:/home/reyes/embedded/clock/build/bin/clock.s
-2220 cinit CODE >2021:/home/reyes/embedded/clock/build/bin/clock.s
-2220 cinit CODE >2075:/home/reyes/embedded/clock/build/bin/clock.s
-2222 cinit CODE >2076:/home/reyes/embedded/clock/build/bin/clock.s
-2224 cinit CODE >2077:/home/reyes/embedded/clock/build/bin/clock.s
-2226 cinit CODE >2078:/home/reyes/embedded/clock/build/bin/clock.s
-2228 cinit CODE >2079:/home/reyes/embedded/clock/build/bin/clock.s
-222A cinit CODE >2080:/home/reyes/embedded/clock/build/bin/clock.s
-222C cinit CODE >2081:/home/reyes/embedded/clock/build/bin/clock.s
-2230 cinit CODE >2082:/home/reyes/embedded/clock/build/bin/clock.s
-2234 cinit CODE >2083:/home/reyes/embedded/clock/build/bin/clock.s
-2234 cinit CODE >2084:/home/reyes/embedded/clock/build/bin/clock.s
-2236 cinit CODE >2085:/home/reyes/embedded/clock/build/bin/clock.s
-223A cinit CODE >2086:/home/reyes/embedded/clock/build/bin/clock.s
-223C cinit CODE >2087:/home/reyes/embedded/clock/build/bin/clock.s
-223E cinit CODE >2088:/home/reyes/embedded/clock/build/bin/clock.s
-2240 cinit CODE >2092:/home/reyes/embedded/clock/build/bin/clock.s
-2242 cinit CODE >2093:/home/reyes/embedded/clock/build/bin/clock.s
-2244 cinit CODE >2094:/home/reyes/embedded/clock/build/bin/clock.s
-2246 cinit CODE >2095:/home/reyes/embedded/clock/build/bin/clock.s
-2248 cinit CODE >2096:/home/reyes/embedded/clock/build/bin/clock.s
-224A cinit CODE >2097:/home/reyes/embedded/clock/build/bin/clock.s
-224C cinit CODE >2098:/home/reyes/embedded/clock/build/bin/clock.s
-2250 cinit CODE >2099:/home/reyes/embedded/clock/build/bin/clock.s
-2254 cinit CODE >2100:/home/reyes/embedded/clock/build/bin/clock.s
-2254 cinit CODE >2101:/home/reyes/embedded/clock/build/bin/clock.s
-2256 cinit CODE >2102:/home/reyes/embedded/clock/build/bin/clock.s
-225A cinit CODE >2103:/home/reyes/embedded/clock/build/bin/clock.s
-225C cinit CODE >2104:/home/reyes/embedded/clock/build/bin/clock.s
-225E cinit CODE >2105:/home/reyes/embedded/clock/build/bin/clock.s
-2260 cinit CODE >2109:/home/reyes/embedded/clock/build/bin/clock.s
-2264 cinit CODE >2110:/home/reyes/embedded/clock/build/bin/clock.s
-2266 cinit CODE >2111:/home/reyes/embedded/clock/build/bin/clock.s
-2266 cinit CODE >2112:/home/reyes/embedded/clock/build/bin/clock.s
-2268 cinit CODE >2113:/home/reyes/embedded/clock/build/bin/clock.s
-226A cinit CODE >2114:/home/reyes/embedded/clock/build/bin/clock.s
-226C cinit CODE >2117:/home/reyes/embedded/clock/build/bin/clock.s
-2270 cinit CODE >2118:/home/reyes/embedded/clock/build/bin/clock.s
-2272 cinit CODE >2119:/home/reyes/embedded/clock/build/bin/clock.s
-2272 cinit CODE >2120:/home/reyes/embedded/clock/build/bin/clock.s
-2274 cinit CODE >2121:/home/reyes/embedded/clock/build/bin/clock.s
-2276 cinit CODE >2122:/home/reyes/embedded/clock/build/bin/clock.s
-2278 cinit CODE >2125:/home/reyes/embedded/clock/build/bin/clock.s
-227A cinit CODE >2126:/home/reyes/embedded/clock/build/bin/clock.s
-227C cinit CODE >2127:/home/reyes/embedded/clock/build/bin/clock.s
-227E cinit CODE >2128:/home/reyes/embedded/clock/build/bin/clock.s
-2280 cinit CODE >2134:/home/reyes/embedded/clock/build/bin/clock.s
-2280 cinit CODE >2136:/home/reyes/embedded/clock/build/bin/clock.s
-2282 cinit CODE >2137:/home/reyes/embedded/clock/build/bin/clock.s
-2284 cinit CODE >2139:/home/reyes/embedded/clock/build/bin/clock.s
-2286 cinit CODE >2140:/home/reyes/embedded/clock/build/bin/clock.s
-2288 cinit CODE >2141:/home/reyes/embedded/clock/build/bin/clock.s
-228A cinit CODE >2142:/home/reyes/embedded/clock/build/bin/clock.s
+B24 text2 CODE >693:/home/reyes/embedded/clock/external/printf/printf.c
+B5C text2 CODE >694:/home/reyes/embedded/clock/external/printf/printf.c
+B64 text2 CODE >695:/home/reyes/embedded/clock/external/printf/printf.c
+B68 text2 CODE >696:/home/reyes/embedded/clock/external/printf/printf.c
+B84 text2 CODE >697:/home/reyes/embedded/clock/external/printf/printf.c
+B8C text2 CODE >698:/home/reyes/embedded/clock/external/printf/printf.c
+B90 text2 CODE >699:/home/reyes/embedded/clock/external/printf/printf.c
+BAC text2 CODE >700:/home/reyes/embedded/clock/external/printf/printf.c
+BB4 text2 CODE >701:/home/reyes/embedded/clock/external/printf/printf.c
+BB8 text2 CODE >703:/home/reyes/embedded/clock/external/printf/printf.c
+BC0 text2 CODE >704:/home/reyes/embedded/clock/external/printf/printf.c
+BC2 text2 CODE >707:/home/reyes/embedded/clock/external/printf/printf.c
+BDE text2 CODE >708:/home/reyes/embedded/clock/external/printf/printf.c
+BE0 text2 CODE >712:/home/reyes/embedded/clock/external/printf/printf.c
+C18 text2 CODE >713:/home/reyes/embedded/clock/external/printf/printf.c
+C20 text2 CODE >717:/home/reyes/embedded/clock/external/printf/printf.c
+C2E text2 CODE >718:/home/reyes/embedded/clock/external/printf/printf.c
+C30 text2 CODE >722:/home/reyes/embedded/clock/external/printf/printf.c
+C68 text2 CODE >724:/home/reyes/embedded/clock/external/printf/printf.c
+C7A text2 CODE >730:/home/reyes/embedded/clock/external/printf/printf.c
+C88 text2 CODE >731:/home/reyes/embedded/clock/external/printf/printf.c
+CAA text2 CODE >732:/home/reyes/embedded/clock/external/printf/printf.c
+D68 text2 CODE >733:/home/reyes/embedded/clock/external/printf/printf.c
+D6C text2 CODE >734:/home/reyes/embedded/clock/external/printf/printf.c
+D6C text2 CODE >735:/home/reyes/embedded/clock/external/printf/printf.c
+DE8 text2 CODE >736:/home/reyes/embedded/clock/external/printf/printf.c
+E92 text2 CODE >739:/home/reyes/embedded/clock/external/printf/printf.c
+E92 text2 CODE >741:/home/reyes/embedded/clock/external/printf/printf.c
+EA4 text2 CODE >746:/home/reyes/embedded/clock/external/printf/printf.c
+EB2 text2 CODE >747:/home/reyes/embedded/clock/external/printf/printf.c
+F28 text2 CODE >748:/home/reyes/embedded/clock/external/printf/printf.c
+F2C text2 CODE >749:/home/reyes/embedded/clock/external/printf/printf.c
+F2C text2 CODE >750:/home/reyes/embedded/clock/external/printf/printf.c
+FA8 text2 CODE >751:/home/reyes/embedded/clock/external/printf/printf.c
+100C text2 CODE >777:/home/reyes/embedded/clock/external/printf/printf.c
+1014 text2 CODE >779:/home/reyes/embedded/clock/external/printf/printf.c
+1026 text2 CODE >781:/home/reyes/embedded/clock/external/printf/printf.c
+1060 text2 CODE >780:/home/reyes/embedded/clock/external/printf/printf.c
+1082 text2 CODE >785:/home/reyes/embedded/clock/external/printf/printf.c
+10CE text2 CODE >787:/home/reyes/embedded/clock/external/printf/printf.c
+10E0 text2 CODE >789:/home/reyes/embedded/clock/external/printf/printf.c
+111A text2 CODE >788:/home/reyes/embedded/clock/external/printf/printf.c
+1140 text2 CODE >797:/home/reyes/embedded/clock/external/printf/printf.c
+1156 text2 CODE >798:/home/reyes/embedded/clock/external/printf/printf.c
+1192 text2 CODE >800:/home/reyes/embedded/clock/external/printf/printf.c
+11A2 text2 CODE >801:/home/reyes/embedded/clock/external/printf/printf.c
+11C0 text2 CODE >802:/home/reyes/embedded/clock/external/printf/printf.c
+11C0 text2 CODE >803:/home/reyes/embedded/clock/external/printf/printf.c
+11D2 text2 CODE >805:/home/reyes/embedded/clock/external/printf/printf.c
+120C text2 CODE >804:/home/reyes/embedded/clock/external/printf/printf.c
+1232 text2 CODE >810:/home/reyes/embedded/clock/external/printf/printf.c
+1274 text2 CODE >809:/home/reyes/embedded/clock/external/printf/printf.c
+12B2 text2 CODE >813:/home/reyes/embedded/clock/external/printf/printf.c
+12C4 text2 CODE >815:/home/reyes/embedded/clock/external/printf/printf.c
+12FE text2 CODE >814:/home/reyes/embedded/clock/external/printf/printf.c
+1324 text2 CODE >823:/home/reyes/embedded/clock/external/printf/printf.c
+132C text2 CODE >824:/home/reyes/embedded/clock/external/printf/printf.c
+1330 text2 CODE >832:/home/reyes/embedded/clock/external/printf/printf.c
+13B2 text2 CODE >841:/home/reyes/embedded/clock/external/printf/printf.c
+13EC text2 CODE >846:/home/reyes/embedded/clock/external/printf/printf.c
+1430 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+143E text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+1446 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+144E text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+1456 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+145E text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+1466 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+146E text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+1476 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+147E text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+1486 text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+148E text2 CODE >849:/home/reyes/embedded/clock/external/printf/printf.c
+1498 text2 CODE >587:/home/reyes/embedded/clock/external/printf/printf.c
+14B4 text2 CODE >853:/home/reyes/embedded/clock/external/printf/printf.c
+1516 text2 CODE >856:/home/reyes/embedded/clock/external/printf/printf.c
+151E text2 CODE >857:/home/reyes/embedded/clock/external/printf/printf.c
+23C4 text1 CODE >862:/home/reyes/embedded/clock/external/printf/printf.c
+23C4 text1 CODE >865:/home/reyes/embedded/clock/external/printf/printf.c
+23C8 text1 CODE >867:/home/reyes/embedded/clock/external/printf/printf.c
+23EC text1 CODE >870:/home/reyes/embedded/clock/external/printf/printf.c
+1B3C text0 CODE >43:/home/reyes/embedded/clock/main.c
+1B3C text0 CODE >45:/home/reyes/embedded/clock/main.c
+1B48 text0 CODE >46:/home/reyes/embedded/clock/main.c
+1B54 text0 CODE >47:/home/reyes/embedded/clock/main.c
+1B5C text0 CODE >48:/home/reyes/embedded/clock/main.c
+1B64 text0 CODE >52:/home/reyes/embedded/clock/main.c
+1B68 text0 CODE >55:/home/reyes/embedded/clock/main.c
+1B74 text0 CODE >58:/home/reyes/embedded/clock/main.c
+1B80 text0 CODE >60:/home/reyes/embedded/clock/main.c
+1B90 text0 CODE >63:/home/reyes/embedded/clock/main.c
+1BA0 text0 CODE >64:/home/reyes/embedded/clock/main.c
+1BBA text0 CODE >67:/home/reyes/embedded/clock/main.c
+1BD2 text0 CODE >69:/home/reyes/embedded/clock/main.c
+1BE6 text0 CODE >71:/home/reyes/embedded/clock/main.c
+1BF2 text0 CODE >72:/home/reyes/embedded/clock/main.c
+1BF6 text0 CODE >73:/home/reyes/embedded/clock/main.c
+231A cinit CODE >2017:/home/reyes/embedded/clock/build/bin/clock.s
+231A cinit CODE >2019:/home/reyes/embedded/clock/build/bin/clock.s
+231A cinit CODE >2022:/home/reyes/embedded/clock/build/bin/clock.s
+231A cinit CODE >2075:/home/reyes/embedded/clock/build/bin/clock.s
+231C cinit CODE >2076:/home/reyes/embedded/clock/build/bin/clock.s
+231E cinit CODE >2077:/home/reyes/embedded/clock/build/bin/clock.s
+2320 cinit CODE >2078:/home/reyes/embedded/clock/build/bin/clock.s
+2322 cinit CODE >2079:/home/reyes/embedded/clock/build/bin/clock.s
+2324 cinit CODE >2080:/home/reyes/embedded/clock/build/bin/clock.s
+2326 cinit CODE >2081:/home/reyes/embedded/clock/build/bin/clock.s
+232A cinit CODE >2082:/home/reyes/embedded/clock/build/bin/clock.s
+232E cinit CODE >2083:/home/reyes/embedded/clock/build/bin/clock.s
+232E cinit CODE >2084:/home/reyes/embedded/clock/build/bin/clock.s
+2330 cinit CODE >2085:/home/reyes/embedded/clock/build/bin/clock.s
+2334 cinit CODE >2086:/home/reyes/embedded/clock/build/bin/clock.s
+2336 cinit CODE >2087:/home/reyes/embedded/clock/build/bin/clock.s
+2338 cinit CODE >2088:/home/reyes/embedded/clock/build/bin/clock.s
+233A cinit CODE >2092:/home/reyes/embedded/clock/build/bin/clock.s
+233E cinit CODE >2093:/home/reyes/embedded/clock/build/bin/clock.s
+2340 cinit CODE >2094:/home/reyes/embedded/clock/build/bin/clock.s
+2340 cinit CODE >2095:/home/reyes/embedded/clock/build/bin/clock.s
+2342 cinit CODE >2096:/home/reyes/embedded/clock/build/bin/clock.s
+2344 cinit CODE >2097:/home/reyes/embedded/clock/build/bin/clock.s
+2346 cinit CODE >2100:/home/reyes/embedded/clock/build/bin/clock.s
+234A cinit CODE >2101:/home/reyes/embedded/clock/build/bin/clock.s
+234C cinit CODE >2102:/home/reyes/embedded/clock/build/bin/clock.s
+234C cinit CODE >2103:/home/reyes/embedded/clock/build/bin/clock.s
+234E cinit CODE >2104:/home/reyes/embedded/clock/build/bin/clock.s
+2350 cinit CODE >2105:/home/reyes/embedded/clock/build/bin/clock.s
+2352 cinit CODE >2111:/home/reyes/embedded/clock/build/bin/clock.s
+2352 cinit CODE >2113:/home/reyes/embedded/clock/build/bin/clock.s
+2354 cinit CODE >2114:/home/reyes/embedded/clock/build/bin/clock.s
+2356 cinit CODE >2116:/home/reyes/embedded/clock/build/bin/clock.s
+2358 cinit CODE >2117:/home/reyes/embedded/clock/build/bin/clock.s
+235A cinit CODE >2118:/home/reyes/embedded/clock/build/bin/clock.s
+235C cinit CODE >2119:/home/reyes/embedded/clock/build/bin/clock.s
 $build/bin/startup.o
 E init CODE >101:/home/reyes/embedded/clock/build/bin/startup.s
 0 reset_vec CODE >66:/home/reyes/embedded/clock/build/bin/startup.s
@@ -579,43 +562,43 @@ E init CODE >101:/home/reyes/embedded/clock/build/bin/startup.s
 # was defined in a psect then <psect> will be "-". File-name
 # is the name of the object file in which the symbol was defined.
 %SYMTAB
-__end_of_Uart_Start 2348 0 CODE 0 text18 build/bin/clock.o
+__end_of_Uart_Start 2274 0 CODE 0 text18 build/bin/clock.o
 __LdataBANK0 0 0 ABS 0 dataBANK0 build/bin/clock.o
 __Lmediumconst 0 0 MEDIUMCONST 0 mediumconst build/bin/clock.o
-__Hspace_0 252A 0 ABS 0 - build/bin/clock.o
-__Hspace_1 141 0 ABS 0 - build/bin/clock.o
+__Hspace_0 24B2 0 ABS 0 - build/bin/clock.o
+__Hspace_1 12C 0 ABS 0 - build/bin/clock.o
 __Hspace_2 0 0 ABS 0 - build/bin/clock.o
 __Hspace_4 600008 0 ABS 0 - build/bin/clock.o
-__vsnprintf@l 112 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@n 114 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@p 11A 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@w 116 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@l B9 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@n BB 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@p C1 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@w BD 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __HidataBANK0 0 0 ABS 0 idataBANK0 build/bin/clock.o
 __Hibigdata 0 0 CODE 0 ibigdata build/bin/clock.o
 __mediumconst 800 0 SMALLCONST 0 smallconst build/bin/clock.o
-?_printf_ A9 0 BANK0 1 cstackBANK0 build/bin/clock.o
+?_printf_ D2 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __Heeprom_data 0 0 EEDATA 0 eeprom_data build/bin/clock.o
 i2Buffer_Get@element 4 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__vsnprintf@precision 125 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@precision CC 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __out_buffer@idx 17 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 Gpio_Write@gpio E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-_rx 48 0 COMRAM 1 dataCOMRAM build/bin/clock.o
-_tx B2 0 BANK0 1 dataBANK0 build/bin/clock.o
+_rx E0 0 BANK0 1 dataBANK0 build/bin/clock.o
+_tx D9 0 BANK0 1 dataBANK0 build/bin/clock.o
 __L__absolute__ 0 0 ABS 0 __absolute__ build/bin/clock.o
-main@c B1 0 BANK0 1 cstackBANK0 build/bin/clock.o
+main@c D8 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __Lsmallconst 800 0 SMALLCONST 0 smallconst build/bin/clock.o
 _LATB F8A 0 ABS 0 - build/bin/clock.o
 _LATC F8B 0 ABS 0 - build/bin/clock.o
 _LATD F8C 0 ABS 0 - build/bin/clock.o
 ___sp 0 0 STACK 2 stack build/bin/startup.o
-_main 1BC6 0 CODE 0 text0 build/bin/clock.o
+_main 1B3C 0 CODE 0 text0 build/bin/clock.o
 btemp 1 0 ABS 0 - build/bin/clock.o
 ___stack_hi 0 0 STACK 2 stack build/bin/startup.o
 ___stack_lo 0 0 STACK 2 stack build/bin/startup.o
 Buffer_Add@element 10 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 start E 0 CODE 0 init build/bin/startup.o
-i2_Buffer_Add 212C 0 CODE 0 text29 build/bin/clock.o
-i2_Buffer_Get 1F02 0 CODE 0 text28 build/bin/clock.o
+i2_Buffer_Add 2122 0 CODE 0 text31 build/bin/clock.o
+i2_Buffer_Get 1F0C 0 CODE 0 text30 build/bin/clock.o
 __out_rev@flags 28 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __HbssCOMRAM 0 0 ABS 0 bssCOMRAM build/bin/clock.o
 ?__strnlen_s E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
@@ -623,16 +606,15 @@ __out_rev@width 26 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __LidataBANK0 0 0 ABS 0 idataBANK0 build/bin/clock.o
 __Hpowerup 0 0 CODE 0 powerup build/bin/clock.o
 _T0CONbits FD5 0 ABS 0 - build/bin/clock.o
-__end_of_Buffer_Init 24BC 0 CODE 0 text20 build/bin/clock.o
-__HdataCOMRAM 0 0 ABS 0 dataCOMRAM build/bin/clock.o
-__ntoa_long$876 97 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__ntoa_long$877 99 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__end_of_Buffer_Init 2456 0 CODE 0 text20 build/bin/clock.o
+__ntoa_long$885 97 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__ntoa_long$886 99 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@buf 77 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@idx 64 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@len 9C 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@out 60 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__vsnprintf@base 121 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@prec 110 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@base C8 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@prec B7 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __accesstop 60 0 ABS 0 - build/bin/startup.o
 intlevel0 0 0 CODE 0 text build/bin/startup.o
 intlevel1 0 0 CODE 0 text build/bin/startup.o
@@ -650,15 +632,13 @@ __out_buffer@character 14 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Hclrtext 0 0 ABS 0 clrtext build/bin/clock.o
 __out_rev@start_idx 2C 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __out_rev@i 2E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__pidataCOMRAM 251E 0 CODE 0 idataCOMRAM build/bin/clock.o
 ___inthi_sp 0 0 STACK 2 stack build/bin/startup.o
 ___intlo_sp 0 0 STACK 2 stack build/bin/startup.o
-__LdataCOMRAM 0 0 ABS 0 dataCOMRAM build/bin/clock.o
-__end_of_Uart_Init 2420 0 CODE 0 text23 build/bin/clock.o
-__end_of_Uart_Read 2516 0 CODE 0 text21 build/bin/clock.o
+__end_of_Uart_Init 2398 0 CODE 0 text23 build/bin/clock.o
+__end_of_Uart_Read 2496 0 CODE 0 text21 build/bin/clock.o
 __Hintcode_body 0 0 ABS 0 intcode_body build/bin/clock.o
-__end_ofi2_Buffer_Add 21A8 0 CODE 0 text29 build/bin/clock.o
-__end_ofi2_Buffer_Get 1F96 0 CODE 0 text28 build/bin/clock.o
+__end_ofi2_Buffer_Add 219E 0 CODE 0 text31 build/bin/clock.o
+__end_ofi2_Buffer_Get 1FA0 0 CODE 0 text30 build/bin/clock.o
 Gpio_Read@gpio E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs build/bin/clock.o
 _BAUDCONbits FB8 0 ABS 0 - build/bin/clock.o
@@ -668,44 +648,43 @@ __Hintcodelo 18 0 CODE 0 intcodelo build/bin/clock.o
 __out_buffer@buffer 15 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 i2Buffer_Get@buffer 2 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_format@flags 42 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__end_of___lldiv 1D3E 0 CODE 0 text14 build/bin/clock.o
-__end_of___llmod 20B0 0 CODE 0 text13 build/bin/clock.o
-__end_of__is_digit 244C 0 CODE 0 text16 build/bin/clock.o
+__end_of___lldiv 1CB4 0 CODE 0 text14 build/bin/clock.o
+__end_of___llmod 2028 0 CODE 0 text13 build/bin/clock.o
+__end_of__is_digit 23C4 0 CODE 0 text16 build/bin/clock.o
 __ntoa_format@width 40 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
+_timer0_reload 2496 0 CODE 0 text27 build/bin/clock.o
 __ntoa_long@digit 9B 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@flags 75 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@value 68 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@width 73 0 BANK0 1 cstackBANK0 build/bin/clock.o
-_Uart_Init 23E8 0 CODE 0 text23 build/bin/clock.o
-_Uart_Read 2504 0 CODE 0 text21 build/bin/clock.o
-__LidataCOMRAM 0 0 ABS 0 idataCOMRAM build/bin/clock.o
-__ntoa_long 18DE 0 CODE 0 text4 build/bin/clock.o
+_Uart_Init 2360 0 CODE 0 text23 build/bin/clock.o
+_Uart_Read 2484 0 CODE 0 text21 build/bin/clock.o
+__ntoa_long 1854 0 CODE 0 text4 build/bin/clock.o
 ___lldiv@counter 1A 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lintcodelo 18 0 CODE 0 intcodelo build/bin/clock.o
-__is_digit 2420 0 CODE 0 text16 build/bin/clock.o
-start_initialization 2220 0 CODE 0 cinit build/bin/clock.o
-__out_fct 2526 0 CODE 0 text7 build/bin/clock.o
-__out_rev 1A72 0 CODE 0 text6 build/bin/clock.o
-__vsnprintf@flags 129 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__is_digit 2398 0 CODE 0 text16 build/bin/clock.o
+start_initialization 231A 0 CODE 0 cinit build/bin/clock.o
+__out_fct 24AE 0 CODE 0 text7 build/bin/clock.o
+__out_rev 19E8 0 CODE 0 text6 build/bin/clock.o
+__vsnprintf@flags D0 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __HnvFARRAM 0 0 FARRAM 0 nvFARRAM build/bin/clock.o
-__vsnprintf@l_912 118 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@l_921 BF 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __out_rev@buffer 1D 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__vsnprintf@value 11B 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@width 123 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@value C2 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@width CA 0 BANK0 1 cstackBANK0 build/bin/clock.o
 i2Buffer_Add@next_head 6 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ___lldiv@dividend E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ?__vsnprintf 9E 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__is_digit$812 E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
+__is_digit$821 E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __out_buffer@maxlen 19 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ___rparam_used 1 0 ABS 0 - build/bin/clock.o
-__vsnprintf@value_905 11F 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@value_908 108 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@value_914 C6 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@value_917 AF 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_format@buffer 32 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__end_of__out_fct 2528 0 CODE 0 text7 build/bin/clock.o
-__end_of__out_rev 1BC6 0 CODE 0 text6 build/bin/clock.o
+__end_of__out_fct 24B0 0 CODE 0 text7 build/bin/clock.o
+__end_of__out_rev 1B3C 0 CODE 0 text6 build/bin/clock.o
 _SPBRGH FB0 0 ABS 0 - build/bin/clock.o
 __pcstackBANK0 60 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__pcstackBANK1 100 0 BANK1 1 cstackBANK1 build/bin/clock.o
 __atoi@str 10 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 Gpio_Write@level F 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __out_fct@buffer 15 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
@@ -743,12 +722,12 @@ __Htext9 0 0 ABS 0 text9 build/bin/clock.o
 __Hbigbss 0 0 BIGRAM 1 bigbss build/bin/clock.o
 __Hbigram 0 0 ABS 0 bigram build/bin/clock.o
 __Hbigsfr 0 0 ABS 0 bigsfr build/bin/clock.o
-_uart_config C7 0 BANK0 1 dataBANK0 build/bin/clock.o
+_uart_config F5 0 BANK0 1 dataBANK0 build/bin/clock.o
 __smallconst 800 0 SMALLCONST 0 smallconst build/bin/clock.o
 __out_rev@maxlen 21 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Hcomram 0 0 ABS 0 comram build/bin/clock.o
 __Hconfig 300008 0 CONFIG 4 config build/bin/clock.o
-__end_of__ntoa_long 1A72 0 CODE 0 text4 build/bin/clock.o
+__end_of__ntoa_long 19E8 0 CODE 0 text4 build/bin/clock.o
 Buffer_Init@buffer E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lbank0 0 0 ABS 0 bank0 build/bin/clock.o
 __Lbank1 0 0 ABS 0 bank1 build/bin/clock.o
@@ -763,8 +742,8 @@ __Lconst 0 0 CONST 0 const build/bin/clock.o
 __ntoa_format@maxlen 36 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lidata 0 0 CODE 0 idata build/bin/clock.o
 __Lidloc 0 0 ABS 0 idloc build/bin/clock.o
-_Buffer_Add 20B0 0 CODE 0 text12 build/bin/clock.o
-_Buffer_Get 1E6E 0 CODE 0 text22 build/bin/clock.o
+_Buffer_Add 20A6 0 CODE 0 text12 build/bin/clock.o
+_Buffer_Get 1DE4 0 CODE 0 text22 build/bin/clock.o
 __Lnvbit 0 0 COMRAM 1 nvbit build/bin/clock.o
 Uart_InterruptHandler@c_494 8 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lparam 0 0 COMRAM 1 rparam build/bin/clock.o
@@ -792,6 +771,7 @@ __Hrbit 0 0 COMRAM 1 rbit build/bin/clock.o
 __Hrbss 0 0 COMRAM 1 rbss build/bin/clock.o
 __Htemp 0 0 COMRAM 1 temp build/bin/clock.o
 __Htext 0 0 ABS 0 text build/bin/clock.o
+__end_of_system_tick_1ms 24AE 0 CODE 0 text28 build/bin/clock.o
 __Labs1 0 0 ABS 0 abs1 build/bin/clock.o
 __Ldata 0 0 ABS 0 data build/bin/clock.o
 __Lheap 0 0 HEAP 7 heap build/bin/clock.o
@@ -802,7 +782,6 @@ __Ltemp 0 0 COMRAM 1 temp build/bin/clock.o
 __Ltext 0 0 ABS 0 text build/bin/clock.o
 Buffer_Get@buffer E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __LcstackBANK0 0 0 ABS 0 cstackBANK0 build/bin/clock.o
-__LcstackBANK1 0 0 ABS 0 cstackBANK1 build/bin/clock.o
 __out_fct@maxlen 19 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_format@negative 3B 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 int$flags 1 0 ABS 0 - build/bin/clock.o
@@ -812,30 +791,29 @@ __Hintret 0 0 ABS 0 intret build/bin/clock.o
 Buffer_Get@element 10 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Hirdata 0 0 CODE 0 irdata build/bin/clock.o
 _ISR 8 0 CODE 0 intcode build/bin/clock.o
-__S0 252A 0 ABS 0 - build/bin/clock.o
-__S1 141 0 ABS 0 - build/bin/clock.o
+__S0 24B2 0 ABS 0 - build/bin/clock.o
+__S1 12C 0 ABS 0 - build/bin/clock.o
 __S4 0 0 ABS 0 - build/bin/clock.o
 __S5 0 0 ABS 0 - build/bin/clock.o
-_led C0 0 BANK0 1 dataBANK0 build/bin/clock.o
-_button B9 0 BANK0 1 dataBANK0 build/bin/clock.o
-__HidataCOMRAM 0 0 ABS 0 idataCOMRAM build/bin/clock.o
+_led EE 0 BANK0 1 dataBANK0 build/bin/clock.o
+_button E7 0 BANK0 1 dataBANK0 build/bin/clock.o
 __Lbigdata 0 0 BIGRAM 1 bigdata build/bin/clock.o
 __Hnvrram 0 0 COMRAM 1 nvrram build/bin/clock.o
-__out_buffer 2476 0 CODE 0 text9 build/bin/clock.o
+__end_of_timer0_reload 24A0 0 CODE 0 text27 build/bin/clock.o
+__out_buffer 23EE 0 CODE 0 text9 build/bin/clock.o
 __strnlen_s@maxsize F 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__end_of_printf_ 2476 0 CODE 0 text1 build/bin/clock.o
-__end_of_ISR 23A0 0 CODE 0 intcode_body build/bin/clock.o
-int_func 2348 0 CODE 0 intcode_body build/bin/clock.o
+__end_of_printf_ 23EE 0 CODE 0 text1 build/bin/clock.o
+__end_of_ISR 20A6 0 CODE 0 intcode_body build/bin/clock.o
+int_func 2028 0 CODE 0 intcode_body build/bin/clock.o
 __Lintentry 0 0 ABS 0 intentry build/bin/clock.o
 ___lldiv@divisor 12 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Hramtop 800 0 RAM 0 ramtop build/bin/clock.o
 __Hrparam 0 0 COMRAM 1 rparam build/bin/clock.o
-__pdataBANK0 B2 0 BANK0 1 dataBANK0 build/bin/clock.o
+__pdataBANK0 D9 0 BANK0 1 dataBANK0 build/bin/clock.o
 __activetblptr 2 0 ABS 0 - build/bin/clock.o
 __Hstruct 0 0 COMRAM 1 struct build/bin/clock.o
-__end_of_Buffer_Add 212C 0 CODE 0 text12 build/bin/clock.o
-__end_of_Buffer_Get 1F02 0 CODE 0 text22 build/bin/clock.o
-__LbssBANK0 0 0 ABS 0 bssBANK0 build/bin/clock.o
+__end_of_Buffer_Add 2122 0 CODE 0 text12 build/bin/clock.o
+__end_of_Buffer_Get 1E78 0 CODE 0 text22 build/bin/clock.o
 __LbssBANK1 0 0 ABS 0 bssBANK1 build/bin/clock.o
 ?__out_rev 1B 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Htext10 0 0 ABS 0 text10 build/bin/clock.o
@@ -857,63 +835,68 @@ __Htext25 0 0 ABS 0 text25 build/bin/clock.o
 __Htext27 0 0 ABS 0 text27 build/bin/clock.o
 __Htext28 0 0 ABS 0 text28 build/bin/clock.o
 __Htext29 0 0 ABS 0 text29 build/bin/clock.o
-__end_of__out_char 24F0 0 CODE 0 text8 build/bin/clock.o
-__end_of__out_null 252A 0 CODE 0 text10 build/bin/clock.o
+__Htext30 0 0 ABS 0 text30 build/bin/clock.o
+__Htext31 0 0 ABS 0 text31 build/bin/clock.o
+_system_tick_1ms 24A8 0 CODE 0 text28 build/bin/clock.o
+__end_of__out_char 246E 0 CODE 0 text8 build/bin/clock.o
+__end_of__out_null 24B2 0 CODE 0 text10 build/bin/clock.o
 _RCSTAbits FAB 0 ABS 0 - build/bin/clock.o
 _PIE1bits F9D 0 ABS 0 - build/bin/clock.o
 __strnlen_s@s 11 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__strnlen_s 23A0 0 CODE 0 text3 build/bin/clock.o
-__ptext10 2528 0 CODE 0 text10 build/bin/clock.o
-__ptext11 24F0 0 CODE 0 text11 build/bin/clock.o
-__ptext12 20B0 0 CODE 0 text12 build/bin/clock.o
-__ptext13 2028 0 CODE 0 text13 build/bin/clock.o
-__ptext14 1C9A 0 CODE 0 text14 build/bin/clock.o
-__ptext15 21A8 0 CODE 0 text15 build/bin/clock.o
-__ptext16 2420 0 CODE 0 text16 build/bin/clock.o
-__ptext17 2516 0 CODE 0 text17 build/bin/clock.o
-__ptext18 22EC 0 CODE 0 text18 build/bin/clock.o
-__ptext19 1DDA 0 CODE 0 text19 build/bin/clock.o
-__ptext20 249E 0 CODE 0 text20 build/bin/clock.o
-__ptext21 2504 0 CODE 0 text21 build/bin/clock.o
-__ptext22 1E6E 0 CODE 0 text22 build/bin/clock.o
-__ptext23 23E8 0 CODE 0 text23 build/bin/clock.o
-__ptext24 1D3E 0 CODE 0 text24 build/bin/clock.o
-__ptext25 228E 0 CODE 0 text25 build/bin/clock.o
-__ptext27 1F96 0 CODE 0 text27 build/bin/clock.o
-__ptext28 1F02 0 CODE 0 text28 build/bin/clock.o
-__ptext29 212C 0 CODE 0 text29 build/bin/clock.o
+__strnlen_s 22D2 0 CODE 0 text3 build/bin/clock.o
+__ptext10 24B0 0 CODE 0 text10 build/bin/clock.o
+__ptext11 246E 0 CODE 0 text11 build/bin/clock.o
+__ptext12 20A6 0 CODE 0 text12 build/bin/clock.o
+__ptext13 1FA0 0 CODE 0 text13 build/bin/clock.o
+__ptext14 1C10 0 CODE 0 text14 build/bin/clock.o
+__ptext15 219E 0 CODE 0 text15 build/bin/clock.o
+__ptext16 2398 0 CODE 0 text16 build/bin/clock.o
+__ptext17 24A0 0 CODE 0 text17 build/bin/clock.o
+__ptext18 2216 0 CODE 0 text18 build/bin/clock.o
+__ptext19 1D50 0 CODE 0 text19 build/bin/clock.o
+__ptext20 2438 0 CODE 0 text20 build/bin/clock.o
+__ptext21 2484 0 CODE 0 text21 build/bin/clock.o
+__ptext22 1DE4 0 CODE 0 text22 build/bin/clock.o
+__ptext23 2360 0 CODE 0 text23 build/bin/clock.o
+__ptext24 1CB4 0 CODE 0 text24 build/bin/clock.o
+__ptext25 2274 0 CODE 0 text25 build/bin/clock.o
+__ptext27 2496 0 CODE 0 text27 build/bin/clock.o
+__ptext28 24A8 0 CODE 0 text28 build/bin/clock.o
+__ptext29 1E78 0 CODE 0 text29 build/bin/clock.o
+__ptext30 1F0C 0 CODE 0 text30 build/bin/clock.o
+__ptext31 2122 0 CODE 0 text31 build/bin/clock.o
 __is_digit@ch F 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 i2Buffer_Add@element 4 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__pintcode_body 2348 0 CODE 0 intcode_body build/bin/clock.o
-___lldiv 1C9A 0 CODE 0 text14 build/bin/clock.o
-___llmod 2028 0 CODE 0 text13 build/bin/clock.o
+__pintcode_body 2028 0 CODE 0 intcode_body build/bin/clock.o
+___lldiv 1C10 0 CODE 0 text14 build/bin/clock.o
+___llmod 1FA0 0 CODE 0 text13 build/bin/clock.o
 __Lbigbss 0 0 BIGRAM 1 bigbss build/bin/clock.o
 __Lbigram 0 0 ABS 0 bigram build/bin/clock.o
 __Lbigsfr 0 0 ABS 0 bigsfr build/bin/clock.o
-__putchar 24F0 0 CODE 0 text11 build/bin/clock.o
-__end_of_Uart_InterruptHandler 2028 0 CODE 0 text27 build/bin/clock.o
+__putchar 246E 0 CODE 0 text11 build/bin/clock.o
+__end_of_Uart_InterruptHandler 1F0C 0 CODE 0 text29 build/bin/clock.o
 __Lcomram 0 0 ABS 0 comram build/bin/clock.o
 __Lconfig 0 0 CONFIG 4 config build/bin/clock.o
 __atoi@i 15 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__out_char 24D8 0 CODE 0 text8 build/bin/clock.o
-__out_null 2528 0 CODE 0 text10 build/bin/clock.o
+__out_char 2456 0 CODE 0 text8 build/bin/clock.o
+__out_null 24B0 0 CODE 0 text10 build/bin/clock.o
 __ntoa_long@negative 6C 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __Lsivt_hi 0 0 CODE 0 sivt_hi build/bin/clock.o
 __Lsivt_lo 18 0 CODE 0 sivt_lo build/bin/clock.o
-__end_of__putchar 2504 0 CODE 0 text11 build/bin/clock.o
+__end_of__putchar 2484 0 CODE 0 text11 build/bin/clock.o
 __Lfarbss 0 0 FARRAM 0 farbss build/bin/clock.o
 ___inthi_stack_hi 0 0 STACK 2 stack build/bin/startup.o
 ___inthi_stack_lo 0 0 STACK 2 stack build/bin/startup.o
-main@level B0 0 BANK0 1 cstackBANK0 build/bin/clock.o
+main@level D7 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __putchar@c 13 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lfardata 0 0 FARRAM 0 fardata build/bin/clock.o
 isa$std 1 0 ABS 0 - build/bin/startup.o
-_Gpio_Write 1D3E 0 CODE 0 text24 build/bin/clock.o
+_Gpio_Write 1CB4 0 CODE 0 text24 build/bin/clock.o
 __out_fct@character 14 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_long@buffer 62 0 BANK0 1 cstackBANK0 build/bin/clock.o
 stackhi 0 0 ABS 0 - build/bin/startup.o
 stacklo 0 0 ABS 0 - build/bin/startup.o
-_Uart_InterruptHandler 1F96 0 CODE 0 text27 build/bin/clock.o
+_Uart_InterruptHandler 1E78 0 CODE 0 text29 build/bin/clock.o
 __Lintcode 8 0 CODE 0 intcode build/bin/clock.o
 __Lintret 0 0 ABS 0 intret build/bin/clock.o
 __Lirdata 0 0 CODE 0 irdata build/bin/clock.o
@@ -922,53 +905,53 @@ __Lspace_0 0 0 ABS 0 - build/bin/clock.o
 __Lspace_1 0 0 ABS 0 - build/bin/clock.o
 __Lspace_2 0 0 ABS 0 - build/bin/clock.o
 __Lspace_4 0 0 ABS 0 - build/bin/clock.o
-__pbssCOMRAM 4F 0 COMRAM 1 bssCOMRAM build/bin/clock.o
+__pbssCOMRAM 4C 0 COMRAM 1 bssCOMRAM build/bin/clock.o
 __HcstackBANK0 0 0 ABS 0 cstackBANK0 build/bin/clock.o
-__HcstackBANK1 0 0 ABS 0 cstackBANK1 build/bin/clock.o
 _PIR1bits F9E 0 ABS 0 - build/bin/clock.o
 __LcstackCOMRAM 0 0 ABS 0 cstackCOMRAM build/bin/clock.o
-_isr_init 2516 0 CODE 0 text17 build/bin/clock.o
-_Buffer_Init 249E 0 CODE 0 text20 build/bin/clock.o
-end_of_initialization 2280 0 CODE 0 cinit build/bin/clock.o
-_tx_buffer CD 0 BANK0 1 bssBANK0 build/bin/clock.o
+_isr_init 24A0 0 CODE 0 text17 build/bin/clock.o
+_Buffer_Init 2438 0 CODE 0 text20 build/bin/clock.o
+end_of_initialization 2352 0 CODE 0 cinit build/bin/clock.o
+_tx_buffer 116 0 BANK1 1 bssBANK1 build/bin/clock.o
+_tick_1ms 52 0 COMRAM 1 bssCOMRAM build/bin/clock.o
 __vsnprintf@format A4 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__ntoa_format 15AA 0 CODE 0 text5 build/bin/clock.o
+__ntoa_format 1520 0 CODE 0 text5 build/bin/clock.o
 __Lnvrram 0 0 COMRAM 1 nvrram build/bin/clock.o
 __Hintentry 0 0 ABS 0 intentry build/bin/clock.o
-__end_of__strnlen_s 23E8 0 CODE 0 text3 build/bin/clock.o
+__end_of__strnlen_s 231A 0 CODE 0 text3 build/bin/clock.o
 _RCONbits FD0 0 ABS 0 - build/bin/clock.o
 ?___lldiv E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ?___llmod E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__end_of_isr_init 251E 0 CODE 0 text17 build/bin/clock.o
+__end_of_isr_init 24A8 0 CODE 0 text17 build/bin/clock.o
 __Hreset_vec 4 0 CODE 0 reset_vec build/bin/clock.o
-__HbssBANK0 0 0 ABS 0 bssBANK0 build/bin/clock.o
 __HbssBANK1 0 0 ABS 0 bssBANK1 build/bin/clock.o
-__vsnprintf$904 100 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$906 104 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$907 106 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$909 10A 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$914 10C 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$915 10E 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@idx 127 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$913 A7 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf$915 AB 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf$916 AD 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf$918 B1 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf$923 B3 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf$924 B5 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__vsnprintf@idx CE 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __vsnprintf@out 9E 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __Lramtop 800 0 RAM 0 ramtop build/bin/clock.o
 __ntoa_long@maxlen 66 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __Lrparam 0 0 COMRAM 1 rparam build/bin/clock.o
-__pcinit 2220 0 CODE 0 cinit build/bin/clock.o
-__ptext0 1BC6 0 CODE 0 text0 build/bin/clock.o
-__ptext1 244C 0 CODE 0 text1 build/bin/clock.o
+__pcinit 231A 0 CODE 0 cinit build/bin/clock.o
+__ptext0 1B3C 0 CODE 0 text0 build/bin/clock.o
+__ptext1 23C4 0 CODE 0 text1 build/bin/clock.o
 __ptext2 80C 0 CODE 0 text2 build/bin/clock.o
-__ptext3 23A0 0 CODE 0 text3 build/bin/clock.o
-__ptext4 18DE 0 CODE 0 text4 build/bin/clock.o
-__ptext5 15AA 0 CODE 0 text5 build/bin/clock.o
-__ptext6 1A72 0 CODE 0 text6 build/bin/clock.o
-__ptext7 2526 0 CODE 0 text7 build/bin/clock.o
-__ptext8 24D8 0 CODE 0 text8 build/bin/clock.o
-__ptext9 2476 0 CODE 0 text9 build/bin/clock.o
+__ptext3 22D2 0 CODE 0 text3 build/bin/clock.o
+__ptext4 1854 0 CODE 0 text4 build/bin/clock.o
+__ptext5 1520 0 CODE 0 text5 build/bin/clock.o
+__ptext6 19E8 0 CODE 0 text6 build/bin/clock.o
+__ptext7 24AE 0 CODE 0 text7 build/bin/clock.o
+__ptext8 2456 0 CODE 0 text8 build/bin/clock.o
+__ptext9 23EE 0 CODE 0 text9 build/bin/clock.o
 ?__ntoa_long 60 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __out_fct@idx 17 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lstruct 0 0 COMRAM 1 struct build/bin/clock.o
-printf_@buffer AC 0 BANK0 1 cstackBANK0 build/bin/clock.o
+system_tick_task@last 50 0 COMRAM 1 bssCOMRAM build/bin/clock.o
+printf_@buffer 4A 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Ltext10 0 0 ABS 0 text10 build/bin/clock.o
 __Ltext11 0 0 ABS 0 text11 build/bin/clock.o
 __Ltext12 0 0 ABS 0 text12 build/bin/clock.o
@@ -988,45 +971,47 @@ __Ltext25 0 0 ABS 0 text25 build/bin/clock.o
 __Ltext27 0 0 ABS 0 text27 build/bin/clock.o
 __Ltext28 0 0 ABS 0 text28 build/bin/clock.o
 __Ltext29 0 0 ABS 0 text29 build/bin/clock.o
+__Ltext30 0 0 ABS 0 text30 build/bin/clock.o
+__Ltext31 0 0 ABS 0 text31 build/bin/clock.o
 __ramtop 800 0 RAM 0 ramtop build/bin/startup.o
 __vsnprintf@maxlen A2 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__end_of_Gpio_Write 1DDA 0 CODE 0 text24 build/bin/clock.o
+__end_of_Gpio_Write 1D50 0 CODE 0 text24 build/bin/clock.o
 __Lpowerup 0 0 CODE 0 powerup build/bin/clock.o
-fctprintf@F291 4F 0 COMRAM 1 bssCOMRAM build/bin/clock.o
+fctprintf@F291 4C 0 COMRAM 1 bssCOMRAM build/bin/clock.o
 __Leeprom_data 0 0 EEDATA 0 eeprom_data build/bin/clock.o
 __H__absolute__ 0 0 ABS 0 __absolute__ build/bin/clock.o
 Buffer_Add@next_head 12 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __psmallconst 800 0 SMALLCONST 0 smallconst build/bin/clock.o
 __Lreset_vec 0 0 CODE 0 reset_vec build/bin/clock.o
-_rx_buffer 12B 0 BANK1 1 bssBANK1 build/bin/clock.o
-printf_@format A9 0 BANK0 1 cstackBANK0 build/bin/clock.o
+_rx_buffer 100 0 BANK1 1 bssBANK1 build/bin/clock.o
+printf_@format D2 0 BANK0 1 cstackBANK0 build/bin/clock.o
 ___heap_hi 0 0 ABS 0 - build/bin/startup.o
 ___heap_lo 0 0 ABS 0 - build/bin/startup.o
 ___param_bank 0 0 ABS 0 - build/bin/clock.o
 ___intlo_stack_hi 0 0 STACK 2 stack build/bin/startup.o
 ___intlo_stack_lo 0 0 STACK 2 stack build/bin/startup.o
 __Hbigdata 0 0 BIGRAM 1 bigdata build/bin/clock.o
-__end_of__initialization 2280 0 CODE 0 cinit build/bin/clock.o
+__end_of__initialization 2352 0 CODE 0 cinit build/bin/clock.o
 __Libigdata 0 0 CODE 0 ibigdata build/bin/clock.o
 ?__atoi 10 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__pidataBANK0 24BC 0 CODE 0 idataBANK0 build/bin/clock.o
+__pidataBANK0 2416 0 CODE 0 idataBANK0 build/bin/clock.o
 __Lclrtext 0 0 ABS 0 clrtext build/bin/clock.o
 __vsnprintf 80C 0 CODE 0 text2 build/bin/clock.o
-_Uart_Start 22EC 0 CODE 0 text18 build/bin/clock.o
+_Uart_Start 2216 0 CODE 0 text18 build/bin/clock.o
 Uart_InterruptHandler@c 7 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __out_char@character 14 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ___lldiv@quotient 16 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __pcstackCOMRAM 2 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 _TXSTAbits FAC 0 ABS 0 - build/bin/clock.o
-__end_of__ntoa_format 18DE 0 CODE 0 text5 build/bin/clock.o
+__end_of__ntoa_format 1854 0 CODE 0 text5 build/bin/clock.o
 ___llmod@dividend E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ___llmod@counter 16 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-_printf_ 244C 0 CODE 0 text1 build/bin/clock.o
+_printf_ 23C4 0 CODE 0 text1 build/bin/clock.o
 Uart_Init@uart E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__end_of_main 1C9A 0 CODE 0 text0 build/bin/clock.o
+__end_of_main 1C10 0 CODE 0 text0 build/bin/clock.o
 __pintcode 8 0 CODE 0 intcode build/bin/clock.o
-printf_@va AD 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__end_of__atoi 2220 0 CODE 0 text15 build/bin/clock.o
+printf_@va 4B 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
+__end_of__atoi 2216 0 CODE 0 text15 build/bin/clock.o
 _PORTB F81 0 ABS 0 - build/bin/clock.o
 _PORTC F82 0 ABS 0 - build/bin/clock.o
 _PORTD F83 0 ABS 0 - build/bin/clock.o
@@ -1047,21 +1032,19 @@ __LRAM 1 0 ABS 0 - build/bin/clock.o
 __Lbss 0 0 RAM 1 bss build/bin/clock.o
 __Lram 0 0 ABS 0 ram build/bin/clock.o
 __Lsfr 0 0 ABS 0 sfr build/bin/clock.o
-__atoi 21A8 0 CODE 0 text15 build/bin/clock.o
-__end_of_Gpio_Init 1E6E 0 CODE 0 text19 build/bin/clock.o
-__end_of_Gpio_Read 22EC 0 CODE 0 text25 build/bin/clock.o
+__atoi 219E 0 CODE 0 text15 build/bin/clock.o
+__end_of_Gpio_Init 1DE4 0 CODE 0 text19 build/bin/clock.o
+__end_of_Gpio_Read 22D2 0 CODE 0 text25 build/bin/clock.o
 i2Buffer_Add@buffer 2 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
-__end_of__out_buffer 249E 0 CODE 0 text9 build/bin/clock.o
+__end_of__out_buffer 2416 0 CODE 0 text9 build/bin/clock.o
 ?__ntoa_format 30 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __HdataBANK0 0 0 ABS 0 dataBANK0 build/bin/clock.o
 __Hsivt_hi 0 0 CODE 0 sivt_hi build/bin/clock.o
 __Hsivt_lo 18 0 CODE 0 sivt_lo build/bin/clock.o
-__initialization 2220 0 CODE 0 cinit build/bin/clock.o
+__initialization 231A 0 CODE 0 cinit build/bin/clock.o
 btemp0 1 0 ABS 0 - build/bin/clock.o
 btemp1 2 0 ABS 0 - build/bin/clock.o
-__pbssBANK0 CD 0 BANK0 1 bssBANK0 build/bin/clock.o
-__pbssBANK1 12B 0 BANK1 1 bssBANK1 build/bin/clock.o
-__pdataCOMRAM 48 0 COMRAM 1 dataCOMRAM build/bin/clock.o
+__pbssBANK1 100 0 BANK1 1 bssBANK1 build/bin/clock.o
 __ntoa_format@buf 38 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_format@idx 34 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_format@len 39 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
@@ -1072,12 +1055,12 @@ __Hsmallconst 80C 0 SMALLCONST 0 smallconst build/bin/clock.o
 __ntoa_format@base 3C 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_format@prec 3E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lifardata 0 0 CODE 0 ifardata build/bin/clock.o
-_Gpio_Init 1DDA 0 CODE 0 text19 build/bin/clock.o
-_Gpio_Read 228E 0 CODE 0 text25 build/bin/clock.o
+_Gpio_Init 1D50 0 CODE 0 text19 build/bin/clock.o
+_Gpio_Read 2274 0 CODE 0 text25 build/bin/clock.o
 __Hintsave_regs 0 0 BIGRAM 1 intsave_regs build/bin/clock.o
 Gpio_Init@gpio E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Hintcode E 0 CODE 0 intcode build/bin/clock.o
-__end_of__vsnprintf 15AA 0 CODE 0 text2 build/bin/clock.o
+__end_of__vsnprintf 1520 0 CODE 0 text2 build/bin/clock.o
 # %SPLITSTAB Section
 # This section enumerates all the psect splits performed by the assembler.
 # The beginning of the section is indicated by %SPLITSTAB.
@@ -1103,13 +1086,11 @@ __end_of__vsnprintf 15AA 0 CODE 0 text2 build/bin/clock.o
 # and size are in units of delta. The file address is in units of bytes.
 # All other numeric quantities are in decimal.
 %SEGMENTS
-text2 0 80C 80C 1CCB 1
-text7 0 2526 2526 4 1
-text8 0 24D8 24D8 4D 1
-cstackCOMRAM 1 2 2 51 1
-cstackBANK0 1 60 60 83 1
-cstackBANK1 1 100 100 41 1
+text2 0 80C 80C 1CA6 1
+cstackCOMRAM 1 2 2 52 1
+cstackBANK0 1 60 60 9B 1
 reset_vec 0 0 0 4 1
+bssBANK1 1 100 100 2C 1
 intcode 0 8 8 A 1
 smallconst 0 800 800 C 1
 # %NOTES Section
