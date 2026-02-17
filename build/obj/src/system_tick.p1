@@ -1,66 +1,97 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "3 src/system_tick.c
+[v _flag_1ms `Vuc ~T0 @X0 1 s ]
+[i _flag_1ms
+-> -> 0 `i `uc
+]
+"4
 [v _tick_1ms `Vus ~T0 @X0 1 s ]
 [i _tick_1ms
 -> -> 0 `i `us
 ]
-"4
+"5
 [v _one_second_flag `Vuc ~T0 @X0 1 s ]
 [i _one_second_flag
 -> -> 0 `i `uc
 ]
-"6
-[v _system_tick_1ms `(v ~T0 @X0 1 ef ]
 "7
+[v _system_tick_1ms `(v ~T0 @X0 1 ef ]
+"8
 {
 [e :U _system_tick_1ms ]
 [f ]
-"8
-[e ++ _tick_1ms -> -> 1 `i `Vus ]
 "9
+[e ++ _tick_1ms -> -> 1 `i `Vus ]
+"10
+[e = _flag_1ms -> -> 1 `i `uc ]
+"11
 [e :UE 1 ]
 }
-"11
+"13
 [v _system_tick_task `(v ~T0 @X0 1 ef ]
-"12
+"14
 {
 [e :U _system_tick_task ]
 [f ]
-"13
-[e $ ! >= -> _tick_1ms `ui -> -> 1000 `i `ui 3  ]
-"14
-{
 "15
-[e = _tick_1ms -> -> 0 `i `us ]
+[e $ ! >= -> _tick_1ms `ui -> -> 1000 `i `ui 3  ]
 "16
-[e = _one_second_flag -> -> 1 `i `uc ]
+{
 "17
+[e = _tick_1ms -> -> 0 `i `us ]
+"18
+[e = _one_second_flag -> -> 1 `i `uc ]
+"19
 }
 [e :U 3 ]
-"18
+"20
 [e :UE 2 ]
 }
-"20
+"22
+[v _system_tick_is_1ms `(uc ~T0 @X0 1 ef ]
+"23
+{
+[e :U _system_tick_is_1ms ]
+[f ]
+"24
+[e $ ! != -> _flag_1ms `i -> 0 `i 5  ]
+"25
+{
+"26
+[e = _flag_1ms -> -> 0 `i `uc ]
+"27
+[e ) -> -> 1 `i `uc ]
+[e $UE 4  ]
+"28
+}
+[e :U 5 ]
+"29
+[e ) -> -> 0 `i `uc ]
+[e $UE 4  ]
+"30
+[e :UE 4 ]
+}
+"32
 [v _system_tick_is_1s `(uc ~T0 @X0 1 ef ]
-"21
+"33
 {
 [e :U _system_tick_is_1s ]
 [f ]
-"22
-[e $ ! != -> _one_second_flag `i -> 0 `i 5  ]
-"23
+"34
+[e $ ! != -> _one_second_flag `i -> 0 `i 7  ]
+"35
 {
-"24
+"36
 [e = _one_second_flag -> -> 0 `i `uc ]
-"25
+"37
 [e ) -> -> 1 `i `uc ]
-[e $UE 4  ]
-"26
+[e $UE 6  ]
+"38
 }
-[e :U 5 ]
-"28
+[e :U 7 ]
+"40
 [e ) -> -> 0 `i `uc ]
-[e $UE 4  ]
-"29
-[e :UE 4 ]
+[e $UE 6  ]
+"41
+[e :UE 6 ]
 }

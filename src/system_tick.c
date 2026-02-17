@@ -1,11 +1,13 @@
 #include "system_tick.h"
 
+static volatile uint8_t flag_1ms = 0;
 static volatile uint16_t tick_1ms = 0;
 static volatile uint8_t one_second_flag = 0;
 
 void system_tick_1ms(void)
 {
 	tick_1ms++;
+	flag_1ms = 1;
 }
 
 void system_tick_task(void)
@@ -15,6 +17,16 @@ void system_tick_task(void)
 		tick_1ms = 0;
 		one_second_flag = 1;
 	}
+}
+
+uint8_t system_tick_is_1ms(void)
+{
+	if(flag_1ms)
+	{
+		flag_1ms = 0;
+		return 1;
+	}
+	return 0;
 }
 
 uint8_t system_tick_is_1s(void)

@@ -23,6 +23,7 @@ SOURCES = main.c\
 		  src/isr.c\
 		  src/system_tick.c\
 		  src/clock.c\
+		  src/button_driver.c\
 		  external/printf/printf.c
 	
 		 
