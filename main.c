@@ -2,9 +2,11 @@
 #include "gpio.h"
 #include "config.h"
 #include "printf.h"
+#include "timer0.h"
+#include "system_tick.h"
+#include "clock.h"
 #include "uart.h"
 #include <xc.h>
-#define _XTAL_FREQ 20000000
 
 gpio_t led = {
 	.tris = &TRISD,
@@ -40,28 +42,40 @@ uart_config_t uart_config = {
 	.baud_rate = 9600
 };
 
+clock_time_t sys_clock;
+
 int main()
 {
 	Gpio_Init(&led,GPIO_OUTPUT);
 	Gpio_Init(&button,GPIO_INPUT);
 	Uart_Init(&uart_config);
 	Uart_Start(&uart_config);
+	timer0_init();
+	timer0_start();
 	gpio_level_e level;
 
 	/* Enable interrupts */
 	isr_init();
 
+	clock_init(&sys_clock,23,59,55);
+
 	char c;
     Gpio_Write(&led, GPIO_LOW);
 	while(1)
 	{
+		system_tick_task();
+
+		if(system_tick_is_1s())
+		{
+			clock_update_1s(&sys_clock);
+			clock_print(&sys_clock);
+		}
 		level = Gpio_Read(&button);
 
 		if(level == GPIO_LOW)
 		{
 
 			printf("CRIS %d\n\r",2026);
-			__delay_ms(500);
 		}
 
 		if (Uart_Read(&c))

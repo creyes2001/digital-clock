@@ -5,14 +5,15 @@
 
 typedef struct
 {
-	uint8_t hour;
-	uint8_t minute;
+	uint8_t hours;
+	uint8_t minutes;
 	uint8_t seconds;
-}Clock_time_t;
+}clock_time_t;
 
 
-void Update_Clock(void);
-void Config_Time(Clock_time_t *time);
-Get_Time(void);
+void clock_init(clock_time_t *clk, uint8_t h, uint8_t m, uint8_t s);
+void clock_update_1s(clock_time_t *clk);
+void clock_print(const clock_time_t *clk);
+ 
 
 #endif

@@ -1,7 +1,7 @@
 #include "system_tick.h"
-#include <stdint.h>
 
 static volatile uint16_t tick_1ms = 0;
+static volatile uint8_t one_second_flag = 0;
 
 void system_tick_1ms(void)
 {
@@ -10,11 +10,20 @@ void system_tick_1ms(void)
 
 void system_tick_task(void)
 {
-	static uint16_t last = 0;
-
-	if((tick_1ms - last) >= 1000)
+	if(tick_1ms >= 1000)
 	{
-		last += 1000;
-		//clock_update_1s();
+		tick_1ms = 0;
+		one_second_flag = 1;
 	}
+}
+
+uint8_t system_tick_is_1s(void)
+{
+    if (one_second_flag)
+    {
+        one_second_flag = 0;  // consume event
+        return 1;
+    }
+
+    return 0;
 }

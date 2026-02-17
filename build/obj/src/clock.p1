@@ -1,0 +1,87 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"7 ./inc/clock.h
+[s S1 `uc 1 `uc 1 `uc 1 ]
+[n S1 . hours minutes seconds ]
+"61 ./external/printf/printf.h
+[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
+"4 src/clock.c
+[v _clock_init `(v ~T0 @X0 1 ef4`*S1`uc`uc`uc ]
+"5
+{
+[e :U _clock_init ]
+"4
+[v _clk `*S1 ~T0 @X0 1 r1 ]
+[v _h `uc ~T0 @X0 1 r2 ]
+[v _m `uc ~T0 @X0 1 r3 ]
+[v _s `uc ~T0 @X0 1 r4 ]
+"5
+[f ]
+"6
+[e = . *U _clk 0 -> % -> _h `i -> 24 `i `uc ]
+"7
+[e = . *U _clk 1 -> % -> _m `i -> 60 `i `uc ]
+"8
+[e = . *U _clk 2 -> % -> _s `i -> 60 `i `uc ]
+"9
+[e :UE 2 ]
+}
+"11
+[v _clock_update_1s `(v ~T0 @X0 1 ef1`*S1 ]
+"12
+{
+[e :U _clock_update_1s ]
+"11
+[v _clk `*S1 ~T0 @X0 1 r1 ]
+"12
+[f ]
+"13
+[e ++ . *U _clk 2 -> -> 1 `i `uc ]
+"15
+[e $ ! >= -> . *U _clk 2 `i -> 60 `i 4  ]
+"16
+{
+"17
+[e = . *U _clk 2 -> -> 0 `i `uc ]
+"18
+[e ++ . *U _clk 1 -> -> 1 `i `uc ]
+"20
+[e $ ! >= -> . *U _clk 1 `i -> 60 `i 5  ]
+"21
+{
+"22
+[e = . *U _clk 1 -> -> 0 `i `uc ]
+"23
+[e ++ . *U _clk 0 -> -> 1 `i `uc ]
+"25
+[e $ ! >= -> . *U _clk 0 `i -> 24 `i 6  ]
+"26
+{
+"27
+[e = . *U _clk 0 -> -> 0 `i `uc ]
+"28
+}
+[e :U 6 ]
+"29
+}
+[e :U 5 ]
+"30
+}
+[e :U 4 ]
+"31
+[e :UE 3 ]
+}
+"33
+[v _clock_print `(v ~T0 @X0 1 ef1`*CS1 ]
+"34
+{
+[e :U _clock_print ]
+"33
+[v _clk `*CS1 ~T0 @X0 1 r1 ]
+"34
+[f ]
+"35
+[e ( _printf_ , , , (. :s 1C -> . *U _clk 0 `i -> . *U _clk 1 `i -> . *U _clk 2 `i ]
+"39
+[e :UE 7 ]
+}
+[a 1C 37 48 50 117 58 37 48 50 117 58 37 48 50 117 13 10 0 ]
