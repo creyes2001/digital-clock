@@ -1,11 +1,11 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "3 src/system_tick.c
-[v _flag_1ms `Vuc ~T0 @X0 1 s ]
-[i _flag_1ms
+[v _pending_ticks `Vuc ~T0 @X0 1 s ]
+[i _pending_ticks
 -> -> 0 `i `uc
 ]
 "4
-[v _tick_1ms `Vus ~T0 @X0 1 s ]
+[v _tick_1ms `us ~T0 @X0 1 s ]
 [i _tick_1ms
 -> -> 0 `i `us
 ]
@@ -14,84 +14,111 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _one_second_flag
 -> -> 0 `i `uc
 ]
-"7
-[v _system_tick_1ms `(v ~T0 @X0 1 ef ]
+"6
+[v _flag_1ms `uc ~T0 @X0 1 s ]
+[i _flag_1ms
+-> -> 0 `i `uc
+]
 "8
+[v _system_tick_1ms `(v ~T0 @X0 1 ef ]
+"9
 {
 [e :U _system_tick_1ms ]
 [f ]
-"9
-[e ++ _tick_1ms -> -> 1 `i `Vus ]
 "10
-[e = _flag_1ms -> -> 1 `i `uc ]
+[e $ ! < -> _pending_ticks `i -> 255 `i 2  ]
 "11
+{
+"12
+[e ++ _pending_ticks -> -> 1 `i `Vuc ]
+"13
+}
+[e :U 2 ]
+"14
 [e :UE 1 ]
 }
-"13
+"16
 [v _system_tick_task `(v ~T0 @X0 1 ef ]
-"14
+"17
 {
 [e :U _system_tick_task ]
 [f ]
-"15
-[e $ ! >= -> _tick_1ms `ui -> -> 1000 `i `ui 3  ]
-"16
-{
-"17
-[e = _tick_1ms -> -> 0 `i `us ]
 "18
-[e = _one_second_flag -> -> 1 `i `uc ]
+[e $U 4  ]
+[e :U 5 ]
 "19
-}
-[e :U 3 ]
-"20
-[e :UE 2 ]
-}
-"22
-[v _system_tick_is_1ms `(uc ~T0 @X0 1 ef ]
-"23
 {
-[e :U _system_tick_is_1ms ]
-[f ]
+"20
+[e -- _pending_ticks -> -> 1 `i `Vuc ]
+"21
+[e = _flag_1ms -> -> 1 `i `uc ]
+"22
+[e ++ _tick_1ms -> -> 1 `i `us ]
 "24
-[e $ ! != -> _flag_1ms `i -> 0 `i 5  ]
+[e $ ! >= -> _tick_1ms `ui -> -> 1000 `i `ui 7  ]
 "25
 {
 "26
-[e = _flag_1ms -> -> 0 `i `uc ]
+[e = _tick_1ms -> -> 0 `i `us ]
 "27
-[e ) -> -> 1 `i `uc ]
-[e $UE 4  ]
+[e = _one_second_flag -> -> 1 `i `uc ]
 "28
 }
-[e :U 5 ]
+[e :U 7 ]
 "29
-[e ) -> -> 0 `i `uc ]
-[e $UE 4  ]
+}
+[e :U 4 ]
+"18
+[e $ != -> _pending_ticks `i -> 0 `i 5  ]
+[e :U 6 ]
 "30
-[e :UE 4 ]
+[e :UE 3 ]
 }
 "32
-[v _system_tick_is_1s `(uc ~T0 @X0 1 ef ]
+[v _system_tick_is_1ms `(uc ~T0 @X0 1 ef ]
 "33
 {
-[e :U _system_tick_is_1s ]
+[e :U _system_tick_is_1ms ]
 [f ]
 "34
-[e $ ! != -> _one_second_flag `i -> 0 `i 7  ]
+[e $ ! != -> _flag_1ms `i -> 0 `i 9  ]
 "35
 {
 "36
-[e = _one_second_flag -> -> 0 `i `uc ]
+[e = _flag_1ms -> -> 0 `i `uc ]
 "37
 [e ) -> -> 1 `i `uc ]
-[e $UE 6  ]
+[e $UE 8  ]
 "38
 }
-[e :U 7 ]
-"40
+[e :U 9 ]
+"39
 [e ) -> -> 0 `i `uc ]
-[e $UE 6  ]
-"41
-[e :UE 6 ]
+[e $UE 8  ]
+"40
+[e :UE 8 ]
+}
+"42
+[v _system_tick_is_1s `(uc ~T0 @X0 1 ef ]
+"43
+{
+[e :U _system_tick_is_1s ]
+[f ]
+"44
+[e $ ! != -> _one_second_flag `i -> 0 `i 11  ]
+"45
+{
+"46
+[e = _one_second_flag -> -> 0 `i `uc ]
+"47
+[e ) -> -> 1 `i `uc ]
+[e $UE 10  ]
+"48
+}
+[e :U 11 ]
+"50
+[e ) -> -> 0 `i `uc ]
+[e $UE 10  ]
+"51
+[e :UE 10 ]
 }

@@ -2,115 +2,37 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./inc/gpio.h
 [s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
 [n S1 . tris lat port pin ]
-"3999 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
-[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
-"3261
-[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
-"2703
-[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
-"3623
+"3623 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
 "3071
 [v _LATB `Vuc ~T0 @X0 0 e@3978 ]
 "2451
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-"3845
-[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
-"3183
-[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
-"2561
-[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
-"9 ./inc/uart.h
-[s S3 `*S1 1 `*S1 1 `ul 1 ]
-[n S3 . rx tx baud_rate ]
-"7 ./inc/clock.h
-[s S2 `uc 1 `uc 1 `uc 1 ]
-[n S2 . hours minutes seconds ]
-"48 main.c
-[c E134 0 1 .. ]
-[n E134 . BUTTON_ACTIVE_LOW BUTTON_ACTIVE_HIGH  ]
-[c E138 0 1 .. ]
-[n E138 . BUTTON_RELEASED BUTTON_PRESSED  ]
-[c E142 0 1 2 .. ]
-[n E142 . BUTTON_EVENT_NONE BUTTON_EVENT_PRESSED BUTTON_EVENT_RELEASED  ]
+"27 app/app.c
+[c E60 0 1 .. ]
+[n E60 . BUTTON_ACTIVE_LOW BUTTON_ACTIVE_HIGH  ]
+[c E64 0 1 .. ]
+[n E64 . BUTTON_RELEASED BUTTON_PRESSED  ]
+[c E68 0 1 2 .. ]
+[n E68 . BUTTON_EVENT_NONE BUTTON_EVENT_PRESSED BUTTON_EVENT_RELEASED  ]
 "22 ./inc/button_driver.h
-[s S4 `*S1 1 `E134 1 `E138 1 `E138 1 `uc 1 `uc 1 `E142 1 ]
-[n S4 . gpio polarity state last_state debounce_cnt debounce_ticks event ]
-[p mainexit ]
-"52 main.c
-[c E37 0 1 .. ]
-[n E37 . GPIO_OUTPUT GPIO_INPUT  ]
-"26 ./inc/gpio.h
-[v _Gpio_Init `(v ~T0 @X0 0 ef2`*S1`E37 ]
+[s S2 `*S1 1 `E60 1 `E64 1 `E64 1 `uc 1 `uc 1 `E68 1 ]
+[n S2 . gpio polarity state last_state debounce_cnt debounce_ticks event ]
+"7 ./inc/clock.h
+[s S3 `uc 1 `uc 1 `uc 1 ]
+[n S3 . hours minutes seconds ]
+"31 app/app.c
+[c E105 0 1 2 .. ]
+[n E105 . APP_STATE_RUN APP_STATE_SET_HOURS APP_STATE_SET_MINUTES  ]
+"15 app/app.h
+[s S4 `*S3 1 `E105 1 ]
+[n S4 . clock state ]
 "32 ./inc/button_driver.h
-[v _button_init `(v ~T0 @X0 0 ef4`*S4`*S1`E134`uc ]
-"16 ./inc/uart.h
-[v _Uart_Init `(v ~T0 @X0 0 ef1`*CS3 ]
-"17
-[v _Uart_Start `(v ~T0 @X0 0 ef1`*CS3 ]
-"6 ./inc/timer0.h
-[v _timer0_init `(v ~T0 @X0 0 ef ]
-"7
-[v _timer0_start `(v ~T0 @X0 0 ef ]
-"4 ./inc/isr.h
-[v _isr_init `(v ~T0 @X0 0 ef ]
-"14 ./inc/clock.h
-[v _clock_init `(v ~T0 @X0 0 ef4`*S2`uc`uc`uc ]
-"66 main.c
-[c E41 0 1 .. ]
-[n E41 . GPIO_LOW GPIO_HIGH  ]
-"27 ./inc/gpio.h
-[v _Gpio_Write `(v ~T0 @X0 0 ef2`*S1`E41 ]
-"7 ./inc/system_tick.h
-[v _system_tick_task `(v ~T0 @X0 0 ef ]
-"8
-[v _system_tick_is_1ms `(uc ~T0 @X0 0 ef ]
-"36 ./inc/button_driver.h
-[v _button_update `(v ~T0 @X0 0 ef1`*S4 ]
-"9 ./inc/system_tick.h
-[v _system_tick_is_1s `(uc ~T0 @X0 0 ef ]
-"15 ./inc/clock.h
-[v _clock_update_1s `(v ~T0 @X0 0 ef1`*S2 ]
-"16
-[v _clock_print `(v ~T0 @X0 0 ef1`*CS2 ]
-"37 ./inc/button_driver.h
-[v _button_get_event `(E142 ~T0 @X0 0 ef1`*S4 ]
-"61 ./external/printf/printf.h
-[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
-"21 ./inc/uart.h
-[v _Uart_Read `(a ~T0 @X0 0 ef1`*uc ]
-"3 ./inc/config.h
-[p x PLLDIV  =  1        ]
-"4
-[p x CPUDIV  =  OSC1_PLL2  ]
-"5
-[p x USBDIV  =  1        ]
-"8
-[p x FOSC  =  HS         ]
-"9
-[p x FCMEN  =  OFF       ]
-"10
-[p x IESO  =  OFF        ]
-"13
-[p x PWRT  =  ON         ]
-"14
-[p x BOR  =  ON          ]
-"15
-[p x BORV  =  3          ]
-"18
-[p x WDT  =  OFF         ]
-"21
-[p x PBADEN  =  OFF      ]
-"22
-[p x LPT1OSC  =  OFF     ]
-"23
-[p x MCLRE  =  ON        ]
-"26
-[p x STVREN  =  ON       ]
-"27
-[p x LVP  =  OFF         ]
-"28
-[p x XINST  =  OFF       ]
+[v _button_init `(v ~T0 @X0 0 ef4`*S2`*S1`E60`uc ]
+"36
+[v _button_update `(v ~T0 @X0 0 ef1`*S2 ]
+"37
+[v _button_get_event `(E68 ~T0 @X0 0 ef1`*S2 ]
 "52 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [; <" SPPDATA equ 0F62h ;# ">
 "72
@@ -451,21 +373,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "8891
 [; <" TOSU equ 0FFFh ;# ">
-"12 main.c
-[v _led `S1 ~T0 @X0 1 e ]
-[i _led
-:U ..
-:U ..
-&U _TRISD
-&U _LATD
-&U _PORTD
--> -> 0 `i `uc
-..
-..
-]
-"19
-[v _button `S1 ~T0 @X0 1 e ]
-[i _button
+"6 app/app.c
+[v _button_cfg `S1 ~T0 @X0 1 e ]
+[i _button_cfg
 :U ..
 :U ..
 &U _TRISB
@@ -475,147 +385,207 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"26
-[v _rx `S1 ~T0 @X0 1 s ]
-[i _rx
+"13
+[v _button_inc `S1 ~T0 @X0 1 e ]
+[i _button_inc
 :U ..
 :U ..
-&U _TRISC
-&U _LATC
-&U _PORTC
--> -> 7 `i `uc
+&U _TRISB
+&U _LATB
+&U _PORTB
+-> -> 1 `i `uc
 ..
 ..
 ]
-"33
-[v _tx `S1 ~T0 @X0 1 s ]
-[i _tx
+"20
+[v _button_dcr `S1 ~T0 @X0 1 e ]
+[i _button_dcr
 :U ..
 :U ..
-&U _TRISC
-&U _LATC
-&U _PORTC
--> -> 6 `i `uc
+&U _TRISB
+&U _LATB
+&U _PORTB
+-> -> 2 `i `uc
 ..
 ..
 ]
-"40
-[v _uart_config `S3 ~T0 @X0 1 e ]
-[i _uart_config
-:U ..
-:U ..
-&U _rx
-&U _tx
--> -> -> 9600 `i `l `ul
-..
-..
-]
-"46
-[v _sys_clock `S2 ~T0 @X0 1 e ]
-"48
-[v _btn `S4 ~T0 @X0 1 e ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"50
-[v _main `(i ~T0 @X0 1 ef ]
-"51
+"27
+[v _btn_cfg `S2 ~T0 @X0 1 e ]
+"28
+[v _btn_inc `S2 ~T0 @X0 1 e ]
+"29
+[v _btn_dcr `S2 ~T0 @X0 1 e ]
+"31
+[v _App_Init `(v ~T0 @X0 1 ef2`*S4`*S3 ]
+"32
 {
-[e :U _main ]
+[e :U _App_Init ]
+"31
+[v _app `*S4 ~T0 @X0 1 r1 ]
+[v _clk `*S3 ~T0 @X0 1 r2 ]
+"32
+[f ]
+"33
+[e = . *U _app 0 _clk ]
+"34
+[e = . *U _app 1 . `E105 0 ]
+"36
+[e ( _button_init (4 , , , &U _btn_cfg &U _button_cfg . `E60 0 -> -> 25 `i `uc ]
+"37
+[e ( _button_init (4 , , , &U _btn_inc &U _button_inc . `E60 0 -> -> 25 `i `uc ]
+"38
+[e ( _button_init (4 , , , &U _btn_dcr &U _button_dcr . `E60 0 -> -> 25 `i `uc ]
+"39
+[e :UE 395 ]
+}
+"41
+[v _Button_Task `(v ~T0 @X0 1 ef ]
+"42
+{
+[e :U _Button_Task ]
+[f ]
+"43
+[e ( _button_update (1 &U _btn_cfg ]
+"44
+[e ( _button_update (1 &U _btn_inc ]
+"45
+[e ( _button_update (1 &U _btn_dcr ]
+"46
+[e :UE 396 ]
+}
+"49
+[v _App_Task `(v ~T0 @X0 1 ef1`*S4 ]
+"50
+{
+[e :U _App_Task ]
+"49
+[v _app `*S4 ~T0 @X0 1 r1 ]
+"50
 [f ]
 "52
-[e ( _Gpio_Init (2 , &U _led . `E37 0 ]
+[e $ ! == -> ( _button_get_event (1 &U _btn_cfg `ui -> . `E68 2 `ui 398  ]
 "53
-[e ( _button_init (4 , , , &U _btn &U _button . `E134 0 -> -> 3 `i `uc ]
+{
 "54
-[e ( _Uart_Init (1 -> &U _uart_config `*CS3 ]
+[e $U 400  ]
 "55
-[e ( _Uart_Start (1 -> &U _uart_config `*CS3 ]
+{
 "56
-[e ( _timer0_init ..  ]
+[e :U 401 ]
 "57
-[e ( _timer0_start ..  ]
+[e = . *U _app 1 . `E105 1 ]
 "58
-[v _level `E142 ~T0 @X0 1 a ]
+[e $U 399  ]
+"59
+[e :U 402 ]
+"60
+[e = . *U _app 1 . `E105 2 ]
 "61
-[e ( _isr_init ..  ]
+[e $U 399  ]
+"62
+[e :U 403 ]
 "63
-[e ( _clock_init (4 , , , &U _sys_clock -> -> 23 `i `uc -> -> 59 `i `uc -> -> 55 `i `uc ]
+[e = . *U _app 1 . `E105 0 ]
+"64
+[e $U 399  ]
 "65
-[v _c `uc ~T0 @X0 1 a ]
-"66
-[e ( _Gpio_Write (2 , &U _led . `E41 0 ]
-"67
-[e :U 397 ]
-"68
-{
-"69
-[e ( _system_tick_task ..  ]
-"71
-[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 399  ]
-"72
-{
-"73
-[e ( _button_update (1 &U _btn ]
-"74
 }
-[e :U 399 ]
-"76
-[e $ ! != -> ( _system_tick_is_1s ..  `i -> 0 `i 400  ]
-"77
-{
-"78
-[e ( _clock_update_1s (1 &U _sys_clock ]
-"79
-[e ( _clock_print (1 -> &U _sys_clock `*CS2 ]
-"80
-}
+[e $U 399  ]
 [e :U 400 ]
-"81
-[e = _level ( _button_get_event (1 &U _btn ]
-"83
-[e $ ! == -> _level `ui -> . `E142 1 `ui 401  ]
-"84
+[e [\ -> . *U _app 1 `ui , $ -> . `E105 0 `ui 401
+ , $ -> . `E105 1 `ui 402
+ , $ -> . `E105 2 `ui 403
+ 399 ]
+[e :U 399 ]
+"66
+}
+[e :U 398 ]
+"68
+[e $ ! == -> ( _button_get_event (1 &U _btn_inc `ui -> . `E68 2 `ui 404  ]
+"69
 {
+"70
+[e $ ! == -> . *U _app 1 `ui -> . `E105 1 `ui 405  ]
+"71
+{
+"72
+[e ++ . *U . *U _app 0 0 -> -> 1 `i `uc ]
+"73
+[e $ ! == -> . *U . *U _app 0 0 `i -> 24 `i 406  ]
+"74
+{
+"75
+[e = . *U . *U _app 0 0 -> -> 0 `i `uc ]
+"76
+}
+[e :U 406 ]
+"77
+}
+[e :U 405 ]
+"79
+[e $ ! == -> . *U _app 1 `ui -> . `E105 2 `ui 407  ]
+"80
+{
+"81
+[e ++ . *U . *U _app 0 1 -> -> 1 `i `uc ]
+"82
+[e $ ! == -> . *U . *U _app 0 1 `i -> 60 `i 408  ]
+"83
+{
+"84
+[e = . *U . *U _app 0 1 -> -> 0 `i `uc ]
+"85
+}
+[e :U 408 ]
 "86
-[e ( _printf_ , (. :s 1C -> 2026 `i ]
+}
+[e :U 407 ]
 "87
 }
-[e :U 401 ]
+[e :U 404 ]
 "89
-[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 402  ]
+[e $ ! == -> ( _button_get_event (1 &U _btn_dcr `ui -> . `E68 2 `ui 409  ]
 "90
 {
 "91
-[e $ ! == -> _c `ui -> 65 `ui 403  ]
+[e $ ! == -> . *U _app 1 `ui -> . `E105 1 `ui 410  ]
 "92
 {
 "93
-[e ( _Gpio_Write (2 , &U _led . `E41 1 ]
+[e $ ! == -> . *U . *U _app 0 0 `i -> 0 `i 411  ]
 "94
-}
-[e $U 404  ]
-"95
-[e :U 403 ]
-[e $ ! == -> _c `ui -> 66 `ui 405  ]
-"96
 {
+"95
+[e = . *U . *U _app 0 0 -> -> 24 `i `uc ]
+"96
+}
+[e :U 411 ]
 "97
-[e ( _Gpio_Write (2 , &U _led . `E41 0 ]
+[e -- . *U . *U _app 0 0 -> -> 1 `i `uc ]
 "98
 }
-[e :U 405 ]
-[e :U 404 ]
-"99
-}
-[e :U 402 ]
+[e :U 410 ]
 "100
-}
-[e :U 396 ]
-[e $U 397  ]
-[e :U 398 ]
+[e $ ! == -> . *U _app 1 `ui -> . `E105 2 `ui 412  ]
+"101
+{
 "102
-[e ) -> 0 `i ]
-[e $UE 395  ]
+[e $ ! == -> . *U . *U _app 0 1 `i -> 0 `i 413  ]
 "103
-[e :UE 395 ]
+{
+"104
+[e = . *U . *U _app 0 1 -> -> 60 `i `uc ]
+"105
 }
-[a 1C 67 82 73 83 32 37 100 10 13 0 ]
+[e :U 413 ]
+"106
+[e -- . *U . *U _app 0 1 -> -> 1 `i `uc ]
+"107
+}
+[e :U 412 ]
+"108
+}
+[e :U 409 ]
+"110
+[e :UE 397 ]
+}

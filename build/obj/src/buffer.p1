@@ -1,5 +1,5 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"10 inc/buffer.h
+"10 ./inc/buffer.h
 [s S1 `uc -> 20 `i `Vuc 1 `Vuc 1 ]
 [n S1 . data head tail ]
 "3 src/buffer.c

@@ -15,7 +15,8 @@ RM = rm
 #===========FILES=======================
 TARGET = $(BIN_DIR)/clock
     
-SOURCES = main.c\
+SOURCES = app/main.c\
+		  app/app.c\
 		  src/gpio.c\
 		  src/buffer.c\
 		  src/uart.c\
@@ -24,6 +25,7 @@ SOURCES = main.c\
 		  src/system_tick.c\
 		  src/clock.c\
 		  src/button_driver.c\
+		  src/ss_display.c\
 		  external/printf/printf.c
 	
 		 

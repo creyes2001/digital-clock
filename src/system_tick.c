@@ -1,21 +1,31 @@
 #include "system_tick.h"
 
-static volatile uint8_t flag_1ms = 0;
-static volatile uint16_t tick_1ms = 0;
+static volatile uint8_t pending_ticks = 0;
+static uint16_t tick_1ms = 0;
 static volatile uint8_t one_second_flag = 0;
+static uint8_t flag_1ms = 0;
 
 void system_tick_1ms(void)
 {
-	tick_1ms++;
-	flag_1ms = 1;
+	if(pending_ticks < 255)
+	{
+		pending_ticks++;
+	}
 }
 
 void system_tick_task(void)
 {
-	if(tick_1ms >= 1000)
+	while(pending_ticks)
 	{
-		tick_1ms = 0;
-		one_second_flag = 1;
+		pending_ticks--;
+		flag_1ms = 1;
+		tick_1ms++;
+
+		if(tick_1ms >= 1000)
+		{
+			tick_1ms = 0;
+			one_second_flag = 1;
+		}
 	}
 }
 

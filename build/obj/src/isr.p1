@@ -28,9 +28,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S361 . . . . ]
 "8612
 [v _INTCONbits `VS361 ~T0 @X0 0 e@4082 ]
-"9 ./inc/timer0.h
-[v _timer0_reload `(v ~T0 @X0 0 ef ]
-"4 ./inc/system_tick.h
+"8151
+[v _TMR0H `Vuc ~T0 @X0 0 e@4055 ]
+"8144
+[v _TMR0L `Vuc ~T0 @X0 0 e@4054 ]
+"6 ./inc/system_tick.h
 [v _system_tick_1ms `(v ~T0 @X0 0 ef ]
 "7543 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [s S324 :1 `uc 1 ]
@@ -402,49 +404,51 @@ Version 4.0 HI-TECH Software Intermediate Code
 "8891
 [; <" TOSU equ 0FFFh ;# ">
 [v $root$_ISR `(v ~T0 @X0 0 e ]
-"7 src/isr.c
+"9 src/isr.c
 [v _ISR `(v ~T36 @X0 1 ef ]
-"8
+"10
 {
 [e :U _ISR ]
 [f ]
-"10
-[e $ ! != | -> . . _PIR1bits 0 5 `i -> . . _PIR1bits 0 4 `i -> 0 `i 394  ]
-"11
-{
 "12
-[e ( _Uart_InterruptHandler ..  ]
+[e $ ! != | -> . . _PIR1bits 0 5 `i -> . . _PIR1bits 0 4 `i -> 0 `i 394  ]
 "13
+{
+"14
+[e ( _Uart_InterruptHandler ..  ]
+"15
 }
 [e :U 394 ]
-"16
-[e $ ! && != -> . . _INTCONbits 0 2 `i -> 0 `i != -> . . _INTCONbits 0 5 `i -> 0 `i 395  ]
-"17
-{
 "18
-[e ( _timer0_reload ..  ]
+[e $ ! && != -> . . _INTCONbits 0 2 `i -> 0 `i != -> . . _INTCONbits 0 5 `i -> 0 `i 395  ]
 "19
-[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
-"20
-[e ( _system_tick_1ms ..  ]
+{
 "21
+[e = . . _INTCONbits 0 2 -> -> 0 `i `uc ]
+"25
+[e = _TMR0H -> -> 251 `i `uc ]
+"26
+[e = _TMR0L -> -> 30 `i `uc ]
+"30
+[e ( _system_tick_1ms ..  ]
+"31
 }
 [e :U 395 ]
-"23
+"33
 [e :UE 393 ]
 }
-"25
+"35
 [v _isr_init `(v ~T0 @X0 1 ef ]
-"26
+"36
 {
 [e :U _isr_init ]
 [f ]
-"27
+"37
 [e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
-"28
+"38
 [e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"29
+"39
 [e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"30
+"40
 [e :UE 396 ]
 }

@@ -1,13 +1,120 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "19 ./inc/gpio.h
-[s S391 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
-[n S391 . tris lat port pin ]
-"4 src/gpio.c
-[c E3343 0 1 .. ]
-[n E3343 . GPIO_OUTPUT GPIO_INPUT  ]
+[s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
+[n S1 . tris lat port pin ]
+"3999 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
+[v _TRISD `Vuc ~T0 @X0 0 e@3989 ]
+"3261
+[v _LATD `Vuc ~T0 @X0 0 e@3980 ]
+"2703
+[v _PORTD `Vuc ~T0 @X0 0 e@3971 ]
+"3623
+[v _TRISB `Vuc ~T0 @X0 0 e@3987 ]
+"3071
+[v _LATB `Vuc ~T0 @X0 0 e@3978 ]
+"2451
+[v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
+"4221
+[v _TRISE `Vuc ~T0 @X0 0 e@3990 ]
+"3373
+[v _LATE `Vuc ~T0 @X0 0 e@3981 ]
+"2824
+[v _PORTE `Vuc ~T0 @X0 0 e@3972 ]
+"111 app/main.c
+[c E165 0 1 .. ]
+[n E165 . COLON_DISABLED COLON_ENABLED  ]
+[c E173 0 1 .. ]
+[n E173 . COMMON_CATHODE COMMON_ANODE  ]
+[v F182 `S1 ~T0 @X0 -> 7 `i t ]
+[v F184 `S1 ~T0 @X0 -> 4 `i t ]
+"26 ./inc/ss_display.h
+[s S5 `E165 1 `E173 1 `uc 1 `*F182 1 `*F184 1 `*S1 1 `*S1 1 ]
+[n S5 . colon display_type digit_number data control colon_pin colon_control_pin ]
+"3845 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
+[v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
+"3183
+[v _LATC `Vuc ~T0 @X0 0 e@3979 ]
+"2561
+[v _PORTC `Vuc ~T0 @X0 0 e@3970 ]
+"9 ./inc/uart.h
+[s S6 `*S1 1 `*S1 1 `ul 1 ]
+[n S6 . rx tx baud_rate ]
+"7 ./inc/clock.h
+[s S3 `uc 1 `uc 1 `uc 1 ]
+[n S3 . hours minutes seconds ]
+"145 app/main.c
+[c E105 0 1 2 .. ]
+[n E105 . APP_STATE_RUN APP_STATE_SET_HOURS APP_STATE_SET_MINUTES  ]
+"15 app/app.h
+[s S4 `*S3 1 `E105 1 ]
+[n S4 . clock state ]
+[p mainexit ]
+"20
+[v _App_Init `(v ~T0 @X0 0 ef2`*S4`*S3 ]
+"16 ./inc/uart.h
+[v _Uart_Init `(v ~T0 @X0 0 ef1`*CS6 ]
+"17
+[v _Uart_Start `(v ~T0 @X0 0 ef1`*CS6 ]
+"6 ./inc/timer0.h
+[v _timer0_init `(v ~T0 @X0 0 ef ]
+"7
+[v _timer0_start `(v ~T0 @X0 0 ef ]
+"36 ./inc/ss_display.h
+[v _display_init `(v ~T0 @X0 0 ef1`*S5 ]
+"4 ./inc/isr.h
+[v _isr_init `(v ~T0 @X0 0 ef ]
+"14 ./inc/clock.h
+[v _clock_init `(v ~T0 @X0 0 ef4`*S3`uc`uc`uc ]
+"7 ./inc/system_tick.h
+[v _system_tick_task `(v ~T0 @X0 0 ef ]
+"21 app/app.h
+[v _App_Task `(v ~T0 @X0 0 ef1`*S4 ]
+"8 ./inc/system_tick.h
+[v _system_tick_is_1ms `(uc ~T0 @X0 0 ef ]
+"22 app/app.h
+[v _Button_Task `(v ~T0 @X0 0 ef ]
+"9 ./inc/system_tick.h
+[v _system_tick_is_1s `(uc ~T0 @X0 0 ef ]
+"15 ./inc/clock.h
+[v _clock_update_1s `(v ~T0 @X0 0 ef1`*S3 ]
 "16
-[c E3347 0 1 .. ]
-[n E3347 . GPIO_LOW GPIO_HIGH  ]
+[v _clock_print `(v ~T0 @X0 0 ef1`*CS3 ]
+"61 ./external/printf/printf.h
+[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
+"21 ./inc/uart.h
+[v _Uart_Read `(a ~T0 @X0 0 ef1`*uc ]
+"3 ./inc/config.h
+[p x PLLDIV  =  1        ]
+"4
+[p x CPUDIV  =  OSC1_PLL2  ]
+"5
+[p x USBDIV  =  1        ]
+"8
+[p x FOSC  =  HS         ]
+"9
+[p x FCMEN  =  OFF       ]
+"10
+[p x IESO  =  OFF        ]
+"13
+[p x PWRT  =  ON         ]
+"14
+[p x BOR  =  ON          ]
+"15
+[p x BORV  =  3          ]
+"18
+[p x WDT  =  OFF         ]
+"21
+[p x PBADEN  =  OFF      ]
+"22
+[p x LPT1OSC  =  OFF     ]
+"23
+[p x MCLRE  =  ON        ]
+"26
+[p x STVREN  =  ON       ]
+"27
+[p x LVP  =  OFF         ]
+"28
+[p x XINST  =  OFF       ]
 "52 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [; <" SPPDATA equ 0F62h ;# ">
 "72
@@ -348,104 +455,272 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "8891
 [; <" TOSU equ 0FFFh ;# ">
-"4 src/gpio.c
-[v _Gpio_Init `(v ~T0 @X0 1 ef2`*S391`E3343 ]
-"5
+"15 app/main.c
+[v _data `S1 ~T0 @X0 -> 7 `i e ]
+[i _data
+:U ..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 0 `i `uc
+..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 1 `i `uc
+..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 2 `i `uc
+..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 3 `i `uc
+..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 4 `i `uc
+..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 5 `i `uc
+..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 6 `i `uc
+..
+..
+]
+"66
+[v _control `S1 ~T0 @X0 -> 4 `i e ]
+[i _control
+:U ..
+:U ..
+&U _TRISB
+&U _LATB
+&U _PORTB
+-> -> 4 `i `uc
+..
+:U ..
+&U _TRISB
+&U _LATB
+&U _PORTB
+-> -> 5 `i `uc
+..
+:U ..
+&U _TRISB
+&U _LATB
+&U _PORTB
+-> -> 6 `i `uc
+..
+:U ..
+&U _TRISB
+&U _LATB
+&U _PORTB
+-> -> 7 `i `uc
+..
+..
+]
+"96
+[v _colon `S1 ~T0 @X0 1 e ]
+[i _colon
+:U ..
+:U ..
+&U _TRISD
+&U _LATD
+&U _PORTD
+-> -> 7 `i `uc
+..
+..
+]
+"103
+[v _colon_control `S1 ~T0 @X0 1 e ]
+[i _colon_control
+:U ..
+:U ..
+&U _TRISE
+&U _LATE
+&U _PORTE
+-> -> 0 `i `uc
+..
+..
+]
+"111
+[v _clk_display `S5 ~T0 @X0 1 e ]
+[i _clk_display
+:U ..
+:U ..
+. `E165 1
+. `E173 0
+-> -> 4 `i `uc
+&U _data
+&U _control
+&U _colon
+&U _colon_control
+..
+..
+]
+"123
+[v _rx `S1 ~T0 @X0 1 s ]
+[i _rx
+:U ..
+:U ..
+&U _TRISC
+&U _LATC
+&U _PORTC
+-> -> 7 `i `uc
+..
+..
+]
+"130
+[v _tx `S1 ~T0 @X0 1 s ]
+[i _tx
+:U ..
+:U ..
+&U _TRISC
+&U _LATC
+&U _PORTC
+-> -> 6 `i `uc
+..
+..
+]
+"137
+[v _uart_config `S6 ~T0 @X0 1 e ]
+[i _uart_config
+:U ..
+:U ..
+&U _rx
+&U _tx
+-> -> -> 9600 `i `l `ul
+..
+..
+]
+"144
+[v _sys_clock `S3 ~T0 @X0 1 e ]
+"145
+[v _app `S4 ~T0 @X0 1 e ]
+[v $root$_main `(v ~T0 @X0 0 e ]
+"147
+[v _main `(i ~T0 @X0 1 ef ]
+"148
 {
-[e :U _Gpio_Init ]
-"4
-[v _gpio `*S391 ~T0 @X0 1 r1 ]
-[v _dir `E3343 ~T0 @X0 1 r2 ]
-"5
+[e :U _main ]
 [f ]
-"6
-[e $ ! == -> _dir `ui -> . `E3343 0 `ui 393  ]
-"7
-{
-"8
-[e =& *U . *U _gpio 0 -> ~ << -> 1 `i -> . *U _gpio 3 `i `uc ]
-"9
-}
-[e $U 394  ]
-"10
-[e :U 393 ]
-"11
-{
-"12
-[e =| *U . *U _gpio 0 -> << -> 1 `i -> . *U _gpio 3 `i `uc ]
-"13
-}
-[e :U 394 ]
-"14
-[e :UE 392 ]
-}
-"16
-[v _Gpio_Write `(v ~T0 @X0 1 ef2`*S391`E3347 ]
-"17
-{
-[e :U _Gpio_Write ]
-"16
-[v _gpio `*S391 ~T0 @X0 1 r1 ]
-[v _level `E3347 ~T0 @X0 1 r2 ]
-"17
-[f ]
-"18
-[e $ ! == -> _level `ui -> . `E3347 1 `ui 396  ]
-"19
-{
-"20
-[e =| *U . *U _gpio 1 -> << -> 1 `i -> . *U _gpio 3 `i `uc ]
-"21
-}
-[e $U 397  ]
-"22
-[e :U 396 ]
-"23
-{
-"24
-[e =& *U . *U _gpio 1 -> ~ << -> 1 `i -> . *U _gpio 3 `i `uc ]
-"25
-}
-[e :U 397 ]
-"26
-[e :UE 395 ]
-}
-"28
-[v _Gpio_Read `(E3347 ~T0 @X0 1 ef1`*S391 ]
-"29
-{
-[e :U _Gpio_Read ]
-"28
-[v _gpio `*S391 ~T0 @X0 1 r1 ]
-"29
-[f ]
-"30
-[e $ ! != & -> *U . *U _gpio 2 `i << -> 1 `i -> . *U _gpio 3 `i -> 0 `i 399  ]
-"31
-{
-"32
-[e ) . `E3347 1 ]
-[e $UE 398  ]
-"33
-}
+"150
+[e ( _App_Init (2 , &U _app &U _sys_clock ]
+"152
+[e ( _Uart_Init (1 -> &U _uart_config `*CS6 ]
+"153
+[e ( _Uart_Start (1 -> &U _uart_config `*CS6 ]
+"155
+[e ( _timer0_init ..  ]
+"156
+[e ( _timer0_start ..  ]
+"158
+[e ( _display_init (1 &U _clk_display ]
+"161
+[e ( _isr_init ..  ]
+"163
+[e ( _clock_init (4 , , , &U _sys_clock -> -> 23 `i `uc -> -> 59 `i `uc -> -> 55 `i `uc ]
+"165
+[v _c `uc ~T0 @X0 1 a ]
+"166
 [e :U 399 ]
-"34
-[e ) . `E3347 0 ]
-[e $UE 398  ]
-"35
-[e :UE 398 ]
-}
-"37
-[v _Gpio_Toggle `(v ~T0 @X0 1 ef1`*S391 ]
-"38
+"167
 {
-[e :U _Gpio_Toggle ]
-"37
-[v _gpio `*S391 ~T0 @X0 1 r1 ]
-"38
-[f ]
-"39
-[e =^ *U . *U _gpio 1 -> << -> 1 `i -> . *U _gpio 3 `i `uc ]
-"40
-[e :UE 400 ]
+"168
+[e ( _system_tick_task ..  ]
+"169
+[e ( _App_Task (1 &U _app ]
+"171
+[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 401  ]
+"172
+{
+"173
+[e ( _Button_Task ..  ]
+"174
 }
+[e :U 401 ]
+"176
+[e $ ! && != -> ( _system_tick_is_1s ..  `i -> 0 `i == -> . _app 1 `ui -> . `E105 0 `ui 402  ]
+"177
+{
+"178
+[e ( _clock_update_1s (1 &U _sys_clock ]
+"179
+[e ( _clock_print (1 -> &U _sys_clock `*CS3 ]
+"180
+}
+[e :U 402 ]
+"182
+[e $ ! == -> . _app 1 `ui -> . `E105 1 `ui 403  ]
+"183
+{
+"184
+[e ( _printf_ :s 1C ]
+"185
+}
+[e :U 403 ]
+"187
+[e $ ! == -> . _app 1 `ui -> . `E105 2 `ui 404  ]
+"188
+{
+"189
+[e ( _printf_ :s 2C ]
+"190
+}
+[e :U 404 ]
+"191
+[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 405  ]
+"192
+{
+"193
+[e $ ! == -> _c `ui -> 65 `ui 406  ]
+"194
+{
+"195
+[e ( _printf_ :s 3C ]
+"196
+}
+[e $U 407  ]
+"197
+[e :U 406 ]
+[e $ ! == -> _c `ui -> 66 `ui 408  ]
+"198
+{
+"199
+[e ( _printf_ :s 4C ]
+"200
+}
+[e :U 408 ]
+[e :U 407 ]
+"201
+}
+[e :U 405 ]
+"202
+}
+[e :U 398 ]
+[e $U 399  ]
+[e :U 400 ]
+"203
+[e ) -> 0 `i ]
+[e $UE 397  ]
+"204
+[e :UE 397 ]
+}
+[a 4C 66 13 10 0 ]
+[a 3C 65 13 10 0 ]
+[a 2C 50 13 10 0 ]
+[a 1C 49 13 10 0 ]
