@@ -4,6 +4,9 @@
 #include <stdint.h>
 #include "gpio.h"
 
+#define SEGMENTS 7
+#define MAX_CONTROL_PINS 4
+
 typedef enum
 {
 	COLON_DISABLED = 0,
@@ -18,23 +21,30 @@ typedef enum
 
 typedef enum
 {
-	COMMON_CATHODE = 0,
-	COMMON_ANODE
-}display_type_e;
+	ACTIVE_LOW = 0,
+	ACTIVE_HIGH
+}polarity_e;
+
+typedef enum
+{
+	CONTROL_PIN = 0,
+	SEGMENT_PIN
+}pin_type_e;
 
 typedef struct
 {
 	colon_config_e colon;
-	display_type_e display_type;
+	polarity_e segment_polarity;
+	polarity_e control_polarity;
 	uint8_t digit_number;
-	gpio_t (*data)[7];
-	gpio_t (*control)[4];
+	gpio_t *data;
+	gpio_t *control;
 	gpio_t *colon_pin;
 	gpio_t *colon_control_pin;
 }display_t;
 
 void display_init(display_t *display);
-void display_update(display_t *display);
-void display_task(display_t *display,uint8_t data[4]);
+void display_task(void);
+void display_push(uint16_t buffer_clk);
 
 #endif //SEVEN_SEGMENTS_DISPLAY_H

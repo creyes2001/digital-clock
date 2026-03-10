@@ -110,10 +110,11 @@ gpio_t colon_control = {
 
 display_t clk_display = {
 	.colon = COLON_ENABLED,
-	.display_type = COMMON_CATHODE,
+	.segment_polarity = ACTIVE_HIGH,
+	.control_polarity = ACTIVE_LOW,
 	.digit_number = 4,
-	.data = &data,
-	.control = &control, 
+	.data = data,
+	.control = control, 
 	.colon_pin = &colon,
 	.colon_control_pin = &colon_control
 };
@@ -160,7 +161,7 @@ int main()
 	/* Enable interrupts */
 	isr_init();
 
-	clock_init(&sys_clock,23,59,55);
+	clock_init(&sys_clock,21,26,55);
 
 	char c;
 	while(1)
@@ -171,11 +172,15 @@ int main()
 		if(system_tick_is_1ms())
 		{
 			Button_Task();
+		//	interrupts_off();
+			display_task();
+		//	interrupts_on();
 		}
 
 		if(system_tick_is_1s() && app.state == APP_STATE_RUN)
 		{
 			clock_update_1s(&sys_clock);
+			display_push(get_time(&sys_clock));
 			clock_print(&sys_clock);
 		}
 		

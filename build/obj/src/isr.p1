@@ -452,3 +452,29 @@ Version 4.0 HI-TECH Software Intermediate Code
 "40
 [e :UE 396 ]
 }
+"41
+[v _interrupts_off `(v ~T0 @X0 1 ef ]
+"42
+{
+[e :U _interrupts_off ]
+[f ]
+"43
+[e = . . _INTCONbits 1 6 -> -> 0 `i `uc ]
+"44
+[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
+"45
+[e :UE 397 ]
+}
+"47
+[v _interrupts_on `(v ~T0 @X0 1 ef ]
+"48
+{
+[e :U _interrupts_on ]
+[f ]
+"49
+[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
+"50
+[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
+"51
+[e :UE 398 ]
+}

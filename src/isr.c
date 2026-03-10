@@ -38,3 +38,14 @@ void isr_init(void)
 	INTCONbits.PEIE = 1;	// Peripherial interrupts enable
 	INTCONbits.GIE = 1; 	// Global interrupt enable
 }
+void interrupts_off(void)
+{
+	INTCONbits.PEIE = 0;	// Peripherial interrupts enable
+	INTCONbits.GIE = 0; 	// Global interrupt enable
+}
+
+void interrupts_on(void)
+{
+	INTCONbits.PEIE = 1;	// Peripherial interrupts enable
+	INTCONbits.GIE = 1; 	// Global interrupt enable
+}

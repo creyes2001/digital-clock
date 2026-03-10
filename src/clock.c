@@ -30,6 +30,10 @@ void clock_update_1s(clock_time_t *clk)
     }
 }
 
+uint16_t get_time(clock_time_t *clk)
+{
+	return (clk->hours * 100) + clk->minutes;
+}
 void clock_print(const clock_time_t *clk)
 {
 	printf("%02u:%02u:%02u\r\n",

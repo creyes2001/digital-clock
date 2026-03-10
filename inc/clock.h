@@ -14,6 +14,6 @@ typedef struct
 void clock_init(clock_time_t *clk, uint8_t h, uint8_t m, uint8_t s);
 void clock_update_1s(clock_time_t *clk);
 void clock_print(const clock_time_t *clk);
- 
+uint16_t get_time(clock_time_t *clk); 
 
 #endif

@@ -21,15 +21,13 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2824
 [v _PORTE `Vuc ~T0 @X0 0 e@3972 ]
 "111 app/main.c
-[c E165 0 1 .. ]
-[n E165 . COLON_DISABLED COLON_ENABLED  ]
-[c E173 0 1 .. ]
-[n E173 . COMMON_CATHODE COMMON_ANODE  ]
-[v F182 `S1 ~T0 @X0 -> 7 `i t ]
-[v F184 `S1 ~T0 @X0 -> 4 `i t ]
-"26 ./inc/ss_display.h
-[s S5 `E165 1 `E173 1 `uc 1 `*F182 1 `*F184 1 `*S1 1 `*S1 1 ]
-[n S5 . colon display_type digit_number data control colon_pin colon_control_pin ]
+[c E169 0 1 .. ]
+[n E169 . COLON_DISABLED COLON_ENABLED  ]
+[c E177 0 1 .. ]
+[n E177 . ACTIVE_LOW ACTIVE_HIGH  ]
+"35 ./inc/ss_display.h
+[s S5 `E169 1 `E177 1 `E177 1 `uc 1 `*S1 1 `*S1 1 `*S1 1 `*S1 1 ]
+[n S5 . colon segment_polarity control_polarity digit_number data control colon_pin colon_control_pin ]
 "3845 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
 "3183
@@ -42,11 +40,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./inc/clock.h
 [s S3 `uc 1 `uc 1 `uc 1 ]
 [n S3 . hours minutes seconds ]
-"145 app/main.c
-[c E105 0 1 2 .. ]
-[n E105 . APP_STATE_RUN APP_STATE_SET_HOURS APP_STATE_SET_MINUTES  ]
+"146 app/main.c
+[c E107 0 1 2 .. ]
+[n E107 . APP_STATE_RUN APP_STATE_SET_HOURS APP_STATE_SET_MINUTES  ]
 "15 app/app.h
-[s S4 `*S3 1 `E105 1 ]
+[s S4 `*S3 1 `E107 1 ]
 [n S4 . clock state ]
 [p mainexit ]
 "20
@@ -59,7 +57,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _timer0_init `(v ~T0 @X0 0 ef ]
 "7
 [v _timer0_start `(v ~T0 @X0 0 ef ]
-"36 ./inc/ss_display.h
+"46 ./inc/ss_display.h
 [v _display_init `(v ~T0 @X0 0 ef1`*S5 ]
 "4 ./inc/isr.h
 [v _isr_init `(v ~T0 @X0 0 ef ]
@@ -73,10 +71,16 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _system_tick_is_1ms `(uc ~T0 @X0 0 ef ]
 "22 app/app.h
 [v _Button_Task `(v ~T0 @X0 0 ef ]
+"47 ./inc/ss_display.h
+[v _display_task `(v ~T0 @X0 0 ef ]
 "9 ./inc/system_tick.h
 [v _system_tick_is_1s `(uc ~T0 @X0 0 ef ]
 "15 ./inc/clock.h
 [v _clock_update_1s `(v ~T0 @X0 0 ef1`*S3 ]
+"48 ./inc/ss_display.h
+[v _display_push `(v ~T0 @X0 0 ef1`us ]
+"17 ./inc/clock.h
+[v _get_time `(us ~T0 @X0 0 ef1`*S3 ]
 "16
 [v _clock_print `(v ~T0 @X0 0 ef1`*CS3 ]
 "61 ./external/printf/printf.h
@@ -562,8 +566,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _clk_display
 :U ..
 :U ..
-. `E165 1
-. `E173 0
+. `E169 1
+. `E177 1
+. `E177 0
 -> -> 4 `i `uc
 &U _data
 &U _control
@@ -572,7 +577,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"123
+"124
 [v _rx `S1 ~T0 @X0 1 s ]
 [i _rx
 :U ..
@@ -584,7 +589,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"130
+"131
 [v _tx `S1 ~T0 @X0 1 s ]
 [i _tx
 :U ..
@@ -596,7 +601,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"137
+"138
 [v _uart_config `S6 ~T0 @X0 1 e ]
 [i _uart_config
 :U ..
@@ -607,117 +612,121 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"144
-[v _sys_clock `S3 ~T0 @X0 1 e ]
 "145
+[v _sys_clock `S3 ~T0 @X0 1 e ]
+"146
 [v _app `S4 ~T0 @X0 1 e ]
 [v $root$_main `(v ~T0 @X0 0 e ]
-"147
-[v _main `(i ~T0 @X0 1 ef ]
 "148
+[v _main `(i ~T0 @X0 1 ef ]
+"149
 {
 [e :U _main ]
 [f ]
-"150
+"151
 [e ( _App_Init (2 , &U _app &U _sys_clock ]
-"152
-[e ( _Uart_Init (1 -> &U _uart_config `*CS6 ]
 "153
+[e ( _Uart_Init (1 -> &U _uart_config `*CS6 ]
+"154
 [e ( _Uart_Start (1 -> &U _uart_config `*CS6 ]
-"155
-[e ( _timer0_init ..  ]
 "156
+[e ( _timer0_init ..  ]
+"157
 [e ( _timer0_start ..  ]
-"158
+"159
 [e ( _display_init (1 &U _clk_display ]
-"161
+"162
 [e ( _isr_init ..  ]
-"163
-[e ( _clock_init (4 , , , &U _sys_clock -> -> 23 `i `uc -> -> 59 `i `uc -> -> 55 `i `uc ]
-"165
-[v _c `uc ~T0 @X0 1 a ]
+"164
+[e ( _clock_init (4 , , , &U _sys_clock -> -> 21 `i `uc -> -> 26 `i `uc -> -> 55 `i `uc ]
 "166
-[e :U 399 ]
+[v _c `uc ~T0 @X0 1 a ]
 "167
-{
+[e :U 399 ]
 "168
-[e ( _system_tick_task ..  ]
-"169
-[e ( _App_Task (1 &U _app ]
-"171
-[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 401  ]
-"172
 {
+"169
+[e ( _system_tick_task ..  ]
+"170
+[e ( _App_Task (1 &U _app ]
+"172
+[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 401  ]
 "173
-[e ( _Button_Task ..  ]
+{
 "174
+[e ( _Button_Task ..  ]
+"176
+[e ( _display_task ..  ]
+"178
 }
 [e :U 401 ]
-"176
-[e $ ! && != -> ( _system_tick_is_1s ..  `i -> 0 `i == -> . _app 1 `ui -> . `E105 0 `ui 402  ]
-"177
-{
-"178
-[e ( _clock_update_1s (1 &U _sys_clock ]
-"179
-[e ( _clock_print (1 -> &U _sys_clock `*CS3 ]
 "180
-}
-[e :U 402 ]
-"182
-[e $ ! == -> . _app 1 `ui -> . `E105 1 `ui 403  ]
-"183
+[e $ ! && != -> ( _system_tick_is_1s ..  `i -> 0 `i == -> . _app 1 `ui -> . `E107 0 `ui 402  ]
+"181
 {
+"182
+[e ( _clock_update_1s (1 &U _sys_clock ]
+"183
+[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
 "184
-[e ( _printf_ :s 1C ]
+[e ( _clock_print (1 -> &U _sys_clock `*CS3 ]
 "185
 }
-[e :U 403 ]
+[e :U 402 ]
 "187
-[e $ ! == -> . _app 1 `ui -> . `E105 2 `ui 404  ]
+[e $ ! == -> . _app 1 `ui -> . `E107 1 `ui 403  ]
 "188
 {
 "189
-[e ( _printf_ :s 2C ]
+[e ( _printf_ :s 1C ]
 "190
 }
-[e :U 404 ]
-"191
-[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 405  ]
+[e :U 403 ]
 "192
-{
+[e $ ! == -> . _app 1 `ui -> . `E107 2 `ui 404  ]
 "193
-[e $ ! == -> _c `ui -> 65 `ui 406  ]
-"194
 {
+"194
+[e ( _printf_ :s 2C ]
 "195
-[e ( _printf_ :s 3C ]
+}
+[e :U 404 ]
 "196
+[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 405  ]
+"197
+{
+"198
+[e $ ! == -> _c `ui -> 65 `ui 406  ]
+"199
+{
+"200
+[e ( _printf_ :s 3C ]
+"201
 }
 [e $U 407  ]
-"197
+"202
 [e :U 406 ]
 [e $ ! == -> _c `ui -> 66 `ui 408  ]
-"198
+"203
 {
-"199
+"204
 [e ( _printf_ :s 4C ]
-"200
+"205
 }
 [e :U 408 ]
 [e :U 407 ]
-"201
+"206
 }
 [e :U 405 ]
-"202
+"207
 }
 [e :U 398 ]
 [e $U 399  ]
 [e :U 400 ]
-"203
+"208
 [e ) -> 0 `i ]
 [e $UE 397  ]
-"204
+"209
 [e :UE 397 ]
 }
 [a 4C 66 13 10 0 ]
