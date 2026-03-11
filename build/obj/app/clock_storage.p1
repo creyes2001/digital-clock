@@ -1,0 +1,71 @@
+Version 4.0 HI-TECH Software Intermediate Code
+"6 ./inc/eeprom.h
+[v _EEPROM_ReadByte `(uc ~T0 @X0 0 ef1`uc ]
+"7 app/clock_storage.h
+[v _ClockStorage_SaveTime `(v ~T0 @X0 0 ef3`uc`uc`uc ]
+"7 ./inc/eeprom.h
+[v _EEPROM_WriteByte `(v ~T0 @X0 0 ef2`uc`uc ]
+"10 app/clock_storage.c
+[v _ClockStorage_Init `(v ~T0 @X0 1 ef3`*uc`*uc`*uc ]
+"11
+{
+[e :U _ClockStorage_Init ]
+"10
+[v _h `*uc ~T0 @X0 1 r1 ]
+[v _m `*uc ~T0 @X0 1 r2 ]
+[v _s `*uc ~T0 @X0 1 r3 ]
+"11
+[f ]
+"12
+[e $ ! != -> ( _EEPROM_ReadByte (1 -> -> 0 `i `uc `i -> 165 `i 2  ]
+"13
+{
+"14
+[e = *U _h -> -> 12 `i `uc ]
+"15
+[e = *U _m -> -> 0 `i `uc ]
+"16
+[e = *U _s -> -> 0 `i `uc ]
+"18
+[e ( _ClockStorage_SaveTime (3 , , *U _h *U _m *U _s ]
+"20
+[e ( _EEPROM_WriteByte (2 , -> -> 0 `i `uc -> -> 165 `i `uc ]
+"21
+}
+[e $U 3  ]
+"22
+[e :U 2 ]
+"23
+{
+"24
+[e = *U _h ( _EEPROM_ReadByte (1 -> -> 1 `i `uc ]
+"25
+[e = *U _m ( _EEPROM_ReadByte (1 -> -> 2 `i `uc ]
+"26
+[e = *U _s ( _EEPROM_ReadByte (1 -> -> 3 `i `uc ]
+"27
+}
+[e :U 3 ]
+"28
+[e :UE 1 ]
+}
+"30
+[v _ClockStorage_SaveTime `(v ~T0 @X0 1 ef3`uc`uc`uc ]
+"31
+{
+[e :U _ClockStorage_SaveTime ]
+"30
+[v _hours `uc ~T0 @X0 1 r1 ]
+[v _minutes `uc ~T0 @X0 1 r2 ]
+[v _seconds `uc ~T0 @X0 1 r3 ]
+"31
+[f ]
+"32
+[e ( _EEPROM_WriteByte (2 , -> -> 1 `i `uc _hours ]
+"33
+[e ( _EEPROM_WriteByte (2 , -> -> 1 `i `uc _minutes ]
+"34
+[e ( _EEPROM_WriteByte (2 , -> -> 3 `i `uc _seconds ]
+"35
+[e :UE 4 ]
+}

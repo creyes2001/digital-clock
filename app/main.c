@@ -8,6 +8,7 @@
 #include "clock.h"
 #include "ss_display.h"
 #include "uart.h"
+#include "clock_storage.h"
 #include <xc.h>
 
 
@@ -161,6 +162,7 @@ int main()
 	/* Enable interrupts */
 	isr_init();
 
+	/* CLock initialization */	
 	clock_init(&sys_clock,21,26,55);
 
 	char c;
