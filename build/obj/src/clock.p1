@@ -2,101 +2,105 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./inc/clock.h
 [s S1 `uc 1 `uc 1 `uc 1 ]
 [n S1 . hours minutes seconds ]
+"6 ./app/clock_storage.h
+[v _ClockStorage_Init `(v ~T0 @X0 0 ef3`*uc`*uc`*uc ]
 "61 ./external/printf/printf.h
 [v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
-"4 src/clock.c
+"5 src/clock.c
 [v _clock_init `(v ~T0 @X0 1 ef4`*S1`uc`uc`uc ]
-"5
+"6
 {
 [e :U _clock_init ]
-"4
+"5
 [v _clk `*S1 ~T0 @X0 1 r1 ]
 [v _h `uc ~T0 @X0 1 r2 ]
 [v _m `uc ~T0 @X0 1 r3 ]
 [v _s `uc ~T0 @X0 1 r4 ]
-"5
-[f ]
 "6
-[e = . *U _clk 0 -> % -> _h `i -> 24 `i `uc ]
+[f ]
 "7
-[e = . *U _clk 1 -> % -> _m `i -> 60 `i `uc ]
+[e = . *U _clk 0 -> % -> _h `i -> 24 `i `uc ]
 "8
-[e = . *U _clk 2 -> % -> _s `i -> 60 `i `uc ]
+[e = . *U _clk 1 -> % -> _m `i -> 60 `i `uc ]
 "9
+[e = . *U _clk 2 -> % -> _s `i -> 60 `i `uc ]
+"11
+[e ( _ClockStorage_Init (3 , , &U . *U _clk 0 &U . *U _clk 1 &U . *U _clk 2 ]
+"12
 [e :UE 2 ]
 }
-"11
+"14
 [v _clock_update_1s `(v ~T0 @X0 1 ef1`*S1 ]
-"12
+"15
 {
 [e :U _clock_update_1s ]
-"11
+"14
 [v _clk `*S1 ~T0 @X0 1 r1 ]
-"12
-[f ]
-"13
-[e ++ . *U _clk 2 -> -> 1 `i `uc ]
 "15
-[e $ ! >= -> . *U _clk 2 `i -> 60 `i 4  ]
+[f ]
 "16
-{
-"17
-[e = . *U _clk 2 -> -> 0 `i `uc ]
+[e ++ . *U _clk 2 -> -> 1 `i `uc ]
 "18
-[e ++ . *U _clk 1 -> -> 1 `i `uc ]
+[e $ ! >= -> . *U _clk 2 `i -> 60 `i 4  ]
+"19
+{
 "20
-[e $ ! >= -> . *U _clk 1 `i -> 60 `i 5  ]
+[e = . *U _clk 2 -> -> 0 `i `uc ]
 "21
-{
-"22
-[e = . *U _clk 1 -> -> 0 `i `uc ]
+[e ++ . *U _clk 1 -> -> 1 `i `uc ]
 "23
-[e ++ . *U _clk 0 -> -> 1 `i `uc ]
-"25
-[e $ ! >= -> . *U _clk 0 `i -> 24 `i 6  ]
-"26
+[e $ ! >= -> . *U _clk 1 `i -> 60 `i 5  ]
+"24
 {
-"27
-[e = . *U _clk 0 -> -> 0 `i `uc ]
+"25
+[e = . *U _clk 1 -> -> 0 `i `uc ]
+"26
+[e ++ . *U _clk 0 -> -> 1 `i `uc ]
 "28
+[e $ ! >= -> . *U _clk 0 `i -> 24 `i 6  ]
+"29
+{
+"30
+[e = . *U _clk 0 -> -> 0 `i `uc ]
+"31
 }
 [e :U 6 ]
-"29
+"32
 }
 [e :U 5 ]
-"30
+"33
 }
 [e :U 4 ]
-"31
+"34
 [e :UE 3 ]
 }
-"33
+"36
 [v _get_time `(us ~T0 @X0 1 ef1`*S1 ]
-"34
+"37
 {
 [e :U _get_time ]
-"33
+"36
 [v _clk `*S1 ~T0 @X0 1 r1 ]
-"34
+"37
 [f ]
-"35
+"38
 [e ) -> + * -> . *U _clk 0 `i -> 100 `i -> . *U _clk 1 `i `us ]
 [e $UE 7  ]
-"36
+"39
 [e :UE 7 ]
 }
-"37
+"40
 [v _clock_print `(v ~T0 @X0 1 ef1`*CS1 ]
-"38
+"41
 {
 [e :U _clock_print ]
-"37
+"40
 [v _clk `*CS1 ~T0 @X0 1 r1 ]
-"38
+"41
 [f ]
-"39
+"42
 [e ( _printf_ , , , (. :s 1C -> . *U _clk 0 `i -> . *U _clk 1 `i -> . *U _clk 2 `i ]
-"43
+"46
 [e :UE 8 ]
 }
 [a 1C 37 48 50 117 58 37 48 50 117 58 37 48 50 117 13 10 0 ]

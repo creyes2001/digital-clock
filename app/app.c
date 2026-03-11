@@ -1,6 +1,8 @@
 #include "app.h"
 #include "button_driver.h"
 #include "gpio.h"
+#include "clock_storage.h"
+
 #include <xc.h>
 
 gpio_t button_cfg = {
@@ -61,6 +63,7 @@ void App_Task(app_t *app)
 			break;
 		case APP_STATE_SET_MINUTES:
 			app->state = APP_STATE_RUN;
+			ClockStorage_SaveTime(app->clock->hours, app->clock->minutes, app->clock->seconds);
 			break;
 		}
 	}

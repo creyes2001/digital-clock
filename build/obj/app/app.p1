@@ -8,7 +8,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _LATB `Vuc ~T0 @X0 0 e@3978 ]
 "2451
 [v _PORTB `Vuc ~T0 @X0 0 e@3969 ]
-"27 app/app.c
+"29 app/app.c
 [c E60 0 1 .. ]
 [n E60 . BUTTON_ACTIVE_LOW BUTTON_ACTIVE_HIGH  ]
 [c E64 0 1 .. ]
@@ -21,11 +21,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 "7 ./inc/clock.h
 [s S3 `uc 1 `uc 1 `uc 1 ]
 [n S3 . hours minutes seconds ]
-"31 app/app.c
-[c E105 0 1 2 .. ]
-[n E105 . APP_STATE_RUN APP_STATE_SET_HOURS APP_STATE_SET_MINUTES  ]
+"33 app/app.c
+[c E107 0 1 2 .. ]
+[n E107 . APP_STATE_RUN APP_STATE_SET_HOURS APP_STATE_SET_MINUTES  ]
 "15 app/app.h
-[s S4 `*S3 1 `E105 1 ]
+[s S4 `*S3 1 `E107 1 ]
 [n S4 . clock state ]
 "32 ./inc/button_driver.h
 [v _button_init `(v ~T0 @X0 0 ef4`*S2`*S1`E60`uc ]
@@ -33,6 +33,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _button_update `(v ~T0 @X0 0 ef1`*S2 ]
 "37
 [v _button_get_event `(E68 ~T0 @X0 0 ef1`*S2 ]
+"7 app/clock_storage.h
+[v _ClockStorage_SaveTime `(v ~T0 @X0 0 ef3`uc`uc`uc ]
 "52 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [; <" SPPDATA equ 0F62h ;# ">
 "72
@@ -373,7 +375,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "8891
 [; <" TOSU equ 0FFFh ;# ">
-"6 app/app.c
+"8 app/app.c
 [v _button_cfg `S1 ~T0 @X0 1 e ]
 [i _button_cfg
 :U ..
@@ -385,7 +387,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"13
+"15
 [v _button_inc `S1 ~T0 @X0 1 e ]
 [i _button_inc
 :U ..
@@ -397,7 +399,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"20
+"22
 [v _button_dcr `S1 ~T0 @X0 1 e ]
 [i _button_dcr
 :U ..
@@ -409,183 +411,185 @@ Version 4.0 HI-TECH Software Intermediate Code
 ..
 ..
 ]
-"27
-[v _btn_cfg `S2 ~T0 @X0 1 e ]
-"28
-[v _btn_inc `S2 ~T0 @X0 1 e ]
 "29
-[v _btn_dcr `S2 ~T0 @X0 1 e ]
+[v _btn_cfg `S2 ~T0 @X0 1 e ]
+"30
+[v _btn_inc `S2 ~T0 @X0 1 e ]
 "31
+[v _btn_dcr `S2 ~T0 @X0 1 e ]
+"33
 [v _App_Init `(v ~T0 @X0 1 ef2`*S4`*S3 ]
-"32
+"34
 {
 [e :U _App_Init ]
-"31
+"33
 [v _app `*S4 ~T0 @X0 1 r1 ]
 [v _clk `*S3 ~T0 @X0 1 r2 ]
-"32
-[f ]
-"33
-[e = . *U _app 0 _clk ]
 "34
-[e = . *U _app 1 . `E105 0 ]
+[f ]
+"35
+[e = . *U _app 0 _clk ]
 "36
-[e ( _button_init (4 , , , &U _btn_cfg &U _button_cfg . `E60 0 -> -> 25 `i `uc ]
-"37
-[e ( _button_init (4 , , , &U _btn_inc &U _button_inc . `E60 0 -> -> 25 `i `uc ]
+[e = . *U _app 1 . `E107 0 ]
 "38
-[e ( _button_init (4 , , , &U _btn_dcr &U _button_dcr . `E60 0 -> -> 25 `i `uc ]
+[e ( _button_init (4 , , , &U _btn_cfg &U _button_cfg . `E60 0 -> -> 25 `i `uc ]
 "39
+[e ( _button_init (4 , , , &U _btn_inc &U _button_inc . `E60 0 -> -> 25 `i `uc ]
+"40
+[e ( _button_init (4 , , , &U _btn_dcr &U _button_dcr . `E60 0 -> -> 25 `i `uc ]
+"41
 [e :UE 395 ]
 }
-"41
+"43
 [v _Button_Task `(v ~T0 @X0 1 ef ]
-"42
+"44
 {
 [e :U _Button_Task ]
 [f ]
-"43
-[e ( _button_update (1 &U _btn_cfg ]
-"44
-[e ( _button_update (1 &U _btn_inc ]
 "45
-[e ( _button_update (1 &U _btn_dcr ]
+[e ( _button_update (1 &U _btn_cfg ]
 "46
+[e ( _button_update (1 &U _btn_inc ]
+"47
+[e ( _button_update (1 &U _btn_dcr ]
+"48
 [e :UE 396 ]
 }
-"49
+"51
 [v _App_Task `(v ~T0 @X0 1 ef1`*S4 ]
-"50
+"52
 {
 [e :U _App_Task ]
-"49
+"51
 [v _app `*S4 ~T0 @X0 1 r1 ]
-"50
-[f ]
 "52
-[e $ ! == -> ( _button_get_event (1 &U _btn_cfg `ui -> . `E68 2 `ui 398  ]
-"53
-{
+[f ]
 "54
-[e $U 400  ]
+[e $ ! == -> ( _button_get_event (1 &U _btn_cfg `ui -> . `E68 2 `ui 398  ]
 "55
 {
 "56
-[e :U 401 ]
+[e $U 400  ]
 "57
-[e = . *U _app 1 . `E105 1 ]
+{
 "58
-[e $U 399  ]
+[e :U 401 ]
 "59
-[e :U 402 ]
+[e = . *U _app 1 . `E107 1 ]
 "60
-[e = . *U _app 1 . `E105 2 ]
+[e $U 399  ]
 "61
-[e $U 399  ]
+[e :U 402 ]
 "62
-[e :U 403 ]
+[e = . *U _app 1 . `E107 2 ]
 "63
-[e = . *U _app 1 . `E105 0 ]
-"64
 [e $U 399  ]
+"64
+[e :U 403 ]
 "65
+[e = . *U _app 1 . `E107 0 ]
+"66
+[e ( _ClockStorage_SaveTime (3 , , . *U . *U _app 0 0 . *U . *U _app 0 1 . *U . *U _app 0 2 ]
+"67
+[e $U 399  ]
+"68
 }
 [e $U 399  ]
 [e :U 400 ]
-[e [\ -> . *U _app 1 `ui , $ -> . `E105 0 `ui 401
- , $ -> . `E105 1 `ui 402
- , $ -> . `E105 2 `ui 403
+[e [\ -> . *U _app 1 `ui , $ -> . `E107 0 `ui 401
+ , $ -> . `E107 1 `ui 402
+ , $ -> . `E107 2 `ui 403
  399 ]
 [e :U 399 ]
-"66
+"69
 }
 [e :U 398 ]
-"68
-[e $ ! == -> ( _button_get_event (1 &U _btn_inc `ui -> . `E68 2 `ui 404  ]
-"69
-{
-"70
-[e $ ! == -> . *U _app 1 `ui -> . `E105 1 `ui 405  ]
 "71
-{
+[e $ ! == -> ( _button_get_event (1 &U _btn_inc `ui -> . `E68 2 `ui 404  ]
 "72
-[e ++ . *U . *U _app 0 0 -> -> 1 `i `uc ]
+{
 "73
-[e $ ! == -> . *U . *U _app 0 0 `i -> 24 `i 406  ]
+[e $ ! == -> . *U _app 1 `ui -> . `E107 1 `ui 405  ]
 "74
 {
 "75
-[e = . *U . *U _app 0 0 -> -> 0 `i `uc ]
+[e ++ . *U . *U _app 0 0 -> -> 1 `i `uc ]
 "76
+[e $ ! == -> . *U . *U _app 0 0 `i -> 24 `i 406  ]
+"77
+{
+"78
+[e = . *U . *U _app 0 0 -> -> 0 `i `uc ]
+"79
 }
 [e :U 406 ]
-"77
+"80
 }
 [e :U 405 ]
-"79
-[e $ ! == -> . *U _app 1 `ui -> . `E105 2 `ui 407  ]
-"80
-{
-"81
-[e ++ . *U . *U _app 0 1 -> -> 1 `i `uc ]
 "82
-[e $ ! == -> . *U . *U _app 0 1 `i -> 60 `i 408  ]
+[e $ ! == -> . *U _app 1 `ui -> . `E107 2 `ui 407  ]
 "83
 {
 "84
-[e = . *U . *U _app 0 1 -> -> 0 `i `uc ]
+[e ++ . *U . *U _app 0 1 -> -> 1 `i `uc ]
 "85
+[e $ ! == -> . *U . *U _app 0 1 `i -> 60 `i 408  ]
+"86
+{
+"87
+[e = . *U . *U _app 0 1 -> -> 0 `i `uc ]
+"88
 }
 [e :U 408 ]
-"86
+"89
 }
 [e :U 407 ]
-"87
+"90
 }
 [e :U 404 ]
-"89
-[e $ ! == -> ( _button_get_event (1 &U _btn_dcr `ui -> . `E68 2 `ui 409  ]
-"90
-{
-"91
-[e $ ! == -> . *U _app 1 `ui -> . `E105 1 `ui 410  ]
 "92
-{
+[e $ ! == -> ( _button_get_event (1 &U _btn_dcr `ui -> . `E68 2 `ui 409  ]
 "93
-[e $ ! == -> . *U . *U _app 0 0 `i -> 0 `i 411  ]
-"94
 {
+"94
+[e $ ! == -> . *U _app 1 `ui -> . `E107 1 `ui 410  ]
 "95
-[e = . *U . *U _app 0 0 -> -> 24 `i `uc ]
+{
 "96
+[e $ ! == -> . *U . *U _app 0 0 `i -> 0 `i 411  ]
+"97
+{
+"98
+[e = . *U . *U _app 0 0 -> -> 24 `i `uc ]
+"99
 }
 [e :U 411 ]
-"97
+"100
 [e -- . *U . *U _app 0 0 -> -> 1 `i `uc ]
-"98
+"101
 }
 [e :U 410 ]
-"100
-[e $ ! == -> . *U _app 1 `ui -> . `E105 2 `ui 412  ]
-"101
-{
-"102
-[e $ ! == -> . *U . *U _app 0 1 `i -> 0 `i 413  ]
 "103
-{
+[e $ ! == -> . *U _app 1 `ui -> . `E107 2 `ui 412  ]
 "104
-[e = . *U . *U _app 0 1 -> -> 60 `i `uc ]
+{
 "105
-}
-[e :U 413 ]
+[e $ ! == -> . *U . *U _app 0 1 `i -> 0 `i 413  ]
 "106
-[e -- . *U . *U _app 0 1 -> -> 1 `i `uc ]
+{
 "107
-}
-[e :U 412 ]
+[e = . *U . *U _app 0 1 -> -> 60 `i `uc ]
 "108
 }
-[e :U 409 ]
+[e :U 413 ]
+"109
+[e -- . *U . *U _app 0 1 -> -> 1 `i `uc ]
 "110
+}
+[e :U 412 ]
+"111
+}
+[e :U 409 ]
+"113
 [e :UE 397 ]
 }

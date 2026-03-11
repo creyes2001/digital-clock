@@ -63,7 +63,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "32
 [e ( _EEPROM_WriteByte (2 , -> -> 1 `i `uc _hours ]
 "33
-[e ( _EEPROM_WriteByte (2 , -> -> 1 `i `uc _minutes ]
+[e ( _EEPROM_WriteByte (2 , -> -> 2 `i `uc _minutes ]
 "34
 [e ( _EEPROM_WriteByte (2 , -> -> 3 `i `uc _seconds ]
 "35

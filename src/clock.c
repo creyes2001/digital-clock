@@ -1,11 +1,14 @@
 #include "clock.h"
 #include "printf.h"
+#include "clock_storage.h"
 
 void clock_init(clock_time_t *clk, uint8_t h, uint8_t m, uint8_t s)
 {
 	clk->hours	 = h % 24;
 	clk->minutes = m % 60;
 	clk->seconds = s % 60;
+
+	ClockStorage_Init(&clk->hours, &clk->minutes, &clk->seconds);
 }
 
 void clock_update_1s(clock_time_t *clk)

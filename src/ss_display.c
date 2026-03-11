@@ -14,6 +14,7 @@ static uint8_t digit_number;
 static volatile uint8_t buffer[MAX_CONTROL_PINS] = {0,0,0,0};
 
 static uint8_t digit_flag = 0;
+static uint16_t colon_rate = 1;
 
 static const uint8_t numbers[10] = {
 	0b0111111, //0
@@ -96,15 +97,10 @@ void display_task(void)
 	static uint16_t ms = 0;
 	ms++;
 
-	if(ms >= 1000)
+	if(ms >= (colon_rate * 2))
 	{
 		ms = 0;
 	}
-
-	for(uint8_t i = 0; i < digit_number; i++)
-    {
-        level_write(&control[i], LEVEL_OFF, CONTROL_PIN);
-    }
 
 	if(colon_status == COLON_ENABLED)
 	{
@@ -112,8 +108,9 @@ void display_task(void)
 		level_write(&control[0],LEVEL_OFF,CONTROL_PIN);
 		level_write(&control[1],LEVEL_OFF,CONTROL_PIN);
 		level_write(&control[2],LEVEL_OFF,CONTROL_PIN);
+		level_write(&control[3],LEVEL_OFF,CONTROL_PIN);
 		level_write(colon_pin,LEVEL_OFF,SEGMENT_PIN);
-		if(ms < 500)
+		if(ms < colon_rate)
 		{
 			level_write(colon_pin,LEVEL_ON,SEGMENT_PIN);
 		}	
@@ -122,6 +119,11 @@ void display_task(void)
 			level_write(colon_pin,LEVEL_OFF,SEGMENT_PIN);
 		}
 	}
+
+	for(uint8_t i = 0; i < digit_number; i++)
+    {
+        level_write(&control[i], LEVEL_OFF, CONTROL_PIN);
+    }
 
 	digit_flag++;
 	if(digit_flag >= digit_number)
@@ -144,6 +146,11 @@ void display_task(void)
 	}
 
 	level_write(&control[digit_flag],LEVEL_ON,CONTROL_PIN);
+}
+
+void display_set_colon_blink(uint16_t blink_rate)
+{
+	colon_rate = blink_rate;
 }
 
 void display_push(uint16_t buffer_clk)

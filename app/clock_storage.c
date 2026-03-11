@@ -30,7 +30,7 @@ void ClockStorage_Init(uint8_t *h ,uint8_t *m, uint8_t *s)
 void ClockStorage_SaveTime(uint8_t hours, uint8_t minutes, uint8_t seconds)
 {
 	EEPROM_WriteByte(CLOCK_HOURS_ADDR,hours);
-	EEPROM_WriteByte(CLOCK_HOURS_ADDR,minutes);
+	EEPROM_WriteByte(CLOCK_MINUTES_ADDR,minutes);
 	EEPROM_WriteByte(CLOCK_SECONDS_ADDR,seconds);
 }
 

@@ -83,10 +83,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _get_time `(us ~T0 @X0 0 ef1`*S3 ]
 "16
 [v _clock_print `(v ~T0 @X0 0 ef1`*CS3 ]
-"61 ./external/printf/printf.h
-[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
+"49 ./inc/ss_display.h
+[v _display_set_colon_blink `(v ~T0 @X0 0 ef1`us ]
 "21 ./inc/uart.h
 [v _Uart_Read `(a ~T0 @X0 0 ef1`*uc ]
+"61 ./external/printf/printf.h
+[v _printf_ `(i ~T0 @X0 0 ev`*Cuc ]
 "3 ./inc/config.h
 [p x PLLDIV  =  1        ]
 "4
@@ -637,25 +639,32 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e ( _display_init (1 &U _clk_display ]
 "162
 [e ( _isr_init ..  ]
-"164
-[e ( _clock_init (4 , , , &U _sys_clock -> -> 21 `i `uc -> -> 26 `i `uc -> -> 55 `i `uc ]
+"165
+[v _hours `uc ~T0 @X0 1 a ]
+[e = _hours -> -> 0 `i `uc ]
+[v _minutes `uc ~T0 @X0 1 a ]
+[e = _minutes -> -> 0 `i `uc ]
+[v _seconds `uc ~T0 @X0 1 a ]
+[e = _seconds -> -> 0 `i `uc ]
 "166
-[v _c `uc ~T0 @X0 1 a ]
-"167
-[e :U 399 ]
+[e ( _clock_init (4 , , , &U _sys_clock _hours _minutes _seconds ]
 "168
-{
+[v _c `uc ~T0 @X0 1 a ]
 "169
-[e ( _system_tick_task ..  ]
+[e :U 399 ]
 "170
-[e ( _App_Task (1 &U _app ]
-"172
-[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 401  ]
-"173
 {
+"171
+[e ( _system_tick_task ..  ]
+"172
+[e ( _App_Task (1 &U _app ]
 "174
-[e ( _Button_Task ..  ]
+[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 401  ]
+"175
+{
 "176
+[e ( _Button_Task ..  ]
+"177
 [e ( _display_task ..  ]
 "178
 }
@@ -671,65 +680,69 @@ Version 4.0 HI-TECH Software Intermediate Code
 "184
 [e ( _clock_print (1 -> &U _sys_clock `*CS3 ]
 "185
+[e ( _display_set_colon_blink (1 -> -> 500 `i `us ]
+"186
 }
 [e :U 402 ]
-"187
-[e $ ! == -> . _app 1 `ui -> . `E107 1 `ui 403  ]
 "188
-{
+[e $ ! == -> . _app 1 `ui -> . `E107 1 `ui 403  ]
 "189
-[e ( _printf_ :s 1C ]
+{
 "190
+[e ( _display_set_colon_blink (1 -> -> 150 `i `us ]
+"191
+[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
+"192
 }
 [e :U 403 ]
-"192
-[e $ ! == -> . _app 1 `ui -> . `E107 2 `ui 404  ]
-"193
-{
 "194
-[e ( _printf_ :s 2C ]
+[e $ ! == -> . _app 1 `ui -> . `E107 2 `ui 404  ]
 "195
+{
+"196
+[e ( _display_set_colon_blink (1 -> -> 150 `i `us ]
+"197
+[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
+"198
 }
 [e :U 404 ]
-"196
-[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 405  ]
-"197
-{
-"198
-[e $ ! == -> _c `ui -> 65 `ui 406  ]
 "199
-{
+[e $ ! != -> ( _Uart_Read (1 &U _c `i -> 0 `i 405  ]
 "200
-[e ( _printf_ :s 3C ]
+{
 "201
+[e $ ! == -> _c `ui -> 65 `ui 406  ]
+"202
+{
+"203
+[e ( _printf_ :s 1C ]
+"204
 }
 [e $U 407  ]
-"202
+"205
 [e :U 406 ]
 [e $ ! == -> _c `ui -> 66 `ui 408  ]
-"203
+"206
 {
-"204
-[e ( _printf_ :s 4C ]
-"205
+"207
+[e ( _printf_ :s 2C ]
+"208
 }
 [e :U 408 ]
 [e :U 407 ]
-"206
+"209
 }
 [e :U 405 ]
-"207
+"210
 }
 [e :U 398 ]
 [e $U 399  ]
 [e :U 400 ]
-"208
+"211
 [e ) -> 0 `i ]
 [e $UE 397  ]
-"209
+"212
 [e :UE 397 ]
 }
-[a 4C 66 13 10 0 ]
-[a 3C 65 13 10 0 ]
-[a 2C 50 13 10 0 ]
-[a 1C 49 13 10 0 ]
+[a 2C 66 13 10 0 ]
+[a 1C 65 13 10 0 ]

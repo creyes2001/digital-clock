@@ -8,12 +8,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "19 ./inc/gpio.h
 [s S1 `*Vuc 1 `*Vuc 1 `*Vuc 1 `uc 1 ]
 [n S1 . tris lat port pin ]
-"31 src/ss_display.c
+"32 src/ss_display.c
 [c E64 0 1 .. ]
 [n E64 . LEVEL_OFF LEVEL_ON  ]
 [c E72 0 1 .. ]
 [n E72 . CONTROL_PIN SEGMENT_PIN  ]
-"33
+"34
 [c E40 0 1 .. ]
 [n E40 . GPIO_LOW GPIO_HIGH  ]
 "27 ./inc/gpio.h
@@ -21,7 +21,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "35 ./inc/ss_display.h
 [s S2 `E60 1 `E68 1 `E68 1 `uc 1 `*S1 1 `*S1 1 `*S1 1 `*S1 1 ]
 [n S2 . colon segment_polarity control_polarity digit_number data control colon_pin colon_control_pin ]
-"74 src/ss_display.c
+"75 src/ss_display.c
 [c E36 0 1 .. ]
 [n E36 . GPIO_OUTPUT GPIO_INPUT  ]
 "26 ./inc/gpio.h
@@ -397,7 +397,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _digit_flag
 -> -> 0 `i `uc
 ]
-"18
+"17
+[v _colon_rate `us ~T0 @X0 1 s ]
+[i _colon_rate
+-> -> 1 `i `us
+]
+"19
 [v _numbers `Cuc ~T0 @X0 -> 10 `i s ]
 [i _numbers
 :U ..
@@ -413,312 +418,328 @@ Version 4.0 HI-TECH Software Intermediate Code
 -> -> 103 `i `uc
 ..
 ]
-"31
-[v _level_write `(v ~T0 @X0 1 sf3`*S1`E64`E72 ]
 "32
+[v _level_write `(v ~T0 @X0 1 sf3`*S1`E64`E72 ]
+"33
 {
 [e :U _level_write ]
-"31
+"32
 [v _gpio `*S1 ~T0 @X0 1 r1 ]
 [v _level `E64 ~T0 @X0 1 r2 ]
 [v _pin_type `E72 ~T0 @X0 1 r3 ]
-"32
-[f ]
 "33
-[v _gpio_level `E40 ~T0 @X0 1 a ]
+[f ]
 "34
-[e $ ! == -> _pin_type `ui -> . `E72 0 `ui 394  ]
+[v _gpio_level `E40 ~T0 @X0 1 a ]
 "35
-{
+[e $ ! == -> _pin_type `ui -> . `E72 0 `ui 394  ]
 "36
-[e $ ! == -> _control_polarity `ui -> . `E68 1 `ui 395  ]
-"37
 {
+"37
+[e $ ! == -> _control_polarity `ui -> . `E68 1 `ui 395  ]
 "38
-[e = _gpio_level -> ? == -> _level `ui -> . `E64 1 `ui : . `E40 1 . `E40 0 `E40 ]
+{
 "39
+[e = _gpio_level -> ? == -> _level `ui -> . `E64 1 `ui : . `E40 1 . `E40 0 `E40 ]
+"40
 }
 [e $U 396  ]
-"40
-[e :U 395 ]
 "41
-{
+[e :U 395 ]
 "42
-[e = _gpio_level -> ? == -> _level `ui -> . `E64 0 `ui : . `E40 1 . `E40 0 `E40 ]
+{
 "43
-}
-[e :U 396 ]
+[e = _gpio_level -> ? == -> _level `ui -> . `E64 0 `ui : . `E40 1 . `E40 0 `E40 ]
 "44
 }
+[e :U 396 ]
+"45
+}
 [e $U 397  ]
-"46
-[e :U 394 ]
 "47
-{
+[e :U 394 ]
 "48
-[e $ ! == -> _segment_polarity `ui -> . `E68 1 `ui 398  ]
-"49
 {
+"49
+[e $ ! == -> _segment_polarity `ui -> . `E68 1 `ui 398  ]
 "50
-[e = _gpio_level -> ? == -> _level `ui -> . `E64 1 `ui : . `E40 1 . `E40 0 `E40 ]
+{
 "51
+[e = _gpio_level -> ? == -> _level `ui -> . `E64 1 `ui : . `E40 1 . `E40 0 `E40 ]
+"52
 }
 [e $U 399  ]
-"52
-[e :U 398 ]
 "53
-{
+[e :U 398 ]
 "54
-[e = _gpio_level -> ? == -> _level `ui -> . `E64 0 `ui : . `E40 1 . `E40 0 `E40 ]
+{
 "55
-}
-[e :U 399 ]
+[e = _gpio_level -> ? == -> _level `ui -> . `E64 0 `ui : . `E40 1 . `E40 0 `E40 ]
 "56
 }
+[e :U 399 ]
+"57
+}
 [e :U 397 ]
-"58
-[e ( _Gpio_Write (2 , _gpio _gpio_level ]
 "59
+[e ( _Gpio_Write (2 , _gpio _gpio_level ]
+"60
 [e :UE 393 ]
 }
-"61
-[v _display_init `(v ~T0 @X0 1 ef1`*S2 ]
 "62
+[v _display_init `(v ~T0 @X0 1 ef1`*S2 ]
+"63
 {
 [e :U _display_init ]
-"61
-[v _display `*S2 ~T0 @X0 1 r1 ]
 "62
-[f ]
+[v _display `*S2 ~T0 @X0 1 r1 ]
 "63
-[e = _data . *U _display 4 ]
+[f ]
 "64
-[e = _control . *U _display 5 ]
+[e = _data . *U _display 4 ]
 "65
-[e = _colon_control . *U _display 7 ]
+[e = _control . *U _display 5 ]
 "66
-[e = _colon_pin . *U _display 6 ]
+[e = _colon_control . *U _display 7 ]
 "67
-[e = _colon_status . *U _display 0 ]
+[e = _colon_pin . *U _display 6 ]
 "68
-[e = _segment_polarity . *U _display 1 ]
+[e = _colon_status . *U _display 0 ]
 "69
-[e = _control_polarity . *U _display 2 ]
+[e = _segment_polarity . *U _display 1 ]
 "70
+[e = _control_polarity . *U _display 2 ]
+"71
 [e = _digit_number . *U _display 3 ]
-"72
+"73
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 7 `i 401  ]
 [e $U 402  ]
 [e :U 401 ]
-"73
-{
 "74
-[e ( _Gpio_Init (2 , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E36 0 ]
+{
 "75
-[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
+[e ( _Gpio_Init (2 , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E36 0 ]
 "76
+[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
+"77
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 7 `i 401  ]
 [e :U 402 ]
 }
-"78
+"79
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $U 407  ]
 [e :U 404 ]
-"79
-{
 "80
-[e ( _Gpio_Init (2 , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E36 0 ]
+{
 "81
-[e ( _level_write (3 , , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
+[e ( _Gpio_Init (2 , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E36 0 ]
 "82
+[e ( _level_write (3 , , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
+"83
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 407 ]
 [e $ < -> _i `i -> _digit_number `i 404  ]
 [e :U 405 ]
 }
-"84
-[e $ ! == -> _colon_status `ui -> . `E60 1 `ui 408  ]
 "85
-{
+[e $ ! == -> _colon_status `ui -> . `E60 1 `ui 408  ]
 "86
-[e ( _Gpio_Init (2 , _colon_pin . `E36 0 ]
+{
 "87
-[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
+[e ( _Gpio_Init (2 , _colon_pin . `E36 0 ]
 "88
-[e ( _Gpio_Init (2 , _colon_control . `E36 0 ]
+[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
 "89
-[e ( _level_write (3 , , _colon_control . `E64 0 . `E72 0 ]
+[e ( _Gpio_Init (2 , _colon_control . `E36 0 ]
 "90
+[e ( _level_write (3 , , _colon_control . `E64 0 . `E72 0 ]
+"91
 }
 [e :U 408 ]
-"91
+"92
 [e :UE 400 ]
 }
-"94
-[v _display_task `(v ~T0 @X0 1 ef ]
 "95
+[v _display_task `(v ~T0 @X0 1 ef ]
+"96
 {
 [e :U _display_task ]
 [f ]
-"96
-[v F3419 `us ~T0 @X0 1 s ms ]
-[i F3419
+"97
+[v F3422 `us ~T0 @X0 1 s ms ]
+[i F3422
 -> -> 0 `i `us
 ]
-"97
-[e ++ F3419 -> -> 1 `i `us ]
-"99
-[e $ ! >= -> F3419 `ui -> -> 1000 `i `ui 410  ]
+"98
+[e ++ F3422 -> -> 1 `i `us ]
 "100
-{
+[e $ ! >= -> F3422 `ui * -> _colon_rate `ui -> -> 2 `i `ui 410  ]
 "101
-[e = F3419 -> -> 0 `i `us ]
+{
 "102
+[e = F3422 -> -> 0 `i `us ]
+"103
 }
 [e :U 410 ]
-"104
+"105
+[e $ ! == -> _colon_status `ui -> . `E60 1 `ui 411  ]
+"106
+{
+"107
+[e ( _level_write (3 , , _colon_control . `E64 1 . `E72 0 ]
+"108
+[e ( _level_write (3 , , &U *U + _control * -> -> 0 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
+"109
+[e ( _level_write (3 , , &U *U + _control * -> -> 1 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
+"110
+[e ( _level_write (3 , , &U *U + _control * -> -> 2 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
+"111
+[e ( _level_write (3 , , &U *U + _control * -> -> 3 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
+"112
+[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
+"113
+[e $ ! < -> F3422 `ui -> _colon_rate `ui 412  ]
+"114
+{
+"115
+[e ( _level_write (3 , , _colon_pin . `E64 1 . `E72 1 ]
+"116
+}
+[e $U 413  ]
+"117
+[e :U 412 ]
+"118
+{
+"119
+[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
+"120
+}
+[e :U 413 ]
+"121
+}
+[e :U 411 ]
+"123
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 414  ]
-[e :U 411 ]
-"105
+[e $U 417  ]
+[e :U 414 ]
+"124
 {
-"106
+"125
 [e ( _level_write (3 , , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
-"107
+"126
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 414 ]
-[e $ < -> _i `i -> _digit_number `i 411  ]
-[e :U 412 ]
-}
-"109
-[e $ ! == -> _colon_status `ui -> . `E60 1 `ui 415  ]
-"110
-{
-"111
-[e ( _level_write (3 , , _colon_control . `E64 1 . `E72 0 ]
-"112
-[e ( _level_write (3 , , &U *U + _control * -> -> 0 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"113
-[e ( _level_write (3 , , &U *U + _control * -> -> 1 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"114
-[e ( _level_write (3 , , &U *U + _control * -> -> 2 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"115
-[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
-"116
-[e $ ! < -> F3419 `ui -> -> 500 `i `ui 416  ]
-"117
-{
-"118
-[e ( _level_write (3 , , _colon_pin . `E64 1 . `E72 1 ]
-"119
-}
-[e $U 417  ]
-"120
-[e :U 416 ]
-"121
-{
-"122
-[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
-"123
-}
 [e :U 417 ]
-"124
-}
+[e $ < -> _i `i -> _digit_number `i 414  ]
 [e :U 415 ]
-"126
-[e ++ _digit_flag -> -> 1 `i `uc ]
-"127
-[e $ ! >= -> _digit_flag `i -> _digit_number `i 418  ]
+}
 "128
-{
+[e ++ _digit_flag -> -> 1 `i `uc ]
 "129
-[e = _digit_flag -> -> 0 `i `uc ]
+[e $ ! >= -> _digit_flag `i -> _digit_number `i 418  ]
 "130
+{
+"131
+[e = _digit_flag -> -> 0 `i `uc ]
+"132
 }
 [e :U 418 ]
-"132
+"134
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 7 `i 419  ]
 [e $U 420  ]
 [e :U 419 ]
-"133
+"135
 {
-"134
-[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
 "136
-[e $ ! != & -> *U + &U _numbers * -> *U + &U _buffer * -> _digit_flag `ux -> -> # *U &U _buffer `ui `ux `ux -> -> # *U &U _numbers `ui `ux `i << -> 1 `i -> _i `i -> 0 `i 422  ]
-"137
-{
+[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
 "138
-[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 1 . `E72 1 ]
+[e $ ! != & -> *U + &U _numbers * -> *U + &U _buffer * -> _digit_flag `ux -> -> # *U &U _buffer `ui `ux `ux -> -> # *U &U _numbers `ui `ux `i << -> 1 `i -> _i `i -> 0 `i 422  ]
 "139
+{
+"140
+[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 1 . `E72 1 ]
+"141
 }
 [e $U 423  ]
-"140
-[e :U 422 ]
-"141
-{
 "142
-[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
+[e :U 422 ]
 "143
+{
+"144
+[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
+"145
 }
 [e :U 423 ]
-"144
+"146
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 7 `i 419  ]
 [e :U 420 ]
 }
-"146
+"148
 [e ( _level_write (3 , , &U *U + _control * -> _digit_flag `ux -> -> # *U _control `ui `ux . `E64 1 . `E72 0 ]
-"147
+"149
 [e :UE 409 ]
 }
-"149
+"151
+[v _display_set_colon_blink `(v ~T0 @X0 1 ef1`us ]
+"152
+{
+[e :U _display_set_colon_blink ]
+"151
+[v _blink_rate `us ~T0 @X0 1 r1 ]
+"152
+[f ]
+"153
+[e = _colon_rate _blink_rate ]
+"154
+[e :UE 424 ]
+}
+"156
 [v _display_push `(v ~T0 @X0 1 ef1`us ]
-"150
+"157
 {
 [e :U _display_push ]
-"149
+"156
 [v _buffer_clk `us ~T0 @X0 1 r1 ]
-"150
+"157
 [f ]
-"151
+"158
 [v _dig `uc ~T0 @X0 1 a ]
-"152
+"159
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 428  ]
-[e :U 425 ]
-"153
+[e $U 429  ]
+[e :U 426 ]
+"160
 {
-"154
+"161
 [e = _dig -> % -> _buffer_clk `ui -> -> 10 `i `ui `uc ]
-"155
+"162
 [e = *U + &U _buffer * -> -> - - -> _digit_number `i -> _i `i -> 1 `i `ui `ux -> -> # *U &U _buffer `ui `ux _dig ]
-"156
+"163
 [e = _buffer_clk -> / -> _buffer_clk `ui -> -> 10 `i `ui `us ]
-"157
+"164
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 428 ]
-[e $ < -> _i `i -> _digit_number `i 425  ]
-[e :U 426 ]
+[e :U 429 ]
+[e $ < -> _i `i -> _digit_number `i 426  ]
+[e :U 427 ]
 }
-"158
-[e :UE 424 ]
+"165
+[e :UE 425 ]
 }

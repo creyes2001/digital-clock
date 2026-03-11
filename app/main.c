@@ -8,7 +8,6 @@
 #include "clock.h"
 #include "ss_display.h"
 #include "uart.h"
-#include "clock_storage.h"
 #include <xc.h>
 
 
@@ -163,7 +162,8 @@ int main()
 	isr_init();
 
 	/* CLock initialization */	
-	clock_init(&sys_clock,21,26,55);
+	uint8_t hours = 0, minutes = 0, seconds = 0;
+	clock_init(&sys_clock,hours,minutes,seconds);
 
 	char c;
 	while(1)
@@ -174,9 +174,7 @@ int main()
 		if(system_tick_is_1ms())
 		{
 			Button_Task();
-		//	interrupts_off();
 			display_task();
-		//	interrupts_on();
 		}
 
 		if(system_tick_is_1s() && app.state == APP_STATE_RUN)
@@ -184,16 +182,19 @@ int main()
 			clock_update_1s(&sys_clock);
 			display_push(get_time(&sys_clock));
 			clock_print(&sys_clock);
+			display_set_colon_blink(500);
 		}
 		
 		if(app.state == APP_STATE_SET_HOURS)
 		{
-			printf("1\r\n");
+			display_set_colon_blink(150);
+			display_push(get_time(&sys_clock));
 		}
 
 		if(app.state == APP_STATE_SET_MINUTES)
 		{
-			printf("2\r\n");
+			display_set_colon_blink(150);
+			display_push(get_time(&sys_clock));
 		}
 		if (Uart_Read(&c))
     	{

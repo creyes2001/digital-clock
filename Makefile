@@ -4,6 +4,7 @@ BUILD_DIR = build
 OBJ_DIR = $(BUILD_DIR)/obj
 BIN_DIR = $(BUILD_DIR)/bin
 INCLUDE_DIRS = -I ./inc\
+			   -I ./app\
 			   -I ./external\
 			   -I ./external/printf
 			   

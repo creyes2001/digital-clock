@@ -46,5 +46,6 @@ typedef struct
 void display_init(display_t *display);
 void display_task(void);
 void display_push(uint16_t buffer_clk);
+void display_set_colon_blink(uint16_t blink_rate);
 
 #endif //SEVEN_SEGMENTS_DISPLAY_H
