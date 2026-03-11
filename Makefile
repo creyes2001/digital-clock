@@ -26,6 +26,7 @@ SOURCES = app/main.c\
 		  src/clock.c\
 		  src/button_driver.c\
 		  src/ss_display.c\
+		  src/eeprom.c\
 		  external/printf/printf.c
 	
 		 

@@ -131,7 +131,7 @@ MEDIUMCONST 3372-7FFF 1
 # All other numeric values are in decimal.
 %LINETAB
 $build/bin/clock.o
-8 intcode CODE >13863:/home/reyes/embedded/clock/build/bin/clock.s
+8 intcode CODE >14211:/home/reyes/embedded/clock/build/bin/clock.s
 8 intcode CODE >9:/home/reyes/embedded/clock/src/isr.c
 2C16 text53 CODE >9:/home/reyes/embedded/clock/src/buffer.c
 2C16 text53 CODE >11:/home/reyes/embedded/clock/src/buffer.c
@@ -810,62 +810,62 @@ F82 text19 CODE >750:/home/reyes/embedded/clock/external/printf/printf.c
 248A text0 CODE >201:/home/reyes/embedded/clock/app/main.c
 248E text0 CODE >202:/home/reyes/embedded/clock/app/main.c
 24A0 text0 CODE >204:/home/reyes/embedded/clock/app/main.c
-2D0A cinit CODE >2981:/home/reyes/embedded/clock/build/bin/clock.s
-2D0A cinit CODE >2983:/home/reyes/embedded/clock/build/bin/clock.s
-2D0A cinit CODE >2986:/home/reyes/embedded/clock/build/bin/clock.s
-2D0A cinit CODE >3121:/home/reyes/embedded/clock/build/bin/clock.s
-2D0C cinit CODE >3122:/home/reyes/embedded/clock/build/bin/clock.s
-2D0E cinit CODE >3123:/home/reyes/embedded/clock/build/bin/clock.s
-2D10 cinit CODE >3124:/home/reyes/embedded/clock/build/bin/clock.s
-2D12 cinit CODE >3125:/home/reyes/embedded/clock/build/bin/clock.s
-2D14 cinit CODE >3126:/home/reyes/embedded/clock/build/bin/clock.s
-2D16 cinit CODE >3127:/home/reyes/embedded/clock/build/bin/clock.s
-2D1A cinit CODE >3128:/home/reyes/embedded/clock/build/bin/clock.s
-2D1E cinit CODE >3129:/home/reyes/embedded/clock/build/bin/clock.s
-2D1E cinit CODE >3130:/home/reyes/embedded/clock/build/bin/clock.s
-2D20 cinit CODE >3131:/home/reyes/embedded/clock/build/bin/clock.s
-2D24 cinit CODE >3132:/home/reyes/embedded/clock/build/bin/clock.s
-2D26 cinit CODE >3133:/home/reyes/embedded/clock/build/bin/clock.s
-2D28 cinit CODE >3134:/home/reyes/embedded/clock/build/bin/clock.s
-2D2A cinit CODE >3138:/home/reyes/embedded/clock/build/bin/clock.s
-2D2C cinit CODE >3139:/home/reyes/embedded/clock/build/bin/clock.s
-2D2E cinit CODE >3140:/home/reyes/embedded/clock/build/bin/clock.s
-2D30 cinit CODE >3141:/home/reyes/embedded/clock/build/bin/clock.s
-2D32 cinit CODE >3142:/home/reyes/embedded/clock/build/bin/clock.s
-2D34 cinit CODE >3143:/home/reyes/embedded/clock/build/bin/clock.s
-2D36 cinit CODE >3144:/home/reyes/embedded/clock/build/bin/clock.s
-2D3A cinit CODE >3145:/home/reyes/embedded/clock/build/bin/clock.s
-2D3E cinit CODE >3146:/home/reyes/embedded/clock/build/bin/clock.s
-2D3E cinit CODE >3147:/home/reyes/embedded/clock/build/bin/clock.s
-2D40 cinit CODE >3148:/home/reyes/embedded/clock/build/bin/clock.s
-2D44 cinit CODE >3149:/home/reyes/embedded/clock/build/bin/clock.s
-2D46 cinit CODE >3150:/home/reyes/embedded/clock/build/bin/clock.s
-2D48 cinit CODE >3151:/home/reyes/embedded/clock/build/bin/clock.s
-2D4A cinit CODE >3155:/home/reyes/embedded/clock/build/bin/clock.s
-2D4E cinit CODE >3156:/home/reyes/embedded/clock/build/bin/clock.s
-2D50 cinit CODE >3157:/home/reyes/embedded/clock/build/bin/clock.s
-2D50 cinit CODE >3158:/home/reyes/embedded/clock/build/bin/clock.s
-2D52 cinit CODE >3159:/home/reyes/embedded/clock/build/bin/clock.s
-2D54 cinit CODE >3160:/home/reyes/embedded/clock/build/bin/clock.s
-2D56 cinit CODE >3163:/home/reyes/embedded/clock/build/bin/clock.s
-2D5A cinit CODE >3164:/home/reyes/embedded/clock/build/bin/clock.s
-2D5C cinit CODE >3165:/home/reyes/embedded/clock/build/bin/clock.s
-2D5C cinit CODE >3166:/home/reyes/embedded/clock/build/bin/clock.s
-2D5E cinit CODE >3167:/home/reyes/embedded/clock/build/bin/clock.s
-2D60 cinit CODE >3168:/home/reyes/embedded/clock/build/bin/clock.s
-2D62 cinit CODE >3171:/home/reyes/embedded/clock/build/bin/clock.s
-2D66 cinit CODE >3172:/home/reyes/embedded/clock/build/bin/clock.s
-2D68 cinit CODE >3173:/home/reyes/embedded/clock/build/bin/clock.s
-2D68 cinit CODE >3174:/home/reyes/embedded/clock/build/bin/clock.s
-2D6A cinit CODE >3175:/home/reyes/embedded/clock/build/bin/clock.s
-2D6C cinit CODE >3176:/home/reyes/embedded/clock/build/bin/clock.s
-2D6E cinit CODE >3182:/home/reyes/embedded/clock/build/bin/clock.s
-2D6E cinit CODE >3184:/home/reyes/embedded/clock/build/bin/clock.s
-2D70 cinit CODE >3185:/home/reyes/embedded/clock/build/bin/clock.s
-2D72 cinit CODE >3187:/home/reyes/embedded/clock/build/bin/clock.s
-2D74 cinit CODE >3188:/home/reyes/embedded/clock/build/bin/clock.s
-2D76 cinit CODE >3189:/home/reyes/embedded/clock/build/bin/clock.s
-2D78 cinit CODE >3190:/home/reyes/embedded/clock/build/bin/clock.s
+2D0A cinit CODE >3329:/home/reyes/embedded/clock/build/bin/clock.s
+2D0A cinit CODE >3331:/home/reyes/embedded/clock/build/bin/clock.s
+2D0A cinit CODE >3334:/home/reyes/embedded/clock/build/bin/clock.s
+2D0A cinit CODE >3469:/home/reyes/embedded/clock/build/bin/clock.s
+2D0C cinit CODE >3470:/home/reyes/embedded/clock/build/bin/clock.s
+2D0E cinit CODE >3471:/home/reyes/embedded/clock/build/bin/clock.s
+2D10 cinit CODE >3472:/home/reyes/embedded/clock/build/bin/clock.s
+2D12 cinit CODE >3473:/home/reyes/embedded/clock/build/bin/clock.s
+2D14 cinit CODE >3474:/home/reyes/embedded/clock/build/bin/clock.s
+2D16 cinit CODE >3475:/home/reyes/embedded/clock/build/bin/clock.s
+2D1A cinit CODE >3476:/home/reyes/embedded/clock/build/bin/clock.s
+2D1E cinit CODE >3477:/home/reyes/embedded/clock/build/bin/clock.s
+2D1E cinit CODE >3478:/home/reyes/embedded/clock/build/bin/clock.s
+2D20 cinit CODE >3479:/home/reyes/embedded/clock/build/bin/clock.s
+2D24 cinit CODE >3480:/home/reyes/embedded/clock/build/bin/clock.s
+2D26 cinit CODE >3481:/home/reyes/embedded/clock/build/bin/clock.s
+2D28 cinit CODE >3482:/home/reyes/embedded/clock/build/bin/clock.s
+2D2A cinit CODE >3486:/home/reyes/embedded/clock/build/bin/clock.s
+2D2C cinit CODE >3487:/home/reyes/embedded/clock/build/bin/clock.s
+2D2E cinit CODE >3488:/home/reyes/embedded/clock/build/bin/clock.s
+2D30 cinit CODE >3489:/home/reyes/embedded/clock/build/bin/clock.s
+2D32 cinit CODE >3490:/home/reyes/embedded/clock/build/bin/clock.s
+2D34 cinit CODE >3491:/home/reyes/embedded/clock/build/bin/clock.s
+2D36 cinit CODE >3492:/home/reyes/embedded/clock/build/bin/clock.s
+2D3A cinit CODE >3493:/home/reyes/embedded/clock/build/bin/clock.s
+2D3E cinit CODE >3494:/home/reyes/embedded/clock/build/bin/clock.s
+2D3E cinit CODE >3495:/home/reyes/embedded/clock/build/bin/clock.s
+2D40 cinit CODE >3496:/home/reyes/embedded/clock/build/bin/clock.s
+2D44 cinit CODE >3497:/home/reyes/embedded/clock/build/bin/clock.s
+2D46 cinit CODE >3498:/home/reyes/embedded/clock/build/bin/clock.s
+2D48 cinit CODE >3499:/home/reyes/embedded/clock/build/bin/clock.s
+2D4A cinit CODE >3503:/home/reyes/embedded/clock/build/bin/clock.s
+2D4E cinit CODE >3504:/home/reyes/embedded/clock/build/bin/clock.s
+2D50 cinit CODE >3505:/home/reyes/embedded/clock/build/bin/clock.s
+2D50 cinit CODE >3506:/home/reyes/embedded/clock/build/bin/clock.s
+2D52 cinit CODE >3507:/home/reyes/embedded/clock/build/bin/clock.s
+2D54 cinit CODE >3508:/home/reyes/embedded/clock/build/bin/clock.s
+2D56 cinit CODE >3511:/home/reyes/embedded/clock/build/bin/clock.s
+2D5A cinit CODE >3512:/home/reyes/embedded/clock/build/bin/clock.s
+2D5C cinit CODE >3513:/home/reyes/embedded/clock/build/bin/clock.s
+2D5C cinit CODE >3514:/home/reyes/embedded/clock/build/bin/clock.s
+2D5E cinit CODE >3515:/home/reyes/embedded/clock/build/bin/clock.s
+2D60 cinit CODE >3516:/home/reyes/embedded/clock/build/bin/clock.s
+2D62 cinit CODE >3519:/home/reyes/embedded/clock/build/bin/clock.s
+2D66 cinit CODE >3520:/home/reyes/embedded/clock/build/bin/clock.s
+2D68 cinit CODE >3521:/home/reyes/embedded/clock/build/bin/clock.s
+2D68 cinit CODE >3522:/home/reyes/embedded/clock/build/bin/clock.s
+2D6A cinit CODE >3523:/home/reyes/embedded/clock/build/bin/clock.s
+2D6C cinit CODE >3524:/home/reyes/embedded/clock/build/bin/clock.s
+2D6E cinit CODE >3530:/home/reyes/embedded/clock/build/bin/clock.s
+2D6E cinit CODE >3532:/home/reyes/embedded/clock/build/bin/clock.s
+2D70 cinit CODE >3533:/home/reyes/embedded/clock/build/bin/clock.s
+2D72 cinit CODE >3535:/home/reyes/embedded/clock/build/bin/clock.s
+2D74 cinit CODE >3536:/home/reyes/embedded/clock/build/bin/clock.s
+2D76 cinit CODE >3537:/home/reyes/embedded/clock/build/bin/clock.s
+2D78 cinit CODE >3538:/home/reyes/embedded/clock/build/bin/clock.s
 $build/bin/startup.o
 E init CODE >101:/home/reyes/embedded/clock/build/bin/startup.s
 0 reset_vec CODE >66:/home/reyes/embedded/clock/build/bin/startup.s
@@ -944,12 +944,12 @@ ___awmod@sign 13 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 _T0CONbits FD5 0 ABS 0 - build/bin/clock.o
 _pending_ticks 53 0 COMRAM 1 bssCOMRAM build/bin/clock.o
 __end_of_Buffer_Init 3272 0 CODE 0 text37 build/bin/clock.o
-__vsnprintf$1316 1B6 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$1318 1BA 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$1319 1BC 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$1321 1C0 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$1326 1C2 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf$1327 1C4 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$1388 1B6 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$1390 1BA 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$1391 1BC 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$1393 1C0 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$1398 1C2 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf$1399 1C4 0 BANK1 1 cstackBANK1 build/bin/clock.o
 __ntoa_long@buf 7B 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@idx 66 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@len A0 0 BANK0 1 cstackBANK0 build/bin/clock.o
@@ -972,8 +972,8 @@ __LnvFARRAM 0 0 FARRAM 0 nvFARRAM build/bin/clock.o
 display_init@i 20 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 ___llmod@divisor 12 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 _timer0_init 32C8 0 CODE 0 text2 build/bin/clock.o
-__ntoa_long$1288 9B 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__ntoa_long$1289 9D 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__ntoa_long$1360 9B 0 BANK0 1 cstackBANK0 build/bin/clock.o
+__ntoa_long$1361 9D 0 BANK0 1 cstackBANK0 build/bin/clock.o
 Buffer_Add@buffer E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_long@base 6F 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@prec 73 0 BANK0 1 cstackBANK0 build/bin/clock.o
@@ -991,6 +991,7 @@ _sys_clock DF 0 BANK0 1 bssBANK0 build/bin/clock.o
 _colon_control@ss_display$F1111 47 0 COMRAM 1 bssCOMRAM build/bin/clock.o
 ___inthi_sp 0 0 STACK 2 stack build/bin/startup.o
 ___intlo_sp 0 0 STACK 2 stack build/bin/startup.o
+_EECON1bits FA6 0 ABS 0 - build/bin/clock.o
 _clk_display 14D 0 BANK1 1 dataBANK1 build/bin/clock.o
 _control_polarity C6 0 BANK0 1 bssBANK0 build/bin/clock.o
 __end_of_Uart_Init 31A4 0 CODE 0 text40 build/bin/clock.o
@@ -1000,6 +1001,8 @@ __Hintcode_body 0 0 ABS 0 intcode_body build/bin/clock.o
 __end_ofi2_Buffer_Add 2C92 0 CODE 0 text53 build/bin/clock.o
 __end_ofi2_Buffer_Get 28FE 0 CODE 0 text52 build/bin/clock.o
 Gpio_Read@gpio E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
+_EECON2 FA7 0 ABS 0 - build/bin/clock.o
+_EEDATA FA8 0 ABS 0 - build/bin/clock.o
 __Lintsave_regs 0 0 BIGRAM 1 intsave_regs build/bin/clock.o
 _BAUDCONbits FB8 0 ABS 0 - build/bin/clock.o
 __Hmediumconst 0 0 MEDIUMCONST 0 mediumconst build/bin/clock.o
@@ -1021,7 +1024,7 @@ __ntoa_format@width 40 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 _timer0_reload 3350 0 CODE 0 text3 build/bin/clock.o
 __ntoa_long@digit 9F 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@flags 77 0 BANK0 1 cstackBANK0 build/bin/clock.o
-__is_digit$1224 E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
+__is_digit$1296 E 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __ntoa_long@value 6A 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __ntoa_long@width 75 0 BANK0 1 cstackBANK0 build/bin/clock.o
 _Uart_Init 316C 0 CODE 0 text40 build/bin/clock.o
@@ -1183,8 +1186,8 @@ __S5 0 0 ABS 0 - build/bin/clock.o
 _app E2 0 BANK0 1 bssBANK0 build/bin/clock.o
 _buffer BE 0 BANK0 1 bssBANK0 build/bin/clock.o
 _colon_control 17C 0 BANK1 1 dataBANK1 build/bin/clock.o
-__vsnprintf@value_1317 1D5 0 BANK1 1 cstackBANK1 build/bin/clock.o
-__vsnprintf@value_1320 1BE 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@value_1389 1D5 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@value_1392 1BE 0 BANK1 1 cstackBANK1 build/bin/clock.o
 display_task@i_1155 21 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lbigdata 0 0 BIGRAM 1 bigdata build/bin/clock.o
 __Hnvrram 0 0 COMRAM 1 nvrram build/bin/clock.o
@@ -1418,7 +1421,7 @@ __ptext9 1902 0 CODE 0 text9 build/bin/clock.o
 ?__ntoa_long 62 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __out_fct@idx 17 0 COMRAM 1 cstackCOMRAM build/bin/clock.o
 __Lstruct 0 0 COMRAM 1 struct build/bin/clock.o
-__vsnprintf@l_1324 1CE 0 BANK1 1 cstackBANK1 build/bin/clock.o
+__vsnprintf@l_1396 1CE 0 BANK1 1 cstackBANK1 build/bin/clock.o
 printf_@buffer B4 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __Ltext10 0 0 ABS 0 text10 build/bin/clock.o
 __Ltext11 0 0 ABS 0 text11 build/bin/clock.o
@@ -1512,6 +1515,7 @@ __end_of_App_Init 2FEC 0 CODE 0 text46 build/bin/clock.o
 __end_of_App_Task 1D58 0 CODE 0 text44 build/bin/clock.o
 printf_@va B5 0 BANK0 1 cstackBANK0 build/bin/clock.o
 __end_of__atoi 2D0A 0 CODE 0 text32 build/bin/clock.o
+_EEADR FA9 0 ABS 0 - build/bin/clock.o
 _PORTB F81 0 ABS 0 - build/bin/clock.o
 _PORTC F82 0 ABS 0 - build/bin/clock.o
 _PORTD F83 0 ABS 0 - build/bin/clock.o

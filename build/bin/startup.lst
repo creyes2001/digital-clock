@@ -1,7 +1,7 @@
 
 
 Microchip MPLAB XC8 Assembler V3.10 build 20250813170317 
-                                                                                                           Mon Mar  9 19:26:35 2026
+                                                                                                           Tue Mar 10 19:04:25 2026
 
 
      1                           	processor	18F4550
@@ -74,9 +74,9 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
     68                           ; build/obj/src/uart.p1 build/obj/src/timer0.p1 build/obj/src/isr.p1 \
     69                           ; build/obj/src/system_tick.p1 build/obj/src/clock.p1 \
     70                           ; build/obj/src/button_driver.p1 build/obj/src/ss_display.p1 \
-    71                           ; build/obj/external/printf/printf.p1 -oclock --objdir=build/bin \
-    72                           ; --outdir=build/bin -L--fixupoverflow=error --std=c99 --rors \
-    73                           ; --icl=auto --callgraph=none --warn=-3 \
+    71                           ; build/obj/src/eeprom.p1 build/obj/external/printf/printf.p1 -oclock \
+    72                           ; --objdir=build/bin --outdir=build/bin -L--fixupoverflow=error \
+    73                           ; --std=c99 --rors --icl=auto --callgraph=none --warn=-3 \
     74                           ; --errformat=%f:%l:%c: error: (%n) %s \
     75                           ; --warnformat=%f:%l:%c: warning: (%n) %s \
     76                           ; --msgformat=%f:%l:%c: advisory: (%n) %s
@@ -254,7 +254,7 @@ Microchip MPLAB XC8 Assembler V3.10 build 20250813170317
 
 
 Microchip Technology PIC18 Macro Assembler V3.10 build 20250813170317 
-Symbol Table                                                                                               Mon Mar  9 19:26:35 2026
+Symbol Table                                                                                               Tue Mar 10 19:04:25 2026
 
                 __S1 01E1                 ___sp 0000                 _main 2366                 start 000E  
               __HRAM 0000                __LRAM 0001               isa$std 0001     ___inthi_stack_hi 0000  
