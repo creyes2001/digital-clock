@@ -578,116 +578,110 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i F3422
 -> -> 0 `i `us
 ]
-"98
-[e ++ F3422 -> -> 1 `i `us ]
-"100
-[e $ ! >= -> F3422 `ui * -> _colon_rate `ui -> -> 2 `i `ui 410  ]
+"99
+[e ( _level_write (3 , , &U *U + _control * -> _digit_flag `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
 "101
-{
-"102
-[e = F3422 -> -> 0 `i `us ]
-"103
-}
-[e :U 410 ]
-"105
-[e $ ! == -> _colon_status `ui -> . `E60 1 `ui 411  ]
-"106
-{
-"107
-[e ( _level_write (3 , , _colon_control . `E64 1 . `E72 0 ]
-"108
-[e ( _level_write (3 , , &U *U + _control * -> -> 0 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"109
-[e ( _level_write (3 , , &U *U + _control * -> -> 1 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"110
-[e ( _level_write (3 , , &U *U + _control * -> -> 2 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"111
-[e ( _level_write (3 , , &U *U + _control * -> -> 3 `i `x -> -> # *U _control `i `x . `E64 0 . `E72 0 ]
-"112
-[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
-"113
-[e $ ! < -> F3422 `ui -> _colon_rate `ui 412  ]
-"114
-{
-"115
-[e ( _level_write (3 , , _colon_pin . `E64 1 . `E72 1 ]
-"116
-}
-[e $U 413  ]
-"117
-[e :U 412 ]
-"118
-{
-"119
-[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
-"120
-}
-[e :U 413 ]
-"121
-}
-[e :U 411 ]
-"123
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 417  ]
-[e :U 414 ]
-"124
+[e $ < -> _i `i -> 7 `i 410  ]
+[e $U 411  ]
+[e :U 410 ]
+"102
 {
-"125
-[e ( _level_write (3 , , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
-"126
+"103
+[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
+"104
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 417 ]
-[e $ < -> _i `i -> _digit_number `i 414  ]
-[e :U 415 ]
+[e $ < -> _i `i -> 7 `i 410  ]
+[e :U 411 ]
 }
+"107
+[e ++ F3422 -> -> 1 `i `us ]
+"108
+[e $ ! >= -> F3422 `ui * -> _colon_rate `ui -> -> 2 `i `ui 413  ]
+"109
+{
+"110
+[e = F3422 -> -> 0 `i `us ]
+"111
+}
+[e :U 413 ]
+"113
+[e $ ! == -> _colon_status `ui -> . `E60 1 `ui 414  ]
+"114
+{
+"115
+[e ( _level_write (3 , , _colon_control . `E64 1 . `E72 0 ]
+"116
+[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
+"117
+[e $ ! < -> F3422 `ui -> _colon_rate `ui 415  ]
+"118
+{
+"119
+[e ( _level_write (3 , , _colon_pin . `E64 1 . `E72 1 ]
+"120
+}
+[e $U 416  ]
+"121
+[e :U 415 ]
+"122
+{
+"123
+[e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
+"124
+}
+[e :U 416 ]
+"125
+}
+[e :U 414 ]
 "128
 [e ++ _digit_flag -> -> 1 `i `uc ]
 "129
-[e $ ! >= -> _digit_flag `i -> _digit_number `i 418  ]
+[e $ ! >= -> _digit_flag `i -> _digit_number `i 417  ]
 "130
 {
 "131
 [e = _digit_flag -> -> 0 `i `uc ]
 "132
 }
-[e :U 418 ]
+[e :U 417 ]
 "134
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 7 `i 419  ]
-[e $U 420  ]
-[e :U 419 ]
+[e $ < -> _i `i -> 7 `i 418  ]
+[e $U 419  ]
+[e :U 418 ]
 "135
 {
 "136
 [e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
 "138
-[e $ ! != & -> *U + &U _numbers * -> *U + &U _buffer * -> _digit_flag `ux -> -> # *U &U _buffer `ui `ux `ux -> -> # *U &U _numbers `ui `ux `i << -> 1 `i -> _i `i -> 0 `i 422  ]
+[e $ ! != & -> *U + &U _numbers * -> *U + &U _buffer * -> _digit_flag `ux -> -> # *U &U _buffer `ui `ux `ux -> -> # *U &U _numbers `ui `ux `i << -> 1 `i -> _i `i -> 0 `i 421  ]
 "139
 {
 "140
 [e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 1 . `E72 1 ]
 "141
 }
-[e $U 423  ]
+[e $U 422  ]
 "142
-[e :U 422 ]
+[e :U 421 ]
 "143
 {
 "144
 [e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
 "145
 }
-[e :U 423 ]
+[e :U 422 ]
 "146
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 7 `i 419  ]
-[e :U 420 ]
+[e $ < -> _i `i -> 7 `i 418  ]
+[e :U 419 ]
 }
 "148
 [e ( _level_write (3 , , &U *U + _control * -> _digit_flag `ux -> -> # *U _control `ui `ux . `E64 1 . `E72 0 ]
@@ -706,7 +700,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "153
 [e = _colon_rate _blink_rate ]
 "154
-[e :UE 424 ]
+[e :UE 423 ]
 }
 "156
 [v _display_push `(v ~T0 @X0 1 ef1`us ]
@@ -723,8 +717,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $U 429  ]
-[e :U 426 ]
+[e $U 428  ]
+[e :U 425 ]
 "160
 {
 "161
@@ -736,10 +730,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 "164
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e :U 429 ]
-[e $ < -> _i `i -> _digit_number `i 426  ]
-[e :U 427 ]
+[e :U 428 ]
+[e $ < -> _i `i -> _digit_number `i 425  ]
+[e :U 426 ]
 }
 "165
-[e :UE 425 ]
+[e :UE 424 ]
 }

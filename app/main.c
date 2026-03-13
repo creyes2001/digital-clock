@@ -10,7 +10,6 @@
 #include "uart.h"
 #include <xc.h>
 
-
 //-----------DISPLAY CONFIG---------------
 gpio_t data[7] = {
 	{
@@ -165,7 +164,7 @@ int main()
 	uint8_t hours = 0, minutes = 0, seconds = 0;
 	clock_init(&sys_clock,hours,minutes,seconds);
 
-	char c;
+//	char c;
 	while(1)
 	{
 		system_tick_task();
@@ -181,7 +180,7 @@ int main()
 		{
 			clock_update_1s(&sys_clock);
 			display_push(get_time(&sys_clock));
-			clock_print(&sys_clock);
+			//clock_print(&sys_clock);
 			display_set_colon_blink(500);
 		}
 		
@@ -196,7 +195,7 @@ int main()
 			display_set_colon_blink(150);
 			display_push(get_time(&sys_clock));
 		}
-		if (Uart_Read(&c))
+	/*	if (Uart_Read(&c))
     	{
         	if (c == 'A')
         	{
@@ -206,7 +205,7 @@ int main()
         	{
             	printf("B\r\n");
         	}
-    	}
+    	}*/
 	}
 	return 0;
 }

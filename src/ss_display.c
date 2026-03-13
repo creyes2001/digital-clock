@@ -95,8 +95,16 @@ void display_init(display_t *display)
 void display_task(void)
 {
 	static uint16_t ms = 0;
-	ms++;
 
+    level_write(&control[digit_flag], LEVEL_OFF, CONTROL_PIN);
+
+	for(uint8_t i = 0; i < SEGMENTS; i++)
+    {
+        level_write(&data[i], LEVEL_OFF, SEGMENT_PIN);
+    }
+
+
+	ms++;
 	if(ms >= (colon_rate * 2))
 	{
 		ms = 0;
@@ -105,10 +113,6 @@ void display_task(void)
 	if(colon_status == COLON_ENABLED)
 	{
 		level_write(colon_control,LEVEL_ON,CONTROL_PIN);
-		level_write(&control[0],LEVEL_OFF,CONTROL_PIN);
-		level_write(&control[1],LEVEL_OFF,CONTROL_PIN);
-		level_write(&control[2],LEVEL_OFF,CONTROL_PIN);
-		level_write(&control[3],LEVEL_OFF,CONTROL_PIN);
 		level_write(colon_pin,LEVEL_OFF,SEGMENT_PIN);
 		if(ms < colon_rate)
 		{
@@ -120,10 +124,6 @@ void display_task(void)
 		}
 	}
 
-	for(uint8_t i = 0; i < digit_number; i++)
-    {
-        level_write(&control[i], LEVEL_OFF, CONTROL_PIN);
-    }
 
 	digit_flag++;
 	if(digit_flag >= digit_number)
