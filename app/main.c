@@ -3,7 +3,7 @@
 #include "gpio.h"
 #include "config.h"
 #include "printf.h"
-#include "timer0.h"
+#include "timer2.h"
 #include "system_tick.h"
 #include "clock.h"
 #include "ss_display.h"
@@ -109,7 +109,7 @@ gpio_t colon_control = {
 
 display_t clk_display = {
 	.colon = COLON_ENABLED,
-	.segment_polarity = ACTIVE_HIGH,
+	.segment_polarity = ACTIVE_LOW,
 	.control_polarity = ACTIVE_LOW,
 	.digit_number = 4,
 	.data = data,
@@ -144,6 +144,26 @@ uart_config_t uart_config = {
 clock_time_t sys_clock;
 app_t app;
 
+/* debug configuration*/
+gpio_t debug_pin = {
+	.tris = &TRISC,
+	.port = &PORTC,
+	.lat = &LATC,
+	.pin = 0
+};
+
+void clock_1hz_debug(gpio_t *debug_p)
+{
+	static volatile uint16_t ms = 0;
+
+	ms++;
+	if(ms>=1)
+	{
+		ms = 0;
+		Gpio_Toggle(debug_p);
+	}
+}
+
 int main()
 {
 
@@ -152,8 +172,8 @@ int main()
 	Uart_Init(&uart_config);
 	Uart_Start(&uart_config);
 
-	timer0_init();
-	timer0_start();
+	timer2_init();
+	timer2_start();
 
 	display_init(&clk_display);
 
@@ -164,7 +184,7 @@ int main()
 	uint8_t hours = 0, minutes = 0, seconds = 0;
 	clock_init(&sys_clock,hours,minutes,seconds);
 
-//	char c;
+	Gpio_Init(&debug_pin,GPIO_OUTPUT);
 	while(1)
 	{
 		system_tick_task();
@@ -174,14 +194,17 @@ int main()
 		{
 			Button_Task();
 			display_task();
+	 	//	clock_1hz_debug(&debug_pin);
 		}
 
-		if(system_tick_is_1s() && app.state == APP_STATE_RUN)
+		if(system_tick_is_1s())
 		{
 			clock_update_1s(&sys_clock);
-			display_push(get_time(&sys_clock));
-			//clock_print(&sys_clock);
-			display_set_colon_blink(500);
+			if(app.state == APP_STATE_RUN)
+			{
+				display_push(get_time(&sys_clock));
+				display_set_colon_blink(500);
+			}
 		}
 		
 		if(app.state == APP_STATE_SET_HOURS)
@@ -195,17 +218,6 @@ int main()
 			display_set_colon_blink(150);
 			display_push(get_time(&sys_clock));
 		}
-	/*	if (Uart_Read(&c))
-    	{
-        	if (c == 'A')
-        	{
-            	printf("A\r\n");
-       		}
-        	else if (c == 'B')
-        	{
-            	printf("B\r\n");
-        	}
-    	}*/
 	}
 	return 0;
 }

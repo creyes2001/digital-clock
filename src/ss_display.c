@@ -97,12 +97,10 @@ void display_task(void)
 	static uint16_t ms = 0;
 
     level_write(&control[digit_flag], LEVEL_OFF, CONTROL_PIN);
-
-	for(uint8_t i = 0; i < SEGMENTS; i++)
+	for(uint8_t i = 0; i < 4; i++)
     {
-        level_write(&data[i], LEVEL_OFF, SEGMENT_PIN);
+        level_write(&control[i], LEVEL_OFF, CONTROL_PIN);
     }
-
 
 	ms++;
 	if(ms >= (colon_rate * 2))
@@ -133,7 +131,7 @@ void display_task(void)
 
 	for(uint8_t i = 0; i < SEGMENTS; i++)
 	{
-		level_write(&data[i],LEVEL_OFF,SEGMENT_PIN);
+	//	level_write(&data[i],LEVEL_OFF,SEGMENT_PIN);
 		
 		if(numbers[buffer[digit_flag]] & (1 <<  i))
 		{

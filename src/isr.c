@@ -1,6 +1,6 @@
 #include "isr.h"
 #include "uart.h"
-#include "timer0.h"
+#include "timer2.h"
 #include "system_tick.h"
 #include <stdint.h>
 #include <xc.h>
@@ -9,13 +9,13 @@
 void __interrupt() ISR(void)
 {
 	//UART interrupts
-	if(PIR1bits.RCIF | PIR1bits.TXIF)
+/*	if(PIR1bits.RCIF | PIR1bits.TXIF)
 	{
 		Uart_InterruptHandler();
 	}
 	
-	//Timer 0 interrupts
-	if(INTCONbits.TMR0IF && INTCONbits.TMR0IE)
+*/	//Timer 0 interrupts
+	/*if(INTCONbits.TMR0IF && INTCONbits.TMR0IE)
 	{
 
 		INTCONbits.TMR0IF = 0;
@@ -28,8 +28,13 @@ void __interrupt() ISR(void)
 		//T0CONbits.TMR0ON = 1;	//timer0 start
 
 		system_tick_1ms();
+	}*/
+	if(PIR1bits.TMR2IF)
+	{
+		PIR1bits.TMR2IF = 0;
+		system_tick_1ms();
+    //    LATCbits.LATC0 ^= 1;  // ONLY here
 	}
-
 }
 
 void isr_init(void)

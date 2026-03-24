@@ -580,160 +580,158 @@ Version 4.0 HI-TECH Software Intermediate Code
 ]
 "99
 [e ( _level_write (3 , , &U *U + _control * -> _digit_flag `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
-"101
+"100
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
-[e $ < -> _i `i -> 7 `i 410  ]
+[e $ < -> _i `i -> 4 `i 410  ]
 [e $U 411  ]
 [e :U 410 ]
-"102
+"101
 {
+"102
+[e ( _level_write (3 , , &U *U + _control * -> _i `ux -> -> # *U _control `ui `ux . `E64 0 . `E72 0 ]
 "103
-[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
-"104
 }
 [e ++ _i -> -> 1 `i `uc ]
-[e $ < -> _i `i -> 7 `i 410  ]
+[e $ < -> _i `i -> 4 `i 410  ]
 [e :U 411 ]
 }
-"107
+"105
 [e ++ F3422 -> -> 1 `i `us ]
-"108
+"106
 [e $ ! >= -> F3422 `ui * -> _colon_rate `ui -> -> 2 `i `ui 413  ]
-"109
+"107
 {
-"110
+"108
 [e = F3422 -> -> 0 `i `us ]
-"111
+"109
 }
 [e :U 413 ]
-"113
+"111
 [e $ ! == -> _colon_status `ui -> . `E60 1 `ui 414  ]
-"114
+"112
 {
-"115
+"113
 [e ( _level_write (3 , , _colon_control . `E64 1 . `E72 0 ]
-"116
+"114
 [e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
-"117
+"115
 [e $ ! < -> F3422 `ui -> _colon_rate `ui 415  ]
-"118
+"116
 {
-"119
+"117
 [e ( _level_write (3 , , _colon_pin . `E64 1 . `E72 1 ]
-"120
+"118
 }
 [e $U 416  ]
-"121
+"119
 [e :U 415 ]
-"122
+"120
 {
-"123
+"121
 [e ( _level_write (3 , , _colon_pin . `E64 0 . `E72 1 ]
-"124
+"122
 }
 [e :U 416 ]
-"125
+"123
 }
 [e :U 414 ]
-"128
+"126
 [e ++ _digit_flag -> -> 1 `i `uc ]
-"129
+"127
 [e $ ! >= -> _digit_flag `i -> _digit_number `i 417  ]
-"130
+"128
 {
-"131
+"129
 [e = _digit_flag -> -> 0 `i `uc ]
-"132
+"130
 }
 [e :U 417 ]
-"134
+"132
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $ < -> _i `i -> 7 `i 418  ]
 [e $U 419  ]
 [e :U 418 ]
-"135
+"133
 {
 "136
-[e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
-"138
 [e $ ! != & -> *U + &U _numbers * -> *U + &U _buffer * -> _digit_flag `ux -> -> # *U &U _buffer `ui `ux `ux -> -> # *U &U _numbers `ui `ux `i << -> 1 `i -> _i `i -> 0 `i 421  ]
-"139
+"137
 {
-"140
+"138
 [e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 1 . `E72 1 ]
-"141
+"139
 }
 [e $U 422  ]
-"142
+"140
 [e :U 421 ]
-"143
+"141
 {
-"144
+"142
 [e ( _level_write (3 , , &U *U + _data * -> _i `ux -> -> # *U _data `ui `ux . `E64 0 . `E72 1 ]
-"145
+"143
 }
 [e :U 422 ]
-"146
+"144
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e $ < -> _i `i -> 7 `i 418  ]
 [e :U 419 ]
 }
-"148
+"146
 [e ( _level_write (3 , , &U *U + _control * -> _digit_flag `ux -> -> # *U _control `ui `ux . `E64 1 . `E72 0 ]
-"149
+"147
 [e :UE 409 ]
 }
-"151
+"149
 [v _display_set_colon_blink `(v ~T0 @X0 1 ef1`us ]
-"152
+"150
 {
 [e :U _display_set_colon_blink ]
-"151
+"149
 [v _blink_rate `us ~T0 @X0 1 r1 ]
-"152
+"150
 [f ]
-"153
+"151
 [e = _colon_rate _blink_rate ]
-"154
+"152
 [e :UE 423 ]
 }
-"156
+"154
 [v _display_push `(v ~T0 @X0 1 ef1`us ]
-"157
+"155
 {
 [e :U _display_push ]
-"156
+"154
 [v _buffer_clk `us ~T0 @X0 1 r1 ]
-"157
+"155
 [f ]
-"158
+"156
 [v _dig `uc ~T0 @X0 1 a ]
-"159
+"157
 {
 [v _i `uc ~T0 @X0 1 a ]
 [e = _i -> -> 0 `i `uc ]
 [e $U 428  ]
 [e :U 425 ]
-"160
+"158
 {
-"161
+"159
 [e = _dig -> % -> _buffer_clk `ui -> -> 10 `i `ui `uc ]
-"162
+"160
 [e = *U + &U _buffer * -> -> - - -> _digit_number `i -> _i `i -> 1 `i `ui `ux -> -> # *U &U _buffer `ui `ux _dig ]
-"163
+"161
 [e = _buffer_clk -> / -> _buffer_clk `ui -> -> 10 `i `ui `us ]
-"164
+"162
 }
 [e ++ _i -> -> 1 `i `uc ]
 [e :U 428 ]
 [e $ < -> _i `i -> _digit_number `i 425  ]
 [e :U 426 ]
 }
-"165
+"163
 [e :UE 424 ]
 }

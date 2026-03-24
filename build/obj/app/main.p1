@@ -21,12 +21,12 @@ Version 4.0 HI-TECH Software Intermediate Code
 "2824
 [v _PORTE `Vuc ~T0 @X0 0 e@3972 ]
 "110 app/main.c
-[c E169 0 1 .. ]
-[n E169 . COLON_DISABLED COLON_ENABLED  ]
-[c E177 0 1 .. ]
-[n E177 . ACTIVE_LOW ACTIVE_HIGH  ]
+[c E168 0 1 .. ]
+[n E168 . COLON_DISABLED COLON_ENABLED  ]
+[c E176 0 1 .. ]
+[n E176 . ACTIVE_LOW ACTIVE_HIGH  ]
 "35 ./inc/ss_display.h
-[s S5 `E169 1 `E177 1 `E177 1 `uc 1 `*S1 1 `*S1 1 `*S1 1 `*S1 1 ]
+[s S5 `E168 1 `E176 1 `E176 1 `uc 1 `*S1 1 `*S1 1 `*S1 1 `*S1 1 ]
 [n S5 . colon segment_polarity control_polarity digit_number data control colon_pin colon_control_pin ]
 "3845 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [v _TRISC `Vuc ~T0 @X0 0 e@3988 ]
@@ -46,23 +46,30 @@ Version 4.0 HI-TECH Software Intermediate Code
 "15 app/app.h
 [s S4 `*S3 1 `E107 1 ]
 [n S4 . clock state ]
+"29 ./inc/gpio.h
+[v _Gpio_Toggle `(v ~T0 @X0 0 ef1`*S1 ]
 [p mainexit ]
-"20
+"20 app/app.h
 [v _App_Init `(v ~T0 @X0 0 ef2`*S4`*S3 ]
 "16 ./inc/uart.h
 [v _Uart_Init `(v ~T0 @X0 0 ef1`*CS6 ]
 "17
 [v _Uart_Start `(v ~T0 @X0 0 ef1`*CS6 ]
-"6 ./inc/timer0.h
-[v _timer0_init `(v ~T0 @X0 0 ef ]
+"6 ./inc/timer2.h
+[v _timer2_init `(v ~T0 @X0 0 ef ]
 "7
-[v _timer0_start `(v ~T0 @X0 0 ef ]
+[v _timer2_start `(v ~T0 @X0 0 ef ]
 "46 ./inc/ss_display.h
 [v _display_init `(v ~T0 @X0 0 ef1`*S5 ]
 "4 ./inc/isr.h
 [v _isr_init `(v ~T0 @X0 0 ef ]
 "14 ./inc/clock.h
 [v _clock_init `(v ~T0 @X0 0 ef4`*S3`uc`uc`uc ]
+"187 app/main.c
+[c E36 0 1 .. ]
+[n E36 . GPIO_OUTPUT GPIO_INPUT  ]
+"26 ./inc/gpio.h
+[v _Gpio_Init `(v ~T0 @X0 0 ef2`*S1`E36 ]
 "7 ./inc/system_tick.h
 [v _system_tick_task `(v ~T0 @X0 0 ef ]
 "21 app/app.h
@@ -84,7 +91,7 @@ Version 4.0 HI-TECH Software Intermediate Code
 "49 ./inc/ss_display.h
 [v _display_set_colon_blink `(v ~T0 @X0 0 ef1`us ]
 "3 ./inc/config.h
-[p x PLLDIV  =  1        ]
+[p x PLLDIV  =  5        ]
 "4
 [p x CPUDIV  =  OSC1_PLL2  ]
 "5
@@ -562,9 +569,9 @@ Version 4.0 HI-TECH Software Intermediate Code
 [i _clk_display
 :U ..
 :U ..
-. `E169 1
-. `E177 1
-. `E177 0
+. `E168 1
+. `E176 0
+. `E176 0
 -> -> 4 `i `uc
 &U _data
 &U _control
@@ -612,98 +619,149 @@ Version 4.0 HI-TECH Software Intermediate Code
 [v _sys_clock `S3 ~T0 @X0 1 e ]
 "145
 [v _app `S4 ~T0 @X0 1 e ]
-[v $root$_main `(v ~T0 @X0 0 e ]
-"147
-[v _main `(i ~T0 @X0 1 ef ]
 "148
+[v _debug_pin `S1 ~T0 @X0 1 e ]
+[i _debug_pin
+:U ..
+:U ..
+&U _TRISC
+&U _LATC
+&U _PORTC
+-> -> 0 `i `uc
+..
+..
+]
+"155
+[v _clock_1hz_debug `(v ~T0 @X0 1 ef1`*S1 ]
+"156
+{
+[e :U _clock_1hz_debug ]
+"155
+[v _debug_p `*S1 ~T0 @X0 1 r1 ]
+"156
+[f ]
+"157
+[v F3534 `Vus ~T0 @X0 1 s ms ]
+[i F3534
+-> -> 0 `i `us
+]
+"159
+[e ++ F3534 -> -> 1 `i `Vus ]
+"160
+[e $ ! >= -> F3534 `ui -> -> 1 `i `ui 398  ]
+"161
+{
+"162
+[e = F3534 -> -> 0 `i `us ]
+"163
+[e ( _Gpio_Toggle (1 _debug_p ]
+"164
+}
+[e :U 398 ]
+"165
+[e :UE 397 ]
+}
+[v $root$_main `(v ~T0 @X0 0 e ]
+"167
+[v _main `(i ~T0 @X0 1 ef ]
+"168
 {
 [e :U _main ]
 [f ]
-"150
+"170
 [e ( _App_Init (2 , &U _app &U _sys_clock ]
-"152
+"172
 [e ( _Uart_Init (1 -> &U _uart_config `*CS6 ]
-"153
+"173
 [e ( _Uart_Start (1 -> &U _uart_config `*CS6 ]
-"155
-[e ( _timer0_init ..  ]
-"156
-[e ( _timer0_start ..  ]
-"158
+"175
+[e ( _timer2_init ..  ]
+"176
+[e ( _timer2_start ..  ]
+"178
 [e ( _display_init (1 &U _clk_display ]
-"161
+"181
 [e ( _isr_init ..  ]
-"164
+"184
 [v _hours `uc ~T0 @X0 1 a ]
 [e = _hours -> -> 0 `i `uc ]
 [v _minutes `uc ~T0 @X0 1 a ]
 [e = _minutes -> -> 0 `i `uc ]
 [v _seconds `uc ~T0 @X0 1 a ]
 [e = _seconds -> -> 0 `i `uc ]
-"165
-[e ( _clock_init (4 , , , &U _sys_clock _hours _minutes _seconds ]
-"168
-[e :U 399 ]
-"169
-{
-"170
-[e ( _system_tick_task ..  ]
-"171
-[e ( _App_Task (1 &U _app ]
-"173
-[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 401  ]
-"174
-{
-"175
-[e ( _Button_Task ..  ]
-"176
-[e ( _display_task ..  ]
-"177
-}
-[e :U 401 ]
-"179
-[e $ ! && != -> ( _system_tick_is_1s ..  `i -> 0 `i == -> . _app 1 `ui -> . `E107 0 `ui 402  ]
-"180
-{
-"181
-[e ( _clock_update_1s (1 &U _sys_clock ]
-"182
-[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
-"184
-[e ( _display_set_colon_blink (1 -> -> 500 `i `us ]
 "185
-}
-[e :U 402 ]
+[e ( _clock_init (4 , , , &U _sys_clock _hours _minutes _seconds ]
 "187
-[e $ ! == -> . _app 1 `ui -> . `E107 1 `ui 403  ]
+[e ( _Gpio_Init (2 , &U _debug_pin . `E36 0 ]
 "188
-{
+[e :U 401 ]
 "189
-[e ( _display_set_colon_blink (1 -> -> 150 `i `us ]
+{
 "190
-[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
+[e ( _system_tick_task ..  ]
 "191
-}
-[e :U 403 ]
+[e ( _App_Task (1 &U _app ]
 "193
-[e $ ! == -> . _app 1 `ui -> . `E107 2 `ui 404  ]
+[e $ ! != -> ( _system_tick_is_1ms ..  `i -> 0 `i 403  ]
 "194
 {
 "195
-[e ( _display_set_colon_blink (1 -> -> 150 `i `us ]
+[e ( _Button_Task ..  ]
 "196
+[e ( _display_task ..  ]
+"198
+}
+[e :U 403 ]
+"200
+[e $ ! != -> ( _system_tick_is_1s ..  `i -> 0 `i 404  ]
+"201
+{
+"202
+[e ( _clock_update_1s (1 &U _sys_clock ]
+"203
+[e $ ! == -> . _app 1 `ui -> . `E107 0 `ui 405  ]
+"204
+{
+"205
 [e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
-"197
+"206
+[e ( _display_set_colon_blink (1 -> -> 500 `i `us ]
+"207
+}
+[e :U 405 ]
+"208
 }
 [e :U 404 ]
-"209
-}
-[e :U 398 ]
-[e $U 399  ]
-[e :U 400 ]
 "210
-[e ) -> 0 `i ]
-[e $UE 397  ]
+[e $ ! == -> . _app 1 `ui -> . `E107 1 `ui 406  ]
 "211
-[e :UE 397 ]
+{
+"212
+[e ( _display_set_colon_blink (1 -> -> 150 `i `us ]
+"213
+[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
+"214
+}
+[e :U 406 ]
+"216
+[e $ ! == -> . _app 1 `ui -> . `E107 2 `ui 407  ]
+"217
+{
+"218
+[e ( _display_set_colon_blink (1 -> -> 150 `i `us ]
+"219
+[e ( _display_push (1 ( _get_time (1 &U _sys_clock ]
+"220
+}
+[e :U 407 ]
+"221
+}
+[e :U 400 ]
+[e $U 401  ]
+[e :U 402 ]
+"222
+[e ) -> 0 `i ]
+[e $UE 399  ]
+"223
+[e :UE 399 ]
 }

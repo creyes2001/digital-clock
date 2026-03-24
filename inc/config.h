@@ -1,6 +1,6 @@
 // === Configuration Bits for PIC18F4550 ===
 // CONFIG1L
-#pragma config PLLDIV = 1       // No PLL prescale (4 MHz crystal)
+#pragma config PLLDIV = 5       // No PLL prescale (20 MHz crystal)
 #pragma config CPUDIV = OSC1_PLL2 // CPU system clock divide
 #pragma config USBDIV = 1       // No USB clock divide
    

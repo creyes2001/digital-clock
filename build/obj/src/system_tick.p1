@@ -1,11 +1,11 @@
 Version 4.0 HI-TECH Software Intermediate Code
 "3 src/system_tick.c
-[v _pending_ticks `Vuc ~T0 @X0 1 s ]
+[v _pending_ticks `Vus ~T0 @X0 1 s ]
 [i _pending_ticks
--> -> 0 `i `uc
+-> -> 0 `i `us
 ]
 "4
-[v _tick_1ms `us ~T0 @X0 1 s ]
+[v _tick_1ms `Vus ~T0 @X0 1 s ]
 [i _tick_1ms
 -> -> 0 `i `us
 ]
@@ -26,11 +26,11 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _system_tick_1ms ]
 [f ]
 "10
-[e $ ! < -> _pending_ticks `i -> 255 `i 2  ]
+[e $ ! < -> _pending_ticks `ui -> -> 255 `i `ui 2  ]
 "11
 {
 "12
-[e ++ _pending_ticks -> -> 1 `i `Vuc ]
+[e ++ _pending_ticks -> -> 1 `i `Vus ]
 "13
 }
 [e :U 2 ]
@@ -44,18 +44,17 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _system_tick_task ]
 [f ]
 "18
-[e $U 4  ]
-[e :U 5 ]
+[e $ ! != -> _pending_ticks `ui -> -> 0 `i `ui 4  ]
 "19
 {
 "20
-[e -- _pending_ticks -> -> 1 `i `Vuc ]
+[e -- _pending_ticks -> -> 1 `i `Vus ]
 "21
 [e = _flag_1ms -> -> 1 `i `uc ]
 "22
-[e ++ _tick_1ms -> -> 1 `i `us ]
+[e ++ _tick_1ms -> -> 1 `i `Vus ]
 "24
-[e $ ! >= -> _tick_1ms `ui -> -> 1000 `i `ui 7  ]
+[e $ ! >= -> _tick_1ms `ui -> -> 1000 `i `ui 5  ]
 "25
 {
 "26
@@ -64,13 +63,10 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e = _one_second_flag -> -> 1 `i `uc ]
 "28
 }
-[e :U 7 ]
+[e :U 5 ]
 "29
 }
 [e :U 4 ]
-"18
-[e $ != -> _pending_ticks `i -> 0 `i 5  ]
-[e :U 6 ]
 "30
 [e :UE 3 ]
 }
@@ -81,22 +77,22 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _system_tick_is_1ms ]
 [f ]
 "34
-[e $ ! != -> _flag_1ms `i -> 0 `i 9  ]
+[e $ ! != -> _flag_1ms `i -> 0 `i 7  ]
 "35
 {
 "36
 [e = _flag_1ms -> -> 0 `i `uc ]
 "37
 [e ) -> -> 1 `i `uc ]
-[e $UE 8  ]
+[e $UE 6  ]
 "38
 }
-[e :U 9 ]
+[e :U 7 ]
 "39
 [e ) -> -> 0 `i `uc ]
-[e $UE 8  ]
+[e $UE 6  ]
 "40
-[e :UE 8 ]
+[e :UE 6 ]
 }
 "42
 [v _system_tick_is_1s `(uc ~T0 @X0 1 ef ]
@@ -105,20 +101,20 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _system_tick_is_1s ]
 [f ]
 "44
-[e $ ! != -> _one_second_flag `i -> 0 `i 11  ]
+[e $ ! != -> _one_second_flag `i -> 0 `i 9  ]
 "45
 {
 "46
 [e = _one_second_flag -> -> 0 `i `uc ]
 "47
 [e ) -> -> 1 `i `uc ]
-[e $UE 10  ]
+[e $UE 8  ]
 "48
 }
-[e :U 11 ]
+[e :U 9 ]
 "50
 [e ) -> -> 0 `i `uc ]
-[e $UE 10  ]
+[e $UE 8  ]
 "51
-[e :UE 10 ]
+[e :UE 8 ]
 }

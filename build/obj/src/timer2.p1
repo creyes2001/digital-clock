@@ -1,62 +1,44 @@
 Version 4.0 HI-TECH Software Intermediate Code
-[t ~ __interrupt . k ]
-[t T36 __interrupt ]
-"4472 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
-[s S180 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S180 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF SPPIF ]
+"7198 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
+[v _T2CON `Vuc ~T0 @X0 0 e@4042 ]
+"7296
+[v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
+"4472
+[s S178 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S178 . TMR1IF TMR2IF CCP1IF SSPIF TXIF RCIF ADIF SPPIF ]
 "4482
-[s S181 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S181 . . TX1IF RC1IF . PSPIF ]
+[s S179 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S179 . . TX1IF RC1IF . PSPIF ]
 "4471
-[u S179 `S180 1 `S181 1 ]
-[n S179 . . . ]
+[u S177 `S178 1 `S179 1 ]
+[n S177 . . . ]
 "4490
-[v _PIR1bits `VS179 ~T0 @X0 0 e@3998 ]
-"6 ./inc/system_tick.h
-[v _system_tick_1ms `(v ~T0 @X0 0 ef ]
-"7543 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
-[s S324 :1 `uc 1 ]
-[n S324 . NOT_BOR ]
-"7546
-[s S325 :1 `uc 1 :1 `uc 1 ]
-[n S325 . . NOT_POR ]
-"7550
-[s S326 :2 `uc 1 :1 `uc 1 ]
-[n S326 . . NOT_PD ]
-"7554
-[s S327 :3 `uc 1 :1 `uc 1 ]
-[n S327 . . NOT_TO ]
-"7558
-[s S328 :4 `uc 1 :1 `uc 1 ]
-[n S328 . . NOT_RI ]
-"7562
-[s S329 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S329 . nBOR nPOR nPD nTO nRI . SBOREN IPEN ]
-"7572
-[s S330 :7 `uc 1 :1 `uc 1 ]
-[n S330 . . NOT_IPEN ]
-"7576
-[s S331 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :2 `uc 1 :1 `uc 1 ]
-[n S331 . BOR POR PD TO RI . nIPEN ]
-"7542
-[u S323 `S324 1 `S325 1 `S326 1 `S327 1 `S328 1 `S329 1 `S330 1 `S331 1 ]
-[n S323 . . . . . . . . . ]
-"7586
-[v _RCONbits `VS323 ~T0 @X0 0 e@4048 ]
-"8586
-[s S362 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S362 . RBIF INT0IF TMR0IF RBIE INT0IE TMR0IE PEIE_GIEL GIE_GIEH ]
-"8596
-[s S363 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S363 . . INT0F T0IF . INT0E T0IE PEIE GIE ]
-"8606
-[s S364 :6 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S364 . . GIEL GIEH ]
-"8585
-[u S361 `S362 1 `S363 1 `S364 1 ]
-[n S361 . . . . ]
-"8612
-[v _INTCONbits `VS361 ~T0 @X0 0 e@4082 ]
+[v _PIR1bits `VS177 ~T0 @X0 0 e@3998 ]
+"4388
+[s S175 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S175 . TMR1IE TMR2IE CCP1IE SSPIE TXIE RCIE ADIE SPPIE ]
+"4398
+[s S176 :4 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S176 . . TX1IE RC1IE . PSPIE ]
+"4387
+[u S174 `S175 1 `S176 1 ]
+[n S174 . . . ]
+"4406
+[v _PIE1bits `VS174 ~T0 @X0 0 e@3997 ]
+"7204
+[s S301 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
+[n S301 . T2CKPS TMR2ON TOUTPS ]
+"7209
+[s S302 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S302 . T2CKPS0 T2CKPS1 . T2OUTPS0 T2OUTPS1 T2OUTPS2 T2OUTPS3 ]
+"7218
+[s S303 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S303 . . TOUTPS0 TOUTPS1 TOUTPS2 TOUTPS3 ]
+"7203
+[u S300 `S301 1 `S302 1 `S303 1 ]
+[n S300 . . . . ]
+"7226
+[v _T2CONbits `VS300 ~T0 @X0 0 e@4042 ]
 "52 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [; <" SPPDATA equ 0F62h ;# ">
 "72
@@ -397,65 +379,44 @@ Version 4.0 HI-TECH Software Intermediate Code
 [; <" TOSH equ 0FFEh ;# ">
 "8891
 [; <" TOSU equ 0FFFh ;# ">
-[v $root$_ISR `(v ~T0 @X0 0 e ]
-"9 src/isr.c
-[v _ISR `(v ~T36 @X0 1 ef ]
+"4 src/timer2.c
+[v _timer2_init `(v ~T0 @X0 1 ef ]
+"5
+{
+[e :U _timer2_init ]
+[f ]
+"7
+[e = _T2CON -> -> 6 `i `uc ]
 "10
-{
-[e :U _ISR ]
-[f ]
-"32
-[e $ ! != -> . . _PIR1bits 0 1 `i -> 0 `i 394  ]
-"33
-{
-"34
+[e = _PR2 -> -> 249 `i `uc ]
+"13
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"35
-[e ( _system_tick_1ms ..  ]
-"37
+"16
+[e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
+"19
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+"20
+[e :UE 391 ]
 }
-[e :U 394 ]
-"38
+"22
+[v _timer2_start `(v ~T0 @X0 1 ef ]
+"23
+{
+[e :U _timer2_start ]
+[f ]
+"24
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+"25
+[e :UE 392 ]
+}
+"27
+[v _timer2_stop `(v ~T0 @X0 1 ef ]
+"28
+{
+[e :U _timer2_stop ]
+[f ]
+"29
+[e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
+"30
 [e :UE 393 ]
-}
-"40
-[v _isr_init `(v ~T0 @X0 1 ef ]
-"41
-{
-[e :U _isr_init ]
-[f ]
-"42
-[e = . . _RCONbits 5 7 -> -> 0 `i `uc ]
-"43
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"44
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"45
-[e :UE 395 ]
-}
-"46
-[v _interrupts_off `(v ~T0 @X0 1 ef ]
-"47
-{
-[e :U _interrupts_off ]
-[f ]
-"48
-[e = . . _INTCONbits 1 6 -> -> 0 `i `uc ]
-"49
-[e = . . _INTCONbits 1 7 -> -> 0 `i `uc ]
-"50
-[e :UE 396 ]
-}
-"52
-[v _interrupts_on `(v ~T0 @X0 1 ef ]
-"53
-{
-[e :U _interrupts_on ]
-[f ]
-"54
-[e = . . _INTCONbits 1 6 -> -> 1 `i `uc ]
-"55
-[e = . . _INTCONbits 1 7 -> -> 1 `i `uc ]
-"56
-[e :UE 397 ]
 }

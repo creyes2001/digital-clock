@@ -22,6 +22,7 @@ SOURCES = app/main.c\
 		  src/buffer.c\
 		  src/uart.c\
 		  src/timer0.c\
+		  src/timer2.c\
 		  src/isr.c\
 		  src/system_tick.c\
 		  src/clock.c\
