@@ -570,8 +570,8 @@ Version 4.0 HI-TECH Software Intermediate Code
 :U ..
 :U ..
 . `E168 1
-. `E176 0
-. `E176 0
+. `E176 1
+. `E176 1
 -> -> 4 `i `uc
 &U _data
 &U _control

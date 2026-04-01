@@ -109,8 +109,8 @@ gpio_t colon_control = {
 
 display_t clk_display = {
 	.colon = COLON_ENABLED,
-	.segment_polarity = ACTIVE_LOW,
-	.control_polarity = ACTIVE_LOW,
+	.segment_polarity = ACTIVE_HIGH,
+	.control_polarity = ACTIVE_HIGH,
 	.digit_number = 4,
 	.data = data,
 	.control = control, 

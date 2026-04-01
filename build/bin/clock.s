@@ -3341,8 +3341,8 @@ __pidataBANK0:
 
 ;initializer for _clk_display
 	db	low(01h)
-	db	low(0)
-	db	low(0)
+	db	low(01h)
+	db	low(01h)
 	db	low(04h)
 		db	low(_data)
 	db	high(_data)
