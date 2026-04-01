@@ -49,4 +49,4 @@ make flash
 make clean
 ```
 ## Schematic
-![schematic](./images/clock_schematic.png)
+![schematic](./images/clock_schematics.png)
