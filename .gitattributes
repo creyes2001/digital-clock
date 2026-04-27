@@ -1,5 +1,5 @@
 # Ignore generated build output
-build/* linguist-generated=true
+build/** linguist-generated=true
 
 # Ignore vendored/external libraries
-external/* linguist-vendored=true
+external/** linguist-vendored=true
