@@ -4,10 +4,11 @@
 void timer2_init(void)
 {
 
-	T2CON = 0x06;
+	T2CONbits.T2CKPS = 0b01;
+	T2CONbits.TOUTPS = 0b1001;
 
     // Period register
-    PR2 = 249;
+    PR2 = 124;
 
     // Clear interrupt flag
     PIR1bits.TMR2IF = 0;

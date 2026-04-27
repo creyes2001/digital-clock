@@ -1,6 +1,18 @@
 Version 4.0 HI-TECH Software Intermediate Code
-"7198 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
-[v _T2CON `Vuc ~T0 @X0 0 e@4042 ]
+"7204 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
+[s S301 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
+[n S301 . T2CKPS TMR2ON TOUTPS ]
+"7209
+[s S302 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S302 . T2CKPS0 T2CKPS1 . T2OUTPS0 T2OUTPS1 T2OUTPS2 T2OUTPS3 ]
+"7218
+[s S303 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
+[n S303 . . TOUTPS0 TOUTPS1 TOUTPS2 TOUTPS3 ]
+"7203
+[u S300 `S301 1 `S302 1 `S303 1 ]
+[n S300 . . . . ]
+"7226
+[v _T2CONbits `VS300 ~T0 @X0 0 e@4042 ]
 "7296
 [v _PR2 `Vuc ~T0 @X0 0 e@4043 ]
 "4472
@@ -25,20 +37,6 @@ Version 4.0 HI-TECH Software Intermediate Code
 [n S174 . . . ]
 "4406
 [v _PIE1bits `VS174 ~T0 @X0 0 e@3997 ]
-"7204
-[s S301 :2 `uc 1 :1 `uc 1 :4 `uc 1 ]
-[n S301 . T2CKPS TMR2ON TOUTPS ]
-"7209
-[s S302 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S302 . T2CKPS0 T2CKPS1 . T2OUTPS0 T2OUTPS1 T2OUTPS2 T2OUTPS3 ]
-"7218
-[s S303 :3 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 :1 `uc 1 ]
-[n S303 . . TOUTPS0 TOUTPS1 TOUTPS2 TOUTPS3 ]
-"7203
-[u S300 `S301 1 `S302 1 `S303 1 ]
-[n S300 . . . . ]
-"7226
-[v _T2CONbits `VS300 ~T0 @X0 0 e@4042 ]
 "52 /opt/microchip/mplabx/v6.25/packs/Microchip/PIC18Fxxxx_DFP/1.7.171/xc8/pic/include/proc/pic18f4550.h
 [; <" SPPDATA equ 0F62h ;# ">
 "72
@@ -386,37 +384,39 @@ Version 4.0 HI-TECH Software Intermediate Code
 [e :U _timer2_init ]
 [f ]
 "7
-[e = _T2CON -> -> 6 `i `uc ]
-"10
-[e = _PR2 -> -> 249 `i `uc ]
-"13
+[e = . . _T2CONbits 0 0 -> -> 1 `i `uc ]
+"8
+[e = . . _T2CONbits 0 2 -> -> 9 `i `uc ]
+"11
+[e = _PR2 -> -> 124 `i `uc ]
+"14
 [e = . . _PIR1bits 0 1 -> -> 0 `i `uc ]
-"16
+"17
 [e = . . _PIE1bits 0 1 -> -> 1 `i `uc ]
-"19
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
 "20
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+"21
 [e :UE 391 ]
 }
-"22
-[v _timer2_start `(v ~T0 @X0 1 ef ]
 "23
+[v _timer2_start `(v ~T0 @X0 1 ef ]
+"24
 {
 [e :U _timer2_start ]
 [f ]
-"24
-[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
 "25
+[e = . . _T2CONbits 0 1 -> -> 1 `i `uc ]
+"26
 [e :UE 392 ]
 }
-"27
-[v _timer2_stop `(v ~T0 @X0 1 ef ]
 "28
+[v _timer2_stop `(v ~T0 @X0 1 ef ]
+"29
 {
 [e :U _timer2_stop ]
 [f ]
-"29
-[e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
 "30
+[e = . . _T2CONbits 0 1 -> -> 0 `i `uc ]
+"31
 [e :UE 393 ]
 }

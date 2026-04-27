@@ -169,8 +169,8 @@ int main()
 
 	App_Init(&app,&sys_clock);
 
-	Uart_Init(&uart_config);
-	Uart_Start(&uart_config);
+	//Uart_Init(&uart_config);
+	//Uart_Start(&uart_config);
 
 	timer2_init();
 	timer2_start();
