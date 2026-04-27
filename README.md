@@ -42,6 +42,23 @@ The tick drives a cooperative scheduler responsible for executing periodic tasks
 The scheduler manages key tasks such as button input processing, display multiplexing, and timekeeping.
 This approach ensures accurate timing efficient CPU utilization.
 
+## Challenges & Design Decisions
+
+### Display ghosting
+
+My initial design used common-anode displays driven by PNP transistors 
+through a Darlington array, chosen to limit the current going through 
+the PIC's GPIO pins. This setup caused visible ghosting: the Darlington 
+array's slow switching times and high saturation voltage drop meant 
+that the previous digit didn't fully turn off before the next one 
+turned on during multiplexing.
+
+I redesigned the digit-drive stage with common-cathode displays driven 
+directly by NPN transistors. The faster switching produced cleaner 
+digit transitions and eliminated the ghosting entirely. This taught me 
+that in embedded development, firmware correctness alone isn't enough — 
+the underlying circuit topology can make or break a working system.
+
 ## Build Instruction
 ```bash
 make all
